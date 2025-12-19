@@ -453,12 +453,12 @@ export default function ModStoreApp() {
               {/* Contenedor de texto que se oculta en móvil al buscar */}
               <div className={`transition-all duration-300 ease-in-out ${isSearchFocused ? 'hidden md:block opacity-0' : 'block opacity-100'}`}>
                 <Badge color="mint">NUEVA VERSIÓN DISPONIBLE</Badge>
-                <h1 className="text-4xl md:text-6xl font-extrabold text-white leading-tight">
-                  Domina tus <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-300 to-teal-500">Apps</span> favoritas
-                </h1>
-                <p className="text-slate-400 text-lg max-w-xl">
-                  Descarga versiones modificadas seguras. Características premium desbloqueadas, sin anuncios y funcionalidades extendidas.
-                </p>
+                <h1 className="text-4xl md:text-6xl font-extrabold text-white leading-[1.1] mb-3">
+  Descarga tus <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-300 to-teal-500">Apps</span> favoritas
+</h1>
+                <p className="text-slate-400 text-sm md:text-lg max-w-xl leading-relaxed">
+  Descarga versiones modificadas seguras. Características premium desbloqueadas, sin anuncios y funcionalidades extendidas.
+</p>
               </div>
               
               <div className="relative max-w-md mt-6 group z-20">
@@ -577,7 +577,7 @@ export default function ModStoreApp() {
             <Zap size={18} className="text-purple-400"/> Comunidad Oficial
           </h4>
           <a 
-            href="https://t.me/TU_CANAL" 
+            href="https://t.me/+HU0V3IL0_E44NmY0" 
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-3 w-full px-6 py-3 bg-gradient-to-r from-teal-500/10 to-purple-500/10 hover:from-teal-500/20 hover:to-purple-500/20 border border-white/10 rounded-2xl transition-all group"
@@ -597,9 +597,12 @@ export default function ModStoreApp() {
                 <Cpu size={14} className="text-purple-400" /> Powered by Next.js
             </span>
           </div>
-          <p className="text-[11px] text-slate-600 max-w-md italic">
-            © 2025 FonApps. Proyecto personal desarrollado bajo el plan Hobby de Vercel para uso no comercial.
-          </p>
+          <p className="text-[11px] text-slate-500 max-w-md font-medium">
+  © 2025 FonApps Store. Todos los derechos reservados. 
+  <span className="block mt-1 text-slate-600 font-normal">
+    Desarrollado con alto rendimiento para la comunidad Android global.
+  </span>
+</p>
         </div>
       </div>
     </footer>

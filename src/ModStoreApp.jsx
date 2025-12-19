@@ -15,7 +15,8 @@ import {
   Video,
   Layout,
   BookOpen,
-  ExternalLink
+  ExternalLink,
+  ArrowUpRight
 } from 'lucide-react';
 
 // --- DATOS DE EJEMPLO (MOCK DATA) ---
@@ -295,6 +296,7 @@ const AppIcon = ({ type, size = "md" }) => {
 export default function ModStoreApp() {
   const [currentView, setCurrentView] = useState('home'); // 'home', 'top'
   const [searchTerm, setSearchTerm] = useState("");
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [activeCategory, setActiveCategory] = useState("Todos");
   const [selectedApp, setSelectedApp] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -435,67 +437,101 @@ export default function ModStoreApp() {
     </section>
   );
 
-  const renderHome = () => (
-    <>
-      <header className="mb-12 text-center md:text-left animate-in fade-in slide-in-from-bottom-4 duration-700">
-        <div className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-purple-900/50 to-slate-900 border border-white/10 p-8 md:p-12 flex flex-col md:flex-row items-center gap-8">
-          <div className="flex-1 space-y-4">
-            <Badge color="mint">NUEVA VERSIÓN DISPONIBLE</Badge>
-            <h1 className="text-4xl md:text-6xl font-extrabold text-white leading-tight">
-              Domina tus <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-300 to-teal-500">Apps</span> favoritas
-            </h1>
-            <p className="text-slate-400 text-lg max-w-xl">
-              Descarga versiones modificadas seguras. Características premium desbloqueadas, sin anuncios y funcionalidades extendidas.
-            </p>
-            
-            <div className="relative max-w-md mt-6 group">
-              <div className="absolute inset-0 bg-gradient-to-r from-teal-500 to-purple-600 rounded-xl blur opacity-25 group-hover:opacity-40 transition-opacity" />
-              <div className="relative bg-slate-900/90 rounded-xl flex items-center px-4 py-3 border border-white/10 focus-within:border-teal-500/50 transition-colors">
-                <Search className="text-slate-500 mr-3" size={20} />
-                <input 
-                  type="text" 
-                  placeholder="Buscar mods (ej. Canva, Spotify)..." 
-                  className="bg-transparent border-none outline-none text-white w-full placeholder-slate-500"
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                />
+  const renderHome = () => {
+    // 1. Lógica para filtrar las burbujas (Sugerencias)
+    const searchSuggestions = searchTerm.length > 0 
+      ? INITIAL_APPS.filter(app => app.name.toLowerCase().includes(searchTerm.toLowerCase())).slice(0, 3)
+      : [];
+
+    // 2. Retorno de la interfaz
+    return (
+      <>
+        <header className="mb-12 text-center md:text-left animate-in fade-in slide-in-from-bottom-4 duration-700">
+          <div className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-purple-900/50 to-slate-900 border border-white/10 p-8 md:p-12 flex flex-col md:flex-row items-center gap-8">
+            <div className="flex-1 space-y-4">
+              
+              {/* Contenedor de texto que se oculta en móvil al buscar */}
+              <div className={`transition-all duration-300 ease-in-out ${isSearchFocused ? 'hidden md:block opacity-0' : 'block opacity-100'}`}>
+                <Badge color="mint">NUEVA VERSIÓN DISPONIBLE</Badge>
+                <h1 className="text-4xl md:text-6xl font-extrabold text-white leading-tight">
+                  Domina tus <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-300 to-teal-500">Apps</span> favoritas
+                </h1>
+                <p className="text-slate-400 text-lg max-w-xl">
+                  Descarga versiones modificadas seguras. Características premium desbloqueadas, sin anuncios y funcionalidades extendidas.
+                </p>
+              </div>
+              
+              <div className="relative max-w-md mt-6 group z-20">
+                {/* BURBUJAS DE SUGERENCIA */}
+                {searchSuggestions.length > 0 && (
+                  <div className="absolute bottom-full left-0 mb-3 w-full flex flex-wrap gap-2 px-1 z-30">
+                    {searchSuggestions.map(app => (
+                      <button
+                        key={app.id}
+                        onClick={() => {
+                          setSelectedApp(app);
+                          setSearchTerm("");
+                        }}
+                        className="flex items-center gap-2 bg-slate-800/90 backdrop-blur-xl hover:bg-teal-500 text-white text-xs font-bold px-3 py-1.5 rounded-full border border-white/10 transition-all shadow-lg animate-in slide-in-from-bottom-2 zoom-in-95 group-hover:-translate-y-1"
+                      >
+                        <Search size={10} />
+                        {app.name}
+                        <ArrowUpRight size={10} className="opacity-50" />
+                      </button>
+                    ))}
+                  </div>
+                )}
+
+                <div className="absolute inset-0 bg-gradient-to-r from-teal-500 to-purple-600 rounded-xl blur opacity-25 group-hover:opacity-40 transition-opacity" />
+                <div className="relative bg-slate-900/90 rounded-xl flex items-center px-4 py-3 border border-white/10 focus-within:border-teal-500/50 transition-colors">
+                  <Search className="text-slate-500 mr-3" size={20} />
+                  <input 
+                    type="text" 
+                    placeholder="Buscar mods (ej. Grok Ai, youtube)..." 
+                    className="bg-transparent border-none outline-none text-white w-full placeholder-slate-500"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    onFocus={() => setIsSearchFocused(true)}
+                    onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
+                    autoComplete="off"
+                  />
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className="hidden md:flex relative w-64 h-64 items-center justify-center">
-              <div className="absolute inset-0 bg-teal-500/20 rounded-full blur-3xl animate-pulse" />
-              <Smartphone size={200} className="text-slate-800 drop-shadow-2xl relative z-10" strokeWidth={1} />
-              <div className="absolute top-10 right-10 z-20 bg-slate-900/80 backdrop-blur-md p-3 rounded-2xl border border-white/10 shadow-xl animate-bounce duration-[3000ms]">
-                <ShieldCheck className="text-teal-400" size={32} />
-              </div>
-              <div className="absolute bottom-10 left-10 z-20 bg-slate-900/80 backdrop-blur-md p-3 rounded-2xl border border-white/10 shadow-xl animate-bounce duration-[4000ms]">
-                <Zap className="text-purple-400" size={32} />
-              </div>
+            <div className="hidden md:flex relative w-64 h-64 items-center justify-center">
+                <div className="absolute inset-0 bg-teal-500/20 rounded-full blur-3xl animate-pulse" />
+                <Smartphone size={200} className="text-slate-800 drop-shadow-2xl relative z-10" strokeWidth={1} />
+                <div className="absolute top-10 right-10 z-20 bg-slate-900/80 backdrop-blur-md p-3 rounded-2xl border border-white/10 shadow-xl animate-bounce duration-[3000ms]">
+                  <ShieldCheck className="text-teal-400" size={32} />
+                </div>
+                <div className="absolute bottom-10 left-10 z-20 bg-slate-900/80 backdrop-blur-md p-3 rounded-2xl border border-white/10 shadow-xl animate-bounce duration-[4000ms]">
+                  <Zap className="text-purple-400" size={32} />
+                </div>
+            </div>
           </div>
+        </header>
+
+        <div className="flex overflow-x-auto pb-4 gap-3 mb-8 no-scrollbar animate-in fade-in slide-in-from-bottom-8 duration-700 delay-100">
+          {CATEGORIES.map(cat => (
+            <button
+              key={cat}
+              onClick={() => setActiveCategory(cat)}
+              className={`whitespace-nowrap px-6 py-2 rounded-full font-medium transition-all duration-300 ${
+                activeCategory === cat 
+                  ? "bg-gradient-to-r from-teal-400 to-purple-600 text-white shadow-[0_0_20px_rgba(45,212,191,0.3)] border-transparent" 
+                  : "bg-slate-800/50 text-slate-400 hover:bg-slate-700 hover:text-white border border-white/5"
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
         </div>
-      </header>
 
-      <div className="flex overflow-x-auto pb-4 gap-3 mb-8 no-scrollbar animate-in fade-in slide-in-from-bottom-8 duration-700 delay-100">
-        {CATEGORIES.map(cat => (
-          <button
-            key={cat}
-            onClick={() => setActiveCategory(cat)}
-            className={`
-              whitespace-nowrap px-6 py-2 rounded-full font-medium transition-all duration-300
-              ${activeCategory === cat 
-                ? "bg-gradient-to-r from-teal-400 to-purple-600 text-white shadow-[0_0_20px_rgba(45,212,191,0.3)] border-transparent" 
-                : "bg-slate-800/50 text-slate-400 hover:bg-slate-700 hover:text-white border border-white/5"}
-            `}
-          >
-            {cat}
-          </button>
-        ))}
-      </div>
-
-      {renderAppGrid(getFilteredApps(false), "Mods Populares")}
-    </>
-  );
+        {renderAppGrid(getFilteredApps(false), "Mods Populares")}
+      </>
+    );
+  };
 
   const renderTopMods = () => (
     <div className="animate-in fade-in zoom-in-95 duration-500">
@@ -506,6 +542,69 @@ export default function ModStoreApp() {
       {renderAppGrid(getFilteredApps(true), "Ranking Global")}
     </div>
   );
+
+ const renderFooter = () => (
+    <footer className="relative mt-32 border-t border-white/10 bg-gradient-to-b from-[#0a0a12] to-[#05050a] pt-16 pb-12 overflow-hidden text-center">
+      
+      {/* Luces de fondo ambientales */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-teal-500/50 to-transparent" />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-purple-900/10 rounded-full blur-[100px] opacity-50" />
+      </div>
+
+      <div className="relative max-w-4xl mx-auto px-4 z-10">
+        {/* Sección de Tags / SEO */}
+        <div className="mb-12">
+          <h4 className="text-white font-bold mb-6 flex items-center justify-center gap-2">
+            <TrendingUp size={18} className="text-teal-400"/> Tendencias de Búsqueda
+          </h4>
+          <div className="flex flex-wrap justify-center gap-2">
+            {[
+              "APK Mod Premium 2025", "IA Sin Censura Android", "Spotify Mod", 
+              "Sin Anuncios", "YouTube ReVanced", "Streaming 4K Gratis",
+              "Productividad Pro", "Launchers Personalizados"
+            ].map((tag, idx) => (
+              <span key={idx} className="px-3 py-1.5 text-[11px] font-medium bg-white/5 border border-white/5 rounded-full text-slate-400 hover:text-teal-300 transition-all">
+                #{tag}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Sección de Comunidad */}
+        <div className="mb-16 max-w-sm mx-auto">
+          <h4 className="text-white font-bold mb-4 flex items-center justify-center gap-2">
+            <Zap size={18} className="text-purple-400"/> Comunidad Oficial
+          </h4>
+          <a 
+            href="https://t.me/TU_CANAL" 
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-3 w-full px-6 py-3 bg-gradient-to-r from-teal-500/10 to-purple-500/10 hover:from-teal-500/20 hover:to-purple-500/20 border border-white/10 rounded-2xl transition-all group"
+          >
+            <span className="font-bold text-teal-400">Unirme a Telegram</span>
+            <ExternalLink size={18} className="text-purple-400 group-hover:translate-x-1 transition-transform"/>
+          </a>
+        </div>
+
+        {/* Barra Final: Créditos y Badges */}
+        <div className="flex flex-col items-center gap-6 border-t border-white/5 pt-10">
+          <div className="flex flex-wrap justify-center gap-4">
+            <span className="flex items-center gap-2 px-3 py-1.5 bg-white/5 rounded-lg border border-white/5 text-[10px] text-slate-400">
+                <ShieldCheck size={14} className="text-teal-400" /> SSL Seguro Vercel
+            </span>
+            <span className="flex items-center gap-2 px-3 py-1.5 bg-white/5 rounded-lg border border-white/5 text-[10px] text-slate-400">
+                <Cpu size={14} className="text-purple-400" /> Powered by Next.js
+            </span>
+          </div>
+          <p className="text-[11px] text-slate-600 max-w-md italic">
+            © 2025 FonApps. Proyecto personal desarrollado bajo el plan Hobby de Vercel para uso no comercial.
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+  
 
   return (
     <div className="min-h-screen bg-[#0a0a12] text-slate-200 font-sans selection:bg-teal-500/30">
@@ -607,6 +706,8 @@ export default function ModStoreApp() {
         {currentView === 'top' && renderTopMods()}
       </main>
 
+      {renderFooter()}
+
       {/* MODAL DE DETALLE DE LA APP */}
       {selectedApp && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
@@ -683,5 +784,7 @@ export default function ModStoreApp() {
         </div>
       </div>
     </div>
+    
   );
+  
 }

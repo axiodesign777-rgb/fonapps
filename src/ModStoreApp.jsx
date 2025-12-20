@@ -171,8 +171,8 @@ const INITIAL_APPS = [
     size: "26,63 MB",
     version: "v16.2.41",
     image: "/icons/samsung_music.png",
-    description: "Transmite videos web, películas y series a tu TV, Chromecast o Roku sin restricciones. Versión Premium desbloqueada: sin anuncios, marcadores ilimitados y pantalla de inicio personalizada.",
-    modFeatures: ["Premium Desbloqueado", "Sin Anuncios", "Cola de Reproducción"],
+    description: "El reproductor de música oficial de Samsung optimizado para todos los dispositivos. Interfaz One UI elegante, ecualizador avanzado y soporte para todos los formatos de audio con calidad premium.",
+    modFeatures: ["Interfaz One UI", "Ecualizador Pro", "Para todos los dispositivos"],
     downloadUrl: "https://shrinkme.click/Samsung_Music_Port"
   },
    {

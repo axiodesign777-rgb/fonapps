@@ -24,7 +24,7 @@ const INITIAL_APPS = [
   {
     id: 1,
     name: "Grok AI Premium",
-    developer: "FonApps Mod",
+    developer: "FonApps",
     category: "IA",
     rating: 4.9,
     downloads: "50M+",
@@ -38,7 +38,7 @@ const INITIAL_APPS = [
   {
     id: 2,
     name: "Nova Launcher Prime",
-    developer: "FonApps Mod",
+    developer: "FonApps",
     category: "Personalización",
     rating: 3.9,
     downloads: "100M+",
@@ -52,7 +52,7 @@ const INITIAL_APPS = [
   {
     id: 3,
     name: "Niagara Launcher Pro",
-    developer: "FonApps Mod",
+    developer: "FonApps",
     category: "Personalización",
     rating: 4.7,
     downloads: "10M+",
@@ -66,7 +66,7 @@ const INITIAL_APPS = [
   {
     id: 4,
     name: "Perplexity AI Max",
-    developer: "FonApps Mod",
+    developer: "FonApps",
     category: "IA",
     rating: 4.7,
     downloads: "50M+",
@@ -202,6 +202,34 @@ const INITIAL_APPS = [
     description: "El componente esencial para usuarios de mods. Permite iniciar sesión con tu cuenta de Google en aplicaciones modificadas como YouTube ReVanced, garantizando sincronización y notificaciones sin servicios de Google oficiales.",
     modFeatures: ["Login Google habilitado", "Sin rastreo de datos", "Ahorro de batería"],
     downloadUrl: "https://ouo.io/D8wwCp"
+  },
+  {
+    id: 14,
+    name: "Wallcraft Premium 4K",
+    developer: "FonApps",
+    category: "Personalización",
+    rating: 4.7,
+    downloads: "100M+",
+    size: "104,5 MB",
+    version: "v3.59.01",
+    image: "/icons/wallcraft.png",
+    description: "La biblioteca más vasta de fondos de pantalla en ultra alta definición. Acceso exclusivo a fondos 4K y 8K adaptados automáticamente al tamaño de tu pantalla, con efectos de paralaje 4D y sin interrupciones publicitarias.",
+    modFeatures: ["Premium Desbloqueado", "Fondos 8K y 4D", "Sin Publicidad"],
+    downloadUrl: "https://cuty.io/WallcraftPro"
+  },
+  {
+    id: 15,
+    name: "Urban VPN Premium",
+    developer: "FonApps",
+    category: "Herramientas",
+    rating: 4.6,
+    downloads: "10M+",
+    size: "12,1 MB",
+    version: "v1.0.97",
+    image: "/icons/urban_vpn.svg",
+    description: "La solución definitiva para navegar sin fronteras. Acceso ilimitado a servidores en más de 80 países con ancho de banda infinito. Ideal para desbloquear streaming y proteger tu privacidad en redes públicas con cifrado de grado militar.",
+    modFeatures: ["Premium Desbloqueado", "Ancho de Banda Ilimitado", "Ubicaciones Pro"],
+    downloadUrl: "https://cuty.io/Urbanvpn"
   },
 ];
 

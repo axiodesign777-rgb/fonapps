@@ -33,7 +33,7 @@ const INITIAL_APPS = [
     image: "/icons/grok_ai.webp",
     description: "Accede a la inteligencia artificial más audaz y sin censura. Respuestas en tiempo real con datos actualizados y modo sarcástico desbloqueado.",
     modFeatures: ["Premium Desbloqueado", "Imagine", "Sin Censura", ],
-    downloadUrl: "https://shrinkme.click/Grok_AI"
+    downloadUrl: "https://cuty.io/GrokAI"
   },
   {
     id: 2,
@@ -47,7 +47,7 @@ const INITIAL_APPS = [
     image: "/icons/nova_launcher.png",
     description: "El launcher más potente y personalizable. Versión Prime totalmente desbloqueada: gestos, grupos en el cajón, ocultar aplicaciones y efectos de desplazamiento exclusivos.",
    modFeatures: ["Prime Desbloqueado", "Gestos", "Ocultar Apps"],
-    downloadUrl: "https://shrinkme.click/Nova_Launcher"
+    downloadUrl: "https://cuty.io/NovaLauncher"
   },
   {
     id: 3,
@@ -61,7 +61,7 @@ const INITIAL_APPS = [
     image: "/icons/niagara_launcher.png",
     description: "La pantalla de inicio más limpia para Android. Versión Pro desbloqueada con acceso a todos los widgets,temas, iconos adaptativos y personalización avanzada de fuentes y colores.",
     modFeatures: ["Pro Desbloqueado", "Widgets y temas Premium", "Iconos Adaptativos"],
-    downloadUrl: "https://shrinkme.click/Niagara_Launcher"
+    downloadUrl: "https://cuty.io/NiagaraLaunc"
   },
   {
     id: 4,
@@ -75,7 +75,7 @@ const INITIAL_APPS = [
     image: "/icons/perplexity.png",
     description: "Tu asistente de respuestas con IA. Acceso Pro desbloqueado: búsquedas Pro ilimitadas, carga de archivos PDF/Imágenes sin límites y selección de modelos avanzados como GPT-5 y Claude 3.5 Sonnet.",
     modFeatures: ["Max Desbloqueado", "Búsquedas Max Ilimitadas", "Modelos Premium"],
-    downloadUrl: "https://shrinkme.click/Perplexity_MAx"
+    downloadUrl: "https://cuty.io/Perplexity"
   },
   {
     id: 5,
@@ -89,7 +89,7 @@ const INITIAL_APPS = [
     image: "/icons/youtube.png",
     description: "La mejor experiencia de YouTube sin anuncios. Incluye reproducción en segundo plano, SponsorBlock para saltar segmentos de relleno y personalización completa de la interfaz.",
     modFeatures: ["Sin Anuncios", "Segundo Plano", "SponsorBlock"],
-    downloadUrl: "https://shrinkme.click/YouTube_Revance_Premium"
+    downloadUrl: "https://cuty.io/YouTubeVIP"
   },
   {
     id: 6,
@@ -103,7 +103,7 @@ const INITIAL_APPS = [
     image: "/icons/web_video_caster.png",
     description: "Transmite videos web, películas y series a tu TV, Chromecast o Roku sin restricciones. Versión Premium desbloqueada: sin anuncios, marcadores ilimitados y pantalla de inicio personalizada.",
     modFeatures: ["Premium Desbloqueado", "Sin Anuncios", "Cola de Reproducción"],
-    downloadUrl: "https://shrinkme.click/Web_Video_Caster_Premium"
+    downloadUrl: "https://cuty.io/VideoCaster"
   },
   {
     id: 7,
@@ -117,13 +117,13 @@ const INITIAL_APPS = [
     image: "/icons/telegram.png",
     description: "La mensajería más rápida y segura. Versión Premium desbloqueada: descargas ultra rápidas, iconos premium exclusivos, traducción en tiempo real y sin anuncios..",
     modFeatures: ["Premium Desbloqueado", "Descarga Rápida", "Traducir chats enteros"],
-    downloadUrl: "https://shrinkme.click/Telegram_Premium"
+    downloadUrl: "https://cuty.io/TelegramVIP"
   },
   {
     id: 8,
     name: "PowerDirector Pro",
     developer: "FonApps",
-    category: "Productividad",
+    category: "Herramientas",
     rating: 4.4,
     downloads: "100M+",
     size: "201,60 MB",
@@ -131,7 +131,7 @@ const INITIAL_APPS = [
     image: "/icons/powerdirector.png",
     description: "El editor de video más profesional. Versión Premium desbloqueada: exportación en 4K Ultra HD, sin marca de agua, estabilizador de video y acceso ilimitado a todo el stock de música y efectos.",
     modFeatures: ["Sin Marca de Agua", "Exportación 4K", "Todo Desbloqueado"],
-    downloadUrl: "https://shrinkme.click/PowerDirector_Pro"
+    downloadUrl: "https://cuty.io/PowerDirecto"
   },
   {
     id: 9,
@@ -145,7 +145,7 @@ const INITIAL_APPS = [
     image: "/icons/smart_launcher.png",
     description: "El launcher más inteligente y eficiente. Versión Pro desbloqueada: búsqueda inteligente, categorías automáticas personalizables, widgets adaptativos y gestos avanzados en pantalla de inicio.",
     modFeatures: ["Pro Desbloqueado", "Iconos Adaptativos", "Sin Anuncios"],
-    downloadUrl: "https://shrinkme.click/Smart_Launcher_Pro"
+    downloadUrl: "https://cuty.io/SmartLaunche"
   },
   {
     id: 10,
@@ -159,7 +159,7 @@ const INITIAL_APPS = [
     image: "/icons/lark_player.png",
     description: "Reproductor de música Versión Premium desbloqueada: sin anuncios, ecualizador avanzado, temas exclusivos y soporte para letras flotantes en todas tus canciones.",
     modFeatures: ["Sin Anuncios", "Temas Premium", "Ecualizador Pro"],
-    downloadUrl: "https://shrinkme.click/Lark_Player_Premium/"
+    downloadUrl: "https://cuty.io/LarkPlayer"
   },
   {
     id: 11,
@@ -173,7 +173,7 @@ const INITIAL_APPS = [
     image: "/icons/samsung_music.png",
     description: "El reproductor de música oficial de Samsung optimizado para todos los dispositivos. Interfaz One UI elegante, ecualizador avanzado y soporte para todos los formatos de audio con calidad premium.",
     modFeatures: ["Interfaz One UI", "Ecualizador Pro", "Para todos los dispositivos"],
-    downloadUrl: "https://shrinkme.click/Samsung_Music_Port"
+    downloadUrl: "https://cuty.io/SamsungMusic"
   },
    {
     id: 12,
@@ -187,11 +187,25 @@ const INITIAL_APPS = [
     image: "/icons/chat_smith.png",
     description: "Asistente inteligente avanzado impulsado por GPT-4. Versión Pro desbloqueada: diálogos ilimitados, procesamiento de imágenes, modo experto y sin anuncios de ningún tipo.",
     modFeatures: ["Pro Desbloqueado", "Chat Ilimitado", "GPT-5 & Gemini 3 pro y mas..."],
-    downloadUrl: "https://shrinkme.click/Chat_Smith"
+    downloadUrl: "https://cuty.io/ChatSmithPro"
+  },
+   {
+    id: 13,
+    name: "Micro G",
+    developer: "FonApps",
+    category: "Herramientas",
+    rating: 4.1,
+    downloads: "10M+",
+    size: "37,87 MB",
+    version: "v0.3.1.4.240913",
+    image: "/icons/microG.svg",
+    description: "El componente esencial para usuarios de mods. Permite iniciar sesión con tu cuenta de Google en aplicaciones modificadas como YouTube ReVanced, garantizando sincronización y notificaciones sin servicios de Google oficiales.",
+    modFeatures: ["Login Google habilitado", "Sin rastreo de datos", "Ahorro de batería"],
+    downloadUrl: "https://ouo.io/D8wwCp"
   },
 ];
 
-const CATEGORIES = ["Todos", "Personalización","Productividad","IA", "Social", "Entretenimiento"];
+const CATEGORIES = ["Todos", "Personalización","Herramientas","IA", "Social", "Entretenimiento"];
 
 // --- COMPONENTES UI AUXILIARES ---
 

@@ -21,22 +21,39 @@ import {
 
 // --- DATOS DE EJEMPLO (MOCK DATA) ---
 const INITIAL_APPS = [
+  
   {
-    id: 1,
+    id: 16,
+    name: "Weather & Radar Pro",
+    developer: "WetterOnline GmbH",
+    category: "Herramientas",
+    rating: 4.8,
+    downloads: "100M+",
+    size: "36,77 MB",
+    version: "v2025.26.1",
+    image: "/icons/weather_radar.png",
+    description: "La aplicación meteorológica líder en precisión. Versión Pro desbloqueada que ofrece radar de lluvia en tiempo real, alertas de clima severo, zoom ilimitado en mapas y pronósticos detallados a 14 días sin publicidad intrusiva.",
+    modFeatures: ["Pro Desbloqueado", "Sin Anuncios", "Radar Premium"],
+    downloadUrl: "https://cuty.io/TiempoyRadar"
+  },
+  
+  
+  {
+    id: 15,
     name: "Grok AI Premium",
     developer: "FonApps",
     category: "IA",
     rating: 4.9,
     downloads: "50M+",
-    size: "26,50 MB",
-    version: "v1.0.90-release-00",
+    size: "27,34 MB",
+    version: "v1.0.91-release-00",
     image: "/icons/grok_ai.webp",
     description: "Accede a la inteligencia artificial más audaz y sin censura. Respuestas en tiempo real con datos actualizados y modo sarcástico desbloqueado.",
     modFeatures: ["Premium Desbloqueado", "Imagine", "Sin Censura", ],
     downloadUrl: "https://cuty.io/GrokAI"
   },
   {
-    id: 2,
+    id: 14,
     name: "Nova Launcher Prime",
     developer: "FonApps",
     category: "Personalización",
@@ -50,7 +67,7 @@ const INITIAL_APPS = [
     downloadUrl: "https://cuty.io/NovaLauncher"
   },
   {
-    id: 3,
+    id: 13,
     name: "Niagara Launcher Pro",
     developer: "FonApps",
     category: "Personalización",
@@ -64,7 +81,7 @@ const INITIAL_APPS = [
     downloadUrl: "https://cuty.io/NiagaraLaunc"
   },
   {
-    id: 4,
+    id: 12,
     name: "Perplexity AI Max",
     developer: "FonApps",
     category: "IA",
@@ -78,7 +95,7 @@ const INITIAL_APPS = [
     downloadUrl: "https://cuty.io/Perplexity"
   },
   {
-    id: 5,
+    id: 11,
     name: "YouTube ReVanced",
     developer: "ReVance Mod",
     category: "Entretenimiento",
@@ -92,7 +109,7 @@ const INITIAL_APPS = [
     downloadUrl: "https://cuty.io/YouTubeVIP"
   },
   {
-    id: 6,
+    id: 10,
     name: "Web Video Caster Premium",
     developer: "FonApps",
     category: "Entretenimiento",
@@ -106,7 +123,7 @@ const INITIAL_APPS = [
     downloadUrl: "https://cuty.io/VideoCaster"
   },
   {
-    id: 7,
+    id: 9,
     name: "Telegram Premium",
     developer: "FonApps",
     category: "Social",
@@ -134,7 +151,7 @@ const INITIAL_APPS = [
     downloadUrl: "https://cuty.io/PowerDirecto"
   },
   {
-    id: 9,
+    id: 7,
     name: "Smart Launcher 6 Pro",
     developer: "FonApps",
     category: "Personalización",
@@ -148,7 +165,7 @@ const INITIAL_APPS = [
     downloadUrl: "https://cuty.io/SmartLaunche"
   },
   {
-    id: 10,
+    id: 6,
     name: "Lark Player Premium",
     developer: "FonApps",
     category: "Entretenimiento",
@@ -162,7 +179,7 @@ const INITIAL_APPS = [
     downloadUrl: "https://cuty.io/LarkPlayer"
   },
   {
-    id: 11,
+    id: 5,
     name: "Samsung Music Port",
     developer: "FonApps",
     category: "Entretenimiento",
@@ -176,7 +193,7 @@ const INITIAL_APPS = [
     downloadUrl: "https://cuty.io/SamsungMusic"
   },
    {
-    id: 12,
+    id: 4,
     name: "Chat Smith AI Pro",
     developer: "FonApps",
     category: "IA",
@@ -190,7 +207,7 @@ const INITIAL_APPS = [
     downloadUrl: "https://cuty.io/ChatSmithPro"
   },
    {
-    id: 13,
+    id: 3,
     name: "Micro G",
     developer: "FonApps",
     category: "Herramientas",
@@ -204,7 +221,7 @@ const INITIAL_APPS = [
     downloadUrl: "https://ouo.io/D8wwCp"
   },
   {
-    id: 14,
+    id: 2,
     name: "Wallcraft Premium 4K",
     developer: "FonApps",
     category: "Personalización",
@@ -218,7 +235,7 @@ const INITIAL_APPS = [
     downloadUrl: "https://cuty.io/WallcraftPro"
   },
   {
-    id: 15,
+    id: 1,
     name: "Urban VPN Premium",
     developer: "FonApps",
     category: "Herramientas",
@@ -226,7 +243,7 @@ const INITIAL_APPS = [
     downloads: "10M+",
     size: "12,1 MB",
     version: "v1.0.97",
-    image: "/icons/urban_vpn.svg",
+    image: "/icons/urban_vpn.png",
     description: "La solución definitiva para navegar sin fronteras. Acceso ilimitado a servidores en más de 80 países con ancho de banda infinito. Ideal para desbloquear streaming y proteger tu privacidad en redes públicas con cifrado de grado militar.",
     modFeatures: ["Premium Desbloqueado", "Ancho de Banda Ilimitado", "Ubicaciones Pro"],
     downloadUrl: "https://cuty.io/Urbanvpn"
@@ -425,21 +442,31 @@ export default function ModStoreApp() {
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
           {apps.map((app) => (
-            <div 
+           <div 
               key={app.id}
               onClick={() => setSelectedApp(app)}
-              className="group relative bg-[#13131f] rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-white/5 hover:border-purple-500/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_40px_-10px_rgba(124,58,237,0.15)] cursor-pointer overflow-hidden"
+              className="group relative bg-[#13131f] rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-white/5 
+              transition-all duration-200 
+              active:scale-95 md:active:scale-100
+              md:hover:border-purple-500/30 md:hover:-translate-y-1 md:hover:shadow-[0_10px_40px_-10px_rgba(124,58,237,0.15)] 
+              cursor-pointer overflow-hidden"
             >
               <div className="flex flex-col items-center text-center sm:flex-row sm:items-start sm:text-left gap-2 sm:gap-4 mb-2 sm:mb-4">
-                <AppIcon type={app.image} />
+                
+                {/* Aquí controlamos que el icono solo haga zoom en PC (md) */}
+                <div className="md:group-hover:scale-110 transition-transform duration-300">
+                   <AppIcon type={app.image} />
+                </div>
+                
                 <div className="w-full min-w-0">
-                  <h3 className="font-bold text-sm sm:text-lg text-slate-100 group-hover:text-teal-300 transition-colors truncate">
+                  {/* El texto solo cambia de color en PC (md) */}
+                  <h3 className="font-bold text-sm sm:text-lg text-slate-100 md:group-hover:text-teal-300 transition-colors truncate">
                     {app.name}
                   </h3>
                   <p className="text-[10px] sm:text-xs text-slate-500 mb-1 truncate">{app.developer}</p>
                   <div className="flex items-center justify-center sm:justify-start gap-1 text-amber-400 text-[10px] sm:text-xs font-bold">
-                     <Star size={10} className="sm:w-3 sm:h-3" fill="currentColor" />
-                     <span>{app.rating}</span>
+                      <Star size={10} className="sm:w-3 sm:h-3" fill="currentColor" />
+                      <span>{app.rating}</span>
                   </div>
                 </div>
               </div>
@@ -487,10 +514,25 @@ export default function ModStoreApp() {
 
     // 2. Retorno de la interfaz
     return (
+
+      
       <>
         <header className="mb-12 text-center md:text-left animate-in fade-in slide-in-from-bottom-4 duration-700">
           <div className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-purple-900/50 to-slate-900 border border-white/10 p-8 md:p-12 flex flex-col md:flex-row items-center gap-8">
             <div className="flex-1 space-y-4">
+
+            {/* --- PEGAR ESTO: ANIMACIÓN DE FONDO SOLO PARA MÓVIL --- */}
+            <div className="absolute inset-0 md:hidden overflow-hidden pointer-events-none select-none">
+               {/* Escudo flotando arriba a la derecha */}
+               <div className="absolute top-2 right-2 text-teal-500/10 animate-bounce duration-[3000ms]">
+                  <ShieldCheck size={80} strokeWidth={1} />
+               </div>
+               {/* Rayo flotando abajo a la izquierda */}
+               <div className="absolute bottom-24 left-2 text-purple-500/10 animate-bounce duration-[4000ms]">
+                  <Zap size={80} strokeWidth={1} />
+               </div>
+            </div>
+            {/* ----------------------------------------------------- */}
               
               {/* Contenedor de texto que se oculta en móvil al buscar */}
               <div className={`transition-all duration-300 ease-in-out ${isSearchFocused ? 'hidden md:block opacity-0' : 'block opacity-100'}`}>

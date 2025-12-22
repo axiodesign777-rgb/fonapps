@@ -11,10 +11,6 @@ import {
   TrendingUp,
   Box,
   Cpu,
-  Music,
-  Video,
-  Layout,
-  BookOpen,
   ExternalLink,
   ArrowUpRight,
   AlertTriangle,
@@ -23,7 +19,6 @@ import {
 
 // --- DATOS DE EJEMPLO (MOCK DATA) ---
 const INITIAL_APPS = [
-  
   {
     id: 16,
     name: "Weather & Radar Pro",
@@ -38,8 +33,6 @@ const INITIAL_APPS = [
     modFeatures: ["Pro Desbloqueado", "Sin Anuncios", "Radar Premium"],
     downloadUrl: "https://cuty.io/TiempoyRadar"
   },
-  
-  
   {
     id: 15,
     name: "Grok AI Premium",
@@ -66,7 +59,7 @@ const INITIAL_APPS = [
     version: "v8.1.6",
     image: "/icons/nova_launcher.png",
     description: "El launcher más potente y personalizable. Versión Prime totalmente desbloqueada: gestos, grupos en el cajón, ocultar aplicaciones y efectos de desplazamiento exclusivos.",
-   modFeatures: ["Prime Desbloqueado", "Gestos", "Ocultar Apps"],
+    modFeatures: ["Prime Desbloqueado", "Gestos", "Ocultar Apps"],
     downloadUrl: "https://cuty.io/NovaLauncher"
   },
   {
@@ -195,7 +188,7 @@ const INITIAL_APPS = [
     modFeatures: ["Interfaz One UI", "Ecualizador Pro", "Para todos los dispositivos"],
     downloadUrl: "https://cuty.io/SamsungMusic"
   },
-   {
+  {
     id: 4,
     name: "Chat Smith AI Pro",
     developer: "FonApps",
@@ -209,7 +202,7 @@ const INITIAL_APPS = [
     modFeatures: ["Pro Desbloqueado", "Chat Ilimitado", "GPT-5 & Gemini 3 pro y mas..."],
     downloadUrl: "https://cuty.io/ChatSmithPro"
   },
-   {
+  {
     id: 3,
     name: "Micro G",
     developer: "FonApps",
@@ -303,9 +296,9 @@ const AppIcon = ({ type, size = "md" }) => {
     ? "w-20 h-20 sm:w-24 sm:h-24 text-3xl sm:text-4xl" 
     : "w-10 h-10 sm:w-16 sm:h-16 text-xl sm:text-2xl";
 
-  // --- LÓGICA NUEVA: DETECTAR IMAGEN ---
-  // Si el "type" empieza con "/", asumimos que es una imagen (ej: "/icons/grok_ai.webp")
-  if (type.startsWith('/')) {
+  // --- LÓGICA DEPURADA: Solo maneja imágenes, ya que tus datos solo usan imágenes ---
+  // Si hay una imagen (detectado por "/"), la muestra.
+  if (type && type.startsWith('/')) {
     return (
       <div className={`${sizeClass} rounded-2xl shadow-lg transform transition-transform group-hover:scale-110 duration-300 overflow-hidden bg-slate-800 border border-white/10 p-0.5 flex items-center justify-center`}>
         <img 
@@ -317,38 +310,11 @@ const AppIcon = ({ type, size = "md" }) => {
     );
   }
 
-  // --- LÓGICA ANTIGUA: COLORES ---
-  // Si no es una imagen, usamos el sistema viejo de gradientes
-  let gradient = "from-purple-500 to-indigo-600";
-  let icon = <Box className="text-white/80" />;
-
-  if (type === "mint") {
-    gradient = "from-teal-400 to-emerald-600";
-    icon = <Layout className="text-white/80" />;
-  }
-  if (type === "red") {
-    gradient = "from-red-500 to-rose-600";
-    icon = <Video className="text-white/80" />;
-  }
-  if (type === "orange") {
-    gradient = "from-orange-400 to-amber-500";
-    icon = <BookOpen className="text-white/80" />;
-  }
-  if (type === "blue") {
-    gradient = "from-blue-400 to-cyan-500";
-    icon = <Smartphone className="text-white/80" />;
-  }
-  if (type === "purple") {
-    icon = <Music className="text-white/80" />;
-  }
-  if (type === "green") {
-     gradient = "from-green-500 to-emerald-700";
-     icon = <Video className="text-white/80" />;
-  }
-  
+  // --- FALLBACK: Icono por defecto (limpio) ---
+  // Solo se muestra si NO hay imagen definida en los datos, para evitar errores.
   return (
-    <div className={`${sizeClass} rounded-2xl bg-gradient-to-br ${gradient} flex items-center justify-center text-white font-bold shadow-lg transform transition-transform group-hover:scale-110 duration-300`}>
-      {icon}
+    <div className={`${sizeClass} rounded-2xl bg-gradient-to-br from-slate-700 to-slate-800 flex items-center justify-center text-white font-bold shadow-lg transform transition-transform group-hover:scale-110 duration-300`}>
+      <Box className="text-white/50" />
     </div>
   );
 };
@@ -445,7 +411,7 @@ export default function ModStoreApp() {
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
           {apps.map((app) => (
-           <div 
+            <div 
               key={app.id}
               onClick={() => setSelectedApp(app)}
               className="group relative bg-[#13131f] rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-white/5 
@@ -491,7 +457,7 @@ export default function ModStoreApp() {
                   <span className="hidden sm:inline">{app.downloads} descargas</span>
                   <span className="sm:hidden">{app.downloads}</span>
                 </div>
-               {/* BOTÓN CAMBIADO: Abre detalles (Modal) en vez de descargar */}
+                {/* BOTÓN CAMBIADO: Abre detalles (Modal) en vez de descargar */}
                 {/* BOTÓN FLECHA (Versión Profesional & Táctil) */}
                 <button 
                   onClick={(e) => {
@@ -606,20 +572,43 @@ export default function ModStoreApp() {
           </div>
         </header>
 
-        <div className="flex overflow-x-auto pb-4 gap-3 mb-8 no-scrollbar animate-in fade-in slide-in-from-bottom-8 duration-700 delay-100">
-          {CATEGORIES.map(cat => (
-            <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              className={`whitespace-nowrap px-6 py-2 rounded-full font-medium transition-all duration-300 ${
-                activeCategory === cat 
-                  ? "bg-gradient-to-r from-teal-400 to-purple-600 text-white shadow-[0_0_20px_rgba(45,212,191,0.3)] border-transparent" 
-                  : "bg-slate-800/50 text-slate-400 hover:bg-slate-700 hover:text-white border border-white/5"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
+       <div className="flex overflow-x-auto p-4 gap-3 mb-8 no-scrollbar animate-in fade-in slide-in-from-bottom-8 duration-700 delay-100">
+         {CATEGORIES.map(cat => {
+            const isActive = activeCategory === cat;
+            
+            return (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                // CAMBIO 1: Quitamos 'overflow-hidden' de aquí para que la sombra respire
+                className="relative px-6 py-2 rounded-full font-medium group transition-transform duration-200 active:scale-95 border border-white/5 whitespace-nowrap"
+              >
+                {/* 1. CAPA DE FONDO INACTIVA */}
+                {/* CAMBIO 2: Añadimos 'rounded-full' aquí para contener el color */}
+                <div className="absolute inset-0 rounded-full bg-slate-800/50 transition-colors duration-300 group-hover:bg-slate-700" />
+
+                {/* 2. CAPA DE DEGRADADO ACTIVA */}
+                {/* CAMBIO 3: Añadimos 'rounded-full' aquí también */}
+                <div 
+                  className={`absolute inset-0 rounded-full bg-gradient-to-r from-teal-400 to-purple-600 transition-opacity duration-300 ease-out
+                    ${isActive ? "opacity-100" : "opacity-0"}
+                  `} 
+                />
+                
+                {/* 3. BRILLO EXTRA (Sombra externa) */}
+                {/* Al no haber overflow-hidden arriba, esta sombra ahora sí se verá por fuera */}
+                <div 
+                   className={`absolute inset-0 rounded-full transition-opacity duration-300
+                   ${isActive ? "opacity-100 shadow-[0_0_20px_rgba(45,212,191,0.5)]" : "opacity-0"}`}
+                />
+
+                {/* 4. TEXTO */}
+                <span className={`relative z-10 transition-colors duration-300 ${isActive ? "text-white" : "text-slate-400 group-hover:text-white"}`}>
+                  {cat}
+                </span>
+              </button>
+            );
+          })}
         </div>
 
         {renderAppGrid(getFilteredApps(false), "Mods Populares")}
@@ -862,26 +851,26 @@ export default function ModStoreApp() {
               <p className="text-purple-400 text-sm font-medium mb-4">{selectedApp.developer}</p>
               
               <div className="flex justify-center gap-6 text-sm text-slate-400 mb-8 border-y border-white/5 py-4">
-                 <div className="flex flex-col items-center"><span className="font-bold text-white text-base">{selectedApp.rating}</span><span className="text-xs">Valoración</span></div>
-                 <div className="flex flex-col items-center border-l border-white/10 pl-6"><span className="font-bold text-white text-base">{selectedApp.size}</span><span className="text-xs">Tamaño</span></div>
-                 <div className="flex flex-col items-center border-l border-white/10 pl-6"><span className="font-bold text-white text-base">{selectedApp.version}</span><span className="text-xs">Versión</span></div>
+                  <div className="flex flex-col items-center"><span className="font-bold text-white text-base">{selectedApp.rating}</span><span className="text-xs">Valoración</span></div>
+                  <div className="flex flex-col items-center border-l border-white/10 pl-6"><span className="font-bold text-white text-base">{selectedApp.size}</span><span className="text-xs">Tamaño</span></div>
+                  <div className="flex flex-col items-center border-l border-white/10 pl-6"><span className="font-bold text-white text-base">{selectedApp.version}</span><span className="text-xs">Versión</span></div>
               </div>
 
               <div className="text-left mb-6 space-y-4">
                 <div>
-                 <h3 className="text-sm font-bold text-slate-300 uppercase tracking-wider mb-2">Descripción</h3>
-                 <p className="text-slate-400 text-sm leading-relaxed">{selectedApp.description}</p>
+                  <h3 className="text-sm font-bold text-slate-300 uppercase tracking-wider mb-2">Descripción</h3>
+                  <p className="text-slate-400 text-sm leading-relaxed">{selectedApp.description}</p>
 
-                 {selectedApp.warning && (
-                   <div className="mt-4 p-3 rounded-xl bg-sky-500/10 border border-sky-500/20 shadow-[0_0_15px_rgba(14,165,233,0.1)] flex items-center justify-center gap-3">
-                     <div className="animate-pulse">
-                       <AlertTriangle className="text-sky-400" size={20} />
-                     </div>
-                     <p className="text-sky-300 text-xs font-bold leading-relaxed text-left">
-                       {selectedApp.warning.replace("⚠️", "").replace("Nota:", "").trim()}
-                     </p>
-                   </div>
-                 )}
+                  {selectedApp.warning && (
+                    <div className="mt-4 p-3 rounded-xl bg-sky-500/10 border border-sky-500/20 shadow-[0_0_15px_rgba(14,165,233,0.1)] flex items-center justify-center gap-3">
+                      <div className="animate-pulse">
+                        <AlertTriangle className="text-sky-400" size={20} />
+                      </div>
+                      <p className="text-sky-300 text-xs font-bold leading-relaxed text-left">
+                        {selectedApp.warning.replace("⚠️", "").replace("Nota:", "").trim()}
+                      </p>
+                    </div>
+                  )}
                 </div>
 
                 <div>

@@ -492,14 +492,20 @@ export default function ModStoreApp() {
                   <span className="sm:hidden">{app.downloads}</span>
                 </div>
                {/* BOTÓN CAMBIADO: Abre detalles (Modal) en vez de descargar */}
+                {/* BOTÓN FLECHA (Versión Profesional & Táctil) */}
                 <button 
                   onClick={(e) => {
-                    e.stopPropagation(); // Evita que el clic atraviese al fondo
-                    setSelectedApp(app); // Abre la ficha de la app
+                    e.stopPropagation(); // Evita que el clic active la tarjeta entera
+                    setSelectedApp(app); // Abre el modal de detalles
                   }}
-                  className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-teal-500 hover:text-white transition-all group-hover:scale-110 border border-white/5"
+                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 border border-white/5 transition-all duration-200
+                  
+                  /* MÓVIL (Active): Se encoge y se pone verde AL TOCAR (Feedback instantáneo) */
+                  active:scale-90 active:bg-teal-500 active:text-white
+                  
+                  /* PC (Hover): Solo reacciona al pasar el mouse (md: evita errores en móvil) */
+                  md:hover:bg-teal-500 md:hover:text-white md:group-hover:scale-110"
                 >
-                   {/* Flecha que indica "Ver más" */}
                    <ChevronRight size={18} />
                 </button>
               </div>
@@ -521,7 +527,7 @@ export default function ModStoreApp() {
 
       
       <>
-        <header className="mb-12 text-center md:text-left animate-in fade-in slide-in-from-bottom-4 duration-700">
+        <header className="mb-12 text-center md:text-left">
           <div className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-purple-900/50 to-slate-900 border border-white/10 p-8 md:p-12 flex flex-col md:flex-row items-center gap-8">
             <div className="flex-1 space-y-4">
 
@@ -769,8 +775,18 @@ export default function ModStoreApp() {
           </button>
         </div>
 
-        {isMenuOpen && (
-          <div className="md:hidden border-t border-white/10 bg-[#0a0a12]/95 backdrop-blur-xl p-4 flex flex-col gap-2 animate-in slide-in-from-top-5 shadow-2xl">
+    {/* MENÚ MÓVIL (Versión Simetría Perfecta) */}
+        <div 
+          className={`
+            absolute top-16 left-0 w-full z-50 md:hidden
+            bg-[#0a0a12]/90 backdrop-blur-2xl border-b border-white/10 shadow-[0_20px_40px_rgba(0,0,0,0.5)]
+            transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] origin-top
+            ${isMenuOpen 
+              ? 'opacity-100 translate-y-0 scale-100 pointer-events-auto' 
+              : 'opacity-0 -translate-y-4 scale-95 pointer-events-none'}
+          `}
+        >
+          <div className="p-4 flex flex-col gap-2">
             {[
               { id: 'home', label: 'Inicio' },
               { id: 'top', label: 'Top Mods' }
@@ -779,17 +795,28 @@ export default function ModStoreApp() {
                 key={item.id} 
                 onClick={() => navigateTo(item.id)}
                 className={`
-                  w-full text-left px-4 py-3 rounded-xl transition-colors
+                  w-full text-left px-5 py-3.5 rounded-xl transition-all duration-200 font-medium
+                  flex items-center justify-between group
+                  active:scale-[0.98]
                   ${currentView === item.id 
-                    ? "bg-purple-600/20 text-purple-300 border border-purple-500/30" 
-                    : "text-slate-300 hover:bg-white/5"}
+                    ? "bg-purple-500/10 text-purple-300 border border-purple-500/20 shadow-inner" 
+                    : "text-slate-300 border border-transparent active:bg-white/5 active:text-white"}
                 `}
               >
                 {item.label}
+                
+                {/* Flecha indicadora */}
+                {currentView !== item.id && (
+                   <ChevronRight 
+                     size={18} 
+                     className="text-slate-500 transition-all duration-300 
+                     group-active:text-teal-400 group-active:translate-x-1" 
+                   />
+                )}
               </button>
             ))}
           </div>
-        )}
+        </div>
       </nav>
 
       <main className="relative z-10 max-w-7xl mx-auto px-4 py-8 min-h-[calc(100vh-80px)]">
@@ -801,13 +828,22 @@ export default function ModStoreApp() {
 
       {/* MODAL DE DETALLE DE LA APP */}
     {/* MODAL DE DETALLE DE LA APP */}
+      {/* MODAL DE DETALLE (Implementación Expert UI) */}
       {selectedApp && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-          <div className="absolute inset-0 bg-black/80 backdrop-blur-md" />
           
-          <div className="relative w-full max-w-lg bg-[#161622] rounded-3xl border border-white/10 shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+          {/* 1. EL FONDO: Animación independiente (Fade suave) */}
+          <div 
+            className="absolute inset-0 bg-black/80 backdrop-blur-md animate-overlay"
+            onClick={() => setSelectedApp(null)} // Cerrar al hacer clic fuera (UX Pro)
+          />
+          
+          {/* 2. LA TARJETA: Animación de "Pop" físico */}
+          <div className="relative w-full max-w-lg bg-[#161622] rounded-3xl border border-white/10 shadow-2xl overflow-hidden animate-content will-change-transform">
+            
             <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-purple-900/40 to-transparent" />
             
+            {/* ... Resto de tu contenido (Botón cerrar, textos, etc.) ... */}
             <button 
               onClick={() => setSelectedApp(null)}
               className="absolute top-4 right-4 p-2 bg-black/50 hover:bg-red-500/80 rounded-full text-white/90 hover:text-white transition-all z-50 border border-white/10 shadow-lg"
@@ -816,7 +852,8 @@ export default function ModStoreApp() {
             </button>
 
             <div className="relative p-6 pt-12 text-center max-h-[85vh] overflow-y-auto overscroll-contain">
-              <div className="mx-auto mb-4 w-fit shadow-[0_0_30px_rgba(0,0,0,0.5)] rounded-3xl">
+               {/* ... Aquí sigue todo tu código de iconos, descripción, botón, etc ... */}
+               <div className="mx-auto mb-4 w-fit shadow-[0_0_30px_rgba(0,0,0,0.5)] rounded-3xl">
                 <AppIcon type={selectedApp.image} size="lg" />
               </div>
               <h2 className="text-2xl font-bold text-white mb-1">{selectedApp.name}</h2>
@@ -833,18 +870,16 @@ export default function ModStoreApp() {
                  <h3 className="text-sm font-bold text-slate-300 uppercase tracking-wider mb-2">Descripción</h3>
                  <p className="text-slate-400 text-sm leading-relaxed">{selectedApp.description}</p>
 
-                 {/* --- CAJA AZUL MEJORADA --- */}
                  {selectedApp.warning && (
                    <div className="mt-4 p-3 rounded-xl bg-sky-500/10 border border-sky-500/20 shadow-[0_0_15px_rgba(14,165,233,0.1)] flex items-center justify-center gap-3">
-                      <div className="animate-pulse">
-                        <AlertTriangle className="text-sky-400" size={20} />
-                      </div>
-                      <p className="text-sky-300 text-xs font-bold leading-relaxed text-left">
-                        {selectedApp.warning.replace("⚠️", "").replace("Nota:", "").trim()}
-                      </p>
+                     <div className="animate-pulse">
+                       <AlertTriangle className="text-sky-400" size={20} />
+                     </div>
+                     <p className="text-sky-300 text-xs font-bold leading-relaxed text-left">
+                       {selectedApp.warning.replace("⚠️", "").replace("Nota:", "").trim()}
+                     </p>
                    </div>
                  )}
-                 {/* ------------------------- */}
                 </div>
 
                 <div>
@@ -867,6 +902,8 @@ export default function ModStoreApp() {
                 <ShieldCheck size={10} /> Verificado por Play Protect. Libre de virus.
               </p>
             </div>
+            {/* ... FIN del contenido ... */}
+
           </div>
         </div>
       )}

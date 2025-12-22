@@ -17,7 +17,8 @@ import {
   BookOpen,
   ExternalLink,
   ArrowUpRight,
-  AlertTriangle
+  AlertTriangle,
+  ChevronRight
 } from 'lucide-react';
 
 // --- DATOS DE EJEMPLO (MOCK DATA) ---
@@ -490,15 +491,16 @@ export default function ModStoreApp() {
                   <span className="hidden sm:inline">{app.downloads} descargas</span>
                   <span className="sm:hidden">{app.downloads}</span>
                 </div>
+               {/* BOTÓN CAMBIADO: Abre detalles (Modal) en vez de descargar */}
                 <button 
-                  onClick={(e) => handleDownload(e, app.id)}
-                  className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-slate-800 flex items-center justify-center text-teal-400 hover:bg-teal-500 hover:text-white transition-all group-hover:scale-110"
+                  onClick={(e) => {
+                    e.stopPropagation(); // Evita que el clic atraviese al fondo
+                    setSelectedApp(app); // Abre la ficha de la app
+                  }}
+                  className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-teal-500 hover:text-white transition-all group-hover:scale-110 border border-white/5"
                 >
-                  {downloadingId === app.id ? (
-                    <div className="w-3 h-3 sm:w-4 sm:h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                  ) : (
-                    <Download size={14} className="sm:w-[18px] sm:h-[18px]" />
-                  )}
+                   {/* Flecha que indica "Ver más" */}
+                   <ChevronRight size={18} />
                 </button>
               </div>
             </div>

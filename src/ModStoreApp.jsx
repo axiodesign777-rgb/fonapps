@@ -826,33 +826,35 @@ export default function ModStoreApp() {
 
       {renderFooter()}
 
-      {/* MODAL DE DETALLE DE LA APP */}
-    {/* MODAL DE DETALLE DE LA APP */}
-      {/* MODAL DE DETALLE (Implementación Expert UI) */}
+    {/* MODAL DE DETALLE (Fusión Perfecta) */}
       {selectedApp && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           
-          {/* 1. EL FONDO: Animación independiente (Fade suave) */}
+          {/* 1. EL FONDO (Overlay):
+              - animate-in fade-in duration-300: Aparece suavemente (arregla el golpe).
+              - bg-[#05050a]/95: El color negro premium.
+          */}
           <div 
-            className="absolute inset-0 bg-black/80 backdrop-blur-md animate-overlay"
-            onClick={() => setSelectedApp(null)} // Cerrar al hacer clic fuera (UX Pro)
+            className="absolute inset-0 bg-[#05050a]/95 backdrop-blur-xl animate-in fade-in duration-300"
+            onClick={() => setSelectedApp(null)} 
           />
           
-          {/* 2. LA TARJETA: Animación de "Pop" físico */}
-          <div className="relative w-full max-w-lg bg-[#161622] rounded-3xl border border-white/10 shadow-2xl overflow-hidden animate-content will-change-transform">
+          {/* 2. LA TARJETA (Window):
+              - animate-content: ¡AQUÍ ESTÁ! Recuperamos tu animación personalizada de rebote.
+              - will-change-transform: Optimiza el rendimiento del rebote.
+          */}
+          <div className="relative w-full max-w-lg bg-[#161622] rounded-3xl border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)] overflow-hidden animate-content will-change-transform">
             
             <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-purple-900/40 to-transparent" />
             
-            {/* ... Resto de tu contenido (Botón cerrar, textos, etc.) ... */}
             <button 
               onClick={() => setSelectedApp(null)}
-              className="absolute top-4 right-4 p-2 bg-black/50 hover:bg-red-500/80 rounded-full text-white/90 hover:text-white transition-all z-50 border border-white/10 shadow-lg"
+              className="absolute top-4 right-4 p-2 bg-black/20 hover:bg-red-500/80 rounded-full text-white/90 hover:text-white transition-all z-50 border border-white/10 shadow-lg backdrop-blur-sm"
             >
               <X size={24} />
             </button>
 
-            <div className="relative p-6 pt-12 text-center max-h-[85vh] overflow-y-auto overscroll-contain">
-               {/* ... Aquí sigue todo tu código de iconos, descripción, botón, etc ... */}
+            <div className="relative p-6 pt-12 text-center max-h-[85vh] overflow-y-auto overscroll-contain no-scrollbar">
                <div className="mx-auto mb-4 w-fit shadow-[0_0_30px_rgba(0,0,0,0.5)] rounded-3xl">
                 <AppIcon type={selectedApp.image} size="lg" />
               </div>
@@ -902,8 +904,6 @@ export default function ModStoreApp() {
                 <ShieldCheck size={10} /> Verificado por Play Protect. Libre de virus.
               </p>
             </div>
-            {/* ... FIN del contenido ... */}
-
           </div>
         </div>
       )}

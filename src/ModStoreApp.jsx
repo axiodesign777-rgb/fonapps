@@ -16,7 +16,8 @@ import {
   Layout,
   BookOpen,
   ExternalLink,
-  ArrowUpRight
+  ArrowUpRight,
+  AlertTriangle
 } from 'lucide-react';
 
 // --- DATOS DE EJEMPLO (MOCK DATA) ---
@@ -25,12 +26,12 @@ const INITIAL_APPS = [
   {
     id: 16,
     name: "Weather & Radar Pro",
-    developer: "WetterOnline GmbH",
+    developer: "FonApps",
     category: "Herramientas",
     rating: 4.8,
     downloads: "100M+",
     size: "36,77 MB",
-    version: "v2025.26.1",
+    version: "v2025.25",
     image: "/icons/weather_radar.png",
     description: "La aplicación meteorológica líder en precisión. Versión Pro desbloqueada que ofrece radar de lluvia en tiempo real, alertas de clima severo, zoom ilimitado en mapas y pronósticos detallados a 14 días sin publicidad intrusiva.",
     modFeatures: ["Pro Desbloqueado", "Sin Anuncios", "Radar Premium"],
@@ -49,6 +50,7 @@ const INITIAL_APPS = [
     version: "v1.0.91-release-00",
     image: "/icons/grok_ai.webp",
     description: "Accede a la inteligencia artificial más audaz y sin censura. Respuestas en tiempo real con datos actualizados y modo sarcástico desbloqueado.",
+    warning: "Nota: Debes iniciar sesión con tu cuenta de X (antes Twitter).",
     modFeatures: ["Premium Desbloqueado", "Imagine", "Sin Censura", ],
     downloadUrl: "https://cuty.io/GrokAI"
   },
@@ -521,14 +523,14 @@ export default function ModStoreApp() {
           <div className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-purple-900/50 to-slate-900 border border-white/10 p-8 md:p-12 flex flex-col md:flex-row items-center gap-8">
             <div className="flex-1 space-y-4">
 
-            {/* --- PEGAR ESTO: ANIMACIÓN DE FONDO SOLO PARA MÓVIL --- */}
+            {/* --- ANIMACIÓN DE FONDO SOLO PARA MÓVIL (AJUSTADA) --- */}
             <div className="absolute inset-0 md:hidden overflow-hidden pointer-events-none select-none">
-               {/* Escudo flotando arriba a la derecha */}
-               <div className="absolute top-2 right-2 text-teal-500/10 animate-bounce duration-[3000ms]">
+               {/* Escudo: Bajado a top-12 para dar espacio al salto */}
+               <div className="absolute top-5 right-0 text-teal-500/10 animate-bounce duration-[3000ms]">
                   <ShieldCheck size={80} strokeWidth={1} />
                </div>
-               {/* Rayo flotando abajo a la izquierda */}
-               <div className="absolute bottom-24 left-2 text-purple-500/10 animate-bounce duration-[4000ms]">
+               {/* Rayo: Ajustado ligeramente para equilibrar */}
+               <div className="absolute top-5 left-0 text-purple-500/10 animate-bounce duration-[4000ms]">
                   <Zap size={80} strokeWidth={1} />
                </div>
             </div>
@@ -796,49 +798,53 @@ export default function ModStoreApp() {
       {renderFooter()}
 
       {/* MODAL DE DETALLE DE LA APP */}
+    {/* MODAL DE DETALLE DE LA APP */}
       {selectedApp && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-          {/* Fondo oscuro - SIN onClick para evitar cierres accidentales */}
           <div className="absolute inset-0 bg-black/80 backdrop-blur-md" />
           
           <div className="relative w-full max-w-lg bg-[#161622] rounded-3xl border border-white/10 shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-200">
             <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-purple-900/40 to-transparent" />
             
-            {/* BOTÓN X PARA CERRAR - MEJORADO */}
             <button 
               onClick={() => setSelectedApp(null)}
               className="absolute top-4 right-4 p-2 bg-black/50 hover:bg-red-500/80 rounded-full text-white/90 hover:text-white transition-all z-50 border border-white/10 shadow-lg"
-              title="Cerrar ventana"
             >
               <X size={24} />
             </button>
 
-            {/* Añadida clase 'overscroll-contain' para prevenir el scroll chaining en móviles */}
             <div className="relative p-6 pt-12 text-center max-h-[85vh] overflow-y-auto overscroll-contain">
               <div className="mx-auto mb-4 w-fit shadow-[0_0_30px_rgba(0,0,0,0.5)] rounded-3xl">
                 <AppIcon type={selectedApp.image} size="lg" />
               </div>
               <h2 className="text-2xl font-bold text-white mb-1">{selectedApp.name}</h2>
               <p className="text-purple-400 text-sm font-medium mb-4">{selectedApp.developer}</p>
+              
               <div className="flex justify-center gap-6 text-sm text-slate-400 mb-8 border-y border-white/5 py-4">
-                <div className="flex flex-col items-center">
-                  <span className="font-bold text-white text-base">{selectedApp.rating}</span>
-                  <span className="text-xs">Valoración</span>
-                </div>
-                <div className="flex flex-col items-center border-l border-white/10 pl-6">
-                  <span className="font-bold text-white text-base">{selectedApp.size}</span>
-                  <span className="text-xs">Tamaño</span>
-                </div>
-                <div className="flex flex-col items-center border-l border-white/10 pl-6">
-                  <span className="font-bold text-white text-base">{selectedApp.version}</span>
-                  <span className="text-xs">Versión</span>
-                </div>
+                 <div className="flex flex-col items-center"><span className="font-bold text-white text-base">{selectedApp.rating}</span><span className="text-xs">Valoración</span></div>
+                 <div className="flex flex-col items-center border-l border-white/10 pl-6"><span className="font-bold text-white text-base">{selectedApp.size}</span><span className="text-xs">Tamaño</span></div>
+                 <div className="flex flex-col items-center border-l border-white/10 pl-6"><span className="font-bold text-white text-base">{selectedApp.version}</span><span className="text-xs">Versión</span></div>
               </div>
+
               <div className="text-left mb-6 space-y-4">
                 <div>
-                  <h3 className="text-sm font-bold text-slate-300 uppercase tracking-wider mb-2">Descripción</h3>
-                  <p className="text-slate-400 text-sm leading-relaxed">{selectedApp.description}</p>
+                 <h3 className="text-sm font-bold text-slate-300 uppercase tracking-wider mb-2">Descripción</h3>
+                 <p className="text-slate-400 text-sm leading-relaxed">{selectedApp.description}</p>
+
+                 {/* --- CAJA AZUL MEJORADA --- */}
+                 {selectedApp.warning && (
+                   <div className="mt-4 p-3 rounded-xl bg-sky-500/10 border border-sky-500/20 shadow-[0_0_15px_rgba(14,165,233,0.1)] flex items-center justify-center gap-3">
+                      <div className="animate-pulse">
+                        <AlertTriangle className="text-sky-400" size={20} />
+                      </div>
+                      <p className="text-sky-300 text-xs font-bold leading-relaxed text-left">
+                        {selectedApp.warning.replace("⚠️", "").replace("Nota:", "").trim()}
+                      </p>
+                   </div>
+                 )}
+                 {/* ------------------------- */}
                 </div>
+
                 <div>
                   <h3 className="text-sm font-bold text-teal-300 uppercase tracking-wider mb-3 flex items-center gap-2">
                     <Zap size={14} /> Características del Mod
@@ -853,6 +859,7 @@ export default function ModStoreApp() {
                   </ul>
                 </div>
               </div>
+
               <DownloadButton onClick={() => handleDownload(null, selectedApp.id)} loading={downloadingId === selectedApp.id} />
               <p className="mt-4 text-[10px] text-slate-600 flex items-center justify-center gap-1">
                 <ShieldCheck size={10} /> Verificado por Play Protect. Libre de virus.
@@ -862,6 +869,7 @@ export default function ModStoreApp() {
         </div>
       )}
 
+      {/* Notificación Toast */}
       <div className={`fixed bottom-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 ${showToast ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}>
         <div className="bg-slate-800 text-white px-6 py-3 rounded-full shadow-2xl flex items-center gap-3 border border-teal-500/30">
           <div className="bg-teal-500 rounded-full p-1">
@@ -870,8 +878,7 @@ export default function ModStoreApp() {
           <span className="font-medium text-sm">{toastMessage}</span>
         </div>
       </div>
+
     </div>
-    
   );
-  
 }

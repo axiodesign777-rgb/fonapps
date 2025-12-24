@@ -656,8 +656,6 @@ export default function ModStoreApp() {
             );
           })}
         </div>
-
-        // CORRECCIÓN: Primero el título, luego false
 {renderAppGrid("Mods Populares", false)}
       </>
     );

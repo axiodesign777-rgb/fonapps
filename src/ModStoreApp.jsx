@@ -29,6 +29,7 @@ const INITIAL_APPS = [
     size: "55,43 MB",
     version: "v30.0.43",
     image: "/icons/copilot.png",
+    thumbnail: "/Thumb/copilot_thumb.webp",
 description: "Desbloqueamos el potencial completo de la IA. Disfruta de acceso ilimitado al modelo GPT-5.1 y al generador de imágenes Ultra-HD sin pagar suscripción. Hemos eliminado todos los límites de uso, la censura en las respuestas y las colas de espera. Tienes la herramienta más potente de Microsoft totalmente liberada y a máxima velocidad en tu bolsillo.",
 modFeatures: ["GPT-5.1 Desbloqueado", "DALL-E Ilimitado", "Velocidad Máxima"],
 warning: "Requisito: Inicia sesión con Microsoft para guardar tus chats.",
@@ -44,6 +45,7 @@ warning: "Requisito: Inicia sesión con Microsoft para guardar tus chats.",
     size: "36,77 MB",
     version: "v2025.25",
     image: "/icons/weather_radar.png",
+    thumbnail: "/Thumb/weather_radar_thumb.webp",
     description: "La aplicación meteorológica líder en precisión. Versión Pro desbloqueada que ofrece radar de lluvia en tiempo real, alertas de clima severo, zoom ilimitado en mapas y pronósticos detallados a 14 días sin publicidad intrusiva.",
     modFeatures: ["Pro Desbloqueado", "Sin Anuncios", "Radar Premium"],
     downloadUrl: "https://cuty.io/TiempoyRadar"
@@ -58,6 +60,7 @@ warning: "Requisito: Inicia sesión con Microsoft para guardar tus chats.",
     size: "27,34 MB",
     version: "v1.0.93-release-00",
     image: "/icons/grok_ai.webp",
+    thumbnail: "/Thumb/grok_ai_thumb.webp",
     description: "Accede a la inteligencia artificial más audaz y sin censura. Respuestas en tiempo real con datos actualizados y modo sarcástico desbloqueado.",
     warning: "Nota: Debes iniciar sesión con tu cuenta de X (antes Twitter).",
     modFeatures: ["Premium Desbloqueado", "Imagine", "Sin Censura", ],
@@ -73,6 +76,7 @@ warning: "Requisito: Inicia sesión con Microsoft para guardar tus chats.",
     size: "15,71 MB",
     version: "v8.1.6",
     image: "/icons/nova_launcher.png",
+    thumbnail: "/Thumb/nova_launcher_thumb.webp",
     description: "El launcher más potente y personalizable. Versión Prime totalmente desbloqueada: gestos, grupos en el cajón, ocultar aplicaciones y efectos de desplazamiento exclusivos.",
     modFeatures: ["Prime Desbloqueado", "Gestos", "Ocultar Apps"],
     downloadUrl: "https://cuty.io/NovaLauncher"
@@ -87,6 +91,7 @@ warning: "Requisito: Inicia sesión con Microsoft para guardar tus chats.",
     size: "13,79 MB",
     version: "v1.15.6",
     image: "/icons/niagara_launcher.png",
+    thumbnail: "/Thumb/niagara_launcher_thumb.webp",
     description: "La pantalla de inicio más limpia para Android. Versión Pro desbloqueada con acceso a todos los widgets,temas, iconos adaptativos y personalización avanzada de fuentes y colores.",
     modFeatures: ["Pro Desbloqueado", "Widgets y temas Premium", "Iconos Adaptativos"],
     downloadUrl: "https://cuty.io/NiagaraLaunc"
@@ -101,6 +106,7 @@ warning: "Requisito: Inicia sesión con Microsoft para guardar tus chats.",
     size: "48,64 MB",
     version: "v2.65.1",
     image: "/icons/perplexity.png",
+    thumbnail: "/Thumb/perplexity_thumb.webp",
     description: "Tu asistente de respuestas con IA. Acceso Pro desbloqueado: búsquedas Pro ilimitadas, carga de archivos PDF/Imágenes sin límites y selección de modelos avanzados como GPT-5 y Claude 3.5 Sonnet.",
     modFeatures: ["Max Desbloqueado", "Búsquedas Max Ilimitadas", "Modelos Premium"],
     downloadUrl: "https://cuty.io/Perplexity"
@@ -115,6 +121,7 @@ warning: "Requisito: Inicia sesión con Microsoft para guardar tus chats.",
     size: "82,47 MB",
     version: "v20.14.43",
     image: "/icons/youtube.png",
+    thumbnail: "/Thumb/youtube_thumb.webp",
     description: "La mejor experiencia de YouTube sin anuncios. Incluye reproducción en segundo plano, SponsorBlock para saltar segmentos de relleno y personalización completa de la interfaz.",
     warning: "Requisito: Es necesario instalar MicroG para iniciar sesión con Google.",
     modFeatures: ["Sin Anuncios", "Segundo Plano", "SponsorBlock"],
@@ -130,6 +137,7 @@ warning: "Requisito: Inicia sesión con Microsoft para guardar tus chats.",
     size: "30,49 MB",
     version: "v5.12.8",
     image: "/icons/web_video_caster.png",
+    thumbnail: "/Thumb/web:video_caster_thumb.webp",
     description: "Transmite videos web, películas y series a tu TV, Chromecast o Roku sin restricciones. Versión Premium desbloqueada: sin anuncios, marcadores ilimitados y pantalla de inicio personalizada.",
     modFeatures: ["Premium Desbloqueado", "Sin Anuncios", "Cola de Reproducción"],
     downloadUrl: "https://cuty.io/VideoCaster"
@@ -144,6 +152,7 @@ warning: "Requisito: Inicia sesión con Microsoft para guardar tus chats.",
     size: "38,79 MB",
     version: "v12.2.10",
     image: "/icons/telegram.png",
+    thumbnail: "/Thumb/telegram_thumb.webp",
     description: "La mensajería más rápida y segura. Versión Premium desbloqueada: descargas ultra rápidas, iconos premium exclusivos, traducción en tiempo real y sin anuncios..",
     modFeatures: ["Premium Desbloqueado", "Descarga Rápida", "Traducir chats enteros"],
     downloadUrl: "https://cuty.io/TelegramVIP"
@@ -158,6 +167,7 @@ warning: "Requisito: Inicia sesión con Microsoft para guardar tus chats.",
     size: "201,60 MB",
     version: "v5.12.8",
     image: "/icons/powerdirector.png",
+    thumbnail: "/Thumb/powerdirector_thumb.webp",
     description: "El editor de video más profesional. Versión Premium desbloqueada: exportación en 4K Ultra HD, sin marca de agua, estabilizador de video y acceso ilimitado a todo el stock de música y efectos.",
     modFeatures: ["Sin Marca de Agua", "Exportación 4K", "Todo Desbloqueado"],
     downloadUrl: "https://cuty.io/PowerDirecto"
@@ -172,6 +182,7 @@ warning: "Requisito: Inicia sesión con Microsoft para guardar tus chats.",
     size: "20,44 MB",
     version: "v6.5.054",
     image: "/icons/smart_launcher.png",
+    thumbnail: "/Thumb/smart_launcher_thumb.webp",
     description: "El launcher más inteligente y eficiente. Versión Pro desbloqueada: búsqueda inteligente, categorías automáticas personalizables, widgets adaptativos y gestos avanzados en pantalla de inicio.",
     modFeatures: ["Pro Desbloqueado", "Iconos Adaptativos", "Sin Anuncios"],
     downloadUrl: "https://cuty.io/SmartLaunche"
@@ -186,6 +197,7 @@ warning: "Requisito: Inicia sesión con Microsoft para guardar tus chats.",
     size: "24,34 MB",
     version: "v6.33.5",
     image: "/icons/lark_player.png",
+    thumbnail: "/Thumb/lark_player_thumb.webp",
     description: "Reproductor de música Versión Premium desbloqueada: sin anuncios, ecualizador avanzado, temas exclusivos y soporte para letras flotantes en todas tus canciones.",
     modFeatures: ["Sin Anuncios", "Temas Premium", "Ecualizador Pro"],
     downloadUrl: "https://cuty.io/LarkPlayer"
@@ -200,6 +212,7 @@ warning: "Requisito: Inicia sesión con Microsoft para guardar tus chats.",
     size: "26,63 MB",
     version: "v16.2.41",
     image: "/icons/samsung_music.png",
+    thumbnail: "/Thumb/samsung_music_thumb.webp",
     description: "El reproductor de música oficial de Samsung optimizado para todos los dispositivos. Interfaz One UI elegante, ecualizador avanzado y soporte para todos los formatos de audio con calidad premium.",
     modFeatures: ["Interfaz One UI", "Ecualizador Pro", "Para todos los dispositivos"],
     downloadUrl: "https://cuty.io/SamsungMusic"
@@ -214,6 +227,7 @@ warning: "Requisito: Inicia sesión con Microsoft para guardar tus chats.",
     size: "117,98 MB",
     version: "v8.251208.1",
     image: "/icons/chat_smith.png",
+    thumbnail: "/Thumb/chat_smith_thumb.webp",
     description: "Asistente inteligente avanzado impulsado por GPT-4. Versión Pro desbloqueada: diálogos ilimitados, procesamiento de imágenes, modo experto y sin anuncios de ningún tipo.",
     modFeatures: ["Pro Desbloqueado", "Chat Ilimitado", "GPT-5 & Gemini 3 pro y mas..."],
     downloadUrl: "https://cuty.io/ChatSmithPro"
@@ -228,6 +242,7 @@ warning: "Requisito: Inicia sesión con Microsoft para guardar tus chats.",
     size: "37,87 MB",
     version: "v0.3.1.4.240913",
     image: "/icons/microG.svg",
+    thumbnail: "/Thumb/microG_thumb.webp",
     description: "El componente esencial para usuarios de mods. Permite iniciar sesión con tu cuenta de Google en aplicaciones modificadas como YouTube ReVanced, garantizando sincronización y notificaciones sin servicios de Google oficiales.",
     modFeatures: ["Login Google habilitado", "Sin rastreo de datos", "Ahorro de batería"],
     downloadUrl: "https://ouo.io/D8wwCp"
@@ -242,6 +257,7 @@ warning: "Requisito: Inicia sesión con Microsoft para guardar tus chats.",
     size: "104,5 MB",
     version: "v3.59.01",
     image: "/icons/wallcraft.png",
+    thumbnail: "/Thumb/wallcraft_thumb.webp",
     description: "La biblioteca más vasta de fondos de pantalla en ultra alta definición. Acceso exclusivo a fondos 4K y 8K adaptados automáticamente al tamaño de tu pantalla, con efectos de paralaje 4D y sin interrupciones publicitarias.",
     modFeatures: ["Premium Desbloqueado", "Fondos 8K y 4D", "Sin Publicidad"],
     downloadUrl: "https://cuty.io/WallcraftPro"
@@ -256,6 +272,7 @@ warning: "Requisito: Inicia sesión con Microsoft para guardar tus chats.",
     size: "12,1 MB",
     version: "v1.0.97",
     image: "/icons/urban_vpn.png",
+    thumbnail: "/Thumb/urban_vpn_thumb.webp",
     description: "La solución definitiva para navegar sin fronteras. Acceso ilimitado a servidores en más de 80 países con ancho de banda infinito. Ideal para desbloquear streaming y proteger tu privacidad en redes públicas con cifrado de grado militar.",
     modFeatures: ["Premium Desbloqueado", "Ancho de Banda Ilimitado", "Ubicaciones Pro"],
     downloadUrl: "https://cuty.io/Urbanvpn"
@@ -306,30 +323,34 @@ const DownloadButton = ({ onClick, loading }) => (
   </button>
 );
 
-const AppIcon = ({ type, size = "md" }) => {
-  // Ajuste de tamaño responsive
+const AppIcon = ({ type, thumbnail, size = "md" }) => {
+  // Configuración de tamaños
   const sizeClass = size === "lg" 
     ? "w-20 h-20 sm:w-24 sm:h-24 text-3xl sm:text-4xl" 
     : "w-10 h-10 sm:w-16 sm:h-16 text-xl sm:text-2xl";
 
-  // --- LÓGICA DEPURADA: Solo maneja imágenes, ya que tus datos solo usan imágenes ---
-  // Si hay una imagen (detectado por "/"), la muestra.
-  if (type && type.startsWith('/')) {
+  // --- LÓGICA DE OPTIMIZACIÓN DE RAM ---
+  // 1. Si el tamaño es "md" (estamos en la lista) Y existe un thumbnail, úsalo.
+  // 2. Si no, usa la imagen original ("type").
+  // Esto previene errores si alguna app no tiene thumbnail todavía.
+  const imageSource = (size === "md" && thumbnail) ? thumbnail : type;
+
+  // Verificamos si hay imagen válida
+  if (imageSource && imageSource.startsWith('/')) {
     return (
       <div className={`${sizeClass} rounded-2xl shadow-lg transform transition-transform group-hover:scale-110 duration-300 overflow-hidden bg-slate-800 border border-white/10 p-0.5 flex items-center justify-center`}>
         <img 
-          src={type} 
+          src={imageSource} 
           alt="App Icon"
-          loading="lazy"
-          decoding="async"
+          loading="lazy"      // Carga perezosa
+          decoding="async"    // No congela el scroll
           className="w-full h-full object-cover rounded-[14px]"
         />
       </div>
     );
   }
 
-  // --- FALLBACK: Icono por defecto (limpio) ---
-  // Solo se muestra si NO hay imagen definida en los datos, para evitar errores.
+  // Fallback (Icono genérico)
   return (
     <div className={`${sizeClass} rounded-2xl bg-gradient-to-br from-slate-700 to-slate-800 flex items-center justify-center text-white font-bold shadow-lg transform transition-transform group-hover:scale-110 duration-300`}>
       <Box className="text-white/50" />
@@ -412,21 +433,23 @@ export default function ModStoreApp() {
     return apps;
   };
 
-  // CAMBIO 1: Ya no pedimos 'apps' como argumento. Usamos la lista global dentro.
-  // Añadimos 'isTopView' para saber si debemos ordenar por rating.
+ // --- FUNCIÓN OPTIMIZADA (VERSIÓN FINAL) ---
   const renderAppGrid = (title, isTopView = false) => {
     
-    // Si estamos en Top, ordenamos. Si es Home, usamos la lista tal cual.
-    const sourceApps = isTopView 
+    // 1. PREPARACIÓN: Ordenar si es necesario
+    let processedApps = isTopView 
       ? [...INITIAL_APPS].sort((a, b) => b.rating - a.rating) 
       : INITIAL_APPS;
 
-    // Calculamos si hay ALGO visible para saber si mostrar el mensaje de "No encontrado"
-    const hasVisibleResults = sourceApps.some(app => {
+    // 2. FILTRADO REAL (Esto ahorra RAM: Solo procesamos lo que se ve)
+    const visibleApps = processedApps.filter(app => {
        const matchesSearch = app.name.toLowerCase().includes(searchTerm.toLowerCase());
+       // En TopView mostramos todo el ranking, en Home respetamos categorías
        const matchesCategory = isTopView ? true : (activeCategory === "Todos" || app.category === activeCategory);
        return matchesSearch && matchesCategory;
     });
+
+    const hasResults = visibleApps.length > 0;
 
     return (
     <section className="animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
@@ -435,8 +458,7 @@ export default function ModStoreApp() {
          <h2 className="text-xl font-bold">{title}</h2>
       </div>
 
-      {/* CAMBIO 2: Usamos nuestra variable calculada 'hasVisibleResults' en vez de apps.length */}
-      {!hasVisibleResults ? (
+      {!hasResults ? (
         <div className="text-center py-20 text-slate-500">
           <p className="text-lg">No se encontraron resultados para "{searchTerm}"</p>
           <button onClick={() => {setSearchTerm(""); setActiveCategory("Todos")}} className="mt-4 text-teal-400 hover:underline">
@@ -445,39 +467,32 @@ export default function ModStoreApp() {
         </div>
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
-          {/* CAMBIO 3: Mapeamos SIEMPRE sobre todas las apps (sourceApps) */}
-          {sourceApps.map((app) => {
-            
-            // LÓGICA DE VISIBILIDAD (Aquí ocurre la magia)
-            const matchesSearch = app.name.toLowerCase().includes(searchTerm.toLowerCase());
-            // Si es TopView ignoramos la categoría, si es Home la respetamos
-            const matchesCategory = isTopView ? true : (activeCategory === "Todos" || app.category === activeCategory);
-            
-            const isVisible = matchesSearch && matchesCategory;
-
-            // En la vista TOP, si no es visible, mejor no renderizarlo para mantener el orden estricto del ranking 1, 2, 3...
-            // En la vista HOME, usamos el truco de CSS.
-            if (isTopView && !isVisible) return null;
-
-            return (
+          
+          {/* 3. RENDERIZADO: Mapeamos solo las apps visibles */}
+          {visibleApps.map((app) => (
             <div 
               key={app.id}
               onClick={() => setSelectedApp(app)}
-              // CAMBIO 4: Usamos CSS para ocultar en vez de borrar del DOM
+              // SIN CLASE HIDDEN: Esta tarjeta solo existe si es visible
               className={`
-                ${isVisible ? "block" : "hidden"} 
                 group relative bg-[#13131f] rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-white/5 
                 transition-all duration-200 
                 active:scale-95 md:active:scale-100
                 md:hover:border-purple-500/30 md:hover:-translate-y-1 md:hover:shadow-[0_10px_40px_-10px_rgba(124,58,237,0.15)] 
                 cursor-pointer overflow-hidden
+                /* Animación suave al aparecer */
+                animate-in fade-in zoom-in-95 duration-300 fill-mode-both
               `}
             >
               <div className="flex flex-col items-center text-center sm:flex-row sm:items-start sm:text-left gap-2 sm:gap-4 mb-2 sm:mb-4">
                 
                 <div className="md:group-hover:scale-110 transition-transform duration-300">
-                   {/* Asegúrate de tener loading="lazy" en tu componente AppIcon internamente */}
-                   <AppIcon type={app.image} />
+                   {/* IMAGEN OPTIMIZADA: Pasamos el thumbnail aquí */}
+                   <AppIcon 
+                     type={app.image} 
+                     thumbnail={app.thumbnail} 
+                     size="md" 
+                   />
                 </div>
                 
                 <div className="w-full min-w-0">
@@ -493,7 +508,6 @@ export default function ModStoreApp() {
               </div>
               
               <div className="flex flex-wrap justify-center sm:justify-start gap-1 sm:gap-2 mb-2 sm:mb-4">
-                {/* CAMBIO 5: Agregamos protección contra fallos (|| []) */}
                 {(app.modFeatures || []).slice(0, 2).map((feature, idx) => (
                   <span key={idx} className="text-[8px] sm:text-[10px] uppercase tracking-wider font-semibold px-1.5 py-0.5 sm:px-2 sm:py-1 bg-slate-800 text-slate-400 rounded-md group-hover:bg-purple-900/30 group-hover:text-purple-300 transition-colors">
                     {feature}
@@ -521,7 +535,7 @@ export default function ModStoreApp() {
                 </button>
               </div>
             </div>
-          )})}
+          ))}
         </div>
       )}
     </section>
@@ -761,11 +775,20 @@ export default function ModStoreApp() {
         }
       `}</style>
       
-      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-        <div className="absolute -top-40 -left-40 w-96 h-96 bg-purple-600/20 rounded-full blur-[120px]" />
-        <div className="absolute top-1/2 left-1/2 w-[500px] h-[500px] bg-teal-500/10 rounded-full blur-[100px] -translate-x-1/2 -translate-y-1/2" />
-        <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-indigo-600/20 rounded-full blur-[100px]" />
-      </div>
+   {/* FONDO NUEVO (Imagen Estática) */}
+<div 
+  className="fixed inset-0 z-0 pointer-events-none will-change-transform"
+  style={{
+    backgroundColor: '#0a0a12', // Color de seguridad
+    backgroundImage: "url('/public/fondo.webp')", // Tu imagen comprimida
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat'
+  }}
+>
+   {/* Velo oscuro (opcional) para que el texto se lea mejor */}
+   <div className="absolute inset-0 bg-black/20" />
+</div>
 
       <nav className="sticky top-0 z-40 w-full backdrop-blur-xl bg-[#0a0a12]/80 border-b border-white/5 transition-all duration-300">
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">

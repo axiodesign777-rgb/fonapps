@@ -753,7 +753,7 @@ export default function ModStoreApp() {
   
 
   return (
-    <div className="min-h-screen bg-[#0a0a12] text-slate-200 font-sans selection:bg-teal-500/30">
+    <div className="min-h-screen text-slate-200 font-sans selection:bg-teal-500/30">
       
       {/* SOLUCIÓN AL PROBLEMA DE SALTO DE LAYOUT */}
       <style>{`
@@ -775,19 +775,22 @@ export default function ModStoreApp() {
         }
       `}</style>
       
-   {/* FONDO NUEVO (Imagen Estática) */}
-<div 
-  className="fixed inset-0 z-0 pointer-events-none will-change-transform"
-  style={{
-    backgroundColor: '#0a0a12', // Color de seguridad
-    backgroundImage: "url('/fondo.webp')", // Tu imagen comprimida
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat'
-  }}
->
-   {/* Velo oscuro (opcional) para que el texto se lea mejor */}
-   <div className="absolute inset-0 bg-black/20" />
+ {/* FONDO "ZERO-LAG" DEFINITIVO */}
+<div className="fixed top-0 left-0 w-full h-[120vh] -z-10 pointer-events-none overflow-hidden bg-[#0a0a12]">
+  
+  {/* 1. Imagen física (Optimizada para GPU) */}
+  <img 
+    src="/fondo.webp"  
+    alt="" 
+    className="w-full h-full object-cover"
+    style={{ 
+      transform: 'translate3d(0, 0, 0)', 
+      opacity: 0.7 // <--- AJUSTE FINAL: 0.7 es ideal para que se vea pero no moleste al texto
+    }}
+  />
+
+  {/* 2. Sombra suave para integración (Opcional, puedes quitarla si quieres más brillo) */}
+  <div className="absolute inset-0 bg-black/20" />
 </div>
 
       <nav className="sticky top-0 z-40 w-full backdrop-blur-xl bg-[#0a0a12]/80 border-b border-white/5 transition-all duration-300">

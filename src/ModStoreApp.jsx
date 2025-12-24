@@ -913,17 +913,30 @@ export default function ModStoreApp() {
             </button>
 
             <div className="relative p-6 pt-12 text-center max-h-[85vh] overflow-y-auto overscroll-contain no-scrollbar">
-               <div className="mx-auto mb-4 w-fit shadow-[0_0_30px_rgba(0,0,0,0.5)] rounded-3xl">
-                <AppIcon type={selectedApp.image} size="lg" />
-              </div>
-              <h2 className="text-2xl font-bold text-white mb-1">{selectedApp.name}</h2>
-              <p className="text-purple-400 text-sm font-medium mb-4">{selectedApp.developer}</p>
-              
-              <div className="flex justify-center gap-6 text-sm text-slate-400 mb-8 border-y border-white/5 py-4">
-                  <div className="flex flex-col items-center"><span className="font-bold text-white text-base">{selectedApp.rating}</span><span className="text-xs">Valoración</span></div>
-                  <div className="flex flex-col items-center border-l border-white/10 pl-6"><span className="font-bold text-white text-base">{selectedApp.size}</span><span className="text-xs">Tamaño</span></div>
-                  <div className="flex flex-col items-center border-l border-white/10 pl-6"><span className="font-bold text-white text-base">{selectedApp.version}</span><span className="text-xs">Versión</span></div>
-              </div>
+              {/* --- IMAGEN HERO "BLUR-UP" (Carga Progresiva) --- */}
+<div className="mx-auto mb-4 w-28 h-28 sm:w-32 sm:h-32 relative shadow-[0_0_30px_rgba(0,0,0,0.5)] rounded-3xl overflow-hidden bg-slate-800">
+  
+  {/* 1. FONDO INSTANTÁNEO (Thumbnail)
+      Se muestra YA, borroso, mientras carga la grande. 
+      Como ya la descargaste en la lista, aparece en 0ms. */}
+  <img 
+    src={selectedApp.thumbnail || selectedApp.image} 
+    alt="Preview"
+    className="absolute inset-0 w-full h-full object-cover blur-md scale-110 opacity-50"
+  />
+
+  {/* 2. LA IMAGEN HD (Se desvanece suavemente al cargar) */}
+  <img 
+    src={selectedApp.image} 
+    alt={selectedApp.name}
+    className="relative z-10 w-full h-full object-cover transition-opacity duration-700 ease-in-out opacity-0"
+    onLoad={(e) => e.currentTarget.classList.remove('opacity-0')} 
+    /* ^^^ TRUCO DE MAGIA: Empieza invisible (opacity-0) y se revela sola al terminar de cargar */
+  />
+  
+  {/* Borde sutil encima de todo */}
+  <div className="absolute inset-0 rounded-3xl border border-white/10 z-20 pointer-events-none" />
+</div>
 
               <div className="text-left mb-6 space-y-4">
                 <div>

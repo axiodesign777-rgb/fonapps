@@ -101,6 +101,7 @@ const INITIAL_APPS = [
     version: "v20.14.43",
     image: "/icons/youtube.png",
     description: "La mejor experiencia de YouTube sin anuncios. Incluye reproducción en segundo plano, SponsorBlock para saltar segmentos de relleno y personalización completa de la interfaz.",
+    warning: "Requisito: Es necesario instalar MicroG para iniciar sesión con Google.",
     modFeatures: ["Sin Anuncios", "Segundo Plano", "SponsorBlock"],
     downloadUrl: "https://cuty.io/YouTubeVIP"
   },

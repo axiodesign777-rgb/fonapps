@@ -20,6 +20,21 @@ import {
 // --- DATOS DE EJEMPLO (MOCK DATA) ---
 const INITIAL_APPS = [
   {
+    id: 17,
+    name: "Microsoft Copilot Pro",
+    developer: "FonApps",
+    category: "IA",
+    rating: 4.8,
+    downloads: "50M+",
+    size: "55,43 MB",
+    version: "v30.0.43",
+    image: "/icons/copilot.png",
+description: "Desbloqueamos el potencial completo de la IA. Disfruta de acceso ilimitado al modelo GPT-5.1 y al generador de imágenes Ultra-HD sin pagar suscripción. Hemos eliminado todos los límites de uso, la censura en las respuestas y las colas de espera. Tienes la herramienta más potente de Microsoft totalmente liberada y a máxima velocidad en tu bolsillo.",
+modFeatures: ["GPT-5.1 Desbloqueado", "DALL-E Ilimitado", "Velocidad Máxima"],
+warning: "Requisito: Inicia sesión con Microsoft para guardar tus chats.",
+    downloadUrl: "https://cuty.io/MCopilotPRO"
+  },
+  {
     id: 16,
     name: "Weather & Radar Pro",
     developer: "FonApps",
@@ -46,7 +61,7 @@ const INITIAL_APPS = [
     description: "Accede a la inteligencia artificial más audaz y sin censura. Respuestas en tiempo real con datos actualizados y modo sarcástico desbloqueado.",
     warning: "Nota: Debes iniciar sesión con tu cuenta de X (antes Twitter).",
     modFeatures: ["Premium Desbloqueado", "Imagine", "Sin Censura", ],
-    downloadUrl: "https://cuty.io/GrokAI"
+    downloadUrl: "https://cuty.io/GrokAIX"
   },
   {
     id: 14,

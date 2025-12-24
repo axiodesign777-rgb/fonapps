@@ -319,7 +319,9 @@ const AppIcon = ({ type, size = "md" }) => {
       <div className={`${sizeClass} rounded-2xl shadow-lg transform transition-transform group-hover:scale-110 duration-300 overflow-hidden bg-slate-800 border border-white/10 p-0.5 flex items-center justify-center`}>
         <img 
           src={type} 
-          alt="App Icon" 
+          alt="App Icon"
+          loading="lazy"
+          decoding="async"
           className="w-full h-full object-cover rounded-[14px]"
         />
       </div>

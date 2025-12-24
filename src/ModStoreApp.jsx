@@ -412,14 +412,31 @@ export default function ModStoreApp() {
     return apps;
   };
 
-  const renderAppGrid = (apps, title) => (
+  // CAMBIO 1: Ya no pedimos 'apps' como argumento. Usamos la lista global dentro.
+  // Añadimos 'isTopView' para saber si debemos ordenar por rating.
+  const renderAppGrid = (title, isTopView = false) => {
+    
+    // Si estamos en Top, ordenamos. Si es Home, usamos la lista tal cual.
+    const sourceApps = isTopView 
+      ? [...INITIAL_APPS].sort((a, b) => b.rating - a.rating) 
+      : INITIAL_APPS;
+
+    // Calculamos si hay ALGO visible para saber si mostrar el mensaje de "No encontrado"
+    const hasVisibleResults = sourceApps.some(app => {
+       const matchesSearch = app.name.toLowerCase().includes(searchTerm.toLowerCase());
+       const matchesCategory = isTopView ? true : (activeCategory === "Todos" || app.category === activeCategory);
+       return matchesSearch && matchesCategory;
+    });
+
+    return (
     <section className="animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
       <div className="flex items-center gap-2 mb-6 text-slate-300">
          <TrendingUp className="text-purple-400" size={20} />
          <h2 className="text-xl font-bold">{title}</h2>
       </div>
 
-      {apps.length === 0 ? (
+      {/* CAMBIO 2: Usamos nuestra variable calculada 'hasVisibleResults' en vez de apps.length */}
+      {!hasVisibleResults ? (
         <div className="text-center py-20 text-slate-500">
           <p className="text-lg">No se encontraron resultados para "{searchTerm}"</p>
           <button onClick={() => {setSearchTerm(""); setActiveCategory("Todos")}} className="mt-4 text-teal-400 hover:underline">
@@ -428,25 +445,42 @@ export default function ModStoreApp() {
         </div>
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
-          {apps.map((app) => (
+          {/* CAMBIO 3: Mapeamos SIEMPRE sobre todas las apps (sourceApps) */}
+          {sourceApps.map((app) => {
+            
+            // LÓGICA DE VISIBILIDAD (Aquí ocurre la magia)
+            const matchesSearch = app.name.toLowerCase().includes(searchTerm.toLowerCase());
+            // Si es TopView ignoramos la categoría, si es Home la respetamos
+            const matchesCategory = isTopView ? true : (activeCategory === "Todos" || app.category === activeCategory);
+            
+            const isVisible = matchesSearch && matchesCategory;
+
+            // En la vista TOP, si no es visible, mejor no renderizarlo para mantener el orden estricto del ranking 1, 2, 3...
+            // En la vista HOME, usamos el truco de CSS.
+            if (isTopView && !isVisible) return null;
+
+            return (
             <div 
               key={app.id}
               onClick={() => setSelectedApp(app)}
-              className="group relative bg-[#13131f] rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-white/5 
-              transition-all duration-200 
-              active:scale-95 md:active:scale-100
-              md:hover:border-purple-500/30 md:hover:-translate-y-1 md:hover:shadow-[0_10px_40px_-10px_rgba(124,58,237,0.15)] 
-              cursor-pointer overflow-hidden"
+              // CAMBIO 4: Usamos CSS para ocultar en vez de borrar del DOM
+              className={`
+                ${isVisible ? "block" : "hidden"} 
+                group relative bg-[#13131f] rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-white/5 
+                transition-all duration-200 
+                active:scale-95 md:active:scale-100
+                md:hover:border-purple-500/30 md:hover:-translate-y-1 md:hover:shadow-[0_10px_40px_-10px_rgba(124,58,237,0.15)] 
+                cursor-pointer overflow-hidden
+              `}
             >
               <div className="flex flex-col items-center text-center sm:flex-row sm:items-start sm:text-left gap-2 sm:gap-4 mb-2 sm:mb-4">
                 
-                {/* Aquí controlamos que el icono solo haga zoom en PC (md) */}
                 <div className="md:group-hover:scale-110 transition-transform duration-300">
+                   {/* Asegúrate de tener loading="lazy" en tu componente AppIcon internamente */}
                    <AppIcon type={app.image} />
                 </div>
                 
                 <div className="w-full min-w-0">
-                  {/* El texto solo cambia de color en PC (md) */}
                   <h3 className="font-bold text-sm sm:text-lg text-slate-100 md:group-hover:text-teal-300 transition-colors truncate">
                     {app.name}
                   </h3>
@@ -459,12 +493,13 @@ export default function ModStoreApp() {
               </div>
               
               <div className="flex flex-wrap justify-center sm:justify-start gap-1 sm:gap-2 mb-2 sm:mb-4">
-                {app.modFeatures.slice(0, 2).map((feature, idx) => (
+                {/* CAMBIO 5: Agregamos protección contra fallos (|| []) */}
+                {(app.modFeatures || []).slice(0, 2).map((feature, idx) => (
                   <span key={idx} className="text-[8px] sm:text-[10px] uppercase tracking-wider font-semibold px-1.5 py-0.5 sm:px-2 sm:py-1 bg-slate-800 text-slate-400 rounded-md group-hover:bg-purple-900/30 group-hover:text-purple-300 transition-colors">
                     {feature}
                   </span>
                 ))}
-                {app.modFeatures.length > 2 && (
+                {(app.modFeatures || []).length > 2 && (
                    <span className="text-[8px] sm:text-[10px] px-1.5 py-0.5 sm:px-2 sm:py-1 bg-slate-800 text-slate-400 rounded-md">+1</span>
                 )}
               </div>
@@ -475,30 +510,23 @@ export default function ModStoreApp() {
                   <span className="hidden sm:inline">{app.downloads} descargas</span>
                   <span className="sm:hidden">{app.downloads}</span>
                 </div>
-                {/* BOTÓN CAMBIADO: Abre detalles (Modal) en vez de descargar */}
-                {/* BOTÓN FLECHA (Versión Profesional & Táctil) */}
                 <button 
                   onClick={(e) => {
-                    e.stopPropagation(); // Evita que el clic active la tarjeta entera
-                    setSelectedApp(app); // Abre el modal de detalles
+                    e.stopPropagation();
+                    setSelectedApp(app);
                   }}
-                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 border border-white/5 transition-all duration-200
-                  
-                  /* MÓVIL (Active): Se encoge y se pone verde AL TOCAR (Feedback instantáneo) */
-                  active:scale-90 active:bg-teal-500 active:text-white
-                  
-                  /* PC (Hover): Solo reacciona al pasar el mouse (md: evita errores en móvil) */
-                  md:hover:bg-teal-500 md:hover:text-white md:group-hover:scale-110"
+                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 border border-white/5 transition-all duration-200 active:scale-90 active:bg-teal-500 active:text-white md:hover:bg-teal-500 md:hover:text-white md:group-hover:scale-110"
                 >
                    <ChevronRight size={18} />
                 </button>
               </div>
             </div>
-          ))}
+          )})}
         </div>
       )}
     </section>
   );
+  };
 
   const renderHome = () => {
     // 1. Lógica para filtrar las burbujas (Sugerencias)
@@ -629,7 +657,8 @@ export default function ModStoreApp() {
           })}
         </div>
 
-        {renderAppGrid(getFilteredApps(false), "Mods Populares")}
+        // CORRECCIÓN: Primero el título, luego false
+{renderAppGrid("Mods Populares", false)}
       </>
     );
   };
@@ -640,7 +669,8 @@ export default function ModStoreApp() {
         <h2 className="text-3xl font-bold text-white mb-2">Top Mods Mejor Valorados</h2>
         <p className="text-slate-400">Los favoritos de la comunidad esta semana</p>
       </div>
-      {renderAppGrid(getFilteredApps(true), "Ranking Global")}
+      // CORRECCIÓN: Primero el título, luego true
+{renderAppGrid("Ranking Global", true)}
     </div>
   );
 

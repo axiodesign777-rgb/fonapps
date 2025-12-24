@@ -137,7 +137,7 @@ warning: "Requisito: Inicia sesión con Microsoft para guardar tus chats.",
     size: "30,49 MB",
     version: "v5.12.8",
     image: "/icons/web_video_caster.png",
-    thumbnail: "/Thumb/web:video_caster_thumb.webp",
+    thumbnail: "/Thumb/web_video_caster_thumb.webp",
     description: "Transmite videos web, películas y series a tu TV, Chromecast o Roku sin restricciones. Versión Premium desbloqueada: sin anuncios, marcadores ilimitados y pantalla de inicio personalizada.",
     modFeatures: ["Premium Desbloqueado", "Sin Anuncios", "Cola de Reproducción"],
     downloadUrl: "https://cuty.io/VideoCaster"
@@ -780,7 +780,7 @@ export default function ModStoreApp() {
   className="fixed inset-0 z-0 pointer-events-none will-change-transform"
   style={{
     backgroundColor: '#0a0a12', // Color de seguridad
-    backgroundImage: "url('/public/fondo.webp')", // Tu imagen comprimida
+    backgroundImage: "url('/fondo.webp')", // Tu imagen comprimida
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat'

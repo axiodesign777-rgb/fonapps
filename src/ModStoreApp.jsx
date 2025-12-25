@@ -803,9 +803,9 @@ export default function ModStoreApp() {
     className="w-full h-full object-contain p-1" 
   />
 </div>
-            <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-teal-300 to-purple-400">
-              FonApps
-            </span>
+           <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-purple-500">
+  FonApps
+</span>
           </button>
 
           <div className="hidden md:flex items-center gap-1 bg-white/5 p-1 rounded-full border border-white/5">
@@ -943,8 +943,9 @@ export default function ModStoreApp() {
 
 {/* --- TÍTULO Y DESARROLLADOR (RESTAURADO) --- */}
 <h2 className="text-2xl font-bold text-white mb-1">{selectedApp.name}</h2>
-<p className="text-purple-400 text-sm font-medium mb-4">{selectedApp.developer}</p>
-
+<p className="text-sm font-bold mb-4 bg-gradient-to-r from-teal-400 to-purple-500 bg-clip-text text-transparent w-fit mx-auto">
+  {selectedApp.developer}
+</p>
 {/* --- BARRA DE INFO: PESO, VERSIÓN, RATING (RESTAURADO) --- */}
 <div className="flex justify-center gap-6 text-sm text-slate-400 mb-8 border-y border-white/5 py-4">
   <div className="flex flex-col items-center">

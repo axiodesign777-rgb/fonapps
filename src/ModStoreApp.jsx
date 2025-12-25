@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   Search, 
   Download, 
@@ -14,7 +14,8 @@ import {
   ExternalLink,
   ArrowUpRight,
   AlertTriangle,
-  ChevronRight
+  ChevronRight,
+  ChevronLeft
 } from 'lucide-react';
 
 // --- DATOS DE EJEMPLO (MOCK DATA) ---
@@ -30,9 +31,10 @@ const INITIAL_APPS = [
     version: "v30.0.43",
     image: "/icons/copilot.png",
     thumbnail: "/Thumb/copilot_thumb.webp",
-description: "Desbloqueamos el potencial completo de la IA. Disfruta de acceso ilimitado al modelo GPT-5.1 y al generador de imágenes Ultra-HD sin pagar suscripción. Hemos eliminado todos los límites de uso, la censura en las respuestas y las colas de espera. Tienes la herramienta más potente de Microsoft totalmente liberada y a máxima velocidad en tu bolsillo.",
-modFeatures: ["GPT-5.1 Desbloqueado", "DALL-E Ilimitado", "Velocidad Máxima"],
-warning: "Requisito: Inicia sesión con Microsoft para guardar tus chats.",
+    description: "Desbloqueamos el potencial completo de la IA. Disfruta de acceso ilimitado al modelo GPT-5.1 y al generador de imágenes Ultra-HD sin pagar suscripción. Hemos eliminado todos los límites de uso, la censura en las respuestas y las colas de espera. Tienes la herramienta más potente de Microsoft totalmente liberada y a máxima velocidad en tu bolsillo.",
+    modFeatures: ["GPT-5.1 Desbloqueado", "DALL-E Ilimitado", "Velocidad Máxima"],
+    warning: "Requisito: Inicia sesión con Microsoft para guardar tus chats.",
+    isUpdated: false,
     downloadUrl: "https://cuty.io/MCopilotPRO"
   },
   {
@@ -48,6 +50,7 @@ warning: "Requisito: Inicia sesión con Microsoft para guardar tus chats.",
     thumbnail: "/Thumb/weather_radar_thumb.webp",
     description: "La aplicación meteorológica líder en precisión. Versión Pro desbloqueada que ofrece radar de lluvia en tiempo real, alertas de clima severo, zoom ilimitado en mapas y pronósticos detallados a 14 días sin publicidad intrusiva.",
     modFeatures: ["Pro Desbloqueado", "Sin Anuncios", "Radar Premium"],
+    isUpdated: false,
     downloadUrl: "https://cuty.io/TiempoyRadar"
   },
   {
@@ -64,6 +67,7 @@ warning: "Requisito: Inicia sesión con Microsoft para guardar tus chats.",
     description: "Accede a la inteligencia artificial más audaz y sin censura. Respuestas en tiempo real con datos actualizados y modo sarcástico desbloqueado.",
     warning: "Nota: Debes iniciar sesión con tu cuenta de X (antes Twitter).",
     modFeatures: ["Premium Desbloqueado", "Imagine", "Sin Censura", ],
+    isUpdated: true,
     downloadUrl: "https://cuty.io/GrokAIX"
   },
   {
@@ -79,6 +83,7 @@ warning: "Requisito: Inicia sesión con Microsoft para guardar tus chats.",
     thumbnail: "/Thumb/nova_launcher_thumb.webp",
     description: "El launcher más potente y personalizable. Versión Prime totalmente desbloqueada: gestos, grupos en el cajón, ocultar aplicaciones y efectos de desplazamiento exclusivos.",
     modFeatures: ["Prime Desbloqueado", "Gestos", "Ocultar Apps"],
+    isUpdated: false,
     downloadUrl: "https://cuty.io/NovaLauncher"
   },
   {
@@ -94,6 +99,7 @@ warning: "Requisito: Inicia sesión con Microsoft para guardar tus chats.",
     thumbnail: "/Thumb/niagara_launcher_thumb.webp",
     description: "La pantalla de inicio más limpia para Android. Versión Pro desbloqueada con acceso a todos los widgets,temas, iconos adaptativos y personalización avanzada de fuentes y colores.",
     modFeatures: ["Pro Desbloqueado", "Widgets y temas Premium", "Iconos Adaptativos"],
+    isUpdated: false,
     downloadUrl: "https://cuty.io/NiagaraLaunc"
   },
   {
@@ -109,6 +115,7 @@ warning: "Requisito: Inicia sesión con Microsoft para guardar tus chats.",
     thumbnail: "/Thumb/perplexity_thumb.webp",
     description: "Tu asistente de respuestas con IA. Acceso Pro desbloqueado: búsquedas Pro ilimitadas, carga de archivos PDF/Imágenes sin límites y selección de modelos avanzados como GPT-5 y Claude 3.5 Sonnet.",
     modFeatures: ["Max Desbloqueado", "Búsquedas Max Ilimitadas", "Modelos Premium"],
+    isUpdated: false,
     downloadUrl: "https://cuty.io/Perplexity"
   },
   {
@@ -125,6 +132,7 @@ warning: "Requisito: Inicia sesión con Microsoft para guardar tus chats.",
     description: "La mejor experiencia de YouTube sin anuncios. Incluye reproducción en segundo plano, SponsorBlock para saltar segmentos de relleno y personalización completa de la interfaz.",
     warning: "Requisito: Es necesario instalar MicroG para iniciar sesión con Google.",
     modFeatures: ["Sin Anuncios", "Segundo Plano", "SponsorBlock"],
+    isUpdated: false,
     downloadUrl: "https://cuty.io/YouTubeVIP"
   },
   {
@@ -140,6 +148,7 @@ warning: "Requisito: Inicia sesión con Microsoft para guardar tus chats.",
     thumbnail: "/Thumb/web_video_caster_thumb.webp",
     description: "Transmite videos web, películas y series a tu TV, Chromecast o Roku sin restricciones. Versión Premium desbloqueada: sin anuncios, marcadores ilimitados y pantalla de inicio personalizada.",
     modFeatures: ["Premium Desbloqueado", "Sin Anuncios", "Cola de Reproducción"],
+    isUpdated: false,
     downloadUrl: "https://cuty.io/VideoCaster"
   },
   {
@@ -155,6 +164,7 @@ warning: "Requisito: Inicia sesión con Microsoft para guardar tus chats.",
     thumbnail: "/Thumb/telegram_thumb.webp",
     description: "La mensajería más rápida y segura. Versión Premium desbloqueada: descargas ultra rápidas, iconos premium exclusivos, traducción en tiempo real y sin anuncios..",
     modFeatures: ["Premium Desbloqueado", "Descarga Rápida", "Traducir chats enteros"],
+    isUpdated: false,
     downloadUrl: "https://cuty.io/TelegramVIP"
   },
   {
@@ -170,6 +180,7 @@ warning: "Requisito: Inicia sesión con Microsoft para guardar tus chats.",
     thumbnail: "/Thumb/powerdirector_thumb.webp",
     description: "El editor de video más profesional. Versión Premium desbloqueada: exportación en 4K Ultra HD, sin marca de agua, estabilizador de video y acceso ilimitado a todo el stock de música y efectos.",
     modFeatures: ["Sin Marca de Agua", "Exportación 4K", "Todo Desbloqueado"],
+    isUpdated: true,
     downloadUrl: "https://cuty.io/PowerDirecto"
   },
   {
@@ -185,6 +196,7 @@ warning: "Requisito: Inicia sesión con Microsoft para guardar tus chats.",
     thumbnail: "/Thumb/smart_launcher_thumb.webp",
     description: "El launcher más inteligente y eficiente. Versión Pro desbloqueada: búsqueda inteligente, categorías automáticas personalizables, widgets adaptativos y gestos avanzados en pantalla de inicio.",
     modFeatures: ["Pro Desbloqueado", "Iconos Adaptativos", "Sin Anuncios"],
+    isUpdated: false,
     downloadUrl: "https://cuty.io/SmartLaunche"
   },
   {
@@ -200,6 +212,7 @@ warning: "Requisito: Inicia sesión con Microsoft para guardar tus chats.",
     thumbnail: "/Thumb/lark_player_thumb.webp",
     description: "Reproductor de música Versión Premium desbloqueada: sin anuncios, ecualizador avanzado, temas exclusivos y soporte para letras flotantes en todas tus canciones.",
     modFeatures: ["Sin Anuncios", "Temas Premium", "Ecualizador Pro"],
+    isUpdated: false,
     downloadUrl: "https://cuty.io/LarkPlayer"
   },
   {
@@ -215,6 +228,7 @@ warning: "Requisito: Inicia sesión con Microsoft para guardar tus chats.",
     thumbnail: "/Thumb/samsung_music_thumb.webp",
     description: "El reproductor de música oficial de Samsung optimizado para todos los dispositivos. Interfaz One UI elegante, ecualizador avanzado y soporte para todos los formatos de audio con calidad premium.",
     modFeatures: ["Interfaz One UI", "Ecualizador Pro", "Para todos los dispositivos"],
+    isUpdated: false,
     downloadUrl: "https://cuty.io/SamsungMusic"
   },
   {
@@ -230,6 +244,7 @@ warning: "Requisito: Inicia sesión con Microsoft para guardar tus chats.",
     thumbnail: "/Thumb/chat_smith_thumb.webp",
     description: "Asistente inteligente avanzado impulsado por GPT-4. Versión Pro desbloqueada: diálogos ilimitados, procesamiento de imágenes, modo experto y sin anuncios de ningún tipo.",
     modFeatures: ["Pro Desbloqueado", "Chat Ilimitado", "GPT-5 & Gemini 3 pro y mas..."],
+    isUpdated: false,
     downloadUrl: "https://cuty.io/ChatSmithPro"
   },
   {
@@ -245,6 +260,7 @@ warning: "Requisito: Inicia sesión con Microsoft para guardar tus chats.",
     thumbnail: "/Thumb/microG_thumb.webp",
     description: "El componente esencial para usuarios de mods. Permite iniciar sesión con tu cuenta de Google en aplicaciones modificadas como YouTube ReVanced, garantizando sincronización y notificaciones sin servicios de Google oficiales.",
     modFeatures: ["Login Google habilitado", "Sin rastreo de datos", "Ahorro de batería"],
+    isUpdated: false,
     downloadUrl: "https://ouo.io/D8wwCp"
   },
   {
@@ -260,6 +276,7 @@ warning: "Requisito: Inicia sesión con Microsoft para guardar tus chats.",
     thumbnail: "/Thumb/wallcraft_thumb.webp",
     description: "La biblioteca más vasta de fondos de pantalla en ultra alta definición. Acceso exclusivo a fondos 4K y 8K adaptados automáticamente al tamaño de tu pantalla, con efectos de paralaje 4D y sin interrupciones publicitarias.",
     modFeatures: ["Premium Desbloqueado", "Fondos 8K y 4D", "Sin Publicidad"],
+    isUpdated: false,
     downloadUrl: "https://cuty.io/WallcraftPro"
   },
   {
@@ -275,6 +292,7 @@ warning: "Requisito: Inicia sesión con Microsoft para guardar tus chats.",
     thumbnail: "/Thumb/urban_vpn_thumb.webp",
     description: "La solución definitiva para navegar sin fronteras. Acceso ilimitado a servidores en más de 80 países con ancho de banda infinito. Ideal para desbloquear streaming y proteger tu privacidad en redes públicas con cifrado de grado militar.",
     modFeatures: ["Premium Desbloqueado", "Ancho de Banda Ilimitado", "Ubicaciones Pro"],
+    isUpdated: false,
     downloadUrl: "https://cuty.io/Urbanvpn"
   },
 ];
@@ -324,37 +342,108 @@ const DownloadButton = ({ onClick, loading }) => (
 );
 
 const AppIcon = ({ type, thumbnail, size = "md" }) => {
-  // Configuración de tamaños
   const sizeClass = size === "lg" 
     ? "w-20 h-20 sm:w-24 sm:h-24 text-3xl sm:text-4xl" 
     : "w-10 h-10 sm:w-16 sm:h-16 text-xl sm:text-2xl";
 
-  // --- LÓGICA DE OPTIMIZACIÓN DE RAM ---
-  // 1. Si el tamaño es "md" (estamos en la lista) Y existe un thumbnail, úsalo.
-  // 2. Si no, usa la imagen original ("type").
-  // Esto previene errores si alguna app no tiene thumbnail todavía.
   const imageSource = (size === "md" && thumbnail) ? thumbnail : type;
 
-  // Verificamos si hay imagen válida
   if (imageSource && imageSource.startsWith('/')) {
     return (
       <div className={`${sizeClass} rounded-2xl shadow-lg transform transition-transform group-hover:scale-110 duration-300 overflow-hidden bg-slate-800 border border-white/10 p-0.5 flex items-center justify-center`}>
         <img 
           src={imageSource} 
           alt="App Icon"
-          loading="lazy"      // Carga perezosa
-          decoding="async"    // No congela el scroll
+          loading="lazy"
+          decoding="async"
           className="w-full h-full object-cover rounded-[14px]"
         />
       </div>
     );
   }
 
-  // Fallback (Icono genérico)
   return (
     <div className={`${sizeClass} rounded-2xl bg-gradient-to-br from-slate-700 to-slate-800 flex items-center justify-center text-white font-bold shadow-lg transform transition-transform group-hover:scale-110 duration-300`}>
       <Box className="text-white/50" />
     </div>
+  );
+};
+
+// --- COMPONENTE CARRUSEL EXTRAÍDO (SOLUCIÓN AL BUG DE PANTALLA NEGRA) ---
+const UpdatedAppsCarousel = ({ apps, onSelectApp }) => {
+  const scrollRef = useRef(null);
+  const updatedApps = apps.filter(app => app.isUpdated);
+
+  if (updatedApps.length === 0) return null;
+
+  const scroll = (direction) => {
+    if (scrollRef.current) {
+      const { current } = scrollRef;
+      const scrollAmount = direction === 'left' ? -300 : 300;
+      current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <section className="mb-8 animate-in fade-in slide-in-from-right-8 duration-700 group relative">
+      <div className="flex items-center gap-2 mb-4 px-1">
+        <div className="p-1.5 bg-teal-500/10 rounded-lg border border-teal-500/20">
+           <Zap className="text-teal-400" size={18} fill="currentColor" />
+        </div>
+        <h3 className="text-lg font-bold text-white tracking-tight">
+          Recién <span className="text-teal-400">Actualizadas</span>
+        </h3>
+      </div>
+
+      <div className="relative">
+        {/* Flecha Izquierda */}
+        <button
+          onClick={() => scroll('left')}
+          className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -ml-2 z-20 w-10 h-10 items-center justify-center rounded-full bg-[#0a0a12]/80 border border-white/10 backdrop-blur-md shadow-[0_0_20px_rgba(0,0,0,0.5)] text-white transition-all duration-300 opacity-0 group-hover:opacity-100 hover:bg-teal-500 hover:border-teal-400 hover:scale-110"
+        >
+          <ChevronLeft size={24} />
+        </button>
+
+        {/* Contenedor */}
+        <div 
+          ref={scrollRef}
+          className="flex overflow-x-auto gap-4 pb-4 -mx-4 px-4 scroll-smooth snap-x snap-proximity no-scrollbar"
+        >
+          {updatedApps.map((app) => (
+            <div 
+              key={app.id}
+              onClick={() => onSelectApp(app)}
+              className="flex-none w-64 snap-center relative bg-[#13131f] rounded-2xl p-3 border border-teal-500/20 shadow-[0_0_15px_rgba(45,212,191,0.05)] cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:border-teal-500/40"
+            >
+              {/* --- ETIQUETA VIBRANTE --- */}
+              <div className="absolute top-0 right-0 px-2.5 py-1 bg-gradient-to-r from-fuchsia-600 to-purple-600 text-white text-[9px] font-black uppercase tracking-wider rounded-bl-2xl rounded-tr-xl z-10 shadow-lg shadow-fuchsia-500/30">
+                UPDATE
+              </div>
+              
+              <div className="flex items-center gap-3">
+                <AppIcon type={app.image} thumbnail={app.thumbnail} size="md" />
+                <div className="min-w-0">
+                  <h4 className="font-bold text-slate-100 text-sm truncate pr-4">{app.name}</h4>
+                  <div className="flex items-center gap-2 mt-1">
+                    <span className="text-[10px] bg-teal-500/10 text-teal-300 px-1.5 py-0.5 rounded border border-teal-500/20 font-mono">
+                      {app.version}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Flecha Derecha */}
+        <button
+          onClick={() => scroll('right')}
+          className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 -mr-2 z-20 w-10 h-10 items-center justify-center rounded-full bg-[#0a0a12]/80 border border-white/10 backdrop-blur-md shadow-[0_0_20px_rgba(0,0,0,0.5)] text-white transition-all duration-300 opacity-0 group-hover:opacity-100 hover:bg-teal-500 hover:border-teal-400 hover:scale-110"
+        >
+          <ChevronRight size={24} />
+        </button>
+      </div>
+    </section>
   );
 };
 
@@ -371,7 +460,6 @@ export default function ModStoreApp() {
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("Descarga iniciada...");
 
-  // Efecto MEJORADO para bloquear el scroll del body y html
   useEffect(() => {
     if (selectedApp) {
       document.body.style.overflow = 'hidden';
@@ -387,7 +475,6 @@ export default function ModStoreApp() {
     };
   }, [selectedApp]);
 
-  // Navegación
   const navigateTo = (view) => {
     setCurrentView(view);
     setIsMenuOpen(false);
@@ -421,30 +508,13 @@ export default function ModStoreApp() {
     }, 1500);
   };
 
-  const getFilteredApps = (isTopView = false) => {
-    let apps = INITIAL_APPS.filter(app => {
-      const matchesSearch = app.name.toLowerCase().includes(searchTerm.toLowerCase());
-      const matchesCategory = activeCategory === "Todos" || app.category === activeCategory;
-      return matchesSearch && matchesCategory;
-    });
-    if (isTopView) {
-      apps = [...apps].sort((a, b) => b.rating - a.rating);
-    }
-    return apps;
-  };
-
- // --- FUNCIÓN OPTIMIZADA (VERSIÓN FINAL) ---
   const renderAppGrid = (title, isTopView = false) => {
-    
-    // 1. PREPARACIÓN: Ordenar si es necesario
     let processedApps = isTopView 
       ? [...INITIAL_APPS].sort((a, b) => b.rating - a.rating) 
       : INITIAL_APPS;
 
-    // 2. FILTRADO REAL (Esto ahorra RAM: Solo procesamos lo que se ve)
     const visibleApps = processedApps.filter(app => {
        const matchesSearch = app.name.toLowerCase().includes(searchTerm.toLowerCase());
-       // En TopView mostramos todo el ranking, en Home respetamos categorías
        const matchesCategory = isTopView ? true : (activeCategory === "Todos" || app.category === activeCategory);
        return matchesSearch && matchesCategory;
     });
@@ -467,32 +537,22 @@ export default function ModStoreApp() {
         </div>
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
-          
-          {/* 3. RENDERIZADO: Mapeamos solo las apps visibles */}
           {visibleApps.map((app) => (
             <div 
               key={app.id}
               onClick={() => setSelectedApp(app)}
-              // SIN CLASE HIDDEN: Esta tarjeta solo existe si es visible
               className={`
                 group relative bg-[#13131f] rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-white/5 
                 transition-all duration-200 
                 active:scale-95 md:active:scale-100
                 md:hover:border-purple-500/30 md:hover:-translate-y-1 md:hover:shadow-[0_10px_40px_-10px_rgba(124,58,237,0.15)] 
                 cursor-pointer overflow-hidden
-                /* Animación suave al aparecer */
                 animate-in fade-in zoom-in-95 duration-300 fill-mode-both
               `}
             >
               <div className="flex flex-col items-center text-center sm:flex-row sm:items-start sm:text-left gap-2 sm:gap-4 mb-2 sm:mb-4">
-                
                 <div className="md:group-hover:scale-110 transition-transform duration-300">
-                   {/* IMAGEN OPTIMIZADA: Pasamos el thumbnail aquí */}
-                   <AppIcon 
-                     type={app.image} 
-                     thumbnail={app.thumbnail} 
-                     size="md" 
-                   />
+                   <AppIcon type={app.image} thumbnail={app.thumbnail} size="md" />
                 </div>
                 
                 <div className="w-full min-w-0">
@@ -543,34 +603,24 @@ export default function ModStoreApp() {
   };
 
   const renderHome = () => {
-    // 1. Lógica para filtrar las burbujas (Sugerencias)
     const searchSuggestions = searchTerm.length > 0 
       ? INITIAL_APPS.filter(app => app.name.toLowerCase().includes(searchTerm.toLowerCase())).slice(0, 3)
       : [];
 
-    // 2. Retorno de la interfaz
     return (
-
-      
       <>
         <header className="mb-12 text-center md:text-left">
           <div className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-purple-900/50 to-slate-900 border border-white/10 p-8 md:p-12 flex flex-col md:flex-row items-center gap-8">
             <div className="flex-1 space-y-4">
-
-            {/* --- ANIMACIÓN DE FONDO SOLO PARA MÓVIL (AJUSTADA) --- */}
             <div className="absolute inset-0 md:hidden overflow-hidden pointer-events-none select-none">
-               {/* Escudo: Bajado a top-12 para dar espacio al salto */}
                <div className="absolute top-5 right-0 text-teal-500/10 animate-bounce duration-[3000ms]">
                   <ShieldCheck size={80} strokeWidth={1} />
                </div>
-               {/* Rayo: Ajustado ligeramente para equilibrar */}
                <div className="absolute top-5 left-0 text-purple-500/10 animate-bounce duration-[4000ms]">
                   <Zap size={80} strokeWidth={1} />
                </div>
             </div>
-            {/* ----------------------------------------------------- */}
               
-              {/* Contenedor de texto que se oculta en móvil al buscar */}
               <div className={`transition-all duration-300 ease-in-out ${isSearchFocused ? 'hidden md:block opacity-0' : 'block opacity-100'}`}>
                 <Badge color="mint">NUEVA VERSIÓN DISPONIBLE</Badge>
                 <h1 className="text-4xl md:text-6xl font-extrabold text-white leading-[1.1] mb-3">
@@ -582,7 +632,6 @@ export default function ModStoreApp() {
               </div>
               
               <div className="relative max-w-md mt-6 group z-20">
-                {/* BURBUJAS DE SUGERENCIA */}
                 {searchSuggestions.length > 0 && (
                   <div className="absolute bottom-full left-0 mb-3 w-full flex flex-wrap gap-2 px-1 z-30">
                     {searchSuggestions.map(app => (
@@ -634,43 +683,36 @@ export default function ModStoreApp() {
 
        <div className="flex overflow-x-auto p-4 gap-3 mb-8 no-scrollbar animate-in fade-in slide-in-from-bottom-8 duration-700 delay-100">
          {CATEGORIES.map(cat => {
-            const isActive = activeCategory === cat;
-            
-            return (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                // CAMBIO 1: Quitamos 'overflow-hidden' de aquí para que la sombra respire
-                className="relative px-6 py-2 rounded-full font-medium group transition-transform duration-200 active:scale-95 border border-white/5 whitespace-nowrap"
-              >
-                {/* 1. CAPA DE FONDO INACTIVA */}
-                {/* CAMBIO 2: Añadimos 'rounded-full' aquí para contener el color */}
-                <div className="absolute inset-0 rounded-full bg-slate-800/50 transition-colors duration-300 group-hover:bg-slate-700" />
+           const isActive = activeCategory === cat;
+           
+           return (
+             <button
+               key={cat}
+               onClick={() => setActiveCategory(cat)}
+               className="relative px-6 py-2 rounded-full font-medium group transition-transform duration-200 active:scale-95 border border-white/5 whitespace-nowrap"
+             >
+               <div className="absolute inset-0 rounded-full bg-slate-800/50 transition-colors duration-300 group-hover:bg-slate-700" />
+               <div 
+                 className={`absolute inset-0 rounded-full bg-gradient-to-r from-teal-400 to-purple-600 transition-opacity duration-300 ease-out
+                   ${isActive ? "opacity-100" : "opacity-0"}
+                 `} 
+               />
+               <div 
+                  className={`absolute inset-0 rounded-full transition-opacity duration-300
+                  ${isActive ? "opacity-100 shadow-[0_0_20px_rgba(45,212,191,0.5)]" : "opacity-0"}`}
+               />
+               <span className={`relative z-10 transition-colors duration-300 ${isActive ? "text-white" : "text-slate-400 group-hover:text-white"}`}>
+                 {cat}
+               </span>
+             </button>
+           );
+         })}
+       </div>
 
-                {/* 2. CAPA DE DEGRADADO ACTIVA */}
-                {/* CAMBIO 3: Añadimos 'rounded-full' aquí también */}
-                <div 
-                  className={`absolute inset-0 rounded-full bg-gradient-to-r from-teal-400 to-purple-600 transition-opacity duration-300 ease-out
-                    ${isActive ? "opacity-100" : "opacity-0"}
-                  `} 
-                />
-                
-                {/* 3. BRILLO EXTRA (Sombra externa) */}
-                {/* Al no haber overflow-hidden arriba, esta sombra ahora sí se verá por fuera */}
-                <div 
-                   className={`absolute inset-0 rounded-full transition-opacity duration-300
-                   ${isActive ? "opacity-100 shadow-[0_0_20px_rgba(45,212,191,0.5)]" : "opacity-0"}`}
-                />
+       {/* AQUÍ LLAMAMOS AL NUEVO COMPONENTE CARRUSEL */}
+       <UpdatedAppsCarousel apps={INITIAL_APPS} onSelectApp={setSelectedApp} />
 
-                {/* 4. TEXTO */}
-                <span className={`relative z-10 transition-colors duration-300 ${isActive ? "text-white" : "text-slate-400 group-hover:text-white"}`}>
-                  {cat}
-                </span>
-              </button>
-            );
-          })}
-        </div>
-{renderAppGrid("Mods Populares", false)}
+       {renderAppGrid("Mods Populares", false)}
       </>
     );
   };
@@ -681,22 +723,20 @@ export default function ModStoreApp() {
         <h2 className="text-3xl font-bold text-white mb-2">Top Mods Mejor Valorados</h2>
         <p className="text-slate-400">Los favoritos de la comunidad esta semana</p>
       </div>
-      // CORRECCIÓN: Primero el título, luego true
-{renderAppGrid("Ranking Global", true)}
+      {/* CORRECCIÓN: Eliminado comentario de texto que ensuciaba la UI */}
+      {renderAppGrid("Ranking Global", true)}
     </div>
   );
 
  const renderFooter = () => (
     <footer className="relative mt-32 border-t border-white/10 bg-gradient-to-b from-[#0a0a12] to-[#05050a] pt-16 pb-12 overflow-hidden text-center">
       
-      {/* Luces de fondo ambientales */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-teal-500/50 to-transparent" />
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-purple-900/10 rounded-full blur-[100px] opacity-50" />
       </div>
 
       <div className="relative max-w-4xl mx-auto px-4 z-10">
-        {/* Sección de Tags / SEO */}
         <div className="mb-12">
           <h4 className="text-white font-bold mb-6 flex items-center justify-center gap-2">
             <TrendingUp size={18} className="text-teal-400"/> Tendencias de Búsqueda
@@ -714,7 +754,6 @@ export default function ModStoreApp() {
           </div>
         </div>
 
-        {/* Sección de Comunidad */}
         <div className="mb-16 max-w-sm mx-auto">
           <h4 className="text-white font-bold mb-4 flex items-center justify-center gap-2">
             <Zap size={18} className="text-purple-400"/> Comunidad Oficial
@@ -730,7 +769,6 @@ export default function ModStoreApp() {
           </a>
         </div>
 
-        {/* Barra Final: Créditos y Badges */}
         <div className="flex flex-col items-center gap-6 border-t border-white/5 pt-10">
           <div className="flex flex-wrap justify-center gap-4">
             <span className="flex items-center gap-2 px-3 py-1.5 bg-white/5 rounded-lg border border-white/5 text-[10px] text-slate-400">
@@ -755,41 +793,25 @@ export default function ModStoreApp() {
   return (
     <div className="min-h-screen text-slate-200 font-sans selection:bg-teal-500/30">
       
-      {/* SOLUCIÓN AL PROBLEMA DE SALTO DE LAYOUT */}
       <style>{`
         html { overflow-y: scroll; }
-        
-        /* Estilizado opcional de la barra de scroll para que combine */
-        ::-webkit-scrollbar {
-          width: 10px;
-        }
-        ::-webkit-scrollbar-track {
-          background: #0a0a12; 
-        }
-        ::-webkit-scrollbar-thumb {
-          background: #334155; 
-          border-radius: 5px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-          background: #475569; 
-        }
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #0a0a12; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
       `}</style>
       
- {/* FONDO "ZERO-LAG" DEFINITIVO */}
+{/* FONDO "ZERO-LAG" DEFINITIVO */}
 <div className="fixed top-0 left-0 w-full h-[120vh] -z-10 pointer-events-none overflow-hidden bg-[#0a0a12]">
-  
-  {/* 1. Imagen física (Optimizada para GPU) */}
   <img 
     src="/fondo.webp"  
     alt="" 
     className="w-full h-full object-cover"
     style={{ 
       transform: 'translate3d(0, 0, 0)', 
-      opacity: 0.7 // <--- AJUSTE FINAL: 0.7 es ideal para que se vea pero no moleste al texto
+      opacity: 0.7 
     }}
   />
-
-  {/* 2. Sombra suave para integración (Opcional, puedes quitarla si quieres más brillo) */}
   <div className="absolute inset-0 bg-black/20" />
 </div>
 
@@ -866,7 +888,6 @@ export default function ModStoreApp() {
               >
                 {item.label}
                 
-                {/* Flecha indicadora */}
                 {currentView !== item.id && (
                    <ChevronRight 
                      size={18} 
@@ -891,19 +912,11 @@ export default function ModStoreApp() {
       {selectedApp && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           
-          {/* 1. EL FONDO (Overlay):
-              - animate-in fade-in duration-300: Aparece suavemente (arregla el golpe).
-              - bg-[#05050a]/95: El color negro premium.
-          */}
           <div 
             className="absolute inset-0 bg-[#05050a]/95 backdrop-blur-xl animate-in fade-in duration-300"
             onClick={() => setSelectedApp(null)} 
           />
           
-          {/* 2. LA TARJETA (Window):
-              - animate-content: ¡AQUÍ ESTÁ! Recuperamos tu animación personalizada de rebote.
-              - will-change-transform: Optimiza el rendimiento del rebote.
-          */}
           <div className="relative w-full max-w-lg bg-[#161622] rounded-3xl border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)] overflow-hidden animate-content will-change-transform">
             
             <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-purple-900/40 to-transparent" />
@@ -916,28 +929,18 @@ export default function ModStoreApp() {
             </button>
 
             <div className="relative p-6 pt-12 text-center max-h-[85vh] overflow-y-auto overscroll-contain no-scrollbar">
-              {/* --- IMAGEN HERO "BLUR-UP" (Carga Progresiva) --- */}
 <div className="mx-auto mb-4 w-28 h-28 sm:w-32 sm:h-32 relative shadow-[0_0_30px_rgba(0,0,0,0.5)] rounded-3xl overflow-hidden bg-slate-800">
-  
-  {/* 1. FONDO INSTANTÁNEO (Thumbnail)
-      Se muestra YA, borroso, mientras carga la grande. 
-      Como ya la descargaste en la lista, aparece en 0ms. */}
   <img 
     src={selectedApp.thumbnail || selectedApp.image} 
     alt="Preview"
     className="absolute inset-0 w-full h-full object-cover blur-md scale-110 opacity-50"
   />
-
-  {/* 2. LA IMAGEN HD (Se desvanece suavemente al cargar) */}
   <img 
     src={selectedApp.image} 
     alt={selectedApp.name}
     className="relative z-10 w-full h-full object-cover transition-opacity duration-700 ease-in-out opacity-0"
     onLoad={(e) => e.currentTarget.classList.remove('opacity-0')} 
-    /* ^^^ TRUCO DE MAGIA: Empieza invisible (opacity-0) y se revela sola al terminar de cargar */
   />
-  
-  {/* Borde sutil encima de todo */}
   <div className="absolute inset-0 rounded-3xl border border-white/10 z-20 pointer-events-none" />
 </div>
 

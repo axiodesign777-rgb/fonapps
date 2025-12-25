@@ -941,6 +941,26 @@ export default function ModStoreApp() {
   <div className="absolute inset-0 rounded-3xl border border-white/10 z-20 pointer-events-none" />
 </div>
 
+{/* --- TÍTULO Y DESARROLLADOR (RESTAURADO) --- */}
+<h2 className="text-2xl font-bold text-white mb-1">{selectedApp.name}</h2>
+<p className="text-purple-400 text-sm font-medium mb-4">{selectedApp.developer}</p>
+
+{/* --- BARRA DE INFO: PESO, VERSIÓN, RATING (RESTAURADO) --- */}
+<div className="flex justify-center gap-6 text-sm text-slate-400 mb-8 border-y border-white/5 py-4">
+  <div className="flex flex-col items-center">
+    <span className="font-bold text-white text-base">{selectedApp.rating}</span>
+    <span className="text-xs">Valoración</span>
+  </div>
+  <div className="flex flex-col items-center border-l border-white/10 pl-6">
+    <span className="font-bold text-white text-base">{selectedApp.size}</span>
+    <span className="text-xs">Tamaño</span>
+  </div>
+  <div className="flex flex-col items-center border-l border-white/10 pl-6">
+    <span className="font-bold text-white text-base">{selectedApp.version}</span>
+    <span className="text-xs">Versión</span>
+  </div>
+</div>
+
               <div className="text-left mb-6 space-y-4">
                 <div>
                   <h3 className="text-sm font-bold text-slate-300 uppercase tracking-wider mb-2">Descripción</h3>

@@ -458,8 +458,7 @@ const AppIcon = ({ type, thumbnail, size = "md" }) => {
     </div>
   );
 };
-
-// --- COMPONENTE CARRUSEL (Optimizado: Fluidez Nativa estilo Facebook) ---
+// --- COMPONENTE CARRUSEL (Híbrido: Física de Categorías Móvil + Precisión PC) ---
 const UpdatedAppsCarousel = ({ apps, onSelectApp }) => {
   const scrollRef = useRef(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -471,7 +470,6 @@ const UpdatedAppsCarousel = ({ apps, onSelectApp }) => {
     if (scrollRef.current) {
       const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
       setCanScrollLeft(scrollLeft > 0);
-      // Pequeño margen de error (5px) para detectar el final en móviles
       setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 5);
     }
   };
@@ -484,11 +482,11 @@ const UpdatedAppsCarousel = ({ apps, onSelectApp }) => {
 
   if (featuredApps.length === 0) return null;
 
-  // Lógica para flechas (PC): Aquí SÍ forzamos el 'smooth' manualmente
+  // Lógica PC: Aquí SÍ usamos 'smooth' para que el botón se sienta elegante
   const scroll = (direction) => {
     if (scrollRef.current) {
       const { current } = scrollRef;
-      const scrollAmount = direction === 'left' ? -280 : 280; // Un poco más de desplazamiento
+      const scrollAmount = direction === 'left' ? -280 : 280;
       current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
       setTimeout(checkScrollability, 350); 
     }
@@ -496,18 +494,26 @@ const UpdatedAppsCarousel = ({ apps, onSelectApp }) => {
 
   return (
     <section className="mb-6 animate-in fade-in slide-in-from-right-8 duration-700 group relative">
-      {/* Título de la sección */}
+      
+      {/* --- TÍTULO (Estilos Emerald/Fuchsia) --- */}
       <div className="flex items-center gap-2 mb-4 px-1">
-        <div className="p-1.5 bg-teal-500/10 rounded-lg border border-teal-500/20">
-           <Zap className="text-teal-400" size={18} fill="currentColor" />
+        <div className="p-1.5 bg-yellow-500/10 rounded-lg border border-yellow-500/20">
+           <Zap className="text-yellow-400" size={18} fill="currentColor" />
         </div>
-        <h2 className="text-lg font-bold text-white tracking-tight">
-          Novedades y <span className="text-teal-400">Actualizaciones</span>
+        
+        <h2 className="text-lg font-bold tracking-tight">
+          <span className="bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">
+            Novedades
+          </span>
+          <span className="text-white mx-1.5">y</span>
+          <span className="bg-gradient-to-r from-fuchsia-400 to-purple-400 bg-clip-text text-transparent">
+            Actualizaciones
+          </span>
         </h2>
       </div>
 
       <div className="relative">
-        {/* Flecha Izquierda (Solo visible en PC hover) */}
+        {/* Flecha Izquierda (Solo PC) */}
         {canScrollLeft && (
           <button
             onClick={() => scroll('left')}
@@ -517,10 +523,9 @@ const UpdatedAppsCarousel = ({ apps, onSelectApp }) => {
           </button>
         )}
 
-        {/* CONTENEDOR PRINCIPAL - MAGIA FLUIDA 
-           1. Quitamos 'scroll-smooth' de aquí (esto arregla lo "tosco").
-           2. snap-x snap-mandatory: Obliga a detenerse en una tarjeta.
-           3. overscroll-x-contain: Efecto rebote nativo Android.
+        {/* CONTENEDOR PRINCIPAL - LÓGICA MÓVIL OPTIMIZADA 
+            1. CLAVE: No tiene 'scroll-smooth' en la clase. Esto libera la física del dedo (igual que Categorías).
+            2. snap-x snap-mandatory: Mantiene el estilo Facebook (las tarjetas se encajan).
         */}
         <div 
           ref={scrollRef}
@@ -531,10 +536,8 @@ const UpdatedAppsCarousel = ({ apps, onSelectApp }) => {
             <div 
               key={app.id}
               onClick={() => onSelectApp(app)}
-              // snap-start: Se alinea a la izquierda como la Play Store
               className="flex-none w-64 snap-start relative bg-[#13131f] rounded-2xl p-3 border border-teal-500/20 shadow-sm cursor-pointer transition-all active:scale-95"
             >
-              {/* Etiquetas Nuevo/Update */}
               {app.isNew ? (
                 <div className="absolute top-0 right-0 px-2.5 py-1 bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-[9px] font-black uppercase tracking-wider rounded-bl-2xl rounded-tr-xl z-10 shadow-lg">
                   NUEVO
@@ -558,12 +561,11 @@ const UpdatedAppsCarousel = ({ apps, onSelectApp }) => {
               </div>
             </div>
           ))}
-          
-          {/* Espaciador invisible para que la última tarjeta no se pegue al borde derecho */}
+          {/* Espaciador final */}
           <div className="w-4 flex-none snap-start" />
         </div>
 
-        {/* Flecha Derecha (Solo visible en PC hover) */}
+        {/* Flecha Derecha (Solo PC) */}
         {canScrollRight && (
           <button
             onClick={() => scroll('right')}

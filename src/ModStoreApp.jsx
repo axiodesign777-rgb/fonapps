@@ -29,7 +29,7 @@ const INITIAL_APPS = [
     downloads: "50M+",
     size: "55,43 MB",
     version: "v30.0.43",
-    image: "/icons/copilot.png",
+    image: "/icons/copilot.webp",
     thumbnail: "/Thumb/copilot_thumb.webp",
     description: "Desbloqueamos el potencial completo de la IA. Disfruta de acceso ilimitado al modelo GPT-5.1 y al generador de imágenes Ultra-HD sin pagar suscripción. Hemos eliminado todos los límites de uso, la censura en las respuestas y las colas de espera. Tienes la herramienta más potente de Microsoft totalmente liberada y a máxima velocidad en tu bolsillo.",
     modFeatures: ["GPT-5.1 Desbloqueado", "DALL-E Ilimitado", "Velocidad Máxima"],
@@ -46,7 +46,7 @@ const INITIAL_APPS = [
     downloads: "100M+",
     size: "36,77 MB",
     version: "v2025.25",
-    image: "/icons/weather_radar.png",
+    image: "/icons/weather_radar.webp",
     thumbnail: "/Thumb/weather_radar_thumb.webp",
     description: "La aplicación meteorológica líder en precisión. Versión Pro desbloqueada que ofrece radar de lluvia en tiempo real, alertas de clima severo, zoom ilimitado en mapas y pronósticos detallados a 14 días sin publicidad intrusiva.",
     modFeatures: ["Pro Desbloqueado", "Sin Anuncios", "Radar Premium"],
@@ -79,7 +79,7 @@ const INITIAL_APPS = [
     downloads: "100M+",
     size: "15,71 MB",
     version: "v8.1.6",
-    image: "/icons/nova_launcher.png",
+    image: "/icons/nova_launcher.webp",
     thumbnail: "/Thumb/nova_launcher_thumb.webp",
     description: "El launcher más potente y personalizable. Versión Prime totalmente desbloqueada: gestos, grupos en el cajón, ocultar aplicaciones y efectos de desplazamiento exclusivos.",
     modFeatures: ["Prime Desbloqueado", "Gestos", "Ocultar Apps"],
@@ -95,7 +95,7 @@ const INITIAL_APPS = [
     downloads: "10M+",
     size: "13,79 MB",
     version: "v1.15.6",
-    image: "/icons/niagara_launcher.png",
+    image: "/icons/niagara_launcher.webp",
     thumbnail: "/Thumb/niagara_launcher_thumb.webp",
     description: "La pantalla de inicio más limpia para Android. Versión Pro desbloqueada con acceso a todos los widgets,temas, iconos adaptativos y personalización avanzada de fuentes y colores.",
     modFeatures: ["Pro Desbloqueado", "Widgets y temas Premium", "Iconos Adaptativos"],
@@ -111,7 +111,7 @@ const INITIAL_APPS = [
     downloads: "50M+",
     size: "48,64 MB",
     version: "v2.65.1",
-    image: "/icons/perplexity.png",
+    image: "/icons/perplexity.webp",
     thumbnail: "/Thumb/perplexity_thumb.webp",
     description: "Tu asistente de respuestas con IA. Acceso Pro desbloqueado: búsquedas Pro ilimitadas, carga de archivos PDF/Imágenes sin límites y selección de modelos avanzados como GPT-5 y Claude 3.5 Sonnet.",
     modFeatures: ["Max Desbloqueado", "Búsquedas Max Ilimitadas", "Modelos Premium"],
@@ -127,7 +127,7 @@ const INITIAL_APPS = [
     downloads: "100M",
     size: "82,47 MB",
     version: "v20.14.43",
-    image: "/icons/youtube.png",
+    image: "/icons/youtube.webp",
     thumbnail: "/Thumb/youtube_thumb.webp",
     description: "La mejor experiencia de YouTube sin anuncios. Incluye reproducción en segundo plano, SponsorBlock para saltar segmentos de relleno y personalización completa de la interfaz.",
     warning: "Requisito: Es necesario instalar MicroG para iniciar sesión con Google.",
@@ -144,7 +144,7 @@ const INITIAL_APPS = [
     downloads: "2M",
     size: "30,49 MB",
     version: "v5.12.8",
-    image: "/icons/web_video_caster.png",
+    image: "/icons/web_video_caster.webp",
     thumbnail: "/Thumb/web_video_caster_thumb.webp",
     description: "Transmite videos web, películas y series a tu TV, Chromecast o Roku sin restricciones. Versión Premium desbloqueada: sin anuncios, marcadores ilimitados y pantalla de inicio personalizada.",
     modFeatures: ["Premium Desbloqueado", "Sin Anuncios", "Cola de Reproducción"],
@@ -160,7 +160,7 @@ const INITIAL_APPS = [
     downloads: "1B+",
     size: "38,79 MB",
     version: "v12.2.10",
-    image: "/icons/telegram.png",
+    image: "/icons/telegram.webp",
     thumbnail: "/Thumb/telegram_thumb.webp",
     description: "La mensajería más rápida y segura. Versión Premium desbloqueada: descargas ultra rápidas, iconos premium exclusivos, traducción en tiempo real y sin anuncios..",
     modFeatures: ["Premium Desbloqueado", "Descarga Rápida", "Traducir chats enteros"],
@@ -176,7 +176,7 @@ const INITIAL_APPS = [
     downloads: "100M+",
     size: "202,88 MB",
     version: "v15.9.2",
-    image: "/icons/powerdirector.png",
+    image: "/icons/powerdirector.webp",
     thumbnail: "/Thumb/powerdirector_thumb.webp",
     description: "El editor de video más profesional. Versión Premium desbloqueada: exportación en 4K Ultra HD, sin marca de agua, estabilizador de video y acceso ilimitado a todo el stock de música y efectos.",
     modFeatures: ["Sin Marca de Agua", "Exportación 4K", "Todo Desbloqueado"],
@@ -192,7 +192,7 @@ const INITIAL_APPS = [
     downloads: "20M+",
     size: "20,44 MB",
     version: "v6.5.054",
-    image: "/icons/smart_launcher.png",
+    image: "/icons/smart_launcher.webp",
     thumbnail: "/Thumb/smart_launcher_thumb.webp",
     description: "El launcher más inteligente y eficiente. Versión Pro desbloqueada: búsqueda inteligente, categorías automáticas personalizables, widgets adaptativos y gestos avanzados en pantalla de inicio.",
     modFeatures: ["Pro Desbloqueado", "Iconos Adaptativos", "Sin Anuncios"],
@@ -208,7 +208,7 @@ const INITIAL_APPS = [
     downloads: "100M+",
     size: "24,34 MB",
     version: "v6.33.5",
-    image: "/icons/lark_player.png",
+    image: "/icons/lark_player.webp",
     thumbnail: "/Thumb/lark_player_thumb.webp",
     description: "Reproductor de música Versión Premium desbloqueada: sin anuncios, ecualizador avanzado, temas exclusivos y soporte para letras flotantes en todas tus canciones.",
     modFeatures: ["Sin Anuncios", "Temas Premium", "Ecualizador Pro"],
@@ -224,7 +224,7 @@ const INITIAL_APPS = [
     downloads: "10M+",
     size: "26,63 MB",
     version: "v16.2.41",
-    image: "/icons/samsung_music.png",
+    image: "/icons/samsung_music.webp",
     thumbnail: "/Thumb/samsung_music_thumb.webp",
     description: "El reproductor de música oficial de Samsung optimizado para todos los dispositivos. Interfaz One UI elegante, ecualizador avanzado y soporte para todos los formatos de audio con calidad premium.",
     modFeatures: ["Interfaz One UI", "Ecualizador Pro", "Para todos los dispositivos"],
@@ -240,7 +240,7 @@ const INITIAL_APPS = [
     downloads: "10M+",
     size: "117,98 MB",
     version: "v8.251208.1",
-    image: "/icons/chat_smith.png",
+    image: "/icons/chat_smith.webp",
     thumbnail: "/Thumb/chat_smith_thumb.webp",
     description: "Asistente inteligente avanzado impulsado por GPT-4. Versión Pro desbloqueada: diálogos ilimitados, procesamiento de imágenes, modo experto y sin anuncios de ningún tipo.",
     modFeatures: ["Pro Desbloqueado", "Chat Ilimitado", "GPT-5 & Gemini 3 pro y mas..."],
@@ -256,7 +256,7 @@ const INITIAL_APPS = [
     downloads: "10M+",
     size: "37,87 MB",
     version: "v0.3.1.4.240913",
-    image: "/icons/microG.svg",
+    image: "/icons/microG.webp",
     thumbnail: "/Thumb/microG_thumb.webp",
     description: "El componente esencial para usuarios de mods. Permite iniciar sesión con tu cuenta de Google en aplicaciones modificadas como YouTube ReVanced, garantizando sincronización y notificaciones sin servicios de Google oficiales.",
     modFeatures: ["Login Google habilitado", "Sin rastreo de datos", "Ahorro de batería"],
@@ -272,7 +272,7 @@ const INITIAL_APPS = [
     downloads: "100M+",
     size: "104,5 MB",
     version: "v3.59.01",
-    image: "/icons/wallcraft.png",
+    image: "/icons/wallcraft.webp",
     thumbnail: "/Thumb/wallcraft_thumb.webp",
     description: "La biblioteca más vasta de fondos de pantalla en ultra alta definición. Acceso exclusivo a fondos 4K y 8K adaptados automáticamente al tamaño de tu pantalla, con efectos de paralaje 4D y sin interrupciones publicitarias.",
     modFeatures: ["Premium Desbloqueado", "Fondos 8K y 4D", "Sin Publicidad"],
@@ -288,7 +288,7 @@ const INITIAL_APPS = [
     downloads: "10M+",
     size: "12,1 MB",
     version: "v1.0.97",
-    image: "/icons/urban_vpn.png",
+    image: "/icons/urban_vpn.webp",
     thumbnail: "/Thumb/urban_vpn_thumb.webp",
     description: "La solución definitiva para navegar sin fronteras. Acceso ilimitado a servidores en más de 80 países con ancho de banda infinito. Ideal para desbloquear streaming y proteger tu privacidad en redes públicas con cifrado de grado militar.",
     modFeatures: ["Premium Desbloqueado", "Ancho de Banda Ilimitado", "Ubicaciones Pro"],
@@ -390,14 +390,15 @@ const UpdatedAppsCarousel = ({ apps, onSelectApp }) => {
         <div className="p-1.5 bg-teal-500/10 rounded-lg border border-teal-500/20">
            <Zap className="text-teal-400" size={18} fill="currentColor" />
         </div>
-        <h3 className="text-lg font-bold text-white tracking-tight">
+        <h2 className="text-lg font-bold text-white tracking-tight">
           Recién <span className="text-teal-400">Actualizadas</span>
-        </h3>
+        </h2>
       </div>
 
       <div className="relative">
         {/* Flecha Izquierda */}
         <button
+        aria-label="Desplazar a la izquierda"
           onClick={() => scroll('left')}
           className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -ml-2 z-20 w-10 h-10 items-center justify-center rounded-full bg-[#0a0a12]/80 border border-white/10 backdrop-blur-md shadow-[0_0_20px_rgba(0,0,0,0.5)] text-white transition-all duration-300 opacity-0 group-hover:opacity-100 hover:bg-teal-500 hover:border-teal-400 hover:scale-110"
         >
@@ -437,6 +438,7 @@ const UpdatedAppsCarousel = ({ apps, onSelectApp }) => {
 
         {/* Flecha Derecha */}
         <button
+        aria-label="Desplazar a la derecha"
           onClick={() => scroll('right')}
           className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 -mr-2 z-20 w-10 h-10 items-center justify-center rounded-full bg-[#0a0a12]/80 border border-white/10 backdrop-blur-md shadow-[0_0_20px_rgba(0,0,0,0.5)] text-white transition-all duration-300 opacity-0 group-hover:opacity-100 hover:bg-teal-500 hover:border-teal-400 hover:scale-110"
         >
@@ -585,6 +587,7 @@ export default function ModStoreApp() {
                   <span className="sm:hidden">{app.downloads}</span>
                 </div>
                 <button 
+                aria-label="Ver detalles de la aplicación"
                   onClick={(e) => {
                     e.stopPropagation();
                     setSelectedApp(app);
@@ -738,9 +741,9 @@ export default function ModStoreApp() {
 
       <div className="relative max-w-4xl mx-auto px-4 z-10">
         <div className="mb-12">
-          <h4 className="text-white font-bold mb-6 flex items-center justify-center gap-2">
+          <h2 className="text-white font-bold mb-6 flex items-center justify-center gap-2">
             <TrendingUp size={18} className="text-teal-400"/> Tendencias de Búsqueda
-          </h4>
+          </h2>
           <div className="flex flex-wrap justify-center gap-2">
             {[
               "APK Mod Premium 2025", "IA Sin Censura Android", "Spotify Mod", 
@@ -755,9 +758,9 @@ export default function ModStoreApp() {
         </div>
 
         <div className="mb-16 max-w-sm mx-auto">
-          <h4 className="text-white font-bold mb-4 flex items-center justify-center gap-2">
+          <h2 className="text-white font-bold mb-4 flex items-center justify-center gap-2">
             <Zap size={18} className="text-purple-400"/> Comunidad Oficial
-          </h4>
+          </h2>
           <a 
             href="https://t.me/+HU0V3IL0_E44NmY0" 
             target="_blank"
@@ -851,6 +854,7 @@ export default function ModStoreApp() {
           </div>
 
           <button 
+          aria-label="Abrir menú de navegación"
             className="md:hidden p-2 text-slate-300 hover:text-white bg-white/5 rounded-lg border border-white/5"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
@@ -922,6 +926,7 @@ export default function ModStoreApp() {
             <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-purple-900/40 to-transparent" />
             
             <button 
+            aria-label="Cerrar ventana"
               onClick={() => setSelectedApp(null)}
               className="absolute top-4 right-4 p-2 bg-black/20 hover:bg-red-500/80 rounded-full text-white/90 hover:text-white transition-all z-50 border border-white/10 shadow-lg backdrop-blur-sm"
             >

@@ -459,7 +459,7 @@ const AppIcon = ({ type, thumbnail, size = "md" }) => {
   );
 };
 
-// --- COMPONENTE CARRUSEL (Lógica Android / Google Play Native) ---
+// --- COMPONENTE CARRUSEL (Optimizado: Fluidez Nativa estilo Facebook) ---
 const UpdatedAppsCarousel = ({ apps, onSelectApp }) => {
   const scrollRef = useRef(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -467,12 +467,12 @@ const UpdatedAppsCarousel = ({ apps, onSelectApp }) => {
   
   const featuredApps = apps.filter(app => app.isUpdated || app.isNew);
 
-  // Verificación de flechas (Igual que antes, necesario para PC)
   const checkScrollability = () => {
     if (scrollRef.current) {
       const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
       setCanScrollLeft(scrollLeft > 0);
-      setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 5); // Margen de error pequeño
+      // Pequeño margen de error (5px) para detectar el final en móviles
+      setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 5);
     }
   };
 
@@ -484,18 +484,19 @@ const UpdatedAppsCarousel = ({ apps, onSelectApp }) => {
 
   if (featuredApps.length === 0) return null;
 
+  // Lógica para flechas (PC): Aquí SÍ forzamos el 'smooth' manualmente
   const scroll = (direction) => {
     if (scrollRef.current) {
       const { current } = scrollRef;
-      // Mismo desplazamiento exacto, pero ahora la alineación visual es 'start'
-      const scrollAmount = direction === 'left' ? -272 : 272;
+      const scrollAmount = direction === 'left' ? -280 : 280; // Un poco más de desplazamiento
       current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
       setTimeout(checkScrollability, 350); 
     }
   };
 
   return (
-    <section className="mb-8 animate-in fade-in slide-in-from-right-8 duration-700 group relative">
+    <section className="mb-6 animate-in fade-in slide-in-from-right-8 duration-700 group relative">
+      {/* Título de la sección */}
       <div className="flex items-center gap-2 mb-4 px-1">
         <div className="p-1.5 bg-teal-500/10 rounded-lg border border-teal-500/20">
            <Zap className="text-teal-400" size={18} fill="currentColor" />
@@ -506,10 +507,9 @@ const UpdatedAppsCarousel = ({ apps, onSelectApp }) => {
       </div>
 
       <div className="relative">
-        {/* Flecha Izquierda (PC) */}
+        {/* Flecha Izquierda (Solo visible en PC hover) */}
         {canScrollLeft && (
           <button
-            aria-label="Desplazar a la izquierda"
             onClick={() => scroll('left')}
             className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -ml-4 z-20 w-10 h-10 items-center justify-center rounded-full bg-[#0a0a12]/90 border border-teal-500/30 backdrop-blur-md shadow-lg text-white transition-all hover:scale-110 hover:bg-teal-500"
           >
@@ -517,23 +517,24 @@ const UpdatedAppsCarousel = ({ apps, onSelectApp }) => {
           </button>
         )}
 
-        {/* CONTENEDOR PRINCIPAL - LÓGICA ANDROID 
-           1. snap-start: Alinea los elementos al inicio (izquierda).
-           2. scroll-pl-4: Padding izquierdo para que el primer elemento respire.
-           3. overscroll-x-contain: Evita gestos del navegador al llegar al tope.
+        {/* CONTENEDOR PRINCIPAL - MAGIA FLUIDA 
+           1. Quitamos 'scroll-smooth' de aquí (esto arregla lo "tosco").
+           2. snap-x snap-mandatory: Obliga a detenerse en una tarjeta.
+           3. overscroll-x-contain: Efecto rebote nativo Android.
         */}
         <div 
           ref={scrollRef}
           onScroll={checkScrollability}
-          className="flex overflow-x-auto gap-4 pb-4 -mx-4 px-4 scroll-smooth snap-x snap-mandatory no-scrollbar scroll-pl-4 overscroll-x-contain"
+          className="flex overflow-x-auto gap-4 pb-4 -mx-4 px-4 snap-x snap-mandatory no-scrollbar scroll-pl-4 overscroll-x-contain"
         >
           {featuredApps.map((app) => (
             <div 
               key={app.id}
               onClick={() => onSelectApp(app)}
-              // CAMBIO AQUÍ: 'snap-start' en lugar de 'snap-center'
+              // snap-start: Se alinea a la izquierda como la Play Store
               className="flex-none w-64 snap-start relative bg-[#13131f] rounded-2xl p-3 border border-teal-500/20 shadow-sm cursor-pointer transition-all active:scale-95"
             >
+              {/* Etiquetas Nuevo/Update */}
               {app.isNew ? (
                 <div className="absolute top-0 right-0 px-2.5 py-1 bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-[9px] font-black uppercase tracking-wider rounded-bl-2xl rounded-tr-xl z-10 shadow-lg">
                   NUEVO
@@ -558,15 +559,13 @@ const UpdatedAppsCarousel = ({ apps, onSelectApp }) => {
             </div>
           ))}
           
-          {/* TRUCO PROFESIONAL: Espaciador final invisible */}
-          {/* Esto permite que el último elemento también se alinee a la izquierda sin pegarse al borde */}
-          <div className="w-1 flex-none snap-start" />
+          {/* Espaciador invisible para que la última tarjeta no se pegue al borde derecho */}
+          <div className="w-4 flex-none snap-start" />
         </div>
 
-        {/* Flecha Derecha (PC) */}
+        {/* Flecha Derecha (Solo visible en PC hover) */}
         {canScrollRight && (
           <button
-            aria-label="Desplazar a la derecha"
             onClick={() => scroll('right')}
             className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 -mr-4 z-20 w-10 h-10 items-center justify-center rounded-full bg-[#0a0a12]/90 border border-teal-500/30 backdrop-blur-md shadow-lg text-white transition-all hover:scale-110 hover:bg-teal-500"
           >

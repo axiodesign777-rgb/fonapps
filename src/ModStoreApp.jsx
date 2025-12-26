@@ -459,21 +459,38 @@ const AppIcon = ({ type, thumbnail, size = "md" }) => {
   );
 };
 
-// --- COMPONENTE CARRUSEL (Scroll Preciso: 1 Clic = 1 Tarjeta) ---
+// --- COMPONENTE CARRUSEL (Lógica Android / Google Play Native) ---
 const UpdatedAppsCarousel = ({ apps, onSelectApp }) => {
   const scrollRef = useRef(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
   
   const featuredApps = apps.filter(app => app.isUpdated || app.isNew);
+
+  // Verificación de flechas (Igual que antes, necesario para PC)
+  const checkScrollability = () => {
+    if (scrollRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+      setCanScrollLeft(scrollLeft > 0);
+      setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 5); // Margen de error pequeño
+    }
+  };
+
+  useEffect(() => {
+    checkScrollability();
+    window.addEventListener('resize', checkScrollability);
+    return () => window.removeEventListener('resize', checkScrollability);
+  }, [featuredApps]);
 
   if (featuredApps.length === 0) return null;
 
   const scroll = (direction) => {
     if (scrollRef.current) {
       const { current } = scrollRef;
-      // CÁLCULO EXACTO: w-64 (256px) + gap-4 (16px) = 272px
+      // Mismo desplazamiento exacto, pero ahora la alineación visual es 'start'
       const scrollAmount = direction === 'left' ? -272 : 272;
-      
       current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      setTimeout(checkScrollability, 350); 
     }
   };
 
@@ -489,33 +506,40 @@ const UpdatedAppsCarousel = ({ apps, onSelectApp }) => {
       </div>
 
       <div className="relative">
-        {/* Flecha Izquierda */}
-        <button
-          aria-label="Desplazar a la izquierda"
-          onClick={() => scroll('left')}
-          className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -ml-2 z-20 w-10 h-10 items-center justify-center rounded-full bg-[#0a0a12]/80 border border-white/10 backdrop-blur-md shadow-[0_0_20px_rgba(0,0,0,0.5)] text-white transition-all duration-300 opacity-0 group-hover:opacity-100 hover:bg-teal-500 hover:border-teal-400 hover:scale-110"
-        >
-          <ChevronLeft size={24} />
-        </button>
+        {/* Flecha Izquierda (PC) */}
+        {canScrollLeft && (
+          <button
+            aria-label="Desplazar a la izquierda"
+            onClick={() => scroll('left')}
+            className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -ml-4 z-20 w-10 h-10 items-center justify-center rounded-full bg-[#0a0a12]/90 border border-teal-500/30 backdrop-blur-md shadow-lg text-white transition-all hover:scale-110 hover:bg-teal-500"
+          >
+            <ChevronLeft size={24} />
+          </button>
+        )}
 
-        {/* Contenedor: CAMBIO IMPORTANTE -> snap-mandatory */}
+        {/* CONTENEDOR PRINCIPAL - LÓGICA ANDROID 
+           1. snap-start: Alinea los elementos al inicio (izquierda).
+           2. scroll-pl-4: Padding izquierdo para que el primer elemento respire.
+           3. overscroll-x-contain: Evita gestos del navegador al llegar al tope.
+        */}
         <div 
           ref={scrollRef}
-          className="flex overflow-x-auto gap-4 pb-4 -mx-4 px-4 scroll-smooth snap-x snap-mandatory no-scrollbar"
+          onScroll={checkScrollability}
+          className="flex overflow-x-auto gap-4 pb-4 -mx-4 px-4 scroll-smooth snap-x snap-mandatory no-scrollbar scroll-pl-4 overscroll-x-contain"
         >
           {featuredApps.map((app) => (
             <div 
               key={app.id}
               onClick={() => onSelectApp(app)}
-              className="flex-none w-64 snap-center relative bg-[#13131f] rounded-2xl p-3 border border-teal-500/20 shadow-[0_0_15px_rgba(45,212,191,0.05)] cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:border-teal-500/40"
+              // CAMBIO AQUÍ: 'snap-start' en lugar de 'snap-center'
+              className="flex-none w-64 snap-start relative bg-[#13131f] rounded-2xl p-3 border border-teal-500/20 shadow-sm cursor-pointer transition-all active:scale-95"
             >
-              {/* --- ETIQUETAS --- */}
               {app.isNew ? (
-                <div className="absolute top-0 right-0 px-2.5 py-1 bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-[9px] font-black uppercase tracking-wider rounded-bl-2xl rounded-tr-xl z-10 shadow-lg shadow-emerald-500/30">
+                <div className="absolute top-0 right-0 px-2.5 py-1 bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-[9px] font-black uppercase tracking-wider rounded-bl-2xl rounded-tr-xl z-10 shadow-lg">
                   NUEVO
                 </div>
               ) : (
-                <div className="absolute top-0 right-0 px-2.5 py-1 bg-gradient-to-r from-fuchsia-600 to-purple-600 text-white text-[9px] font-black uppercase tracking-wider rounded-bl-2xl rounded-tr-xl z-10 shadow-lg shadow-fuchsia-500/30">
+                <div className="absolute top-0 right-0 px-2.5 py-1 bg-gradient-to-r from-fuchsia-600 to-purple-600 text-white text-[9px] font-black uppercase tracking-wider rounded-bl-2xl rounded-tr-xl z-10 shadow-lg">
                   UPDATE
                 </div>
               )}
@@ -533,16 +557,22 @@ const UpdatedAppsCarousel = ({ apps, onSelectApp }) => {
               </div>
             </div>
           ))}
+          
+          {/* TRUCO PROFESIONAL: Espaciador final invisible */}
+          {/* Esto permite que el último elemento también se alinee a la izquierda sin pegarse al borde */}
+          <div className="w-1 flex-none snap-start" />
         </div>
 
-        {/* Flecha Derecha */}
-        <button
-          aria-label="Desplazar a la derecha"
-          onClick={() => scroll('right')}
-          className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 -mr-2 z-20 w-10 h-10 items-center justify-center rounded-full bg-[#0a0a12]/80 border border-white/10 backdrop-blur-md shadow-[0_0_20px_rgba(0,0,0,0.5)] text-white transition-all duration-300 opacity-0 group-hover:opacity-100 hover:bg-teal-500 hover:border-teal-400 hover:scale-110"
-        >
-          <ChevronRight size={24} />
-        </button>
+        {/* Flecha Derecha (PC) */}
+        {canScrollRight && (
+          <button
+            aria-label="Desplazar a la derecha"
+            onClick={() => scroll('right')}
+            className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 -mr-4 z-20 w-10 h-10 items-center justify-center rounded-full bg-[#0a0a12]/90 border border-teal-500/30 backdrop-blur-md shadow-lg text-white transition-all hover:scale-110 hover:bg-teal-500"
+          >
+            <ChevronRight size={24} />
+          </button>
+        )}
       </div>
     </section>
   );
@@ -702,33 +732,34 @@ export default function ModStoreApp() {
   );
   };
 
-  const renderHome = () => {
+ const renderHome = () => {
     const searchSuggestions = searchTerm.length > 0 
       ? INITIAL_APPS.filter(app => app.name.toLowerCase().includes(searchTerm.toLowerCase())).slice(0, 3)
       : [];
 
     return (
       <>
+        {/* HEADER */}
         <header className="mb-12 text-center md:text-left">
           <div className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-purple-900/50 to-slate-900 border border-white/10 p-8 md:p-12 flex flex-col md:flex-row items-center gap-8">
             <div className="flex-1 space-y-4">
-            <div className="absolute inset-0 md:hidden overflow-hidden pointer-events-none select-none">
-               <div className="absolute top-5 right-0 text-teal-500/10 animate-bounce duration-[3000ms]">
+              <div className="absolute inset-0 md:hidden overflow-hidden pointer-events-none select-none">
+                <div className="absolute top-5 right-0 text-teal-500/10 animate-bounce duration-[3000ms]">
                   <ShieldCheck size={80} strokeWidth={1} />
-               </div>
-               <div className="absolute top-5 left-0 text-purple-500/10 animate-bounce duration-[4000ms]">
+                </div>
+                <div className="absolute top-5 left-0 text-purple-500/10 animate-bounce duration-[4000ms]">
                   <Zap size={80} strokeWidth={1} />
-               </div>
-            </div>
+                </div>
+              </div>
               
               <div className={`transition-all duration-300 ease-in-out ${isSearchFocused ? 'hidden md:block opacity-0' : 'block opacity-100'}`}>
                 <Badge color="mint">NUEVA VERSIÓN DISPONIBLE</Badge>
                 <h1 className="text-4xl md:text-6xl font-extrabold text-white leading-[1.1] mb-3">
-  Descarga tus <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-300 to-teal-500">Apps</span> favoritas
-</h1>
+                  Descarga tus <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-300 to-teal-500">Apps</span> favoritas
+                </h1>
                 <p className="text-slate-400 text-sm md:text-lg max-w-xl leading-relaxed">
-  Descarga versiones modificadas seguras. Características premium desbloqueadas, sin anuncios y funcionalidades extendidas.
-</p>
+                  Descarga versiones modificadas seguras. Características premium desbloqueadas, sin anuncios y funcionalidades extendidas.
+                </p>
               </div>
               
               <div className="relative max-w-md mt-6 group z-20">
@@ -781,42 +812,45 @@ export default function ModStoreApp() {
           </div>
         </header>
 
-       <div className="flex overflow-x-auto p-4 gap-3 mb-8 no-scrollbar animate-in fade-in slide-in-from-bottom-8 duration-700 delay-100">
-         {CATEGORIES.map(cat => {
-           const isActive = activeCategory === cat;
-           
-           return (
-             <button
-               key={cat}
-               onClick={() => setActiveCategory(cat)}
-               className="relative px-6 py-2 rounded-full font-medium group transition-transform duration-200 active:scale-95 border border-white/5 whitespace-nowrap"
-             >
-               <div className="absolute inset-0 rounded-full bg-slate-800/50 transition-colors duration-300 group-hover:bg-slate-700" />
-               <div 
-                 className={`absolute inset-0 rounded-full bg-gradient-to-r from-teal-400 to-purple-600 transition-opacity duration-300 ease-out
-                   ${isActive ? "opacity-100" : "opacity-0"}
-                 `} 
-               />
-               <div 
-                  className={`absolute inset-0 rounded-full transition-opacity duration-300
-                  ${isActive ? "opacity-100 shadow-[0_0_20px_rgba(45,212,191,0.5)]" : "opacity-0"}`}
-               />
-               <span className={`relative z-10 transition-colors duration-300 ${isActive ? "text-white" : "text-slate-400 group-hover:text-white"}`}>
-                 {cat}
-               </span>
-             </button>
-           );
-         })}
-       </div>
+        {/* ✅ CAMBIO REALIZADO: EL CARRUSEL AHORA ESTÁ AQUÍ ARRIBA ✅ */}
+        {!searchTerm && (
+           <UpdatedAppsCarousel apps={INITIAL_APPS} onSelectApp={setSelectedApp} />
+        )}
 
-       {/* AQUÍ LLAMAMOS AL NUEVO COMPONENTE CARRUSEL */}
-       <UpdatedAppsCarousel apps={INITIAL_APPS} onSelectApp={setSelectedApp} />
+        {/* CATEGORÍAS (AHORA ESTÁN DEBAJO) */}
+        <div className="flex overflow-x-auto p-4 gap-3 mb-8 no-scrollbar animate-in fade-in slide-in-from-bottom-8 duration-700 delay-100">
+          {CATEGORIES.map(cat => {
+            const isActive = activeCategory === cat;
+            
+            return (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className="relative px-6 py-2 rounded-full font-medium group transition-transform duration-200 active:scale-95 border border-white/5 whitespace-nowrap"
+              >
+                <div className="absolute inset-0 rounded-full bg-slate-800/50 transition-colors duration-300 group-hover:bg-slate-700" />
+                <div 
+                  className={`absolute inset-0 rounded-full bg-gradient-to-r from-teal-400 to-purple-600 transition-opacity duration-300 ease-out
+                    ${isActive ? "opacity-100" : "opacity-0"}
+                  `} 
+                />
+                <div 
+                   className={`absolute inset-0 rounded-full transition-opacity duration-300
+                   ${isActive ? "opacity-100 shadow-[0_0_20px_rgba(45,212,191,0.5)]" : "opacity-0"}`}
+                />
+                <span className={`relative z-10 transition-colors duration-300 ${isActive ? "text-white" : "text-slate-400 group-hover:text-white"}`}>
+                  {cat}
+                </span>
+              </button>
+            );
+          })}
+        </div>
 
-       {renderAppGrid("Mods Populares", false)}
+        {/* LISTA DE APPS */}
+        {renderAppGrid("Mods Populares", false)}
       </>
     );
   };
-
   const renderTopMods = () => (
     <div className="animate-in fade-in zoom-in-95 duration-500">
       <div className="mb-8 text-center">
@@ -827,6 +861,7 @@ export default function ModStoreApp() {
       {renderAppGrid("Ranking Global", true)}
     </div>
   );
+  
 
  const renderFooter = () => (
     <footer className="relative mt-32 border-t border-white/10 bg-gradient-to-b from-[#0a0a12] to-[#05050a] pt-16 pb-12 overflow-hidden text-center">

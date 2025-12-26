@@ -24,7 +24,7 @@ const INITIAL_APPS = [
   {
     id: 22,
     name: "Arc Launcher Prime",
-    developer: "AppTech",
+    developer: "FonApps",
     category: "Personalización",
     rating: 4.6,
     downloads: "5M+",
@@ -41,7 +41,7 @@ const INITIAL_APPS = [
 
   {
     id: 21,
-    name: "Alpha Hybrid Launcher",
+    name: "Alpha Hybrid Launcher Premium",
     developer: "FonApps",
     category: "Personalización",
     rating: 4.7,
@@ -59,7 +59,7 @@ const INITIAL_APPS = [
 
   {
     id: 20,
-    name: "Corrector Ortográfico Premium",
+    name: "SpellCheck Premium",
     developer: "FonApps",
     category: "Herramientas",
     rating: 4.5,

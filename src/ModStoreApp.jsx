@@ -15,7 +15,8 @@ import {
   ArrowUpRight,
   AlertTriangle,
   ChevronRight,
-  ChevronLeft
+  ChevronLeft,
+  Heart // ✅ NUEVO: Importamos el icono de corazón
 } from 'lucide-react';
 
 // --- DATOS DE EJEMPLO (MOCK DATA) ---
@@ -387,7 +388,8 @@ const INITIAL_APPS = [
   },
 ];
 
-const CATEGORIES = ["Todos", "Personalización","Herramientas","IA", "Social", "Entretenimiento"];
+// ✅ SECCIÓN FAVORITOS AGREGADA AQUÍ
+const CATEGORIES = ["Todos", "Favoritos", "Personalización", "Herramientas", "IA", "Social", "Entretenimiento"];
 
 // --- COMPONENTES UI AUXILIARES ---
 
@@ -458,6 +460,7 @@ const AppIcon = ({ type, thumbnail, size = "md" }) => {
     </div>
   );
 };
+
 // --- COMPONENTE CARRUSEL (Física Natural idéntica a Categorías + Botones PC) ---
 const UpdatedAppsCarousel = ({ apps, onSelectApp }) => {
   const scrollRef = useRef(null);
@@ -592,6 +595,28 @@ export default function ModStoreApp() {
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("Descarga iniciada...");
 
+  // ✅ 1. ESTADO DE FAVORITOS (Lee memoria al iniciar)
+  const [favorites, setFavorites] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('myFavorites');
+      return saved ? JSON.parse(saved) : [];
+    }
+    return [];
+  });
+
+  // ✅ 2. GUARDA FAVORITOS AUTOMÁTICAMENTE
+  useEffect(() => {
+    localStorage.setItem('myFavorites', JSON.stringify(favorites));
+  }, [favorites]);
+
+  // ✅ 3. FUNCIÓN TOGGLE (AGREGAR/QUITAR)
+  const toggleFavorite = (e, id) => {
+    e.stopPropagation();
+    setFavorites(prev => 
+      prev.includes(id) ? prev.filter(favId => favId !== id) : [...prev, id]
+    );
+  };
+
   useEffect(() => {
     if (selectedApp) {
       document.body.style.overflow = 'hidden';
@@ -640,6 +665,7 @@ export default function ModStoreApp() {
     }, 1500);
   };
 
+  // ✅ FUNCIÓN DE RENDERIZADO ACTUALIZADA CON LÓGICA DE FAVORITOS
   const renderAppGrid = (title, isTopView = false) => {
     let processedApps = isTopView 
       ? [...INITIAL_APPS].sort((a, b) => b.rating - a.rating) 
@@ -647,7 +673,14 @@ export default function ModStoreApp() {
 
     const visibleApps = processedApps.filter(app => {
        const matchesSearch = app.name.toLowerCase().includes(searchTerm.toLowerCase());
-       const matchesCategory = isTopView ? true : (activeCategory === "Todos" || app.category === activeCategory);
+       
+       let matchesCategory = true;
+       if (!isTopView) {
+         if (activeCategory === "Todos") matchesCategory = true;
+         else if (activeCategory === "Favoritos") matchesCategory = favorites.includes(app.id); // <--- FILTRO
+         else matchesCategory = app.category === activeCategory;
+       }
+       
        return matchesSearch && matchesCategory;
     });
 
@@ -656,20 +689,38 @@ export default function ModStoreApp() {
     return (
     <section className="animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
       <div className="flex items-center gap-2 mb-6 text-slate-300">
-         <TrendingUp className="text-purple-400" size={20} />
-         <h2 className="text-xl font-bold">{title}</h2>
+         {/* Título dinámico para Favoritos */}
+         {activeCategory === "Favoritos" ? (
+            <Heart className="text-pink-500" size={20} fill="currentColor" />
+         ) : (
+            <TrendingUp className="text-purple-400" size={20} />
+         )}
+         <h2 className="text-xl font-bold">
+            {activeCategory === "Favoritos" ? "Tus Guardados" : title}
+         </h2>
       </div>
 
       {!hasResults ? (
         <div className="text-center py-20 text-slate-500">
-          <p className="text-lg">No se encontraron resultados para "{searchTerm}"</p>
+          {activeCategory === "Favoritos" ? (
+             <>
+               <p className="text-lg mb-2">Aún no tienes favoritos ❤️</p>
+               <p className="text-sm">Dale al corazón en las apps que te gusten.</p>
+             </>
+          ) : (
+             <p className="text-lg">No se encontraron resultados para "{searchTerm}"</p>
+          )}
+          
           <button onClick={() => {setSearchTerm(""); setActiveCategory("Todos")}} className="mt-4 text-teal-400 hover:underline">
-            Limpiar filtros
+            Ver todas las apps
           </button>
         </div>
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
-          {visibleApps.map((app) => (
+          {visibleApps.map((app) => {
+            const isFav = favorites.includes(app.id);
+
+            return (
             <div 
               key={app.id}
               onClick={() => setSelectedApp(app)}
@@ -682,12 +733,22 @@ export default function ModStoreApp() {
                 animate-in fade-in zoom-in-95 duration-300 fill-mode-both
               `}
             >
+              {/* ✅ CORAZÓN FLOTANTE (Botón de Favoritos) */}
+              <button
+                onClick={(e) => toggleFavorite(e, app.id)}
+                className="absolute top-2 right-2 z-20 p-2 rounded-full active:scale-75 transition-transform"
+              >
+                 <div className={`transition-all duration-300 ${isFav ? "text-pink-500 drop-shadow-[0_0_8px_rgba(236,72,153,0.5)]" : "text-slate-600 hover:text-slate-400"}`}>
+                    <Heart size={20} fill={isFav ? "currentColor" : "none"} strokeWidth={isFav ? 0 : 2} />
+                 </div>
+              </button>
+
               <div className="flex flex-col items-center text-center sm:flex-row sm:items-start sm:text-left gap-2 sm:gap-4 mb-2 sm:mb-4">
                 <div className="md:group-hover:scale-110 transition-transform duration-300">
                    <AppIcon type={app.image} thumbnail={app.thumbnail} size="md" />
                 </div>
                 
-                <div className="w-full min-w-0">
+                <div className="w-full min-w-0 pr-6">
                   <h3 className="font-bold text-sm sm:text-lg text-slate-100 md:group-hover:text-teal-300 transition-colors truncate">
                     {app.name}
                   </h3>
@@ -717,7 +778,7 @@ export default function ModStoreApp() {
                   <span className="sm:hidden">{app.downloads}</span>
                 </div>
                 <button 
-                aria-label="Ver detalles de la aplicación"
+                  aria-label="Ver detalles de la aplicación"
                   onClick={(e) => {
                     e.stopPropagation();
                     setSelectedApp(app);
@@ -728,14 +789,14 @@ export default function ModStoreApp() {
                 </button>
               </div>
             </div>
-          ))}
+          )})}
         </div>
       )}
     </section>
   );
   };
 
- const renderHome = () => {
+  const renderHome = () => {
     const searchSuggestions = searchTerm.length > 0 
       ? INITIAL_APPS.filter(app => app.name.toLowerCase().includes(searchTerm.toLowerCase())).slice(0, 3)
       : [];
@@ -815,12 +876,10 @@ export default function ModStoreApp() {
           </div>
         </header>
 
-        {/* ✅ CAMBIO REALIZADO: EL CARRUSEL AHORA ESTÁ AQUÍ ARRIBA ✅ */}
         {!searchTerm && (
            <UpdatedAppsCarousel apps={INITIAL_APPS} onSelectApp={setSelectedApp} />
         )}
 
-        {/* CATEGORÍAS (AHORA ESTÁN DEBAJO) */}
         <div className="flex overflow-x-auto p-4 gap-3 mb-8 no-scrollbar animate-in fade-in slide-in-from-bottom-8 duration-700 delay-100">
           {CATEGORIES.map(cat => {
             const isActive = activeCategory === cat;
@@ -849,22 +908,20 @@ export default function ModStoreApp() {
           })}
         </div>
 
-        {/* LISTA DE APPS */}
         {renderAppGrid("Mods Populares", false)}
       </>
     );
   };
+
   const renderTopMods = () => (
     <div className="animate-in fade-in zoom-in-95 duration-500">
       <div className="mb-8 text-center">
         <h2 className="text-3xl font-bold text-white mb-2">Top Mods Mejor Valorados</h2>
         <p className="text-slate-400">Los favoritos de la comunidad esta semana</p>
       </div>
-      {/* CORRECCIÓN: Eliminado comentario de texto que ensuciaba la UI */}
       {renderAppGrid("Ranking Global", true)}
     </div>
   );
-  
 
  const renderFooter = () => (
     <footer className="relative mt-32 border-t border-white/10 bg-gradient-to-b from-[#0a0a12] to-[#05050a] pt-16 pb-12 overflow-hidden text-center">
@@ -1137,7 +1194,22 @@ export default function ModStoreApp() {
                 </div>
               </div>
 
-              <DownloadButton onClick={() => handleDownload(null, selectedApp.id)} loading={downloadingId === selectedApp.id} />
+              {/* ✅ BOTÓN DE FAVORITOS EN MODAL TAMBIÉN (Opcional, pero recomendado) */}
+              <div className="flex items-center gap-4 mt-6">
+                 <button
+                    onClick={(e) => toggleFavorite(e, selectedApp.id)}
+                    className="p-3 bg-slate-800 rounded-xl border border-white/10 hover:bg-slate-700 transition-colors"
+                 >
+                    <Heart 
+                      size={24} 
+                      className={favorites.includes(selectedApp.id) ? "text-pink-500 fill-pink-500" : "text-slate-400"} 
+                    />
+                 </button>
+                 <div className="flex-1">
+                    <DownloadButton onClick={() => handleDownload(null, selectedApp.id)} loading={downloadingId === selectedApp.id} />
+                 </div>
+              </div>
+
               <p className="mt-4 text-[10px] text-slate-600 flex items-center justify-center gap-1">
                 <ShieldCheck size={10} /> Verificado por Play Protect. Libre de virus.
               </p>

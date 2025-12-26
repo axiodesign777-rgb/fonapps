@@ -458,7 +458,7 @@ const AppIcon = ({ type, thumbnail, size = "md" }) => {
     </div>
   );
 };
-// --- COMPONENTE CARRUSEL (Híbrido: Física de Categorías Móvil + Precisión PC) ---
+// --- COMPONENTE CARRUSEL (Física Natural idéntica a Categorías + Botones PC) ---
 const UpdatedAppsCarousel = ({ apps, onSelectApp }) => {
   const scrollRef = useRef(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -466,11 +466,12 @@ const UpdatedAppsCarousel = ({ apps, onSelectApp }) => {
   
   const featuredApps = apps.filter(app => app.isUpdated || app.isNew);
 
+  // Lógica para mostrar/ocultar flechas en PC
   const checkScrollability = () => {
     if (scrollRef.current) {
       const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
       setCanScrollLeft(scrollLeft > 0);
-      setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 5);
+      setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 10);
     }
   };
 
@@ -482,11 +483,11 @@ const UpdatedAppsCarousel = ({ apps, onSelectApp }) => {
 
   if (featuredApps.length === 0) return null;
 
-  // Lógica PC: Aquí SÍ usamos 'smooth' para que el botón se sienta elegante
+  // Lógica del botón (Solo para PC): Aquí forzamos el movimiento suave
   const scroll = (direction) => {
     if (scrollRef.current) {
       const { current } = scrollRef;
-      const scrollAmount = direction === 'left' ? -280 : 280;
+      const scrollAmount = direction === 'left' ? -300 : 300;
       current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
       setTimeout(checkScrollability, 350); 
     }
@@ -495,7 +496,7 @@ const UpdatedAppsCarousel = ({ apps, onSelectApp }) => {
   return (
     <section className="mb-6 animate-in fade-in slide-in-from-right-8 duration-700 group relative">
       
-      {/* --- TÍTULO (Estilos Emerald/Fuchsia) --- */}
+      {/* --- TÍTULO (Colores Emerald/Fuchsia) --- */}
       <div className="flex items-center gap-2 mb-4 px-1">
         <div className="p-1.5 bg-yellow-500/10 rounded-lg border border-yellow-500/20">
            <Zap className="text-yellow-400" size={18} fill="currentColor" />
@@ -523,20 +524,21 @@ const UpdatedAppsCarousel = ({ apps, onSelectApp }) => {
           </button>
         )}
 
-        {/* CONTENEDOR PRINCIPAL - LÓGICA MÓVIL OPTIMIZADA 
-            1. CLAVE: No tiene 'scroll-smooth' en la clase. Esto libera la física del dedo (igual que Categorías).
-            2. snap-x snap-mandatory: Mantiene el estilo Facebook (las tarjetas se encajan).
+        {/* CONTENEDOR PRINCIPAL - FÍSICA PURA (SIN SNAP)
+           1. Eliminado 'snap-x' y 'snap-mandatory': Ahora desliza libre como las categorías.
+           2. Eliminado 'scroll-smooth': Permite que el dedo tenga control total inmediato.
         */}
         <div 
           ref={scrollRef}
           onScroll={checkScrollability}
-          className="flex overflow-x-auto gap-4 pb-4 -mx-4 px-4 snap-x snap-mandatory no-scrollbar scroll-pl-4 overscroll-x-contain"
+          className="flex overflow-x-auto gap-4 pb-4 -mx-4 px-4 no-scrollbar overscroll-x-contain"
         >
           {featuredApps.map((app) => (
             <div 
               key={app.id}
               onClick={() => onSelectApp(app)}
-              className="flex-none w-64 snap-start relative bg-[#13131f] rounded-2xl p-3 border border-teal-500/20 shadow-sm cursor-pointer transition-all active:scale-95"
+              // Eliminado 'snap-start': La tarjeta ya no se "imanta" al borde.
+              className="flex-none w-64 relative bg-[#13131f] rounded-2xl p-3 border border-teal-500/20 shadow-sm cursor-pointer transition-all active:scale-95"
             >
               {app.isNew ? (
                 <div className="absolute top-0 right-0 px-2.5 py-1 bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-[9px] font-black uppercase tracking-wider rounded-bl-2xl rounded-tr-xl z-10 shadow-lg">
@@ -561,8 +563,8 @@ const UpdatedAppsCarousel = ({ apps, onSelectApp }) => {
               </div>
             </div>
           ))}
-          {/* Espaciador final */}
-          <div className="w-4 flex-none snap-start" />
+          {/* Espaciador final para que no se corte la última tarjeta */}
+          <div className="w-2 flex-none" />
         </div>
 
         {/* Flecha Derecha (Solo PC) */}

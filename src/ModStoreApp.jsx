@@ -459,11 +459,10 @@ const AppIcon = ({ type, thumbnail, size = "md" }) => {
   );
 };
 
-// --- COMPONENTE CARRUSEL MEJORADO (SOPORTA "NUEVO" Y "UPDATE") ---
+// --- COMPONENTE CARRUSEL (Scroll Preciso: 1 Clic = 1 Tarjeta) ---
 const UpdatedAppsCarousel = ({ apps, onSelectApp }) => {
   const scrollRef = useRef(null);
   
-  // FILTRO: Ahora aceptamos apps que sean NUEVAS o estén ACTUALIZADAS
   const featuredApps = apps.filter(app => app.isUpdated || app.isNew);
 
   if (featuredApps.length === 0) return null;
@@ -471,7 +470,9 @@ const UpdatedAppsCarousel = ({ apps, onSelectApp }) => {
   const scroll = (direction) => {
     if (scrollRef.current) {
       const { current } = scrollRef;
-      const scrollAmount = direction === 'left' ? -300 : 300;
+      // CÁLCULO EXACTO: w-64 (256px) + gap-4 (16px) = 272px
+      const scrollAmount = direction === 'left' ? -272 : 272;
+      
       current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     }
   };
@@ -497,10 +498,10 @@ const UpdatedAppsCarousel = ({ apps, onSelectApp }) => {
           <ChevronLeft size={24} />
         </button>
 
-        {/* Contenedor */}
+        {/* Contenedor: CAMBIO IMPORTANTE -> snap-mandatory */}
         <div 
           ref={scrollRef}
-          className="flex overflow-x-auto gap-4 pb-4 -mx-4 px-4 scroll-smooth snap-x snap-proximity no-scrollbar"
+          className="flex overflow-x-auto gap-4 pb-4 -mx-4 px-4 scroll-smooth snap-x snap-mandatory no-scrollbar"
         >
           {featuredApps.map((app) => (
             <div 
@@ -508,14 +509,12 @@ const UpdatedAppsCarousel = ({ apps, onSelectApp }) => {
               onClick={() => onSelectApp(app)}
               className="flex-none w-64 snap-center relative bg-[#13131f] rounded-2xl p-3 border border-teal-500/20 shadow-[0_0_15px_rgba(45,212,191,0.05)] cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:border-teal-500/40"
             >
-              {/* --- LÓGICA DE ETIQUETAS (BADGES) --- */}
+              {/* --- ETIQUETAS --- */}
               {app.isNew ? (
-                // ETIQUETA "NUEVO" (Verde Esmeralda)
                 <div className="absolute top-0 right-0 px-2.5 py-1 bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-[9px] font-black uppercase tracking-wider rounded-bl-2xl rounded-tr-xl z-10 shadow-lg shadow-emerald-500/30">
                   NUEVO
                 </div>
               ) : (
-                // ETIQUETA "UPDATE" (Morado Fuchsia)
                 <div className="absolute top-0 right-0 px-2.5 py-1 bg-gradient-to-r from-fuchsia-600 to-purple-600 text-white text-[9px] font-black uppercase tracking-wider rounded-bl-2xl rounded-tr-xl z-10 shadow-lg shadow-fuchsia-500/30">
                   UPDATE
                 </div>
@@ -548,8 +547,6 @@ const UpdatedAppsCarousel = ({ apps, onSelectApp }) => {
     </section>
   );
 };
-
-// --- COMPONENTE PRINCIPAL ---
 
 export default function ModStoreApp() {
   const [currentView, setCurrentView] = useState('home'); // 'home', 'top'

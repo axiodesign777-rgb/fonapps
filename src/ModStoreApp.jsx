@@ -20,6 +20,96 @@ import {
 
 // --- DATOS DE EJEMPLO (MOCK DATA) ---
 const INITIAL_APPS = [
+
+  {
+    id: 22,
+    name: "Arc Launcher Prime",
+    developer: "AppTech",
+    category: "Personalización",
+    rating: 4.6,
+    downloads: "5M+",
+    size: "19,88 MB",
+    version: "v50.4",
+    image: "/icons/arc_launcher.webp",
+    thumbnail: "/Thumb/arc_launcher_thumb.webp",
+    description: "Una experiencia de pantalla de inicio revolucionaria con diseño Arc. Versión Prime desbloqueada: accede a la biblioteca completa de temas 3D/4D, reproductor de música integrado avanzado, funciones de limpieza de RAM automáticas y personalización DIY ilimitada sin anuncios.",
+    modFeatures: ["Prime Desbloqueado", "Temas 3D Premium", "Boost RAM"],
+    isUpdated: true,
+    isNew: true,
+    downloadUrl: "https://cuty.io/ArcLauncher"
+  },
+
+  {
+    id: 21,
+    name: "Alpha Hybrid Launcher",
+    developer: "FonApps",
+    category: "Personalización",
+    rating: 4.7,
+    downloads: "5M+",
+    size: "18,47 MB",
+    version: "v15.5",
+    image: "/icons/alpha_launcher.webp",
+    thumbnail: "/Thumb/alpha_launcher_thumb.webp",
+    description: "Transforma tu teléfono en una interfaz futurista de ciencia ficción. Versión Prime totalmente desbloqueada: acceso a todos los temas 4D Premium, widgets de sistema avanzados, personalización de colores estilo 'hacker' y eliminación completa de publicidad.",
+    modFeatures: ["Prime Desbloqueado", "Temas 4D", "Estilo Hacker"],
+    isUpdated: true,
+    isNew: true,
+    downloadUrl: "https://cuty.io/AlphaLaunch"
+  },
+
+  {
+    id: 20,
+    name: "Corrector Ortográfico Premium",
+    developer: "FonApps",
+    category: "Herramientas",
+    rating: 4.5,
+    downloads: "5M+",
+    size: "33,27 MB",
+    version: "v1.0.12",
+    image: "/icons/spellcheck.webp",
+    thumbnail: "/Thumb/spellcheck_thumb.webp",
+    description: "Escribe sin errores en cualquier idioma. Hemos desbloqueado la versión Premium completa: corrección gramatical profunda basada en IA, sin límite de caracteres, escáner de texto por cámara (OCR) habilitado y experiencia totalmente libre de publicidad.",
+    modFeatures: ["Premium Desbloqueado", "Límite Texto 3000", "Escáner OCR"],
+    isUpdated: true,
+    isNew: true,
+    downloadUrl: "https://cuty.io/spellcheck"
+  },
+
+  {
+    id: 19,
+    name: "Exo Player Pro",
+    developer: "FonApps",
+    category: "Entretenimiento",
+    rating: 4.2,
+    downloads: "100K+",
+    size: "9,49 MB",
+    version: "v2.1.3",
+    image: "/icons/exo_player.webp",
+    thumbnail: "/Thumb/exo_player_thumb.webp",
+    description: "El reproductor de vídeo minimalista basado en la tecnología Exo de Google. Versión Pro desbloqueada: disfruta de tus películas y series sin interrupciones publicitarias. Soporte nativo para 4K, aceleración por hardware optimizada, subtítulos multi-idioma y compatibilidad total con formatos MKV, MP4 y AVI.",
+    modFeatures: ["Pro Desbloqueado", "Sin Anuncios", "Soporte 4K"],
+    isUpdated: true, 
+    isNew: true,
+    downloadUrl: "https://cuty.io/ExoPlayerPro"
+  },
+
+  {
+    id: 18,
+    name: "Superb VPN Premium",
+    developer: "FonApps",
+    category: "Herramientas",
+    rating: 4.8,
+    downloads: "5M+",
+    size: "55,65 MB",
+    version: "v3.2.0",
+    image: "/icons/superb_vpn.webp",
+    thumbnail: "/Thumb/superb_vpn_thumb.webp",
+    description: "Navegación ultra rápida y segura sin límites. Hemos desbloqueado el acceso VIP total: conéctate a servidores premium de todo el mundo sin ver un solo anuncio. Protege tu privacidad, oculta tu IP y accede a contenido bloqueado en tu región con un solo toque.",
+    modFeatures: ["VIP Desbloqueado", "Sin Anuncios", "Servidores Globales"],
+    isUpdated: true,
+    isNew: true,
+    downloadUrl: "https://cuty.io/SuperbVPN"
+  },
   {
     id: 17,
     name: "Microsoft Copilot Pro",
@@ -369,12 +459,14 @@ const AppIcon = ({ type, thumbnail, size = "md" }) => {
   );
 };
 
-// --- COMPONENTE CARRUSEL EXTRAÍDO (SOLUCIÓN AL BUG DE PANTALLA NEGRA) ---
+// --- COMPONENTE CARRUSEL MEJORADO (SOPORTA "NUEVO" Y "UPDATE") ---
 const UpdatedAppsCarousel = ({ apps, onSelectApp }) => {
   const scrollRef = useRef(null);
-  const updatedApps = apps.filter(app => app.isUpdated);
+  
+  // FILTRO: Ahora aceptamos apps que sean NUEVAS o estén ACTUALIZADAS
+  const featuredApps = apps.filter(app => app.isUpdated || app.isNew);
 
-  if (updatedApps.length === 0) return null;
+  if (featuredApps.length === 0) return null;
 
   const scroll = (direction) => {
     if (scrollRef.current) {
@@ -391,14 +483,14 @@ const UpdatedAppsCarousel = ({ apps, onSelectApp }) => {
            <Zap className="text-teal-400" size={18} fill="currentColor" />
         </div>
         <h2 className="text-lg font-bold text-white tracking-tight">
-          Recién <span className="text-teal-400">Actualizadas</span>
+          Novedades y <span className="text-teal-400">Actualizaciones</span>
         </h2>
       </div>
 
       <div className="relative">
         {/* Flecha Izquierda */}
         <button
-        aria-label="Desplazar a la izquierda"
+          aria-label="Desplazar a la izquierda"
           onClick={() => scroll('left')}
           className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -ml-2 z-20 w-10 h-10 items-center justify-center rounded-full bg-[#0a0a12]/80 border border-white/10 backdrop-blur-md shadow-[0_0_20px_rgba(0,0,0,0.5)] text-white transition-all duration-300 opacity-0 group-hover:opacity-100 hover:bg-teal-500 hover:border-teal-400 hover:scale-110"
         >
@@ -410,16 +502,24 @@ const UpdatedAppsCarousel = ({ apps, onSelectApp }) => {
           ref={scrollRef}
           className="flex overflow-x-auto gap-4 pb-4 -mx-4 px-4 scroll-smooth snap-x snap-proximity no-scrollbar"
         >
-          {updatedApps.map((app) => (
+          {featuredApps.map((app) => (
             <div 
               key={app.id}
               onClick={() => onSelectApp(app)}
               className="flex-none w-64 snap-center relative bg-[#13131f] rounded-2xl p-3 border border-teal-500/20 shadow-[0_0_15px_rgba(45,212,191,0.05)] cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:border-teal-500/40"
             >
-              {/* --- ETIQUETA VIBRANTE --- */}
-              <div className="absolute top-0 right-0 px-2.5 py-1 bg-gradient-to-r from-fuchsia-600 to-purple-600 text-white text-[9px] font-black uppercase tracking-wider rounded-bl-2xl rounded-tr-xl z-10 shadow-lg shadow-fuchsia-500/30">
-                UPDATE
-              </div>
+              {/* --- LÓGICA DE ETIQUETAS (BADGES) --- */}
+              {app.isNew ? (
+                // ETIQUETA "NUEVO" (Verde Esmeralda)
+                <div className="absolute top-0 right-0 px-2.5 py-1 bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-[9px] font-black uppercase tracking-wider rounded-bl-2xl rounded-tr-xl z-10 shadow-lg shadow-emerald-500/30">
+                  NUEVO
+                </div>
+              ) : (
+                // ETIQUETA "UPDATE" (Morado Fuchsia)
+                <div className="absolute top-0 right-0 px-2.5 py-1 bg-gradient-to-r from-fuchsia-600 to-purple-600 text-white text-[9px] font-black uppercase tracking-wider rounded-bl-2xl rounded-tr-xl z-10 shadow-lg shadow-fuchsia-500/30">
+                  UPDATE
+                </div>
+              )}
               
               <div className="flex items-center gap-3">
                 <AppIcon type={app.image} thumbnail={app.thumbnail} size="md" />
@@ -438,7 +538,7 @@ const UpdatedAppsCarousel = ({ apps, onSelectApp }) => {
 
         {/* Flecha Derecha */}
         <button
-        aria-label="Desplazar a la derecha"
+          aria-label="Desplazar a la derecha"
           onClick={() => scroll('right')}
           className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 -mr-2 z-20 w-10 h-10 items-center justify-center rounded-full bg-[#0a0a12]/80 border border-white/10 backdrop-blur-md shadow-[0_0_20px_rgba(0,0,0,0.5)] text-white transition-all duration-300 opacity-0 group-hover:opacity-100 hover:bg-teal-500 hover:border-teal-400 hover:scale-110"
         >

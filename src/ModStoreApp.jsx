@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { 
+  
   Search, 
   Download, 
   Menu, 
@@ -18,6 +19,11 @@ import {
   ChevronLeft,
   Heart // ✅ NUEVO: Importamos el icono de corazón
 } from 'lucide-react';
+// Helper para detectar etiquetas (Pégalo antes de los useEffect)
+  const getBadge = (name) => {
+    const keywords = ["Premium", "Pro", "Prime", "VIP", "Max", "Plus", "Ultra", "Gold"];
+    return keywords.find(word => name.includes(word));
+  };
 
 // --- DATOS DE EJEMPLO (MOCK DATA) ---
 const INITIAL_APPS = [
@@ -151,7 +157,7 @@ const INITIAL_APPS = [
     category: "IA",
     rating: 4.9,
     downloads: "50M+",
-    size: "25,35 MB",
+    size: "24,35 MB",
     version: "v1.0.95-00",
     image: "/icons/grok_ai.webp",
     thumbnail: "/Thumb/grok_ai_thumb.webp",
@@ -670,7 +676,7 @@ export default function ModStoreApp() {
     }, 1500);
   };
 
-  // ✅ FUNCIÓN DE RENDERIZADO ACTUALIZADA CON LÓGICA DE FAVORITOS
+ // ✅ FUNCIÓN DE RENDERIZADO ACTUALIZADA (CON ETIQUETA DORADA)
   const renderAppGrid = (title, isTopView = false) => {
     let processedApps = isTopView 
       ? [...INITIAL_APPS].sort((a, b) => b.rating - a.rating) 
@@ -682,7 +688,7 @@ export default function ModStoreApp() {
        let matchesCategory = true;
        if (!isTopView) {
          if (activeCategory === "Todos") matchesCategory = true;
-         else if (activeCategory === "Favoritos") matchesCategory = favorites.includes(app.id); // <--- FILTRO
+         else if (activeCategory === "Favoritos") matchesCategory = favorites.includes(app.id); 
          else matchesCategory = app.category === activeCategory;
        }
        
@@ -691,10 +697,15 @@ export default function ModStoreApp() {
 
     const hasResults = visibleApps.length > 0;
 
+    // Lógica para detectar la etiqueta (Pro, Premium, etc.)
+    const getBadge = (name) => {
+      const keywords = ["Premium", "Pro", "Prime", "VIP", "Max", "Plus", "Ultra", "Gold"];
+      return keywords.find(word => name.includes(word));
+    };
+
     return (
     <section className="animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
       <div className="flex items-center gap-2 mb-6 text-slate-300">
-         {/* Título dinámico para Favoritos */}
          {activeCategory === "Favoritos" ? (
             <Heart className="text-pink-500" size={20} fill="currentColor" />
          ) : (
@@ -722,8 +733,9 @@ export default function ModStoreApp() {
         </div>
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
-         {visibleApps.map((app) => {
+          {visibleApps.map((app) => {
             const isFav = favorites.includes(app.id);
+            const badgeType = getBadge(app.name); // Detectamos si es Pro/Premium
 
             return (
             <div 
@@ -739,7 +751,17 @@ export default function ModStoreApp() {
                 animate-in fade-in zoom-in-95 duration-300 fill-mode-both
               `}
             >
-              {/* Botón Favorito (Flotante) */}
+            {/* ✅ ETIQUETA PREMIUM COMPACTA (Tamaño Reducido) */}
+              {badgeType && (
+                <div className="absolute top-0 left-0 z-20">
+                   {/* Cambios: px-2 (menos ancho), py-0.5 (menos alto), text-[8px] (letra más fina), rounded-br-lg (curva más pequeña) */}
+                   <div className="px-2 py-0.5 rounded-br-lg bg-yellow-500/10 border-b border-r border-yellow-500/20 text-yellow-200 text-[8px] font-bold tracking-wider uppercase backdrop-blur-md shadow-sm">
+                      {badgeType}
+                   </div>
+                </div>
+              )}
+
+              {/* Botón Favorito (Esquina Derecha) */}
               <button
                 onClick={(e) => toggleFavorite(e, app.id)}
                 className="absolute top-2 right-2 z-20 p-2 rounded-full active:scale-75 transition-transform hover:bg-white/5"
@@ -749,14 +771,18 @@ export default function ModStoreApp() {
                  </div>
               </button>
 
-              {/* 1. ICONO (Centro Geométrico Superior) */}
-              <div className="mb-3 transform transition-transform duration-300 group-hover:scale-105">
+              {/* 1. ICONO */}
+             {/* 1. ICONO (Corrección Matemática de Centro y Renderizado) */}
+              <div className="mb-3 w-full flex justify-center transform transition-transform duration-300 group-hover:scale-105 origin-center will-change-transform backface-hidden">
                  <AppIcon type={app.image} thumbnail={app.thumbnail} size="md" />
               </div>
               
-              {/* 2. TEXTOS (Bloque Central con Ancho Controlado) */}
+              {/* 2. TEXTOS */}
               <div className="w-full mb-3">
                 <h3 className="font-bold text-sm text-slate-100 truncate px-2 w-full">
+                  {/* Opcional: Si quieres quitar la palabra "Premium" del texto para que no se repita, usa esto: */}
+                  {/* {app.name.replace(badgeType || "", "").trim()} */}
+                  {/* Por ahora dejo el nombre completo: */}
                   {app.name}
                 </h3>
                 
@@ -764,21 +790,20 @@ export default function ModStoreApp() {
                   {app.developer}
                 </p>
 
-                {/* Rating Centrado Matemáticamente */}
+                {/* Rating */}
                 <div className="flex items-center justify-center gap-1 text-amber-400 text-[10px] font-bold mt-1.5">
                     <Star size={10} fill="currentColor" />
                     <span>{app.rating}</span>
                 </div>
               </div>
               
-              {/* 3. TAGS (Centrados + RESTAURADO EL "+1") */}
+              {/* 3. TAGS */}
               <div className="flex flex-wrap justify-center gap-1.5 mb-4 w-full px-1">
                 {(app.modFeatures || []).slice(0, 2).map((feature, idx) => (
                   <span key={idx} className="text-[8px] uppercase tracking-wider font-semibold px-2 py-0.5 bg-slate-800 text-slate-400 border border-white/5 rounded-md">
                     {feature}
                   </span>
                 ))}
-                {/* ✅ AQUÍ ESTÁ EL +1 DE VUELTA */}
                 {(app.modFeatures || []).length > 2 && (
                    <span className="text-[8px] uppercase tracking-wider font-semibold px-2 py-0.5 bg-slate-800 text-slate-400 border border-white/5 rounded-md">
                      +1
@@ -786,7 +811,7 @@ export default function ModStoreApp() {
                 )}
               </div>
 
-              {/* 4. FOOTER (Anclado al fondo, expandido) */}
+              {/* 4. FOOTER */}
               <div className="w-full flex items-center justify-between mt-auto pt-3 border-t border-white/5">
                 <div className="text-[10px] text-slate-500 font-mono flex items-center gap-1.5">
                    <span>{app.size}</span>
@@ -1112,7 +1137,7 @@ export default function ModStoreApp() {
 
       {renderFooter()}
 
-    {/* MODAL DE DETALLE (Fusión Perfecta) */}
+   {/* MODAL DE DETALLE (Versión Final: Etiqueta en esquina 0,0 y Scroll correcto) */}
       {selectedApp && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           
@@ -1123,53 +1148,70 @@ export default function ModStoreApp() {
           
           <div className="relative w-full max-w-lg bg-[#161622] rounded-3xl border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)] overflow-hidden animate-content will-change-transform">
             
-            <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-purple-900/40 to-transparent" />
+            {/* Fondo Gradiente Superior */}
+            <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-purple-900/40 to-transparent pointer-events-none" />
             
+            {/* Botón Cerrar (Fijo arriba a la derecha) */}
             <button 
-            aria-label="Cerrar ventana"
+              aria-label="Cerrar ventana"
               onClick={() => setSelectedApp(null)}
               className="absolute top-4 right-4 p-2 bg-black/20 hover:bg-red-500/80 rounded-full text-white/90 hover:text-white transition-all z-50 border border-white/10 shadow-lg backdrop-blur-sm"
             >
               <X size={24} />
             </button>
 
+            {/* CONTENEDOR CON SCROLL (Todo lo de adentro se mueve) */}
             <div className="relative p-6 pt-12 text-center max-h-[85vh] overflow-y-auto overscroll-contain no-scrollbar">
-<div className="mx-auto mb-4 w-28 h-28 sm:w-32 sm:h-32 relative shadow-[0_0_30px_rgba(0,0,0,0.5)] rounded-3xl overflow-hidden bg-slate-800">
-  <img 
-    src={selectedApp.thumbnail || selectedApp.image} 
-    alt="Preview"
-    className="absolute inset-0 w-full h-full object-cover blur-md scale-110 opacity-50"
-  />
-  <img 
-    src={selectedApp.image} 
-    alt={selectedApp.name}
-    className="relative z-10 w-full h-full object-cover transition-opacity duration-500 ease-in-out opacity-0"
-    onLoad={(e) => e.currentTarget.classList.remove('opacity-0')} 
-  />
-  <div className="absolute inset-0 rounded-3xl border border-white/10 z-20 pointer-events-none" />
-</div>
+              
+              {/* ✅ ETIQUETA PREMIUM (En la mera esquina 0,0) */}
+              {/* Al estar DENTRO de este div, subirá y desaparecerá al hacer scroll */}
+              {getBadge(selectedApp.name) && (
+                <div className="absolute top-0 left-0 z-10">
+                   <div className="px-4 py-1.5 rounded-br-2xl bg-yellow-500/10 border-b border-r border-yellow-500/20 text-yellow-200 text-[10px] font-bold tracking-wider uppercase backdrop-blur-md shadow-sm">
+                      {getBadge(selectedApp.name)}
+                   </div>
+                </div>
+              )}
 
-{/* --- TÍTULO Y DESARROLLADOR (RESTAURADO) --- */}
-<h2 className="text-2xl font-bold text-white mb-1">{selectedApp.name}</h2>
-<p className="text-sm font-bold mb-4 bg-gradient-to-r from-teal-400 to-purple-500 bg-clip-text text-transparent w-fit mx-auto">
-  {selectedApp.developer}
-</p>
-{/* --- BARRA DE INFO: PESO, VERSIÓN, RATING (RESTAURADO) --- */}
-<div className="flex justify-center gap-6 text-sm text-slate-400 mb-8 border-y border-white/5 py-4">
-  <div className="flex flex-col items-center">
-    <span className="font-bold text-white text-base">{selectedApp.rating}</span>
-    <span className="text-xs">Valoración</span>
-  </div>
-  <div className="flex flex-col items-center border-l border-white/10 pl-6">
-    <span className="font-bold text-white text-base">{selectedApp.size}</span>
-    <span className="text-xs">Tamaño</span>
-  </div>
-  <div className="flex flex-col items-center border-l border-white/10 pl-6">
-    <span className="font-bold text-white text-base">{selectedApp.version}</span>
-    <span className="text-xs">Versión</span>
-  </div>
-</div>
+              {/* IMAGEN CENTRAL */}
+              <div className="mx-auto mb-4 w-28 h-28 sm:w-32 sm:h-32 relative shadow-[0_0_30px_rgba(0,0,0,0.5)] rounded-3xl overflow-hidden bg-slate-800 group">
+                <img 
+                  src={selectedApp.thumbnail || selectedApp.image} 
+                  alt="Preview"
+                  className="absolute inset-0 w-full h-full object-cover blur-md scale-110 opacity-50"
+                />
+                <img 
+                  src={selectedApp.image} 
+                  alt={selectedApp.name}
+                  className="relative z-10 w-full h-full object-cover transition-opacity duration-500 ease-in-out opacity-0"
+                  onLoad={(e) => e.currentTarget.classList.remove('opacity-0')} 
+                />
+                <div className="absolute inset-0 rounded-3xl border border-white/10 z-20 pointer-events-none" />
+              </div>
 
+              {/* TÍTULO Y DESARROLLADOR */}
+              <h2 className="text-2xl font-bold text-white mb-1">{selectedApp.name}</h2>
+              <p className="text-sm font-bold mb-4 bg-gradient-to-r from-teal-400 to-purple-500 bg-clip-text text-transparent w-fit mx-auto">
+                {selectedApp.developer}
+              </p>
+
+              {/* BARRA DE INFORMACIÓN */}
+              <div className="flex justify-center gap-6 text-sm text-slate-400 mb-8 border-y border-white/5 py-4">
+                <div className="flex flex-col items-center">
+                  <span className="font-bold text-white text-base">{selectedApp.rating}</span>
+                  <span className="text-xs">Valoración</span>
+                </div>
+                <div className="flex flex-col items-center border-l border-white/10 pl-6">
+                  <span className="font-bold text-white text-base">{selectedApp.size}</span>
+                  <span className="text-xs">Tamaño</span>
+                </div>
+                <div className="flex flex-col items-center border-l border-white/10 pl-6">
+                  <span className="font-bold text-white text-base">{selectedApp.version}</span>
+                  <span className="text-xs">Versión</span>
+                </div>
+              </div>
+
+              {/* DESCRIPCIÓN Y DETALLES */}
               <div className="text-left mb-6 space-y-4">
                 <div>
                   <h3 className="text-sm font-bold text-slate-300 uppercase tracking-wider mb-2">Descripción</h3>
@@ -1202,7 +1244,7 @@ export default function ModStoreApp() {
                 </div>
               </div>
 
-              {/* ✅ BOTÓN DE FAVORITOS EN MODAL TAMBIÉN (Opcional, pero recomendado) */}
+              {/* BOTONES DE ACCIÓN */}
               <div className="flex items-center gap-4 mt-6">
                  <button
                     onClick={(e) => toggleFavorite(e, selectedApp.id)}
@@ -1235,6 +1277,24 @@ export default function ModStoreApp() {
           <span className="font-medium text-sm">{toastMessage}</span>
         </div>
       </div>
+
+      {/* ESTILOS GLOBALES PARA SCROLL Y ANIMACIONES */}
+      <style>{`
+        html { 
+          overflow-y: scroll;
+          scrollbar-gutter: stable; /* Evita el salto del layout */
+        }
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #0a0a12; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+        
+        .animate-content { animation: contentShow 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        @keyframes contentShow {
+          from { opacity: 0; transform: scale(0.96); }
+          to { opacity: 1; transform: scale(1); }
+        }
+      `}</style>
 
     </div>
   );

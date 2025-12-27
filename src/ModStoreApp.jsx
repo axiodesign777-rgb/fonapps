@@ -152,13 +152,14 @@ const INITIAL_APPS = [
     rating: 4.9,
     downloads: "50M+",
     size: "25,35 MB",
-    version: "v1.0.94-03",
+    version: "v1.0.95-00",
     image: "/icons/grok_ai.webp",
     thumbnail: "/Thumb/grok_ai_thumb.webp",
     description: "Accede a la inteligencia artificial más audaz y sin censura. Respuestas en tiempo real con datos actualizados y modo sarcástico desbloqueado.",
     warning: "Nota: Debes iniciar sesión con tu cuenta de X (antes Twitter).",
     modFeatures: ["Premium Desbloqueado", "Imagine", "Sin Censura", ],
     isUpdated: true,
+    updateDate: "2025-12-27",
     downloadUrl: "https://cuty.io/GrokAIX"
   },
   {
@@ -461,13 +462,21 @@ const AppIcon = ({ type, thumbnail, size = "md" }) => {
   );
 };
 
-// --- COMPONENTE CARRUSEL (Física Natural idéntica a Categorías + Botones PC) ---
+// --- COMPONENTE CARRUSEL (Física Natural + Ordenado por Fecha) ---
 const UpdatedAppsCarousel = ({ apps, onSelectApp }) => {
   const scrollRef = useRef(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
   
-  const featuredApps = apps.filter(app => app.isUpdated || app.isNew);
+  // ✅ LOGICA DE ORDENACIÓN: Primero filtra, luego ordena por fecha más reciente
+  const featuredApps = apps
+    .filter(app => app.isUpdated || app.isNew)
+    .sort((a, b) => {
+      // Si tiene fecha 'updateDate', la usa. Si no, usa una fecha muy antigua (Date 0)
+      const dateA = a.updateDate ? new Date(a.updateDate) : new Date(0);
+      const dateB = b.updateDate ? new Date(b.updateDate) : new Date(0);
+      return dateB - dateA; // Orden descendente (lo más nuevo primero)
+    });
 
   // Lógica para mostrar/ocultar flechas en PC
   const checkScrollability = () => {
@@ -527,10 +536,7 @@ const UpdatedAppsCarousel = ({ apps, onSelectApp }) => {
           </button>
         )}
 
-        {/* CONTENEDOR PRINCIPAL - FÍSICA PURA (SIN SNAP)
-           1. Eliminado 'snap-x' y 'snap-mandatory': Ahora desliza libre como las categorías.
-           2. Eliminado 'scroll-smooth': Permite que el dedo tenga control total inmediato.
-        */}
+        {/* CONTENEDOR PRINCIPAL - FÍSICA PURA (SIN SNAP) */}
         <div 
           ref={scrollRef}
           onScroll={checkScrollability}
@@ -540,7 +546,6 @@ const UpdatedAppsCarousel = ({ apps, onSelectApp }) => {
             <div 
               key={app.id}
               onClick={() => onSelectApp(app)}
-              // Eliminado 'snap-start': La tarjeta ya no se "imanta" al borde.
               className="flex-none w-64 relative bg-[#13131f] rounded-2xl p-3 border border-teal-500/20 shadow-sm cursor-pointer transition-all active:scale-95"
             >
               {app.isNew ? (

@@ -722,7 +722,7 @@ export default function ModStoreApp() {
         </div>
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
-          {visibleApps.map((app) => {
+         {visibleApps.map((app) => {
             const isFav = favorites.includes(app.id);
 
             return (
@@ -730,68 +730,71 @@ export default function ModStoreApp() {
               key={app.id}
               onClick={() => setSelectedApp(app)}
               className={`
-                group relative bg-[#13131f] rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-white/5 
-                transition-all duration-200 
+                group relative bg-[#13131f] rounded-2xl p-4 border border-white/5 
+                flex flex-col items-center text-center
+                transition-all duration-300 
                 active:scale-95 md:active:scale-100
                 md:hover:border-purple-500/30 md:hover:-translate-y-1 md:hover:shadow-[0_10px_40px_-10px_rgba(124,58,237,0.15)] 
                 cursor-pointer overflow-hidden
                 animate-in fade-in zoom-in-95 duration-300 fill-mode-both
               `}
             >
-              {/* ✅ CORAZÓN FLOTANTE (Botón de Favoritos) */}
+              {/* Botón Favorito (Flotante) */}
               <button
                 onClick={(e) => toggleFavorite(e, app.id)}
-                className="absolute top-2 right-2 z-20 p-2 rounded-full active:scale-75 transition-transform"
+                className="absolute top-2 right-2 z-20 p-2 rounded-full active:scale-75 transition-transform hover:bg-white/5"
               >
                  <div className={`transition-all duration-300 ${isFav ? "text-pink-500 drop-shadow-[0_0_8px_rgba(236,72,153,0.5)]" : "text-slate-600 hover:text-slate-400"}`}>
-                    <Heart size={20} fill={isFav ? "currentColor" : "none"} strokeWidth={isFav ? 0 : 2} />
+                    <Heart size={18} fill={isFav ? "currentColor" : "none"} strokeWidth={isFav ? 0 : 2} />
                  </div>
               </button>
 
-              <div className="flex flex-col items-center text-center sm:flex-row sm:items-start sm:text-left gap-2 sm:gap-4 mb-2 sm:mb-4">
-                <div className="md:group-hover:scale-110 transition-transform duration-300">
-                   <AppIcon type={app.image} thumbnail={app.thumbnail} size="md" />
-                </div>
+              {/* 1. ICONO (Centro Geométrico Superior) */}
+              <div className="mb-3 transform transition-transform duration-300 group-hover:scale-105">
+                 <AppIcon type={app.image} thumbnail={app.thumbnail} size="md" />
+              </div>
+              
+              {/* 2. TEXTOS (Bloque Central con Ancho Controlado) */}
+              <div className="w-full mb-3">
+                <h3 className="font-bold text-sm text-slate-100 truncate px-2 w-full">
+                  {app.name}
+                </h3>
                 
-                <div className="w-full min-w-0 pr-6">
-                  <h3 className="font-bold text-sm sm:text-lg text-slate-100 md:group-hover:text-teal-300 transition-colors truncate">
-                    {app.name}
-                  </h3>
-                  <p className="text-[10px] sm:text-xs text-slate-500 mb-1 truncate">{app.developer}</p>
-                  <div className="flex items-center justify-center sm:justify-start gap-1 text-amber-400 text-[10px] sm:text-xs font-bold">
-                      <Star size={10} className="sm:w-3 sm:h-3" fill="currentColor" />
-                      <span>{app.rating}</span>
-                  </div>
+                <p className="text-[10px] text-slate-500 mt-1 truncate px-4">
+                  {app.developer}
+                </p>
+
+                {/* Rating Centrado Matemáticamente */}
+                <div className="flex items-center justify-center gap-1 text-amber-400 text-[10px] font-bold mt-1.5">
+                    <Star size={10} fill="currentColor" />
+                    <span>{app.rating}</span>
                 </div>
               </div>
               
-              <div className="flex flex-wrap justify-center sm:justify-start gap-1 sm:gap-2 mb-2 sm:mb-4">
+              {/* 3. TAGS (Centrados + RESTAURADO EL "+1") */}
+              <div className="flex flex-wrap justify-center gap-1.5 mb-4 w-full px-1">
                 {(app.modFeatures || []).slice(0, 2).map((feature, idx) => (
-                  <span key={idx} className="text-[8px] sm:text-[10px] uppercase tracking-wider font-semibold px-1.5 py-0.5 sm:px-2 sm:py-1 bg-slate-800 text-slate-400 rounded-md group-hover:bg-purple-900/30 group-hover:text-purple-300 transition-colors">
+                  <span key={idx} className="text-[8px] uppercase tracking-wider font-semibold px-2 py-0.5 bg-slate-800 text-slate-400 border border-white/5 rounded-md">
                     {feature}
                   </span>
                 ))}
+                {/* ✅ AQUÍ ESTÁ EL +1 DE VUELTA */}
                 {(app.modFeatures || []).length > 2 && (
-                   <span className="text-[8px] sm:text-[10px] px-1.5 py-0.5 sm:px-2 sm:py-1 bg-slate-800 text-slate-400 rounded-md">+1</span>
+                   <span className="text-[8px] uppercase tracking-wider font-semibold px-2 py-0.5 bg-slate-800 text-slate-400 border border-white/5 rounded-md">
+                     +1
+                   </span>
                 )}
               </div>
 
-              <div className="flex items-center justify-between mt-auto pt-2 sm:pt-4 border-t border-white/5">
-                <div className="text-[10px] sm:text-xs text-slate-500 text-left">
-                  <span className="block text-slate-400 font-medium">{app.size}</span>
-                  <span className="hidden sm:inline">{app.downloads} descargas</span>
-                  <span className="sm:hidden">{app.downloads}</span>
+              {/* 4. FOOTER (Anclado al fondo, expandido) */}
+              <div className="w-full flex items-center justify-between mt-auto pt-3 border-t border-white/5">
+                <div className="text-[10px] text-slate-500 font-mono flex items-center gap-1.5">
+                   <span>{app.size}</span>
                 </div>
-                <button 
-                  aria-label="Ver detalles de la aplicación"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setSelectedApp(app);
-                  }}
-                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 border border-white/5 transition-all duration-200 active:scale-90 active:bg-teal-500 active:text-white md:hover:bg-teal-500 md:hover:text-white md:group-hover:scale-110"
-                >
-                   <ChevronRight size={18} />
-                </button>
+                
+                <div className="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 border border-white/5 group-hover:bg-teal-500 group-hover:text-white transition-colors shadow-lg">
+                   <ChevronRight size={16} />
+                </div>
               </div>
             </div>
           )})}

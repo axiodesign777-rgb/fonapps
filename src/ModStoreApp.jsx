@@ -885,6 +885,29 @@ const UpdatedAppsCarousel = ({ apps, onSelectApp }) => {
   );
 };
 
+// --- COMPONENTE AUXILIAR PARA EFECTO FADE-IN ---
+// Este componente pequeño se encarga de que cada imagen aparezca suavemente.
+const FadeInImage = ({ src, alt, className }) => {
+  // Estado para saber si la imagen ya se terminó de descargar
+  const [isLoaded, setIsLoaded] = React.useState(false);
+
+  return (
+    <img
+      src={src}
+      alt={alt}
+      loading="lazy"
+      // Cuando el navegador termina de cargarla, cambiamos el estado a 'true'
+      onLoad={() => setIsLoaded(true)}
+      className={`
+        ${className} /* Mantenemos las clases que le pasemos desde fuera (tamaño, etc.) */
+        transition-all duration-700 ease-in-out /* Configuramos la animación suave de 0.7 segundos */
+        ${isLoaded ? 'opacity-100 blur-0 scale-100' : 'opacity-0 blur-sm scale-95'} /* Si cargó: visible y nítida. Si no: invisible, borrosa y un poco más chica */
+      `}
+    />
+  );
+};
+// --------------------------------------------------
+
 export default function ModStoreApp() {
   const [currentView, setCurrentView] = useState('home'); // 'home', 'top'
   const [searchTerm, setSearchTerm] = useState("");
@@ -1120,7 +1143,7 @@ export default function ModStoreApp() {
                 ))}
                 {(app.modFeatures || []).length > 2 && (
                    <span className="text-[8px] uppercase tracking-wider font-semibold px-2 py-0.5 bg-slate-800 text-slate-400 border border-white/5 rounded-md">
-                     +1
+                      +1
                    </span>
                 )}
               </div>
@@ -1350,6 +1373,32 @@ export default function ModStoreApp() {
           from { opacity: 0; transform: scale(0.96); }
           to { opacity: 1; transform: scale(1); }
         }
+
+      /* ... dentro del return, en la etiqueta <style> ... */
+
+/* ✅ FÍSICA ELÁSTICA MEJORADA (Spring Physics Simulation) */
+/* Usamos una curva Bezier que supera 1 (1.275) para crear el efecto de rebote elástico */
+@keyframes elasticPop {
+  0% { 
+    opacity: 0; 
+    transform: translateY(30px) scale(0.9); /* Empieza más abajo y más pequeño */
+  }
+  60% {
+    opacity: 0.8;
+    transform: translateY(-5px) scale(1.02); /* OVERSHOOT: Se pasa un poco hacia arriba y crece */
+  }
+  100% { 
+    opacity: 1; 
+    transform: translateY(0) scale(1); /* Se asienta en su lugar */
+  }
+}
+
+.stagger-enter {
+  opacity: 0; 
+  /* La magia matemática está en 'cubic-bezier(0.175, 0.885, 0.32, 1.275)' que simula el resorte */
+  animation: elasticPop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  will-change: transform, opacity; /* Optimización de GPU */
+}
       `}</style>
       
 {/* FONDO "ZERO-LAG" DEFINITIVO */}
@@ -1556,7 +1605,7 @@ export default function ModStoreApp() {
                   )}
                 </div>
 
-                {/* 📸 GALERÍA DE CAPTURAS (Datos Reales) */}
+                {/* 📸 GALERÍA DE CAPTURAS - ANIMADA EN CASCADA */}
                 <div className="mb-6">
                    <h3 className="text-sm font-bold text-slate-300 uppercase tracking-wider mb-3 flex items-center gap-2">
                      <ImageIcon size={14} /> Galería
@@ -1567,7 +1616,9 @@ export default function ModStoreApp() {
                        <div 
                          key={idx} 
                          onClick={() => setCurrentScreenshotIndex(idx)}
-                         className="flex-none w-28 h-28 aspect-square relative rounded-xl overflow-hidden border border-white/10 bg-slate-900 snap-center shadow-lg group/shot cursor-zoom-in hover:border-teal-500/50 transition-colors"
+                         /* ✅ AQUI APLICAMOS LA CLASE DE ANIMACIÓN Y EL RETRASO */
+                         className="flex-none w-28 h-28 aspect-square relative rounded-xl overflow-hidden border border-white/10 bg-slate-900 snap-center shadow-lg group/shot cursor-zoom-in hover:border-teal-500/50 transition-colors stagger-enter"
+                         style={{ animationDelay: `${idx * 100}ms` }}
                        >
                          <img
                            src={shot} // ✅ Aquí usamos la captura real
@@ -1605,16 +1656,16 @@ export default function ModStoreApp() {
               {/* BOTONES DE ACCIÓN */}
               <div className="flex items-center gap-4 mt-6">
                  <button
-                    onClick={(e) => toggleFavorite(e, selectedApp.id)}
-                    className="p-3 bg-slate-800 rounded-xl border border-white/10 hover:bg-slate-700 transition-colors"
+                   onClick={(e) => toggleFavorite(e, selectedApp.id)}
+                   className="p-3 bg-slate-800 rounded-xl border border-white/10 hover:bg-slate-700 transition-colors"
                  >
-                    <Heart 
-                      size={24} 
-                      className={favorites.includes(selectedApp.id) ? "text-pink-500 fill-pink-500" : "text-slate-400"} 
-                    />
+                   <Heart 
+                     size={24} 
+                     className={favorites.includes(selectedApp.id) ? "text-pink-500 fill-pink-500" : "text-slate-400"} 
+                   />
                  </button>
                  <div className="flex-1">
-                    <DownloadButton onClick={() => handleDownload(null, selectedApp.id)} loading={downloadingId === selectedApp.id} />
+                   <DownloadButton onClick={() => handleDownload(null, selectedApp.id)} loading={downloadingId === selectedApp.id} />
                  </div>
               </div>
 
@@ -1640,60 +1691,60 @@ export default function ModStoreApp() {
 
            {/* Imagen Grande */}
            <div className="relative w-full h-full flex items-center justify-center p-4 md:p-10">
-              <img 
-                src={(selectedApp.screenshots || [selectedApp.image, selectedApp.image, selectedApp.image])[currentScreenshotIndex]}
-                alt="Full Screenshot"
-                className="max-w-full max-h-full object-contain rounded-lg shadow-2xl animate-in zoom-in-95 duration-300 select-none"
-              />
+             <img 
+               src={(selectedApp.screenshots || [selectedApp.image, selectedApp.image, selectedApp.image])[currentScreenshotIndex]}
+               alt="Full Screenshot"
+               className="max-w-full max-h-full object-contain rounded-lg shadow-2xl animate-in zoom-in-95 duration-300 select-none"
+             />
            </div>
 
           {/* Controles de Navegación (Lógica Blindada Anti-Desborde) */}
            <div className="absolute bottom-8 left-0 w-full flex items-center justify-center gap-8 pointer-events-none">
-              
-              {/* Botón Izquierdo (Anterior) */}
-              <button 
-                // 🔒 BLOQUEO FÍSICO: Si es 0, el botón muere.
-                disabled={currentScreenshotIndex === 0}
-                onClick={(e) => {
-                   e.stopPropagation();
-                   // 🔒 BLOQUEO LÓGICO: Si intentas bajar de 0, te devuelve un 0 a la fuerza.
-                   setCurrentScreenshotIndex((prev) => (prev > 0 ? prev - 1 : 0)); 
-                }}
-                className={`pointer-events-auto p-3 bg-white/10 hover:bg-teal-500 rounded-full text-white transition-all duration-300 backdrop-blur-md active:scale-95 ${
-                  currentScreenshotIndex > 0 
-                    ? "opacity-100 translate-y-0 cursor-pointer" 
-                    : "opacity-0 translate-y-4 pointer-events-none cursor-default"
-                }`}
-              >
-                <ChevronLeft size={32} />
-              </button>
-              
-              {/* Contador */}
-              <span className="text-white/50 text-sm font-mono backdrop-blur-md px-3 py-1 rounded-full bg-black/20">
-                {/* Calculamos el total real aquí mismo para evitar errores */}
-                {currentScreenshotIndex + 1} / {(selectedApp.screenshots || [1, 2, 3]).length}
-              </span>
+             
+             {/* Botón Izquierdo (Anterior) */}
+             <button 
+               // 🔒 BLOQUEO FÍSICO: Si es 0, el botón muere.
+               disabled={currentScreenshotIndex === 0}
+               onClick={(e) => {
+                  e.stopPropagation();
+                  // 🔒 BLOQUEO LÓGICO: Si intentas bajar de 0, te devuelve un 0 a la fuerza.
+                  setCurrentScreenshotIndex((prev) => (prev > 0 ? prev - 1 : 0)); 
+               }}
+               className={`pointer-events-auto p-3 bg-white/10 hover:bg-teal-500 rounded-full text-white transition-all duration-300 backdrop-blur-md active:scale-95 ${
+                 currentScreenshotIndex > 0 
+                   ? "opacity-100 translate-y-0 cursor-pointer" 
+                   : "opacity-0 translate-y-4 pointer-events-none cursor-default"
+               }`}
+             >
+               <ChevronLeft size={32} />
+             </button>
+             
+             {/* Contador */}
+             <span className="text-white/50 text-sm font-mono backdrop-blur-md px-3 py-1 rounded-full bg-black/20">
+               {/* Calculamos el total real aquí mismo para evitar errores */}
+               {currentScreenshotIndex + 1} / {(selectedApp.screenshots || [1, 2, 3]).length}
+             </span>
 
-              {/* Botón Derecho (Siguiente) */}
-              <button 
-                // 🔒 BLOQUEO FÍSICO: Si llegaste al final, el botón muere.
-                disabled={currentScreenshotIndex >= (selectedApp.screenshots || [1, 2, 3]).length - 1}
-                onClick={(e) => {
-                   e.stopPropagation();
-                   const totalImages = (selectedApp.screenshots || [1, 2, 3]).length;
-                   
-                   // 🔒 BLOQUEO LÓGICO: Si prev + 1 se pasa del total, se queda en el índice actual.
-                   // Jamás sumará más allá del límite.
-                   setCurrentScreenshotIndex((prev) => (prev < totalImages - 1 ? prev + 1 : prev));
-                }}
-                className={`pointer-events-auto p-3 bg-white/10 hover:bg-teal-500 rounded-full text-white transition-all duration-300 backdrop-blur-md active:scale-95 ${
-                  currentScreenshotIndex < (selectedApp.screenshots || [1, 2, 3]).length - 1 
-                    ? "opacity-100 translate-y-0 cursor-pointer" 
-                    : "opacity-0 translate-y-4 pointer-events-none cursor-default"
-                }`}
-              >
-                <ChevronRight size={32} />
-              </button>
+             {/* Botón Derecho (Siguiente) */}
+             <button 
+               // 🔒 BLOQUEO FÍSICO: Si llegaste al final, el botón muere.
+               disabled={currentScreenshotIndex >= (selectedApp.screenshots || [1, 2, 3]).length - 1}
+               onClick={(e) => {
+                  e.stopPropagation();
+                  const totalImages = (selectedApp.screenshots || [1, 2, 3]).length;
+                  
+                  // 🔒 BLOQUEO LÓGICO: Si prev + 1 se pasa del total, se queda en el índice actual.
+                  // Jamás sumará más allá del límite.
+                  setCurrentScreenshotIndex((prev) => (prev < totalImages - 1 ? prev + 1 : prev));
+               }}
+               className={`pointer-events-auto p-3 bg-white/10 hover:bg-teal-500 rounded-full text-white transition-all duration-300 backdrop-blur-md active:scale-95 ${
+                 currentScreenshotIndex < (selectedApp.screenshots || [1, 2, 3]).length - 1 
+                   ? "opacity-100 translate-y-0 cursor-pointer" 
+                   : "opacity-0 translate-y-4 pointer-events-none cursor-default"
+               }`}
+             >
+               <ChevronRight size={32} />
+             </button>
            </div>
         </div>
       )}
@@ -1707,25 +1758,6 @@ export default function ModStoreApp() {
           <span className="font-medium text-sm">{toastMessage}</span>
         </div>
       </div>
-
-      {/* ESTILOS GLOBALES PARA SCROLL Y ANIMACIONES */}
-      <style>{`
-        html { 
-          overflow-y: scroll;
-          scrollbar-gutter: stable; /* Evita el salto del layout */
-        }
-        ::-webkit-scrollbar { width: 10px; }
-        ::-webkit-scrollbar-track { background: #0a0a12; }
-        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 5px; }
-        ::-webkit-scrollbar-thumb:hover { background: #475569; }
-        
-        .animate-content { animation: contentShow 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
-        @keyframes contentShow {
-          from { opacity: 0; transform: scale(0.96); }
-          to { opacity: 1; transform: scale(1); }
-        }
-      `}</style>
-
     </div>
   );
 }

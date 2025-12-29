@@ -28,7 +28,7 @@ const getBadge = (app) => {
   return keywords.find(word => app.name.includes(word));
 };
 
-// --- DATOS DE EJEMPLO ---
+
 const INITIAL_APPS = [
   {
     id: 22,
@@ -41,11 +41,17 @@ const INITIAL_APPS = [
     version: "v50.4",
     image: "/icons/arc_launcher.webp",
     thumbnail: "/Thumb/arc_launcher_thumb.webp",
-      screenshots: [
+    screenshots: [
       "/screenshots/arc_launcher_1.webp",
       "/screenshots/arc_launcher_2.webp",
       "/screenshots/arc_launcher_3.webp",
       "/screenshots/arc_launcher_4.webp"
+    ],
+    thumbs: [
+      "/screenshots/gallery_thumbs/arc_launcher_1.webp",
+      "/screenshots/gallery_thumbs/arc_launcher_2.webp",
+      "/screenshots/gallery_thumbs/arc_launcher_3.webp",
+      "/screenshots/gallery_thumbs/arc_launcher_4.webp"
     ],
     description: "Una experiencia de pantalla de inicio revolucionaria con diseño Arc. Versión Prime desbloqueada: accede a la biblioteca completa de temas 3D/4D, reproductor de música integrado avanzado, funciones de limpieza de RAM automáticas y personalización DIY ilimitada sin anuncios.",
     modFeatures: ["Prime Desbloqueado", "Temas 3D Premium", "Boost RAM"],
@@ -64,12 +70,19 @@ const INITIAL_APPS = [
     version: "v15.5",
     image: "/icons/alpha_launcher.webp",
     thumbnail: "/Thumb/alpha_launcher_thumb.webp",
-      screenshots: [
+    screenshots: [
       "/screenshots/alpha_launcher_1.webp",
       "/screenshots/alpha_launcher_2.webp",
       "/screenshots/alpha_launcher_3.webp",
       "/screenshots/alpha_launcher_4.webp",
       "/screenshots/alpha_launcher_5.webp"
+    ],
+    thumbs: [
+      "/screenshots/gallery_thumbs/alpha_launcher_1.webp",
+      "/screenshots/gallery_thumbs/alpha_launcher_2.webp",
+      "/screenshots/gallery_thumbs/alpha_launcher_3.webp",
+      "/screenshots/gallery_thumbs/alpha_launcher_4.webp",
+      "/screenshots/gallery_thumbs/alpha_launcher_5.webp"
     ],
     description: "Transforma tu teléfono en una interfaz futurista de ciencia ficción. Versión Prime totalmente desbloqueada: acceso a todos los temas 4D Premium, widgets de sistema avanzados, personalización de colores estilo 'hacker' y eliminación completa de publicidad.",
     modFeatures: ["Prime Desbloqueado", "Temas 4D", "Estilo Hacker"],
@@ -88,11 +101,17 @@ const INITIAL_APPS = [
     version: "v1.0.12",
     image: "/icons/spellcheck.webp",
     thumbnail: "/Thumb/spellcheck_thumb.webp",
-      screenshots: [
+    screenshots: [
       "/screenshots/grok_1.webp",
       "/screenshots/grok_2.webp",
       "/screenshots/grok_3.webp",
       "/screenshots/grok_4.webp"
+    ],
+    thumbs: [
+      "/screenshots/gallery_thumbs/grok_1.webp",
+      "/screenshots/gallery_thumbs/grok_2.webp",
+      "/screenshots/gallery_thumbs/grok_3.webp",
+      "/screenshots/gallery_thumbs/grok_4.webp"
     ],
     description: "Escribe sin errores en cualquier idioma. Hemos desbloqueado la versión Premium completa: corrección gramatical profunda basada en IA, sin límite de caracteres, escáner de texto por cámara (OCR) habilitado y experiencia totalmente libre de publicidad.",
     modFeatures: ["Premium Desbloqueado", "Límite Texto 3000", "Escáner OCR"],
@@ -111,17 +130,23 @@ const INITIAL_APPS = [
     version: "v2.1.3",
     image: "/icons/exo_player.webp",
     thumbnail: "/Thumb/exo_player_thumb.webp",
-      screenshots: [
+    screenshots: [
       "/screenshots/exo_player_1.webp",
       "/screenshots/exo_player_2.webp",
       "/screenshots/exo_player_3.webp",
       "/screenshots/exo_player_4.webp",
       "/screenshots/exo_player_5.webp"
-      
+    ],
+    thumbs: [
+      "/screenshots/gallery_thumbs/exo_player_1.webp",
+      "/screenshots/gallery_thumbs/exo_player_2.webp",
+      "/screenshots/gallery_thumbs/exo_player_3.webp",
+      "/screenshots/gallery_thumbs/exo_player_4.webp",
+      "/screenshots/gallery_thumbs/exo_player_5.webp"
     ],
     description: "El reproductor de vídeo minimalista basado en la tecnología Exo de Google. Versión Pro desbloqueada: disfruta de tus películas y series sin interrupciones publicitarias. Soporte nativo para 4K, aceleración por hardware optimizada, subtítulos multi-idioma y compatibilidad total con formatos MKV, MP4 y AVI.",
     modFeatures: ["Pro Desbloqueado", "Sin Anuncios", "Soporte 4K"],
-    isUpdated: true, 
+    isUpdated: true,
     isNew: true,
     downloadUrl: "https://cuty.io/ExoPlayerPro"
   },
@@ -136,11 +161,17 @@ const INITIAL_APPS = [
     version: "v3.2.0",
     image: "/icons/superb_vpn.webp",
     thumbnail: "/Thumb/superb_vpn_thumb.webp",
-      screenshots: [
+    screenshots: [
       "/screenshots/grok_1.webp",
       "/screenshots/grok_2.webp",
       "/screenshots/grok_3.webp",
       "/screenshots/grok_4.webp"
+    ],
+    thumbs: [
+      "/screenshots/gallery_thumbs/grok_1.webp",
+      "/screenshots/gallery_thumbs/grok_2.webp",
+      "/screenshots/gallery_thumbs/grok_3.webp",
+      "/screenshots/gallery_thumbs/grok_4.webp"
     ],
     description: "Navegación ultra rápida y segura sin límites. Hemos desbloqueado el acceso VIP total: conéctate a servidores premium de todo el mundo sin ver un solo anuncio. Protege tu privacidad, oculta tu IP y accede a contenido bloqueado en tu región con un solo toque.",
     modFeatures: ["VIP Desbloqueado", "Sin Anuncios", "Servidores Globales"],
@@ -159,12 +190,19 @@ const INITIAL_APPS = [
     version: "v30.0.43",
     image: "/icons/copilot.webp",
     thumbnail: "/Thumb/copilot_thumb.webp",
-      screenshots: [
+    screenshots: [
       "/screenshots/copilot_1.webp",
       "/screenshots/copilot_2.webp",
       "/screenshots/copilot_3.webp",
       "/screenshots/copilot_4.webp",
       "/screenshots/copilot_5.webp"
+    ],
+    thumbs: [
+      "/screenshots/gallery_thumbs/copilot_1.webp",
+      "/screenshots/gallery_thumbs/copilot_2.webp",
+      "/screenshots/gallery_thumbs/copilot_3.webp",
+      "/screenshots/gallery_thumbs/copilot_4.webp",
+      "/screenshots/gallery_thumbs/copilot_5.webp"
     ],
     description: "Desbloqueamos el potencial completo de la IA. Disfruta de acceso ilimitado al modelo GPT-5.1 y al generador de imágenes Ultra-HD sin pagar suscripción. Hemos eliminado todos los límites de uso, la censura en las respuestas y las colas de espera. Tienes la herramienta más potente de Microsoft totalmente liberada y a máxima velocidad en tu bolsillo.",
     modFeatures: ["GPT-5.1 Desbloqueado", "DALL-E Ilimitado", "Velocidad Máxima"],
@@ -183,12 +221,19 @@ const INITIAL_APPS = [
     version: "v2025.25",
     image: "/icons/weather_radar.webp",
     thumbnail: "/Thumb/weather_radar_thumb.webp",
-      screenshots: [
+    screenshots: [
       "/screenshots/weather_radar_1.webp",
       "/screenshots/weather_radar_2.webp",
       "/screenshots/weather_radar_3.webp",
       "/screenshots/weather_radar_4.webp",
       "/screenshots/weather_radar_5.webp"
+    ],
+    thumbs: [
+      "/screenshots/gallery_thumbs/weather_radar_1.webp",
+      "/screenshots/gallery_thumbs/weather_radar_2.webp",
+      "/screenshots/gallery_thumbs/weather_radar_3.webp",
+      "/screenshots/gallery_thumbs/weather_radar_4.webp",
+      "/screenshots/gallery_thumbs/weather_radar_5.webp"
     ],
     description: "La aplicación meteorológica líder en precisión. Versión Pro desbloqueada que ofrece radar de lluvia en tiempo real, alertas de clima severo, zoom ilimitado en mapas y pronósticos detallados a 14 días sin publicidad intrusiva.",
     modFeatures: ["Pro Desbloqueado", "Sin Anuncios", "Radar Premium"],
@@ -212,11 +257,17 @@ const INITIAL_APPS = [
       "/screenshots/grok_3.webp",
       "/screenshots/grok_4.webp",
       "/screenshots/grok_5.webp"
-      
+    ],
+    thumbs: [
+      "/screenshots/gallery_thumbs/grok_1.webp",
+      "/screenshots/gallery_thumbs/grok_2.webp",
+      "/screenshots/gallery_thumbs/grok_3.webp",
+      "/screenshots/gallery_thumbs/grok_4.webp",
+      "/screenshots/gallery_thumbs/grok_5.webp"
     ],
     description: "Accede a la inteligencia artificial más audaz y sin censura. Respuestas en tiempo real con datos actualizados y modo sarcástico desbloqueado.",
     warning: "Nota: Debes iniciar sesión con tu cuenta de X (antes Twitter).",
-    modFeatures: ["Premium Desbloqueado", "Imagine", "Sin Censura", ],
+    modFeatures: ["Premium Desbloqueado", "Imagine", "Sin Censura"],
     isUpdated: true,
     updateDate: "2025-12-27",
     downloadUrl: "https://cuty.io/GrokAIX"
@@ -232,12 +283,19 @@ const INITIAL_APPS = [
     version: "v8.1.6",
     image: "/icons/nova_launcher.webp",
     thumbnail: "/Thumb/nova_launcher_thumb.webp",
-      screenshots: [
+    screenshots: [
       "/screenshots/nova_launcher_1.webp",
       "/screenshots/nova_launcher_2.webp",
       "/screenshots/nova_launcher_3.webp",
       "/screenshots/nova_launcher_4.webp",
       "/screenshots/nova_launcher_5.webp"
+    ],
+    thumbs: [
+      "/screenshots/gallery_thumbs/nova_launcher_1.webp",
+      "/screenshots/gallery_thumbs/nova_launcher_2.webp",
+      "/screenshots/gallery_thumbs/nova_launcher_3.webp",
+      "/screenshots/gallery_thumbs/nova_launcher_4.webp",
+      "/screenshots/gallery_thumbs/nova_launcher_5.webp"
     ],
     description: "El launcher más potente y personalizable. Versión Prime totalmente desbloqueada: gestos, grupos en el cajón, ocultar aplicaciones y efectos de desplazamiento exclusivos.",
     modFeatures: ["Prime Desbloqueado", "Gestos", "Ocultar Apps"],
@@ -255,12 +313,19 @@ const INITIAL_APPS = [
     version: "v1.15.6",
     image: "/icons/niagara_launcher.webp",
     thumbnail: "/Thumb/niagara_launcher_thumb.webp",
-      screenshots: [
+    screenshots: [
       "/screenshots/niagara_launcher_1.webp",
       "/screenshots/niagara_launcher_2.webp",
       "/screenshots/niagara_launcher_3.webp",
       "/screenshots/niagara_launcher_4.webp",
       "/screenshots/niagara_launcher_5.webp"
+    ],
+    thumbs: [
+      "/screenshots/gallery_thumbs/niagara_launcher_1.webp",
+      "/screenshots/gallery_thumbs/niagara_launcher_2.webp",
+      "/screenshots/gallery_thumbs/niagara_launcher_3.webp",
+      "/screenshots/gallery_thumbs/niagara_launcher_4.webp",
+      "/screenshots/gallery_thumbs/niagara_launcher_5.webp"
     ],
     description: "La pantalla de inicio más limpia para Android. Versión Pro desbloqueada con acceso a todos los widgets,temas, iconos adaptativos y personalización avanzada de fuentes y colores.",
     modFeatures: ["Pro Desbloqueado", "Widgets y temas Premium", "Iconos Adaptativos"],
@@ -278,11 +343,17 @@ const INITIAL_APPS = [
     version: "v2.65.1",
     image: "/icons/perplexity.webp",
     thumbnail: "/Thumb/perplexity_thumb.webp",
-      screenshots: [
+    screenshots: [
       "/screenshots/grok_1.webp",
       "/screenshots/grok_2.webp",
       "/screenshots/grok_3.webp",
       "/screenshots/grok_4.webp"
+    ],
+    thumbs: [
+      "/screenshots/gallery_thumbs/grok_1.webp",
+      "/screenshots/gallery_thumbs/grok_2.webp",
+      "/screenshots/gallery_thumbs/grok_3.webp",
+      "/screenshots/gallery_thumbs/grok_4.webp"
     ],
     description: "Tu asistente de respuestas con IA. Acceso Pro desbloqueado: búsquedas Pro ilimitadas, carga de archivos PDF/Imágenes sin límites y selección de modelos avanzados como GPT-5 y Claude 3.5 Sonnet.",
     modFeatures: ["Max Desbloqueado", "Búsquedas Max Ilimitadas", "Modelos Premium"],
@@ -300,11 +371,17 @@ const INITIAL_APPS = [
     version: "v20.14.43",
     image: "/icons/youtube.webp",
     thumbnail: "/Thumb/youtube_thumb.webp",
-      screenshots: [
+    screenshots: [
       "/screenshots/grok_1.webp",
       "/screenshots/grok_2.webp",
       "/screenshots/grok_3.webp",
       "/screenshots/grok_4.webp"
+    ],
+    thumbs: [
+      "/screenshots/gallery_thumbs/grok_1.webp",
+      "/screenshots/gallery_thumbs/grok_2.webp",
+      "/screenshots/gallery_thumbs/grok_3.webp",
+      "/screenshots/gallery_thumbs/grok_4.webp"
     ],
     description: "La mejor experiencia de YouTube sin anuncios. Incluye reproducción en segundo plano, SponsorBlock para saltar segmentos de relleno y personalización completa de la interfaz.",
     warning: "Requisito: Es necesario instalar MicroG para iniciar sesión con Google.",
@@ -323,12 +400,19 @@ const INITIAL_APPS = [
     version: "v5.12.8",
     image: "/icons/web_video_caster.webp",
     thumbnail: "/Thumb/web_video_caster_thumb.webp",
-      screenshots: [
+    screenshots: [
       "/screenshots/web_caster_1.webp",
       "/screenshots/web_caster_2.webp",
       "/screenshots/web_caster_3.webp",
       "/screenshots/web_caster_4.webp",
       "/screenshots/web_caster_5.webp"
+    ],
+    thumbs: [
+      "/screenshots/gallery_thumbs/web_caster_1.webp",
+      "/screenshots/gallery_thumbs/web_caster_2.webp",
+      "/screenshots/gallery_thumbs/web_caster_3.webp",
+      "/screenshots/gallery_thumbs/web_caster_4.webp",
+      "/screenshots/gallery_thumbs/web_caster_5.webp"
     ],
     description: "Transmite videos web, películas y series a tu TV, Chromecast o Roku sin restricciones. Versión Premium desbloqueada: sin anuncios, marcadores ilimitados y pantalla de inicio personalizada.",
     modFeatures: ["Premium Desbloqueado", "Sin Anuncios", "Cola de Reproducción"],
@@ -346,11 +430,17 @@ const INITIAL_APPS = [
     version: "v12.2.10",
     image: "/icons/telegram.webp",
     thumbnail: "/Thumb/telegram_thumb.webp",
-      screenshots: [
+    screenshots: [
       "/screenshots/grok_1.webp",
       "/screenshots/grok_2.webp",
       "/screenshots/grok_3.webp",
       "/screenshots/grok_4.webp"
+    ],
+    thumbs: [
+      "/screenshots/gallery_thumbs/grok_1.webp",
+      "/screenshots/gallery_thumbs/grok_2.webp",
+      "/screenshots/gallery_thumbs/grok_3.webp",
+      "/screenshots/gallery_thumbs/grok_4.webp"
     ],
     description: "La mensajería más rápida y segura. Versión Premium desbloqueada: descargas ultra rápidas, iconos premium exclusivos, traducción en tiempo real y sin anuncios..",
     modFeatures: ["Premium Desbloqueado", "Descarga Rápida", "Traducir chats enteros"],
@@ -368,12 +458,19 @@ const INITIAL_APPS = [
     version: "v15.9.2",
     image: "/icons/powerdirector.webp",
     thumbnail: "/Thumb/powerdirector_thumb.webp",
-      screenshots: [
+    screenshots: [
       "/screenshots/powerdirector_1.webp",
       "/screenshots/powerdirector_2.webp",
       "/screenshots/powerdirector_3.webp",
       "/screenshots/powerdirector_4.webp",
       "/screenshots/powerdirector_5.webp"
+    ],
+    thumbs: [
+      "/screenshots/gallery_thumbs/powerdirector_1.webp",
+      "/screenshots/gallery_thumbs/powerdirector_2.webp",
+      "/screenshots/gallery_thumbs/powerdirector_3.webp",
+      "/screenshots/gallery_thumbs/powerdirector_4.webp",
+      "/screenshots/gallery_thumbs/powerdirector_5.webp"
     ],
     description: "El editor de video más profesional. Versión Premium desbloqueada: exportación en 4K Ultra HD, sin marca de agua, estabilizador de video y acceso ilimitado a todo el stock de música y efectos.",
     modFeatures: ["Sin Marca de Agua", "Exportación 4K", "Todo Desbloqueado"],
@@ -391,12 +488,19 @@ const INITIAL_APPS = [
     version: "v6.5.054",
     image: "/icons/smart_launcher.webp",
     thumbnail: "/Thumb/smart_launcher_thumb.webp",
-      screenshots: [
+    screenshots: [
       "/screenshots/smart_launcher_1.webp",
       "/screenshots/smart_launcher_2.webp",
       "/screenshots/smart_launcher_3.webp",
       "/screenshots/smart_launcher_4.webp",
       "/screenshots/smart_launcher_5.webp"
+    ],
+    thumbs: [
+      "/screenshots/gallery_thumbs/smart_launcher_1.webp",
+      "/screenshots/gallery_thumbs/smart_launcher_2.webp",
+      "/screenshots/gallery_thumbs/smart_launcher_3.webp",
+      "/screenshots/gallery_thumbs/smart_launcher_4.webp",
+      "/screenshots/gallery_thumbs/smart_launcher_5.webp"
     ],
     description: "El launcher más inteligente y eficiente. Versión Pro desbloqueada: búsqueda inteligente, categorías automáticas personalizables, widgets adaptativos y gestos avanzados en pantalla de inicio.",
     modFeatures: ["Pro Desbloqueado", "Iconos Adaptativos", "Sin Anuncios"],
@@ -414,12 +518,19 @@ const INITIAL_APPS = [
     version: "v6.33.5",
     image: "/icons/lark_player.webp",
     thumbnail: "/Thumb/lark_player_thumb.webp",
-      screenshots: [
+    screenshots: [
       "/screenshots/lark_player_1.webp",
       "/screenshots/lark_player_2.webp",
       "/screenshots/lark_player_3.webp",
       "/screenshots/lark_player_4.webp",
       "/screenshots/lark_player_5.webp"
+    ],
+    thumbs: [
+      "/screenshots/gallery_thumbs/lark_player_1.webp",
+      "/screenshots/gallery_thumbs/lark_player_2.webp",
+      "/screenshots/gallery_thumbs/lark_player_3.webp",
+      "/screenshots/gallery_thumbs/lark_player_4.webp",
+      "/screenshots/gallery_thumbs/lark_player_5.webp"
     ],
     description: "Reproductor de música Versión Premium desbloqueada: sin anuncios, ecualizador avanzado, temas exclusivos y soporte para letras flotantes en todas tus canciones.",
     modFeatures: ["Sin Anuncios", "Temas Premium", "Ecualizador Pro"],
@@ -437,12 +548,19 @@ const INITIAL_APPS = [
     version: "v16.2.41",
     image: "/icons/samsung_music.webp",
     thumbnail: "/Thumb/samsung_music_thumb.webp",
-      screenshots: [
+    screenshots: [
       "/screenshots/samsung_music_1.webp",
       "/screenshots/samsung_music_2.webp",
       "/screenshots/samsung_music_3.webp",
       "/screenshots/samsung_music_4.webp",
       "/screenshots/samsung_music_5.webp"
+    ],
+    thumbs: [
+      "/screenshots/gallery_thumbs/samsung_music_1.webp",
+      "/screenshots/gallery_thumbs/samsung_music_2.webp",
+      "/screenshots/gallery_thumbs/samsung_music_3.webp",
+      "/screenshots/gallery_thumbs/samsung_music_4.webp",
+      "/screenshots/gallery_thumbs/samsung_music_5.webp"
     ],
     description: "El reproductor de música oficial de Samsung optimizado para todos los dispositivos. Interfaz One UI elegante, ecualizador avanzado y soporte para todos los formatos de audio con calidad premium.",
     modFeatures: ["Interfaz One UI", "Ecualizador Pro", "Para todos los dispositivos"],
@@ -460,13 +578,19 @@ const INITIAL_APPS = [
     version: "v8.251208.1",
     image: "/icons/chat_smith.webp",
     thumbnail: "/Thumb/chat_smith_thumb.webp",
-      screenshots: [
+    screenshots: [
       "/screenshots/chat_smith_1.webp",
       "/screenshots/chat_smith_2.webp",
       "/screenshots/chat_smith_3.webp",
       "/screenshots/chat_smith_4.webp",
       "/screenshots/chat_smith_5.webp"
-      
+    ],
+    thumbs: [
+      "/screenshots/gallery_thumbs/chat_smith_1.webp",
+      "/screenshots/gallery_thumbs/chat_smith_2.webp",
+      "/screenshots/gallery_thumbs/chat_smith_3.webp",
+      "/screenshots/gallery_thumbs/chat_smith_4.webp",
+      "/screenshots/gallery_thumbs/chat_smith_5.webp"
     ],
     description: "Asistente inteligente avanzado impulsado por GPT-4. Versión Pro desbloqueada: diálogos ilimitados, procesamiento de imágenes, modo experto y sin anuncios de ningún tipo.",
     modFeatures: ["Pro Desbloqueado", "Chat Ilimitado", "GPT-5 & Gemini 3 pro y mas..."],
@@ -484,11 +608,17 @@ const INITIAL_APPS = [
     version: "v0.3.1.4.240913",
     image: "/icons/microG.webp",
     thumbnail: "/Thumb/microG_thumb.webp",
-      screenshots: [
+    screenshots: [
       "/screenshots/grok_1.webp",
       "/screenshots/grok_2.webp",
       "/screenshots/grok_3.webp",
       "/screenshots/grok_4.webp"
+    ],
+    thumbs: [
+      "/screenshots/gallery_thumbs/grok_1.webp",
+      "/screenshots/gallery_thumbs/grok_2.webp",
+      "/screenshots/gallery_thumbs/grok_3.webp",
+      "/screenshots/gallery_thumbs/grok_4.webp"
     ],
     description: "El componente esencial para usuarios de mods. Permite iniciar sesión con tu cuenta de Google en aplicaciones modificadas como YouTube ReVanced, garantizando sincronización y notificaciones sin servicios de Google oficiales.",
     modFeatures: ["Login Google habilitado", "Sin rastreo de datos", "Ahorro de batería"],
@@ -506,12 +636,19 @@ const INITIAL_APPS = [
     version: "v3.59.01",
     image: "/icons/wallcraft.webp",
     thumbnail: "/Thumb/wallcraft_thumb.webp",
-      screenshots: [
+    screenshots: [
       "/screenshots/wallcraft_1.webp",
       "/screenshots/wallcraft_2.webp",
       "/screenshots/wallcraft_3.webp",
       "/screenshots/wallcraft_4.webp",
       "/screenshots/wallcraft_5.webp"
+    ],
+    thumbs: [
+      "/screenshots/gallery_thumbs/wallcraft_1.webp",
+      "/screenshots/gallery_thumbs/wallcraft_2.webp",
+      "/screenshots/gallery_thumbs/wallcraft_3.webp",
+      "/screenshots/gallery_thumbs/wallcraft_4.webp",
+      "/screenshots/gallery_thumbs/wallcraft_5.webp"
     ],
     description: "La biblioteca más vasta de fondos de pantalla en ultra alta definición. Acceso exclusivo a fondos 4K y 8K adaptados automáticamente al tamaño de tu pantalla, con efectos de paralaje 4D y sin interrupciones publicitarias.",
     modFeatures: ["Premium Desbloqueado", "Fondos 8K y 4D", "Sin Publicidad"],
@@ -529,17 +666,23 @@ const INITIAL_APPS = [
     version: "v1.0.97",
     image: "/icons/urban_vpn.webp",
     thumbnail: "/Thumb/urban_vpn_thumb.webp",
-      screenshots: [
+    screenshots: [
       "/screenshots/grok_1.webp",
       "/screenshots/grok_2.webp",
       "/screenshots/grok_3.webp",
       "/screenshots/grok_4.webp"
     ],
+    thumbs: [
+      "/screenshots/gallery_thumbs/grok_1.webp",
+      "/screenshots/gallery_thumbs/grok_2.webp",
+      "/screenshots/gallery_thumbs/grok_3.webp",
+      "/screenshots/gallery_thumbs/grok_4.webp"
+    ],
     description: "La solución definitiva para navegar sin fronteras. Acceso ilimitado a servidores en más de 80 países con ancho de banda infinito. Ideal para desbloquear streaming y proteger tu privacidad en redes públicas con cifrado de grado militar.",
     modFeatures: ["Premium Desbloqueado", "Ancho de Banda Ilimitado", "Ubicaciones Pro"],
     isUpdated: false,
     downloadUrl: "https://cuty.io/Urbanvpn"
-  },
+  }
 ];
 
 // ✅ SECCIÓN FAVORITOS AGREGADA AQUÍ

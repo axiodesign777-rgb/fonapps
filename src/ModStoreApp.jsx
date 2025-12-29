@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { 
-  
   Search, 
   Download, 
   Menu, 
@@ -17,17 +16,20 @@ import {
   AlertTriangle,
   ChevronRight,
   ChevronLeft,
-  Heart // ✅ NUEVO: Importamos el icono de corazón
+  Heart,
+  ImageIcon,
+  Maximize2
 } from 'lucide-react';
-// Helper para detectar etiquetas (Pégalo antes de los useEffect)
-  const getBadge = (name) => {
-    const keywords = ["Premium", "Pro", "Prime", "VIP", "Max", "Plus", "Ultra", "Gold"];
-    return keywords.find(word => name.includes(word));
-  };
 
-// --- DATOS DE EJEMPLO (MOCK DATA) ---
+// ✅ HELPER SIMPLIFICADO
+const getBadge = (app) => {
+  if (!app || !app.name) return null;
+  const keywords = ["Premium", "Pro", "Prime", "VIP", "Max", "Plus", "Ultra", "Gold"];
+  return keywords.find(word => app.name.includes(word));
+};
+
+// --- DATOS DE EJEMPLO ---
 const INITIAL_APPS = [
-
   {
     id: 22,
     name: "Arc Launcher Prime",
@@ -39,16 +41,21 @@ const INITIAL_APPS = [
     version: "v50.4",
     image: "/icons/arc_launcher.webp",
     thumbnail: "/Thumb/arc_launcher_thumb.webp",
+      screenshots: [
+      "/screenshots/arc_launcher_1.webp",
+      "/screenshots/arc_launcher_2.webp",
+      "/screenshots/arc_launcher_3.webp",
+      "/screenshots/arc_launcher_4.webp"
+    ],
     description: "Una experiencia de pantalla de inicio revolucionaria con diseño Arc. Versión Prime desbloqueada: accede a la biblioteca completa de temas 3D/4D, reproductor de música integrado avanzado, funciones de limpieza de RAM automáticas y personalización DIY ilimitada sin anuncios.",
     modFeatures: ["Prime Desbloqueado", "Temas 3D Premium", "Boost RAM"],
     isUpdated: true,
     isNew: true,
     downloadUrl: "https://cuty.io/ArcLauncher"
   },
-
   {
     id: 21,
-    name: "Alpha Hybrid Launcher Premium",
+    name: "Alpha Launcher Prime",
     developer: "FonApps",
     category: "Personalización",
     rating: 4.7,
@@ -57,13 +64,19 @@ const INITIAL_APPS = [
     version: "v15.5",
     image: "/icons/alpha_launcher.webp",
     thumbnail: "/Thumb/alpha_launcher_thumb.webp",
+      screenshots: [
+      "/screenshots/alpha_launcher_1.webp",
+      "/screenshots/alpha_launcher_2.webp",
+      "/screenshots/alpha_launcher_3.webp",
+      "/screenshots/alpha_launcher_4.webp",
+      "/screenshots/alpha_launcher_5.webp"
+    ],
     description: "Transforma tu teléfono en una interfaz futurista de ciencia ficción. Versión Prime totalmente desbloqueada: acceso a todos los temas 4D Premium, widgets de sistema avanzados, personalización de colores estilo 'hacker' y eliminación completa de publicidad.",
     modFeatures: ["Prime Desbloqueado", "Temas 4D", "Estilo Hacker"],
     isUpdated: true,
     isNew: true,
     downloadUrl: "https://cuty.io/AlphaLaunch"
   },
-
   {
     id: 20,
     name: "SpellCheck Premium",
@@ -75,13 +88,18 @@ const INITIAL_APPS = [
     version: "v1.0.12",
     image: "/icons/spellcheck.webp",
     thumbnail: "/Thumb/spellcheck_thumb.webp",
+      screenshots: [
+      "/screenshots/grok_1.webp",
+      "/screenshots/grok_2.webp",
+      "/screenshots/grok_3.webp",
+      "/screenshots/grok_4.webp"
+    ],
     description: "Escribe sin errores en cualquier idioma. Hemos desbloqueado la versión Premium completa: corrección gramatical profunda basada en IA, sin límite de caracteres, escáner de texto por cámara (OCR) habilitado y experiencia totalmente libre de publicidad.",
     modFeatures: ["Premium Desbloqueado", "Límite Texto 3000", "Escáner OCR"],
     isUpdated: true,
     isNew: true,
     downloadUrl: "https://cuty.io/spellcheck"
   },
-
   {
     id: 19,
     name: "Exo Player Pro",
@@ -93,13 +111,20 @@ const INITIAL_APPS = [
     version: "v2.1.3",
     image: "/icons/exo_player.webp",
     thumbnail: "/Thumb/exo_player_thumb.webp",
+      screenshots: [
+      "/screenshots/exo_player_1.webp",
+      "/screenshots/exo_player_2.webp",
+      "/screenshots/exo_player_3.webp",
+      "/screenshots/exo_player_4.webp",
+      "/screenshots/exo_player_5.webp"
+      
+    ],
     description: "El reproductor de vídeo minimalista basado en la tecnología Exo de Google. Versión Pro desbloqueada: disfruta de tus películas y series sin interrupciones publicitarias. Soporte nativo para 4K, aceleración por hardware optimizada, subtítulos multi-idioma y compatibilidad total con formatos MKV, MP4 y AVI.",
     modFeatures: ["Pro Desbloqueado", "Sin Anuncios", "Soporte 4K"],
     isUpdated: true, 
     isNew: true,
     downloadUrl: "https://cuty.io/ExoPlayerPro"
   },
-
   {
     id: 18,
     name: "Superb VPN Premium",
@@ -111,6 +136,12 @@ const INITIAL_APPS = [
     version: "v3.2.0",
     image: "/icons/superb_vpn.webp",
     thumbnail: "/Thumb/superb_vpn_thumb.webp",
+      screenshots: [
+      "/screenshots/grok_1.webp",
+      "/screenshots/grok_2.webp",
+      "/screenshots/grok_3.webp",
+      "/screenshots/grok_4.webp"
+    ],
     description: "Navegación ultra rápida y segura sin límites. Hemos desbloqueado el acceso VIP total: conéctate a servidores premium de todo el mundo sin ver un solo anuncio. Protege tu privacidad, oculta tu IP y accede a contenido bloqueado en tu región con un solo toque.",
     modFeatures: ["VIP Desbloqueado", "Sin Anuncios", "Servidores Globales"],
     isUpdated: true,
@@ -128,6 +159,13 @@ const INITIAL_APPS = [
     version: "v30.0.43",
     image: "/icons/copilot.webp",
     thumbnail: "/Thumb/copilot_thumb.webp",
+      screenshots: [
+      "/screenshots/copilot_1.webp",
+      "/screenshots/copilot_2.webp",
+      "/screenshots/copilot_3.webp",
+      "/screenshots/copilot_4.webp",
+      "/screenshots/copilot_5.webp"
+    ],
     description: "Desbloqueamos el potencial completo de la IA. Disfruta de acceso ilimitado al modelo GPT-5.1 y al generador de imágenes Ultra-HD sin pagar suscripción. Hemos eliminado todos los límites de uso, la censura en las respuestas y las colas de espera. Tienes la herramienta más potente de Microsoft totalmente liberada y a máxima velocidad en tu bolsillo.",
     modFeatures: ["GPT-5.1 Desbloqueado", "DALL-E Ilimitado", "Velocidad Máxima"],
     warning: "Requisito: Inicia sesión con Microsoft para guardar tus chats.",
@@ -145,6 +183,13 @@ const INITIAL_APPS = [
     version: "v2025.25",
     image: "/icons/weather_radar.webp",
     thumbnail: "/Thumb/weather_radar_thumb.webp",
+      screenshots: [
+      "/screenshots/weather_radar_1.webp",
+      "/screenshots/weather_radar_2.webp",
+      "/screenshots/weather_radar_3.webp",
+      "/screenshots/weather_radar_4.webp",
+      "/screenshots/weather_radar_5.webp"
+    ],
     description: "La aplicación meteorológica líder en precisión. Versión Pro desbloqueada que ofrece radar de lluvia en tiempo real, alertas de clima severo, zoom ilimitado en mapas y pronósticos detallados a 14 días sin publicidad intrusiva.",
     modFeatures: ["Pro Desbloqueado", "Sin Anuncios", "Radar Premium"],
     isUpdated: false,
@@ -161,6 +206,14 @@ const INITIAL_APPS = [
     version: "v1.0.95-00",
     image: "/icons/grok_ai.webp",
     thumbnail: "/Thumb/grok_ai_thumb.webp",
+    screenshots: [
+      "/screenshots/grok_1.webp",
+      "/screenshots/grok_2.webp",
+      "/screenshots/grok_3.webp",
+      "/screenshots/grok_4.webp",
+      "/screenshots/grok_5.webp"
+      
+    ],
     description: "Accede a la inteligencia artificial más audaz y sin censura. Respuestas en tiempo real con datos actualizados y modo sarcástico desbloqueado.",
     warning: "Nota: Debes iniciar sesión con tu cuenta de X (antes Twitter).",
     modFeatures: ["Premium Desbloqueado", "Imagine", "Sin Censura", ],
@@ -179,6 +232,13 @@ const INITIAL_APPS = [
     version: "v8.1.6",
     image: "/icons/nova_launcher.webp",
     thumbnail: "/Thumb/nova_launcher_thumb.webp",
+      screenshots: [
+      "/screenshots/nova_launcher_1.webp",
+      "/screenshots/nova_launcher_2.webp",
+      "/screenshots/nova_launcher_3.webp",
+      "/screenshots/nova_launcher_4.webp",
+      "/screenshots/nova_launcher_5.webp"
+    ],
     description: "El launcher más potente y personalizable. Versión Prime totalmente desbloqueada: gestos, grupos en el cajón, ocultar aplicaciones y efectos de desplazamiento exclusivos.",
     modFeatures: ["Prime Desbloqueado", "Gestos", "Ocultar Apps"],
     isUpdated: false,
@@ -195,6 +255,13 @@ const INITIAL_APPS = [
     version: "v1.15.6",
     image: "/icons/niagara_launcher.webp",
     thumbnail: "/Thumb/niagara_launcher_thumb.webp",
+      screenshots: [
+      "/screenshots/niagara_launcher_1.webp",
+      "/screenshots/niagara_launcher_2.webp",
+      "/screenshots/niagara_launcher_3.webp",
+      "/screenshots/niagara_launcher_4.webp",
+      "/screenshots/niagara_launcher_5.webp"
+    ],
     description: "La pantalla de inicio más limpia para Android. Versión Pro desbloqueada con acceso a todos los widgets,temas, iconos adaptativos y personalización avanzada de fuentes y colores.",
     modFeatures: ["Pro Desbloqueado", "Widgets y temas Premium", "Iconos Adaptativos"],
     isUpdated: false,
@@ -211,6 +278,12 @@ const INITIAL_APPS = [
     version: "v2.65.1",
     image: "/icons/perplexity.webp",
     thumbnail: "/Thumb/perplexity_thumb.webp",
+      screenshots: [
+      "/screenshots/grok_1.webp",
+      "/screenshots/grok_2.webp",
+      "/screenshots/grok_3.webp",
+      "/screenshots/grok_4.webp"
+    ],
     description: "Tu asistente de respuestas con IA. Acceso Pro desbloqueado: búsquedas Pro ilimitadas, carga de archivos PDF/Imágenes sin límites y selección de modelos avanzados como GPT-5 y Claude 3.5 Sonnet.",
     modFeatures: ["Max Desbloqueado", "Búsquedas Max Ilimitadas", "Modelos Premium"],
     isUpdated: false,
@@ -218,7 +291,7 @@ const INITIAL_APPS = [
   },
   {
     id: 11,
-    name: "YouTube ReVanced",
+    name: "YouTube Premium",
     developer: "ReVance Mod",
     category: "Entretenimiento",
     rating: 4.9,
@@ -227,6 +300,12 @@ const INITIAL_APPS = [
     version: "v20.14.43",
     image: "/icons/youtube.webp",
     thumbnail: "/Thumb/youtube_thumb.webp",
+      screenshots: [
+      "/screenshots/grok_1.webp",
+      "/screenshots/grok_2.webp",
+      "/screenshots/grok_3.webp",
+      "/screenshots/grok_4.webp"
+    ],
     description: "La mejor experiencia de YouTube sin anuncios. Incluye reproducción en segundo plano, SponsorBlock para saltar segmentos de relleno y personalización completa de la interfaz.",
     warning: "Requisito: Es necesario instalar MicroG para iniciar sesión con Google.",
     modFeatures: ["Sin Anuncios", "Segundo Plano", "SponsorBlock"],
@@ -244,6 +323,13 @@ const INITIAL_APPS = [
     version: "v5.12.8",
     image: "/icons/web_video_caster.webp",
     thumbnail: "/Thumb/web_video_caster_thumb.webp",
+      screenshots: [
+      "/screenshots/web_caster_1.webp",
+      "/screenshots/web_caster_2.webp",
+      "/screenshots/web_caster_3.webp",
+      "/screenshots/web_caster_4.webp",
+      "/screenshots/web_caster_5.webp"
+    ],
     description: "Transmite videos web, películas y series a tu TV, Chromecast o Roku sin restricciones. Versión Premium desbloqueada: sin anuncios, marcadores ilimitados y pantalla de inicio personalizada.",
     modFeatures: ["Premium Desbloqueado", "Sin Anuncios", "Cola de Reproducción"],
     isUpdated: false,
@@ -260,6 +346,12 @@ const INITIAL_APPS = [
     version: "v12.2.10",
     image: "/icons/telegram.webp",
     thumbnail: "/Thumb/telegram_thumb.webp",
+      screenshots: [
+      "/screenshots/grok_1.webp",
+      "/screenshots/grok_2.webp",
+      "/screenshots/grok_3.webp",
+      "/screenshots/grok_4.webp"
+    ],
     description: "La mensajería más rápida y segura. Versión Premium desbloqueada: descargas ultra rápidas, iconos premium exclusivos, traducción en tiempo real y sin anuncios..",
     modFeatures: ["Premium Desbloqueado", "Descarga Rápida", "Traducir chats enteros"],
     isUpdated: false,
@@ -276,6 +368,13 @@ const INITIAL_APPS = [
     version: "v15.9.2",
     image: "/icons/powerdirector.webp",
     thumbnail: "/Thumb/powerdirector_thumb.webp",
+      screenshots: [
+      "/screenshots/powerdirector_1.webp",
+      "/screenshots/powerdirector_2.webp",
+      "/screenshots/powerdirector_3.webp",
+      "/screenshots/powerdirector_4.webp",
+      "/screenshots/powerdirector_5.webp"
+    ],
     description: "El editor de video más profesional. Versión Premium desbloqueada: exportación en 4K Ultra HD, sin marca de agua, estabilizador de video y acceso ilimitado a todo el stock de música y efectos.",
     modFeatures: ["Sin Marca de Agua", "Exportación 4K", "Todo Desbloqueado"],
     isUpdated: true,
@@ -292,6 +391,13 @@ const INITIAL_APPS = [
     version: "v6.5.054",
     image: "/icons/smart_launcher.webp",
     thumbnail: "/Thumb/smart_launcher_thumb.webp",
+      screenshots: [
+      "/screenshots/smart_launcher_1.webp",
+      "/screenshots/smart_launcher_2.webp",
+      "/screenshots/smart_launcher_3.webp",
+      "/screenshots/smart_launcher_4.webp",
+      "/screenshots/smart_launcher_5.webp"
+    ],
     description: "El launcher más inteligente y eficiente. Versión Pro desbloqueada: búsqueda inteligente, categorías automáticas personalizables, widgets adaptativos y gestos avanzados en pantalla de inicio.",
     modFeatures: ["Pro Desbloqueado", "Iconos Adaptativos", "Sin Anuncios"],
     isUpdated: false,
@@ -308,6 +414,13 @@ const INITIAL_APPS = [
     version: "v6.33.5",
     image: "/icons/lark_player.webp",
     thumbnail: "/Thumb/lark_player_thumb.webp",
+      screenshots: [
+      "/screenshots/lark_player_1.webp",
+      "/screenshots/lark_player_2.webp",
+      "/screenshots/lark_player_3.webp",
+      "/screenshots/lark_player_4.webp",
+      "/screenshots/lark_player_5.webp"
+    ],
     description: "Reproductor de música Versión Premium desbloqueada: sin anuncios, ecualizador avanzado, temas exclusivos y soporte para letras flotantes en todas tus canciones.",
     modFeatures: ["Sin Anuncios", "Temas Premium", "Ecualizador Pro"],
     isUpdated: false,
@@ -324,6 +437,13 @@ const INITIAL_APPS = [
     version: "v16.2.41",
     image: "/icons/samsung_music.webp",
     thumbnail: "/Thumb/samsung_music_thumb.webp",
+      screenshots: [
+      "/screenshots/samsung_music_1.webp",
+      "/screenshots/samsung_music_2.webp",
+      "/screenshots/samsung_music_3.webp",
+      "/screenshots/samsung_music_4.webp",
+      "/screenshots/samsung_music_5.webp"
+    ],
     description: "El reproductor de música oficial de Samsung optimizado para todos los dispositivos. Interfaz One UI elegante, ecualizador avanzado y soporte para todos los formatos de audio con calidad premium.",
     modFeatures: ["Interfaz One UI", "Ecualizador Pro", "Para todos los dispositivos"],
     isUpdated: false,
@@ -331,7 +451,7 @@ const INITIAL_APPS = [
   },
   {
     id: 4,
-    name: "Chat Smith AI Pro",
+    name: "Chat Smith AI Premium",
     developer: "FonApps",
     category: "IA",
     rating: 4.2,
@@ -340,6 +460,14 @@ const INITIAL_APPS = [
     version: "v8.251208.1",
     image: "/icons/chat_smith.webp",
     thumbnail: "/Thumb/chat_smith_thumb.webp",
+      screenshots: [
+      "/screenshots/chat_smith_1.webp",
+      "/screenshots/chat_smith_2.webp",
+      "/screenshots/chat_smith_3.webp",
+      "/screenshots/chat_smith_4.webp",
+      "/screenshots/chat_smith_5.webp"
+      
+    ],
     description: "Asistente inteligente avanzado impulsado por GPT-4. Versión Pro desbloqueada: diálogos ilimitados, procesamiento de imágenes, modo experto y sin anuncios de ningún tipo.",
     modFeatures: ["Pro Desbloqueado", "Chat Ilimitado", "GPT-5 & Gemini 3 pro y mas..."],
     isUpdated: false,
@@ -356,6 +484,12 @@ const INITIAL_APPS = [
     version: "v0.3.1.4.240913",
     image: "/icons/microG.webp",
     thumbnail: "/Thumb/microG_thumb.webp",
+      screenshots: [
+      "/screenshots/grok_1.webp",
+      "/screenshots/grok_2.webp",
+      "/screenshots/grok_3.webp",
+      "/screenshots/grok_4.webp"
+    ],
     description: "El componente esencial para usuarios de mods. Permite iniciar sesión con tu cuenta de Google en aplicaciones modificadas como YouTube ReVanced, garantizando sincronización y notificaciones sin servicios de Google oficiales.",
     modFeatures: ["Login Google habilitado", "Sin rastreo de datos", "Ahorro de batería"],
     isUpdated: false,
@@ -363,7 +497,7 @@ const INITIAL_APPS = [
   },
   {
     id: 2,
-    name: "Wallcraft Premium 4K",
+    name: "Wallcraft Premium",
     developer: "FonApps",
     category: "Personalización",
     rating: 4.7,
@@ -372,6 +506,13 @@ const INITIAL_APPS = [
     version: "v3.59.01",
     image: "/icons/wallcraft.webp",
     thumbnail: "/Thumb/wallcraft_thumb.webp",
+      screenshots: [
+      "/screenshots/wallcraft_1.webp",
+      "/screenshots/wallcraft_2.webp",
+      "/screenshots/wallcraft_3.webp",
+      "/screenshots/wallcraft_4.webp",
+      "/screenshots/wallcraft_5.webp"
+    ],
     description: "La biblioteca más vasta de fondos de pantalla en ultra alta definición. Acceso exclusivo a fondos 4K y 8K adaptados automáticamente al tamaño de tu pantalla, con efectos de paralaje 4D y sin interrupciones publicitarias.",
     modFeatures: ["Premium Desbloqueado", "Fondos 8K y 4D", "Sin Publicidad"],
     isUpdated: false,
@@ -388,6 +529,12 @@ const INITIAL_APPS = [
     version: "v1.0.97",
     image: "/icons/urban_vpn.webp",
     thumbnail: "/Thumb/urban_vpn_thumb.webp",
+      screenshots: [
+      "/screenshots/grok_1.webp",
+      "/screenshots/grok_2.webp",
+      "/screenshots/grok_3.webp",
+      "/screenshots/grok_4.webp"
+    ],
     description: "La solución definitiva para navegar sin fronteras. Acceso ilimitado a servidores en más de 80 países con ancho de banda infinito. Ideal para desbloquear streaming y proteger tu privacidad en redes públicas con cifrado de grado militar.",
     modFeatures: ["Premium Desbloqueado", "Ancho de Banda Ilimitado", "Ubicaciones Pro"],
     isUpdated: false,
@@ -517,7 +664,7 @@ const UpdatedAppsCarousel = ({ apps, onSelectApp }) => {
       {/* --- TÍTULO (Colores Emerald/Fuchsia) --- */}
       <div className="flex items-center gap-2 mb-4 px-1">
         <div className="p-1.5 bg-yellow-500/10 rounded-lg border border-yellow-500/20">
-           <Zap className="text-yellow-400" size={18} fill="currentColor" />
+            <Zap className="text-yellow-400" size={18} fill="currentColor" />
         </div>
         
         <h2 className="text-lg font-bold tracking-tight">
@@ -605,6 +752,9 @@ export default function ModStoreApp() {
   const [downloadingId, setDownloadingId] = useState(null);
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("Descarga iniciada...");
+  
+  // ✅ ESTADO PARA EL VISOR DE IMÁGENES (LIGHTBOX)
+  const [currentScreenshotIndex, setCurrentScreenshotIndex] = useState(null);
 
   // ✅ 1. ESTADO DE FAVORITOS (Lee memoria al iniciar)
   const [favorites, setFavorites] = useState(() => {
@@ -629,7 +779,8 @@ export default function ModStoreApp() {
   };
 
   useEffect(() => {
-    if (selectedApp) {
+    // Bloquear scroll si hay modal o lightbox abierto
+    if (selectedApp || currentScreenshotIndex !== null) {
       document.body.style.overflow = 'hidden';
       document.documentElement.style.overflow = 'hidden';
     } else {
@@ -641,7 +792,35 @@ export default function ModStoreApp() {
       document.body.style.overflow = '';
       document.documentElement.style.overflow = '';
     };
-  }, [selectedApp]);
+  }, [selectedApp, currentScreenshotIndex]);
+
+  // ✅ CONTROL DE TECLADO (Lógica Finita: No da la vuelta)
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (currentScreenshotIndex === null || !selectedApp) return;
+      
+      // Definimos el total de imágenes (Reales o Simuladas)
+      const screenshots = selectedApp.screenshots || [1, 2, 3]; 
+      const totalImages = screenshots.length;
+
+      if (e.key === 'Escape') {
+        setCurrentScreenshotIndex(null);
+      }
+      
+      // Solo avanza si NO es la última
+      if (e.key === 'ArrowRight' && currentScreenshotIndex < totalImages - 1) {
+         setCurrentScreenshotIndex((prev) => prev + 1);
+      }
+      
+      // Solo retrocede si NO es la primera
+      if (e.key === 'ArrowLeft' && currentScreenshotIndex > 0) {
+         setCurrentScreenshotIndex((prev) => prev - 1);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [currentScreenshotIndex, selectedApp]);
 
   const navigateTo = (view) => {
     setCurrentView(view);
@@ -697,12 +876,6 @@ export default function ModStoreApp() {
 
     const hasResults = visibleApps.length > 0;
 
-    // Lógica para detectar la etiqueta (Pro, Premium, etc.)
-    const getBadge = (name) => {
-      const keywords = ["Premium", "Pro", "Prime", "VIP", "Max", "Plus", "Ultra", "Gold"];
-      return keywords.find(word => name.includes(word));
-    };
-
     return (
     <section className="animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
       <div className="flex items-center gap-2 mb-6 text-slate-300">
@@ -735,7 +908,7 @@ export default function ModStoreApp() {
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
           {visibleApps.map((app) => {
             const isFav = favorites.includes(app.id);
-            const badgeType = getBadge(app.name); // Detectamos si es Pro/Premium
+            const badgeType = getBadge(app); // ✅ Pasamos toda la app, no solo el nombre
 
             return (
             <div 
@@ -751,10 +924,9 @@ export default function ModStoreApp() {
                 animate-in fade-in zoom-in-95 duration-300 fill-mode-both
               `}
             >
-            {/* ✅ ETIQUETA PREMIUM COMPACTA (Tamaño Reducido) */}
+            {/* ✅ ETIQUETA PREMIUM COMPACTA (Tamaño Reducido & Estilo Ghost) */}
               {badgeType && (
                 <div className="absolute top-0 left-0 z-20">
-                   {/* Cambios: px-2 (menos ancho), py-0.5 (menos alto), text-[8px] (letra más fina), rounded-br-lg (curva más pequeña) */}
                    <div className="px-2 py-0.5 rounded-br-lg bg-yellow-500/10 border-b border-r border-yellow-500/20 text-yellow-200 text-[8px] font-bold tracking-wider uppercase backdrop-blur-md shadow-sm">
                       {badgeType}
                    </div>
@@ -771,20 +943,19 @@ export default function ModStoreApp() {
                  </div>
               </button>
 
-              {/* 1. ICONO */}
-             {/* 1. ICONO (Corrección Matemática de Centro y Renderizado) */}
+              {/* 1. ICONO (Corrección Matemática) */}
               <div className="mb-3 w-full flex justify-center transform transition-transform duration-300 group-hover:scale-105 origin-center will-change-transform backface-hidden">
                  <AppIcon type={app.image} thumbnail={app.thumbnail} size="md" />
               </div>
               
               {/* 2. TEXTOS */}
               <div className="w-full mb-3">
-                <h3 className="font-bold text-sm text-slate-100 truncate px-2 w-full">
-                  {/* Opcional: Si quieres quitar la palabra "Premium" del texto para que no se repita, usa esto: */}
-                  {/* {app.name.replace(badgeType || "", "").trim()} */}
-                  {/* Por ahora dejo el nombre completo: */}
-                  {app.name}
-                </h3>
+                <h3 className="font-bold text-sm text-slate-100 truncate w-full text-center leading-tight">
+                    {/* Limpieza inteligente del título: Si dice 'Premium' en la etiqueta, lo quita del nombre */}
+                    {badgeType 
+                      ? app.name.replace(badgeType, "").replace("-", "").trim() 
+                      : app.name}
+                 </h3>
                 
                 <p className="text-[10px] text-slate-500 mt-1 truncate px-4">
                   {app.developer}
@@ -1022,11 +1193,20 @@ export default function ModStoreApp() {
     <div className="min-h-screen text-slate-200 font-sans selection:bg-teal-500/30">
       
       <style>{`
-        html { overflow-y: scroll; }
+        html { 
+          overflow-y: scroll;
+          scrollbar-gutter: stable; /* Evita el salto del layout */
+        }
         ::-webkit-scrollbar { width: 10px; }
         ::-webkit-scrollbar-track { background: #0a0a12; }
         ::-webkit-scrollbar-thumb { background: #334155; border-radius: 5px; }
         ::-webkit-scrollbar-thumb:hover { background: #475569; }
+        
+        .animate-content { animation: contentShow 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        @keyframes contentShow {
+          from { opacity: 0; transform: scale(0.96); }
+          to { opacity: 1; transform: scale(1); }
+        }
       `}</style>
       
 {/* FONDO "ZERO-LAG" DEFINITIVO */}
@@ -1165,10 +1345,10 @@ export default function ModStoreApp() {
               
               {/* ✅ ETIQUETA PREMIUM (En la mera esquina 0,0) */}
               {/* Al estar DENTRO de este div, subirá y desaparecerá al hacer scroll */}
-              {getBadge(selectedApp.name) && (
+              {getBadge(selectedApp) && (
                 <div className="absolute top-0 left-0 z-10">
                    <div className="px-4 py-1.5 rounded-br-2xl bg-yellow-500/10 border-b border-r border-yellow-500/20 text-yellow-200 text-[10px] font-bold tracking-wider uppercase backdrop-blur-md shadow-sm">
-                      {getBadge(selectedApp.name)}
+                      {getBadge(selectedApp)}
                    </div>
                 </div>
               )}
@@ -1189,8 +1369,12 @@ export default function ModStoreApp() {
                 <div className="absolute inset-0 rounded-3xl border border-white/10 z-20 pointer-events-none" />
               </div>
 
-              {/* TÍTULO Y DESARROLLADOR */}
-              <h2 className="text-2xl font-bold text-white mb-1">{selectedApp.name}</h2>
+             {/* TÍTULO LIMPIO (Sin redundancia con la etiqueta) */}
+             <h2 className="text-2xl font-bold text-white mb-1">
+                {getBadge(selectedApp) 
+                  ? selectedApp.name.replace(getBadge(selectedApp), "").replace("-", "").trim() 
+                  : selectedApp.name}
+              </h2>
               <p className="text-sm font-bold mb-4 bg-gradient-to-r from-teal-400 to-purple-500 bg-clip-text text-transparent w-fit mx-auto">
                 {selectedApp.developer}
               </p>
@@ -1229,6 +1413,37 @@ export default function ModStoreApp() {
                   )}
                 </div>
 
+                {/* 📸 GALERÍA DE CAPTURAS (Datos Reales) */}
+                <div className="mb-6">
+                   <h3 className="text-sm font-bold text-slate-300 uppercase tracking-wider mb-3 flex items-center gap-2">
+                     <ImageIcon size={14} /> Galería
+                   </h3>
+                   <div className="flex gap-3 overflow-x-auto pb-4 snap-x snap-mandatory no-scrollbar -mx-4 px-4">
+                     {/* LOGICA: Si existen screenshots, las usa. Si no, repite la imagen principal 3 veces como relleno */}
+                     {(selectedApp.screenshots || [selectedApp.image, selectedApp.image, selectedApp.image]).map((shot, idx) => (
+                       <div 
+                         key={idx} 
+                         onClick={() => setCurrentScreenshotIndex(idx)}
+                         className="flex-none w-28 h-28 aspect-square relative rounded-xl overflow-hidden border border-white/10 bg-slate-900 snap-center shadow-lg group/shot cursor-zoom-in hover:border-teal-500/50 transition-colors"
+                       >
+                         <img
+                           src={shot} // ✅ Aquí usamos la captura real
+                           alt={`Screenshot ${idx + 1}`}
+                           loading="lazy"
+                           decoding="async"
+                           className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover/shot:opacity-100 group-hover/shot:scale-110 transition-all duration-500"
+                         />
+                         <div className="absolute inset-0 bg-black/20 group-hover/shot:bg-transparent transition-colors" />
+                         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/shot:opacity-100 transition-opacity duration-300 z-10 pointer-events-none">
+                            <div className="bg-black/60 p-1.5 rounded-full backdrop-blur-md">
+                               <Maximize2 size={14} className="text-white" />
+                            </div>
+                         </div>
+                       </div>
+                     ))}
+                   </div>
+                </div>
+
                 <div>
                   <h3 className="text-sm font-bold text-teal-300 uppercase tracking-wider mb-3 flex items-center gap-2">
                     <Zap size={14} /> Características del Mod
@@ -1265,6 +1480,78 @@ export default function ModStoreApp() {
               </p>
             </div>
           </div>
+        </div>
+      )}
+
+      {/* 🖼️ VISOR FULL SCREEN (LIGHTBOX) */}
+      {selectedApp && currentScreenshotIndex !== null && (
+        <div className="fixed inset-0 z-[60] bg-black/95 backdrop-blur-xl flex flex-col items-center justify-center animate-in fade-in duration-300">
+           
+           {/* Botón Cerrar */}
+           <button 
+             onClick={() => setCurrentScreenshotIndex(null)}
+             className="absolute top-4 right-4 p-3 bg-white/10 hover:bg-white/20 rounded-full text-white transition-all z-50"
+           >
+             <X size={28} />
+           </button>
+
+           {/* Imagen Grande */}
+           <div className="relative w-full h-full flex items-center justify-center p-4 md:p-10">
+              <img 
+                src={(selectedApp.screenshots || [selectedApp.image, selectedApp.image, selectedApp.image])[currentScreenshotIndex]}
+                alt="Full Screenshot"
+                className="max-w-full max-h-full object-contain rounded-lg shadow-2xl animate-in zoom-in-95 duration-300 select-none"
+              />
+           </div>
+
+          {/* Controles de Navegación (Lógica Blindada Anti-Desborde) */}
+           <div className="absolute bottom-8 left-0 w-full flex items-center justify-center gap-8 pointer-events-none">
+              
+              {/* Botón Izquierdo (Anterior) */}
+              <button 
+                // 🔒 BLOQUEO FÍSICO: Si es 0, el botón muere.
+                disabled={currentScreenshotIndex === 0}
+                onClick={(e) => {
+                   e.stopPropagation();
+                   // 🔒 BLOQUEO LÓGICO: Si intentas bajar de 0, te devuelve un 0 a la fuerza.
+                   setCurrentScreenshotIndex((prev) => (prev > 0 ? prev - 1 : 0)); 
+                }}
+                className={`pointer-events-auto p-3 bg-white/10 hover:bg-teal-500 rounded-full text-white transition-all duration-300 backdrop-blur-md active:scale-95 ${
+                  currentScreenshotIndex > 0 
+                    ? "opacity-100 translate-y-0 cursor-pointer" 
+                    : "opacity-0 translate-y-4 pointer-events-none cursor-default"
+                }`}
+              >
+                <ChevronLeft size={32} />
+              </button>
+              
+              {/* Contador */}
+              <span className="text-white/50 text-sm font-mono backdrop-blur-md px-3 py-1 rounded-full bg-black/20">
+                {/* Calculamos el total real aquí mismo para evitar errores */}
+                {currentScreenshotIndex + 1} / {(selectedApp.screenshots || [1, 2, 3]).length}
+              </span>
+
+              {/* Botón Derecho (Siguiente) */}
+              <button 
+                // 🔒 BLOQUEO FÍSICO: Si llegaste al final, el botón muere.
+                disabled={currentScreenshotIndex >= (selectedApp.screenshots || [1, 2, 3]).length - 1}
+                onClick={(e) => {
+                   e.stopPropagation();
+                   const totalImages = (selectedApp.screenshots || [1, 2, 3]).length;
+                   
+                   // 🔒 BLOQUEO LÓGICO: Si prev + 1 se pasa del total, se queda en el índice actual.
+                   // Jamás sumará más allá del límite.
+                   setCurrentScreenshotIndex((prev) => (prev < totalImages - 1 ? prev + 1 : prev));
+                }}
+                className={`pointer-events-auto p-3 bg-white/10 hover:bg-teal-500 rounded-full text-white transition-all duration-300 backdrop-blur-md active:scale-95 ${
+                  currentScreenshotIndex < (selectedApp.screenshots || [1, 2, 3]).length - 1 
+                    ? "opacity-100 translate-y-0 cursor-pointer" 
+                    : "opacity-0 translate-y-4 pointer-events-none cursor-default"
+                }`}
+              >
+                <ChevronRight size={32} />
+              </button>
+           </div>
         </div>
       )}
 

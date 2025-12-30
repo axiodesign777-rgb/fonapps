@@ -30,34 +30,67 @@ const getBadge = (app) => {
 
 
 const INITIAL_APPS = [
-  {
-    id: 22,
-    name: "Arc Launcher Prime",
+
+{
+    id: 24,
+    name: "ReLens Camera Pro",
     developer: "FonApps",
-    category: "Personalización",
+    category: "Fotografía",
     rating: 4.6,
-    downloads: "5M+",
-    size: "19,88 MB",
-    version: "v50.4",
-    image: "/icons/arc_launcher.webp",
-    thumbnail: "/Thumb/arc_launcher_thumb.webp",
+    downloads: "10M+",
+    size: "145,48 MB",
+    version: "v4.1.3",
+    image: "/icons/relens.webp",
+    thumbnail: "/Thumb/relens_thumb.webp",
     screenshots: [
-      "/screenshots/arc_launcher_1.webp",
-      "/screenshots/arc_launcher_2.webp",
-      "/screenshots/arc_launcher_3.webp",
-      "/screenshots/arc_launcher_4.webp"
+      "/screenshots/relens_1.webp",
+      "/screenshots/relens_2.webp",
+      "/screenshots/relens_3.webp",
+      "/screenshots/relens_4.webp"
     ],
     thumbs: [
-      "/screenshots/gallery_thumbs/arc_launcher_1.webp",
-      "/screenshots/gallery_thumbs/arc_launcher_2.webp",
-      "/screenshots/gallery_thumbs/arc_launcher_3.webp",
-      "/screenshots/gallery_thumbs/arc_launcher_4.webp"
+      "/screenshots/gallery_thumbs/relens_1.webp",
+      "/screenshots/gallery_thumbs/relens_2.webp",
+      "/screenshots/gallery_thumbs/relens_3.webp",
+      "/screenshots/gallery_thumbs/relens_4.webp"
     ],
-    description: "Una experiencia de pantalla de inicio revolucionaria con diseño Arc. Versión Prime desbloqueada: accede a la biblioteca completa de temas 3D/4D, reproductor de música integrado avanzado, funciones de limpieza de RAM automáticas y personalización DIY ilimitada sin anuncios.",
-    modFeatures: ["Prime Desbloqueado", "Temas 3D Premium", "Boost RAM"],
+    description: "Convierte tu dispositivo en una cámara DSLR profesional con grandes aperturas ópticas. Versión VIP totalmente desbloqueada: accede al sistema de fotografía computacional avanzado para lograr un efecto bokeh profundo y realista (f/1.4). Disfruta de todos los lentes clásicos, controles manuales de exposición completos y grabación en 4K UHD sin restricciones.",
+    modFeatures: ["VIP Desbloqueado", "Efecto Bokeh DSLR", "Todos los Lentes", "Todos los Filtros VIP"],
+    updateDate: "2025-12-30",
     isUpdated: true,
     isNew: true,
-    downloadUrl: "https://cuty.io/ArcLauncher"
+    downloadUrl: "https://cuty.io/RelensVip"
+  },
+
+ {
+    id: 23,
+    name: "Spring Editor Pro",
+    developer: "FonApps",
+    category: "Herramientas",
+    rating: 4.5,
+    downloads: "1+",
+    size: "122,73 MB",
+    version: "v2.0.9",
+    image: "/icons/spring_editor.webp",
+    thumbnail: "/Thumb/spring_editor_thumb.webp",
+    screenshots: [
+      "/screenshots/spring_1.webp",
+      "/screenshots/spring_2.webp",
+      "/screenshots/spring_3.webp",
+      "/screenshots/spring_4.webp"
+    ],
+    thumbs: [
+      "/screenshots/gallery_thumbs/spring_1.webp",
+      "/screenshots/gallery_thumbs/spring_2.webp",
+      "/screenshots/gallery_thumbs/spring_3.webp",
+      "/screenshots/gallery_thumbs/spring_4.webp"
+    ],
+    description: "Transforma tus ideas en videos virales con la potencia de la Inteligencia Artificial. Versión Pro totalmente desbloqueada: accede a herramientas avanzadas como subtitulado automático, eliminación mágica de fondos y mejora de resolución por IA. Exporta tus clips en calidad cinematográfica 4K a 60FPS sin marcas de agua y disfruta de la biblioteca completa de música y efectos premium.",
+    modFeatures: ["Pro Desbloqueado", "Sin anuncios", "Sin Marca de Agua"],
+     updateDate: "2025-12-30",
+    isUpdated: false,
+    isNew: true,
+    downloadUrl: "https://cuty.io/SpringPremiu"
   },
   {
     id: 21,
@@ -86,6 +119,7 @@ const INITIAL_APPS = [
     ],
     description: "Transforma tu teléfono en una interfaz futurista de ciencia ficción. Versión Prime totalmente desbloqueada: acceso a todos los temas 4D Premium, widgets de sistema avanzados, personalización de colores estilo 'hacker' y eliminación completa de publicidad.",
     modFeatures: ["Prime Desbloqueado", "Temas 4D", "Estilo Hacker"],
+
     isUpdated: true,
     isNew: true,
     downloadUrl: "https://cuty.io/AlphaLaunch"
@@ -247,8 +281,8 @@ const INITIAL_APPS = [
     category: "IA",
     rating: 4.9,
     downloads: "50M+",
-    size: "24,35 MB",
-    version: "v1.0.95-00",
+    size: "24,65 MB",
+    version: "v1.0.96-02",
     image: "/icons/grok_ai.webp",
     thumbnail: "/Thumb/grok_ai_thumb.webp",
     screenshots: [
@@ -269,7 +303,7 @@ const INITIAL_APPS = [
     warning: "Nota: Debes iniciar sesión con tu cuenta de X (antes Twitter).",
     modFeatures: ["Premium Desbloqueado", "Imagine", "Sin Censura"],
     isUpdated: true,
-    updateDate: "2025-12-27",
+    updateDate: "2025-12-29",
     downloadUrl: "https://cuty.io/GrokAIX"
   },
   {

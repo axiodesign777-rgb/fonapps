@@ -944,19 +944,26 @@ export default function ModStoreApp() {
     );
   };
 
+  // ✅ PREVENCION DEL SALTO DE SCROLL (Layout Shift Fix)
   useEffect(() => {
-    // Bloquear scroll si hay modal o lightbox abierto
     if (selectedApp || currentScreenshotIndex !== null) {
+      // 1. Calcular el ancho del scrollbar
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+      
+      // 2. Compensar el padding
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
+      
+      // 3. Bloquear el scroll
       document.body.style.overflow = 'hidden';
-      document.documentElement.style.overflow = 'hidden';
     } else {
+      // Restaurar
+      document.body.style.paddingRight = '0px';
       document.body.style.overflow = '';
-      document.documentElement.style.overflow = '';
     }
     
     return () => {
+      document.body.style.paddingRight = '0px';
       document.body.style.overflow = '';
-      document.documentElement.style.overflow = '';
     };
   }, [selectedApp, currentScreenshotIndex]);
 
@@ -1080,11 +1087,12 @@ export default function ModStoreApp() {
             <div 
               key={app.id}
               onClick={() => setSelectedApp(app)}
-              // ✅ AGREGADO: Preload de imágenes al pasar el mouse
+              // ✅ AGREGADO: Smart Cache Trigger (Preload)
               onMouseEnter={() => {
                 const img = new Image();
                 img.src = app.image;
                 if (app.thumbnail) { const t = new Image(); t.src = app.thumbnail; }
+                if (app.screenshots) { app.screenshots.forEach(s => { const i = new Image(); i.src = s; }); }
               }}
               className={`
                 group relative bg-[#13131f] rounded-2xl p-4 border border-white/5 
@@ -1376,17 +1384,17 @@ export default function ModStoreApp() {
         
         /* ✅ Animación de Cascada Suave (Sin Rebotes) */
         @keyframes slideUpFade {
-          from { opacity: 0; transform: translateY(20px); }
+          from { opacity: 0; transform: translateY(15px); }
           to { opacity: 1; transform: translateY(0); }
         }
         .stagger-enter {
           opacity: 0; 
-          animation: slideUpFade 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+          animation: slideUpFade 0.5s ease-out forwards;
           will-change: transform, opacity;
         }
         
         /* Animaciones para el Grid y Carousel */
-        .animate-content { animation: contentShow 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .animate-content { animation: contentShow 0.3s ease-out forwards; }
         @keyframes contentShow {
           from { opacity: 0; transform: scale(0.96); }
           to { opacity: 1; transform: scale(1); }
@@ -1501,162 +1509,168 @@ export default function ModStoreApp() {
 
       {renderFooter()}
 
-      {/* ✅ MODAL CON PERSISTENCIA DE ESTADO (Caché de Imágenes y Animación sin Recarga) */}
-      <div 
-        className={`
-          fixed inset-0 z-50 flex items-center justify-center p-4 
-          transition-all duration-300 ease-out
-          ${selectedApp ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none delay-100'}
-        `}
-      >
-        <div 
-          className="absolute inset-0 bg-[#05050a]/95 backdrop-blur-xl"
-          onClick={() => setSelectedApp(null)} 
-        />
-        
-        <div 
-          className={`
-            relative w-full max-w-lg bg-[#161622] rounded-3xl border border-white/10 shadow-2xl overflow-hidden 
-            transform transition-all duration-300 ease-out
-            ${selectedApp ? 'scale-100 translate-y-0' : 'scale-95 translate-y-4'}
-          `}
-        >
-           {/* El contenido se mantiene montado mientras dura la transición de salida */}
-           {selectedApp && (
-              <div className="relative p-6 pt-12 text-center max-h-[85vh] overflow-y-auto overscroll-contain no-scrollbar">
-                
-                {getBadge(selectedApp) && (
-                  <div className="absolute top-0 left-0 z-10">
-                     <div className="px-4 py-1.5 rounded-br-2xl bg-yellow-500/10 border-b border-r border-yellow-500/20 text-yellow-200 text-[10px] font-bold tracking-wider uppercase backdrop-blur-md shadow-sm">
-                        {getBadge(selectedApp)}
-                     </div>
-                  </div>
-                )}
+      {/* ✅ MODAL SINCRONIZADO (Estructura Clásica + Animación Suave + Preload de Imágenes) */}
+      {selectedApp && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          
+          {/* Fondo Translúcido (bg-black/80) para que no desaparezca el fondo */}
+          <div 
+            className="absolute inset-0 bg-black/80 backdrop-blur-md animate-in fade-in duration-300"
+            onClick={() => setSelectedApp(null)} 
+          />
+          
+          {/* Tarjeta del Modal (Animación Suave) */}
+          <div className="relative w-full max-w-lg bg-[#161622] rounded-3xl border border-white/10 shadow-2xl overflow-hidden animate-content will-change-transform">
+            
+            {/* Fondo Gradiente Superior */}
+            <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-purple-900/40 to-transparent pointer-events-none" />
+            
+            {/* Botón Cerrar */}
+            <button 
+              onClick={() => setSelectedApp(null)}
+              className="absolute top-4 right-4 p-2 bg-black/20 hover:bg-red-500/80 rounded-full text-white/90 hover:text-white transition-all z-50 border border-white/10 shadow-lg backdrop-blur-sm"
+            >
+              <X size={24} />
+            </button>
 
-                <button 
-                  onClick={() => setSelectedApp(null)}
-                  className="absolute top-4 right-4 p-2 bg-black/20 hover:bg-red-500/80 rounded-full text-white/90 hover:text-white transition-all z-50 border border-white/10 shadow-lg backdrop-blur-sm"
-                >
-                  <X size={24} />
-                </button>
-
-                <div className="mx-auto mb-4 w-28 h-28 sm:w-32 sm:h-32 relative shadow-[0_0_30px_rgba(0,0,0,0.5)] rounded-3xl overflow-hidden bg-slate-800 group">
-                  <img 
-                    src={selectedApp.thumbnail || selectedApp.image} 
-                    alt="Preview"
-                    className="absolute inset-0 w-full h-full object-cover blur-md scale-110 opacity-50"
-                  />
-                  <img 
-                    src={selectedApp.image} 
-                    alt={selectedApp.name}
-                    className="relative z-10 w-full h-full object-cover transition-opacity duration-500 ease-in-out"
-                  />
-                  <div className="absolute inset-0 rounded-3xl border border-white/10 z-20 pointer-events-none" />
+            {/* Contenido con Scroll */}
+            <div className="relative p-6 pt-12 text-center max-h-[85vh] overflow-y-auto overscroll-contain no-scrollbar">
+              
+              {/* Etiqueta Premium */}
+              {getBadge(selectedApp) && (
+                <div className="absolute top-0 left-0 z-10">
+                   <div className="px-4 py-1.5 rounded-br-2xl bg-yellow-500/10 border-b border-r border-yellow-500/20 text-yellow-200 text-[10px] font-bold tracking-wider uppercase backdrop-blur-md shadow-sm">
+                      {getBadge(selectedApp)}
+                   </div>
                 </div>
+              )}
 
-                <h2 className="text-2xl font-bold text-white mb-1">
-                  {getBadge(selectedApp) ? selectedApp.name.replace(getBadge(selectedApp), "").replace("-", "").trim() : selectedApp.name}
-                </h2>
-                <p className="text-sm font-bold mb-4 bg-gradient-to-r from-teal-400 to-purple-500 bg-clip-text text-transparent w-fit mx-auto">
-                  {selectedApp.developer}
-                </p>
+              {/* Imagen Central */}
+              <div className="mx-auto mb-4 w-28 h-28 sm:w-32 sm:h-32 relative shadow-[0_0_30px_rgba(0,0,0,0.5)] rounded-3xl overflow-hidden bg-slate-800 group">
+                <img 
+                  src={selectedApp.thumbnail || selectedApp.image} 
+                  alt="Preview"
+                  className="absolute inset-0 w-full h-full object-cover blur-md scale-110 opacity-50"
+                />
+                <img 
+                  src={selectedApp.image} 
+                  alt={selectedApp.name}
+                  className="relative z-10 w-full h-full object-cover transition-opacity duration-500 ease-in-out opacity-0"
+                  onLoad={(e) => e.currentTarget.classList.remove('opacity-0')} 
+                />
+                <div className="absolute inset-0 rounded-3xl border border-white/10 z-20 pointer-events-none" />
+              </div>
 
-                <div className="flex justify-center gap-6 text-sm text-slate-400 mb-8 border-y border-white/5 py-4">
-                  <div className="flex flex-col items-center">
-                    <span className="font-bold text-white text-base">{selectedApp.rating}</span>
-                    <span className="text-xs">Valoración</span>
-                  </div>
-                  <div className="flex flex-col items-center border-l border-white/10 pl-6">
-                    <span className="font-bold text-white text-base">{selectedApp.size}</span>
-                    <span className="text-xs">Tamaño</span>
-                  </div>
-                  <div className="flex flex-col items-center border-l border-white/10 pl-6">
-                    <span className="font-bold text-white text-base">{selectedApp.version}</span>
-                    <span className="text-xs">Versión</span>
-                  </div>
+              {/* Textos */}
+              <h2 className="text-2xl font-bold text-white mb-1">
+                {getBadge(selectedApp) ? selectedApp.name.replace(getBadge(selectedApp), "").replace("-", "").trim() : selectedApp.name}
+              </h2>
+              <p className="text-sm font-bold mb-4 bg-gradient-to-r from-teal-400 to-purple-500 bg-clip-text text-transparent w-fit mx-auto">
+                {selectedApp.developer}
+              </p>
+
+              {/* Stats */}
+              <div className="flex justify-center gap-6 text-sm text-slate-400 mb-8 border-y border-white/5 py-4">
+                <div className="flex flex-col items-center">
+                  <span className="font-bold text-white text-base">{selectedApp.rating}</span>
+                  <span className="text-xs">Valoración</span>
                 </div>
+                <div className="flex flex-col items-center border-l border-white/10 pl-6">
+                  <span className="font-bold text-white text-base">{selectedApp.size}</span>
+                  <span className="text-xs">Tamaño</span>
+                </div>
+                <div className="flex flex-col items-center border-l border-white/10 pl-6">
+                  <span className="font-bold text-white text-base">{selectedApp.version}</span>
+                  <span className="text-xs">Versión</span>
+                </div>
+              </div>
 
-                <div className="text-left mb-6 space-y-4">
-                  <div>
-                    <h3 className="text-sm font-bold text-slate-300 uppercase tracking-wider mb-2">Descripción</h3>
-                    <p className="text-slate-400 text-sm leading-relaxed">{selectedApp.description}</p>
-                    {selectedApp.warning && (
-                      <div className="mt-4 p-3 rounded-xl bg-sky-500/10 border border-sky-500/20 shadow-[0_0_15px_rgba(14,165,233,0.1)] flex items-center justify-center gap-3">
-                        <AlertTriangle className="text-sky-400 shrink-0" size={20} />
-                        <p className="text-sky-300 text-xs font-bold leading-relaxed text-left">
-                          {selectedApp.warning.replace("⚠️", "").replace("Nota:", "").trim()}
-                        </p>
+              {/* Descripción */}
+              <div className="text-left mb-6 space-y-4">
+                <div>
+                  <h3 className="text-sm font-bold text-slate-300 uppercase tracking-wider mb-2">Descripción</h3>
+                  <p className="text-slate-400 text-sm leading-relaxed">{selectedApp.description}</p>
+                  {selectedApp.warning && (
+                    <div className="mt-4 p-3 rounded-xl bg-sky-500/10 border border-sky-500/20 shadow-[0_0_15px_rgba(14,165,233,0.1)] flex items-center justify-center gap-3">
+                      <div className="animate-pulse">
+                        <AlertTriangle className="text-sky-400" size={20} />
                       </div>
-                    )}
-                  </div>
-
-                  {/* Galería (Cascada Suave Restaurada) */}
-                  <div className="mb-6">
-                     <h3 className="text-sm font-bold text-slate-300 uppercase tracking-wider mb-3 flex items-center gap-2">
-                       <ImageIcon size={14} /> Galería
-                     </h3>
-                     <div className="flex gap-3 overflow-x-auto pb-4 snap-x snap-mandatory no-scrollbar -mx-4 px-4">
-                       {(selectedApp.screenshots || [selectedApp.image, selectedApp.image, selectedApp.image]).map((shot, idx) => (
-                         <div 
-                           key={idx} 
-                           onClick={() => setCurrentScreenshotIndex(idx)}
-                           className="flex-none w-28 h-28 aspect-square relative rounded-xl overflow-hidden border border-white/10 bg-slate-900 snap-center shadow-lg group/shot cursor-zoom-in hover:border-teal-500/50 transition-colors stagger-enter"
-                           style={{ animationDelay: `${50 + (idx * 80)}ms` }}
-                         >
-                           <img
-                             src={shot} 
-                             alt={`Screenshot ${idx + 1}`}
-                             loading="lazy"
-                             className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover/shot:opacity-100 group-hover/shot:scale-110 transition-all duration-500"
-                           />
-                           <div className="absolute inset-0 bg-black/20 group-hover/shot:bg-transparent transition-colors" />
-                           <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/shot:opacity-100 transition-opacity duration-300 z-10 pointer-events-none">
-                              <div className="bg-black/60 p-1.5 rounded-full backdrop-blur-md">
-                                 <Maximize2 size={14} className="text-white" />
-                              </div>
-                           </div>
-                         </div>
-                       ))}
-                     </div>
-                  </div>
-
-                  <div>
-                    <h3 className="text-sm font-bold text-teal-300 uppercase tracking-wider mb-3 flex items-center gap-2">
-                      <Zap size={14} /> Características del Mod
-                    </h3>
-                    <ul className="space-y-2">
-                      {selectedApp.modFeatures.map((feat, idx) => (
-                        <li key={idx} className="flex items-center gap-3 text-sm text-slate-300 bg-white/5 p-2 rounded-lg">
-                          <div className="w-1.5 h-1.5 rounded-full bg-teal-400 shadow-[0_0_8px_rgba(45,212,191,0.8)]" />
-                          {feat}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                      <p className="text-sky-300 text-xs font-bold leading-relaxed text-left">
+                        {selectedApp.warning.replace("⚠️", "").replace("Nota:", "").trim()}
+                      </p>
+                    </div>
+                  )}
                 </div>
 
-                <div className="flex items-center gap-4 mt-6">
-                   <button
-                     onClick={(e) => toggleFavorite(e, selectedApp.id)}
-                     className="p-3 bg-slate-800 rounded-xl border border-white/10 hover:bg-slate-700 transition-colors"
-                   >
-                     <Heart 
-                       size={24} 
-                       className={favorites.includes(selectedApp.id) ? "text-pink-500 fill-pink-500" : "text-slate-400"} 
-                     />
-                   </button>
-                   <div className="flex-1">
-                     <DownloadButton onClick={() => handleDownload(null, selectedApp.id)} loading={downloadingId === selectedApp.id} />
+                {/* 📸 Galería (Cascada Suave) */}
+                <div className="mb-6">
+                   <h3 className="text-sm font-bold text-slate-300 uppercase tracking-wider mb-3 flex items-center gap-2">
+                     <ImageIcon size={14} /> Galería
+                   </h3>
+                   <div className="flex gap-3 overflow-x-auto pb-4 snap-x snap-mandatory no-scrollbar -mx-4 px-4">
+                     {(selectedApp.screenshots || [selectedApp.image, selectedApp.image, selectedApp.image]).map((shot, idx) => (
+                       <div 
+                         key={idx} 
+                         onClick={() => setCurrentScreenshotIndex(idx)}
+                         className="flex-none w-28 h-28 aspect-square relative rounded-xl overflow-hidden border border-white/10 bg-slate-900 snap-center shadow-lg group/shot cursor-zoom-in hover:border-teal-500/50 transition-colors stagger-enter"
+                         style={{ animationDelay: `${50 + (idx * 100)}ms` }}
+                       >
+                         <img
+                           src={shot} 
+                           alt={`Screenshot ${idx + 1}`}
+                           loading="lazy"
+                           className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover/shot:opacity-100 group-hover/shot:scale-110 transition-all duration-500"
+                         />
+                         <div className="absolute inset-0 bg-black/20 group-hover/shot:bg-transparent transition-colors" />
+                         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/shot:opacity-100 transition-opacity duration-300 z-10 pointer-events-none">
+                            <div className="bg-black/60 p-1.5 rounded-full backdrop-blur-md">
+                               <Maximize2 size={14} className="text-white" />
+                            </div>
+                         </div>
+                       </div>
+                     ))}
                    </div>
                 </div>
 
-                <p className="mt-4 text-[10px] text-slate-600 flex items-center justify-center gap-1">
-                  <ShieldCheck size={10} /> Verificado por Play Protect. Libre de virus.
-                </p>
+                {/* Features */}
+                <div>
+                  <h3 className="text-sm font-bold text-teal-300 uppercase tracking-wider mb-3 flex items-center gap-2">
+                    <Zap size={14} /> Características del Mod
+                  </h3>
+                  <ul className="space-y-2">
+                    {selectedApp.modFeatures.map((feat, idx) => (
+                      <li key={idx} className="flex items-center gap-3 text-sm text-slate-300 bg-white/5 p-2 rounded-lg">
+                        <div className="w-1.5 h-1.5 rounded-full bg-teal-400 shadow-[0_0_8px_rgba(45,212,191,0.8)]" />
+                        {feat}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-           )}
+
+              {/* Botones */}
+              <div className="flex items-center gap-4 mt-6">
+                 <button
+                   onClick={(e) => toggleFavorite(e, selectedApp.id)}
+                   className="p-3 bg-slate-800 rounded-xl border border-white/10 hover:bg-slate-700 transition-colors"
+                 >
+                   <Heart 
+                     size={24} 
+                     className={favorites.includes(selectedApp.id) ? "text-pink-500 fill-pink-500" : "text-slate-400"} 
+                   />
+                 </button>
+                 <div className="flex-1">
+                   <DownloadButton onClick={() => handleDownload(null, selectedApp.id)} loading={downloadingId === selectedApp.id} />
+                 </div>
+              </div>
+
+              <p className="mt-4 text-[10px] text-slate-600 flex items-center justify-center gap-1">
+                <ShieldCheck size={10} /> Verificado por Play Protect. Libre de virus.
+              </p>
+            </div>
+          </div>
         </div>
-      </div>
+      )}
 
       {/* 🖼️ VISOR FULL SCREEN (LIGHTBOX) */}
       {selectedApp && currentScreenshotIndex !== null && (

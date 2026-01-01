@@ -31,6 +31,36 @@ const getBadge = (app) => {
 
 const INITIAL_APPS = [
 
+  {
+    id: 25,
+    name: "Nomad Music Premium",
+    developer: "FonApps",
+    category: "Entretenimiento",
+    rating: 4.7,
+    downloads: "5M+",
+    size: "28,4 MB",
+    version: "v3.8.2",
+    image: "/icons/nomad_music.webp",
+    thumbnail: "/Thumb/nomad_music_thumb.webp",
+    screenshots: [
+      "/screenshots/nomad_music_1.webp",
+      "/screenshots/nomad_music_2.webp",
+      "/screenshots/nomad_music_3.webp",
+      "/screenshots/nomad_music_4.webp"
+    ],
+    thumbs: [
+      "/screenshots/gallery_thumbs/nomad_music_1.webp",
+      "/screenshots/gallery_thumbs/nomad_music_2.webp",
+      "/screenshots/gallery_thumbs/nomad_music_3.webp",
+      "/screenshots/gallery_thumbs/nomad_music_4.webp"
+    ],
+    description: "Un reproductor de música offline elegante y ligero, ideal para quienes buscan simplicidad. Versión Premium desbloqueada: elimina totalmente la publicidad y accede a todos los temas visuales (Skins) exclusivos. Incluye herramientas útiles como cortador de tonos y un ecualizador de 5 bandas con refuerzo de graves.",
+    modFeatures: ["Premium Desbloqueado", "Sin Anuncios", "Todos los Temas"],
+    updateDate: "2026-1-1",
+    isNew: true,
+    downloadUrl: "https://cuty.io/NomadMusic"
+  },
+
 {
     id: 24,
     name: "ReLens Camera Pro",
@@ -281,8 +311,8 @@ const INITIAL_APPS = [
     category: "IA",
     rating: 4.9,
     downloads: "50M+",
-    size: "24,65 MB",
-    version: "v1.0.96-02",
+    size: "24,67 MB",
+    version: "v1.0.97-08",
     image: "/icons/grok_ai.webp",
     thumbnail: "/Thumb/grok_ai_thumb.webp",
     screenshots: [
@@ -303,7 +333,7 @@ const INITIAL_APPS = [
     warning: "Nota: Debes iniciar sesión con tu cuenta de X (antes Twitter).",
     modFeatures: ["Premium Desbloqueado", "Imagine", "Sin Censura"],
     isUpdated: true,
-    updateDate: "2025-12-29",
+    updateDate: "2026-1-1",
     downloadUrl: "https://cuty.io/GrokAIX"
   },
   {
@@ -547,9 +577,9 @@ const INITIAL_APPS = [
     developer: "FonApps",
     category: "Entretenimiento",
     rating: 4.7,
-    downloads: "100M+",
-    size: "24,34 MB",
-    version: "v6.33.5",
+    downloads: "500M+",
+    size: "24,91B",
+    version: "v6.34.12",
     image: "/icons/lark_player.webp",
     thumbnail: "/Thumb/lark_player_thumb.webp",
     screenshots: [
@@ -566,10 +596,11 @@ const INITIAL_APPS = [
       "/screenshots/gallery_thumbs/lark_player_4.webp",
       "/screenshots/gallery_thumbs/lark_player_5.webp"
     ],
-    description: "Reproductor de música Versión Premium desbloqueada: sin anuncios, ecualizador avanzado, temas exclusivos y soporte para letras flotantes en todas tus canciones.",
+    description: "Un reproductor multimedia offline versátil que soporta todos los formatos de audio y video populares (MP3, FLAC, MKV). Versión Premium desbloqueada: disfruta de una experiencia fluida sin publicidad intrusiva. Incluye ecualizadores potentes con preajustes para géneros como Reggaetón y Rock, letras sincronizadas en tiempo real y modo de ventana flotante para multitarea.",
     modFeatures: ["Sin Anuncios", "Temas Premium", "Ecualizador Pro"],
-    isUpdated: false,
-    downloadUrl: "https://cuty.io/LarkPlayer"
+    isUpdated: true,
+    updateDate: "2026-1-1",
+    downloadUrl: "https://cuty.io/LarkPlayerFA"
   },
   {
     id: 5,

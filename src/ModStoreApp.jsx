@@ -504,7 +504,7 @@ const INITIAL_APPS = [
       "/screenshots/gallery_thumbs/grok_3.webp",
       "/screenshots/gallery_thumbs/grok_4.webp"
     ],
-    description: "Mensajería instantánea en su estado más puro: simple, rápida y segura. Disfruta de una sincronización perfecta entre todos tus dispositivos con almacenamiento ilimitado en la nube. Utiliza una infraestructura global distribuida para ofrecer la máxima velocidad de conexión, cifrado avanzado para tu privacidad y herramientas poderosas para gestionar comunidades y compartir archivos de gran tamaño sin restricciones.",
+    description: "Mensajería instantánea: simple, rápida y segura.\n\nDisfruta de una sincronización perfecta entre todos tus dispositivos con almacenamiento ilimitado en la nube.\n\nUtiliza una infraestructura global distribuida para ofrecer la máxima velocidad de conexión, cifrado avanzado para tu privacidad y herramientas poderosas para gestionar comunidades y compartir archivos de gran tamaño sin restricciones.",
     modFeatures: ["Premium Desbloqueado", "Gestión avanzada de chats", "Traducir chats enteros","Velocidad de descarga y subida+","Más"],
      updateDate: "2026-1-3",
     isUpdated: true,
@@ -535,7 +535,7 @@ const INITIAL_APPS = [
       "/screenshots/gallery_thumbs/powerdirector_4.webp",
       "/screenshots/gallery_thumbs/powerdirector_5.webp"
     ],
-    description: "El editor de video más profesional. Versión Premium desbloqueada: exportación en 4K Ultra HD, sin marca de agua, estabilizador de video y acceso ilimitado a todo el stock de música y efectos.",
+    description: "El editor de video más profesional.\n\n Versión Premium desbloqueada: exportación en 4K Ultra HD, sin marca de agua, estabilizador de video y acceso ilimitado a todo el stock de música y efectos.",
     modFeatures: ["Sin Marca de Agua", "Exportación 4K", "Todo Desbloqueado"],
     isUpdated: false,
     downloadUrl: "https://cuty.io/PowerDirecto"
@@ -1434,19 +1434,29 @@ export default function ModStoreApp() {
   
 
   return (
-    <div className="min-h-screen text-slate-200 font-sans selection:bg-teal-500/30">
-      
-      <style>{`
+   <div className="min-h-screen text-slate-200 selection:bg-teal-500/30 overflow-x-hidden w-full relative" style={{ fontFamily: "'Outfit', sans-serif" }}>
+     <style>{`
+        /* 1. IMPORTAR LA FUENTE OUTFIT */
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+        /* 2. APLICAR GLOBALMENTE */
+        html, body {
+          max-width: 100%;
+          overflow-x: hidden;
+          font-family: 'Outfit', sans-serif !important; /* Forzamos la nueva fuente */
+        }
+
         html { 
           overflow-y: scroll;
-          scrollbar-gutter: stable; /* Evita el salto del layout */
+          scrollbar-gutter: stable; 
         }
+        
         ::-webkit-scrollbar { width: 10px; }
         ::-webkit-scrollbar-track { background: #0a0a12; }
         ::-webkit-scrollbar-thumb { background: #334155; border-radius: 5px; }
         ::-webkit-scrollbar-thumb:hover { background: #475569; }
         
-        /* ✅ Animación de Cascada Suave (Sin Rebotes) */
+        /* Animaciones */
         @keyframes slideUpFade {
           from { opacity: 0; transform: translateY(15px); }
           to { opacity: 1; transform: translateY(0); }
@@ -1457,7 +1467,6 @@ export default function ModStoreApp() {
           will-change: transform, opacity;
         }
         
-        /* Animaciones para el Grid y Carousel */
         .animate-content { animation: contentShow 0.3s ease-out forwards; }
         @keyframes contentShow {
           from { opacity: 0; transform: scale(0.96); }
@@ -1649,22 +1658,29 @@ export default function ModStoreApp() {
                 </div>
               </div>
 
-              {/* Descripción */}
-              <div className="text-left mb-6 space-y-4">
-                <div>
-                  <h3 className="text-sm font-bold text-slate-300 uppercase tracking-wider mb-2">Descripción</h3>
-                  <p className="text-slate-400 text-sm leading-relaxed">{selectedApp.description}</p>
-                  {selectedApp.warning && (
-                    <div className="mt-4 p-3 rounded-xl bg-sky-500/10 border border-sky-500/20 shadow-[0_0_15px_rgba(14,165,233,0.1)] flex items-center justify-center gap-3">
-                      <div className="animate-pulse">
-                        <AlertTriangle className="text-sky-400" size={20} />
-                      </div>
-                      <p className="text-sky-300 text-xs font-bold leading-relaxed text-left">
-                        {selectedApp.warning.replace("⚠️", "").replace("Nota:", "").trim()}
-                      </p>
-                    </div>
-                  )}
-                </div>
+             {/* Descripción Mejorada */}
+<div className="text-left mb-6 space-y-4">
+  <div>
+    <h3 className="text-sm font-bold text-teal-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+      <Star size={14} className="animate-pulse"/> Descripción
+    </h3>
+    
+    {/* CAMBIO AQUÍ: whitespace-pre-line permite párrafos y text-slate-300 da más brillo */}
+    <p className="text-slate-300 text-sm leading-7 whitespace-pre-line font-light">
+      {selectedApp.description}
+    </p>
+
+    {selectedApp.warning && (
+      <div className="mt-4 p-3 rounded-xl bg-sky-500/10 border border-sky-500/20 shadow-[0_0_15px_rgba(14,165,233,0.1)] flex items-center justify-center gap-3">
+        <div className="animate-pulse">
+          <AlertTriangle className="text-sky-400" size={20} />
+        </div>
+        <p className="text-sky-300 text-xs font-bold leading-relaxed text-left">
+          {selectedApp.warning.replace("⚠️", "").replace("Nota:", "").trim()}
+        </p>
+      </div>
+    )}
+  </div>
 
                 {/* 📸 Galería (Cascada Suave) */}
                 <div className="mb-6">

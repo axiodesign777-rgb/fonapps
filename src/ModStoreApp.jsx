@@ -56,7 +56,6 @@ const INITIAL_APPS = [
     ],
     description: "Un reproductor de música offline elegante y ligero, ideal para quienes buscan simplicidad. Versión Premium desbloqueada: elimina totalmente la publicidad y accede a todos los temas visuales (Skins) exclusivos. Incluye herramientas útiles como cortador de tonos y un ecualizador de 5 bandas con refuerzo de graves.",
     modFeatures: ["Premium Desbloqueado", "Sin Anuncios", "Todos los Temas"],
-    updateDate: "2026-1-1",
     isNew: true,
     downloadUrl: "https://cuty.io/NomadMusic"
   },
@@ -87,7 +86,7 @@ const INITIAL_APPS = [
     description: "Convierte tu dispositivo en una cámara DSLR profesional con grandes aperturas ópticas. Versión VIP totalmente desbloqueada: accede al sistema de fotografía computacional avanzado para lograr un efecto bokeh profundo y realista (f/1.4). Disfruta de todos los lentes clásicos, controles manuales de exposición completos y grabación en 4K UHD sin restricciones.",
     modFeatures: ["VIP Desbloqueado", "Efecto Bokeh DSLR", "Todos los Lentes", "Todos los Filtros VIP"],
     updateDate: "2025-12-30",
-    isUpdated: true,
+    isUpdated: false,
     isNew: true,
     downloadUrl: "https://cuty.io/RelensVip"
   },
@@ -150,7 +149,7 @@ const INITIAL_APPS = [
     description: "Transforma tu teléfono en una interfaz futurista de ciencia ficción. Versión Prime totalmente desbloqueada: acceso a todos los temas 4D Premium, widgets de sistema avanzados, personalización de colores estilo 'hacker' y eliminación completa de publicidad.",
     modFeatures: ["Prime Desbloqueado", "Temas 4D", "Estilo Hacker"],
 
-    isUpdated: true,
+    isUpdated: false,
     isNew: true,
     downloadUrl: "https://cuty.io/AlphaLaunch"
   },
@@ -332,8 +331,7 @@ const INITIAL_APPS = [
     description: "Accede a la inteligencia artificial más audaz y sin censura. Respuestas en tiempo real con datos actualizados y modo sarcástico desbloqueado.",
     warning: "Nota: Debes iniciar sesión con tu cuenta de X (antes Twitter).",
     modFeatures: ["Premium Desbloqueado", "Imagine", "Sin Censura"],
-    isUpdated: true,
-    updateDate: "2026-1-1",
+    isUpdated: false,
     downloadUrl: "https://cuty.io/GrokAIX"
   },
   {
@@ -491,14 +489,14 @@ const INITIAL_APPS = [
     rating: 3.9,
     downloads: "1B+",
     size: "38,79 MB",
-    version: "v12.2.10",
+    version: "v12.3.0",
     image: "/icons/telegram.webp",
     thumbnail: "/Thumb/telegram_thumb.webp",
     screenshots: [
-      "/screenshots/grok_1.webp",
-      "/screenshots/grok_2.webp",
-      "/screenshots/grok_3.webp",
-      "/screenshots/grok_4.webp"
+      "/screenshots/telegram_1.webp",
+      "/screenshots/telegram_2.webp",
+      "/screenshots/telegram_3.webp",
+      "/screenshots/telegram_4.webp"
     ],
     thumbs: [
       "/screenshots/gallery_thumbs/grok_1.webp",
@@ -506,9 +504,10 @@ const INITIAL_APPS = [
       "/screenshots/gallery_thumbs/grok_3.webp",
       "/screenshots/gallery_thumbs/grok_4.webp"
     ],
-    description: "La mensajería más rápida y segura. Versión Premium desbloqueada: descargas ultra rápidas, iconos premium exclusivos, traducción en tiempo real y sin anuncios..",
-    modFeatures: ["Premium Desbloqueado", "Descarga Rápida", "Traducir chats enteros"],
-    isUpdated: false,
+    description: "Mensajería instantánea en su estado más puro: simple, rápida y segura. Disfruta de una sincronización perfecta entre todos tus dispositivos con almacenamiento ilimitado en la nube. Utiliza una infraestructura global distribuida para ofrecer la máxima velocidad de conexión, cifrado avanzado para tu privacidad y herramientas poderosas para gestionar comunidades y compartir archivos de gran tamaño sin restricciones.",
+    modFeatures: ["Premium Desbloqueado", "Descarga Rápida", "Traducir chats enteros","Velocidad de descarga y subida+","Más"],
+     updateDate: "2026-1-3",
+    isUpdated: true,
     downloadUrl: "https://cuty.io/TelegramVIP"
   },
   {
@@ -538,7 +537,7 @@ const INITIAL_APPS = [
     ],
     description: "El editor de video más profesional. Versión Premium desbloqueada: exportación en 4K Ultra HD, sin marca de agua, estabilizador de video y acceso ilimitado a todo el stock de música y efectos.",
     modFeatures: ["Sin Marca de Agua", "Exportación 4K", "Todo Desbloqueado"],
-    isUpdated: true,
+    isUpdated: false,
     downloadUrl: "https://cuty.io/PowerDirecto"
   },
   {

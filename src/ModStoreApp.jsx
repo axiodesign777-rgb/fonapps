@@ -505,7 +505,7 @@ const INITIAL_APPS = [
       "/screenshots/gallery_thumbs/grok_4.webp"
     ],
     description: "Mensajería instantánea en su estado más puro: simple, rápida y segura. Disfruta de una sincronización perfecta entre todos tus dispositivos con almacenamiento ilimitado en la nube. Utiliza una infraestructura global distribuida para ofrecer la máxima velocidad de conexión, cifrado avanzado para tu privacidad y herramientas poderosas para gestionar comunidades y compartir archivos de gran tamaño sin restricciones.",
-    modFeatures: ["Premium Desbloqueado", "Descarga Rápida", "Traducir chats enteros","Velocidad de descarga y subida+","Más"],
+    modFeatures: ["Premium Desbloqueado", "Gestión avanzada de chats", "Traducir chats enteros","Velocidad de descarga y subida+","Más"],
      updateDate: "2026-1-3",
     isUpdated: true,
     downloadUrl: "https://cuty.io/TelegramVIP"

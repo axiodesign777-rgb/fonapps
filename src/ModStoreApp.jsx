@@ -310,7 +310,7 @@ const INITIAL_APPS = [
     category: "IA",
     rating: 4.9,
     downloads: "50M+",
-    size: "24,67 MB",
+    size: "24,74 MB",
     version: "v1.0.98-29",
     image: "/icons/grok_ai.webp",
     thumbnail: "/Thumb/grok_ai_thumb.webp",
@@ -331,7 +331,8 @@ const INITIAL_APPS = [
     description: "Accede a la inteligencia artificial más audaz y sin censura. Respuestas en tiempo real con datos actualizados y modo sarcástico desbloqueado.",
     warning: "Nota: Debes iniciar sesión con tu cuenta de X (antes Twitter).",
     modFeatures: ["Premium Desbloqueado", "Imagine", "Sin Censura"],
-    isUpdated: false,
+     updateDate: "2026-1-4",
+    isUpdated: true,
     downloadUrl: "https://cuty.io/GrokAIX"
   },
   {
@@ -488,7 +489,7 @@ const INITIAL_APPS = [
     category: "Social",
     rating: 3.9,
     downloads: "1B+",
-    size: "38,79 MB",
+    size: "38,91 MB",
     version: "v12.3.0",
     image: "/icons/telegram.webp",
     thumbnail: "/Thumb/telegram_thumb.webp",
@@ -505,7 +506,7 @@ const INITIAL_APPS = [
       "/screenshots/gallery_thumbs/grok_4.webp"
     ],
     description: "Mensajería instantánea: simple, rápida y segura.\n\nDisfruta de una sincronización perfecta entre todos tus dispositivos con almacenamiento ilimitado en la nube.\n\nUtiliza una infraestructura global distribuida para ofrecer la máxima velocidad de conexión, cifrado avanzado para tu privacidad y herramientas poderosas para gestionar comunidades y compartir archivos de gran tamaño sin restricciones.",
-    modFeatures: ["Premium Desbloqueado", "Gestión avanzada de chats", "Traducir chats enteros", "Copiar y guardar en canales privados"Velocidad de descarga y subida+","Más"],
+    modFeatures: ["Premium Desbloqueado", "Gestión avanzada de chats", "Traducir chats enteros", "Copiar y guardar en canales privados", "Velocidad de descarga y subida+","Más"],
      updateDate: "2026-1-3",
     isUpdated: true,
     downloadUrl: "https://cuty.io/TelegramVIP"

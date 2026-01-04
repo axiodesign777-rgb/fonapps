@@ -311,7 +311,7 @@ const INITIAL_APPS = [
     rating: 4.9,
     downloads: "50M+",
     size: "24,67 MB",
-    version: "v1.0.97-08",
+    version: "v1.0.98-29",
     image: "/icons/grok_ai.webp",
     thumbnail: "/Thumb/grok_ai_thumb.webp",
     screenshots: [
@@ -505,7 +505,7 @@ const INITIAL_APPS = [
       "/screenshots/gallery_thumbs/grok_4.webp"
     ],
     description: "Mensajería instantánea: simple, rápida y segura.\n\nDisfruta de una sincronización perfecta entre todos tus dispositivos con almacenamiento ilimitado en la nube.\n\nUtiliza una infraestructura global distribuida para ofrecer la máxima velocidad de conexión, cifrado avanzado para tu privacidad y herramientas poderosas para gestionar comunidades y compartir archivos de gran tamaño sin restricciones.",
-    modFeatures: ["Premium Desbloqueado", "Gestión avanzada de chats", "Traducir chats enteros","Velocidad de descarga y subida+","Más"],
+    modFeatures: ["Premium Desbloqueado", "Gestión avanzada de chats", "Traducir chats enteros", "Copiar y guardar en canales privados"Velocidad de descarga y subida+","Más"],
      updateDate: "2026-1-3",
     isUpdated: true,
     downloadUrl: "https://cuty.io/TelegramVIP"
@@ -535,7 +535,7 @@ const INITIAL_APPS = [
       "/screenshots/gallery_thumbs/powerdirector_4.webp",
       "/screenshots/gallery_thumbs/powerdirector_5.webp"
     ],
-    description: "El editor de video más profesional.\n\n Versión Premium desbloqueada: exportación en 4K Ultra HD, sin marca de agua, estabilizador de video y acceso ilimitado a todo el stock de música y efectos.",
+    description: "El editor de video más profesional. Versión Premium desbloqueada: exportación en 4K Ultra HD, sin marca de agua, estabilizador de video y acceso ilimitado a todo el stock de música y efectos.",
     modFeatures: ["Sin Marca de Agua", "Exportación 4K", "Todo Desbloqueado"],
     isUpdated: false,
     downloadUrl: "https://cuty.io/PowerDirecto"

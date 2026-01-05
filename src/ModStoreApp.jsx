@@ -311,7 +311,7 @@ const INITIAL_APPS = [
     rating: 4.9,
     downloads: "50M+",
     size: "24,74 MB",
-    version: "v1.0.98-29",
+    version: "v1.0.99-04",
     image: "/icons/grok_ai.webp",
     thumbnail: "/Thumb/grok_ai_thumb.webp",
     screenshots: [
@@ -331,7 +331,7 @@ const INITIAL_APPS = [
     description: "Accede a la inteligencia artificial más audaz y sin censura. Respuestas en tiempo real con datos actualizados y modo sarcástico desbloqueado.",
     warning: "Nota: Debes iniciar sesión con tu cuenta de X (antes Twitter).",
     modFeatures: ["Premium Desbloqueado", "Imagine", "Sin Censura"],
-     updateDate: "2026-1-4",
+     updateDate: "2026-1-5",
     isUpdated: true,
     downloadUrl: "https://cuty.io/GrokAIX"
   },

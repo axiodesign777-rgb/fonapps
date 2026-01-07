@@ -31,6 +31,68 @@ const getBadge = (app) => {
 
 const INITIAL_APPS = [
 
+
+  {
+    id: 27,
+    name: "Dynamic Island Pro",
+    developer: "FonApps",
+    category: "Personalización",
+    rating: 4.7,
+    downloads: "1M+",
+    size: "58,94 MB",
+    version: "v5.1",
+    image: "/icons/dynamic_island.webp",
+    thumbnail: "/Thumb/dynamic_island_thumb.webp",
+    screenshots: [
+      "/screenshots/dynamic_island_1.webp",
+      "/screenshots/dynamic_island_2.webp",
+      "/screenshots/dynamic_island_3.webp",
+      "/screenshots/dynamic_island_4.webp"
+    ],
+    thumbs: [
+      "/screenshots/gallery_thumbs/dynamic_island_1.webp",
+      "/screenshots/gallery_thumbs/dynamic_island_2.webp",
+      "/screenshots/gallery_thumbs/dynamic_island_3.webp",
+      "/screenshots/gallery_thumbs/dynamic_island_4.webp"
+    ],
+    description: "Lleva la interactividad de la 'Isla Dinámica' a tu Android. Transforma el notch de tu cámara en un centro de control elegante para notificaciones y música.\n\nVersión Pro totalmente desbloqueada: accede a todas las animaciones visuales, personalización de tamaño, colores, interacción multitarea y una experiencia libre de publicidad.",
+    modFeatures: ["Pro Desbloqueado", "Sin Anuncios","Personalización completa de la isla", "Animaciones Premium","Rendimiento general mejorado"],
+    updateDate: "2026-1-7",
+    isNew: true,
+    downloadUrl: "https://cuty.io/DynamicNotch"
+  },
+
+  
+  {
+    id: 26,
+    name: "YouTube Pro",
+    developer: "Prateek Chaubey",
+    category: "Entretenimiento",
+    rating: 4.8,
+    downloads: "10M+",
+    size: "61,13 KB",
+    version: "v3.95",
+    image: "/icons/youtube_pro.webp",
+    thumbnail: "/Thumb/youtube_pro_thumb.webp",
+    screenshots: [
+      "/screenshots/youtube_pro_1.webp",
+      "/screenshots/youtube_pro_2.webp",
+      "/screenshots/youtube_pro_3.webp",
+      "/screenshots/youtube_pro_4.webp"
+    ],
+    thumbs: [
+      "/screenshots/gallery_thumbs/youtube_pro_1.webp",
+      "/screenshots/gallery_thumbs/youtube_pro_2.webp",
+      "/screenshots/gallery_thumbs/youtube_pro_3.webp",
+      "/screenshots/gallery_thumbs/youtube_pro_4.webp"
+    ],
+    description: "Una alternativa ligera y potente para el streaming de video. Integra controles de deslizamiento para brillo y volumen, modo oscuro AMOLED real y descargas directas.\n\nDisfruta de reproducción en segundo plano, ventana flotante (PiP) y bloqueo total de anuncios. Ideal si buscas una experiencia más personalizable que la app estándar, no necesita los servicios de MicroG.",
+    modFeatures: ["Descargas de video y audio", "Controles de Gesto", "Bloqueo de Anuncios", "Gemini AI integrado", "Ultra ligero","Rendimiento general mejorado"],
+     updateDate: "2026-1-7",
+    isNew: true,
+    downloadUrl: "https://cuty.io/YoutubePro"
+  },
+
   {
     id: 25,
     name: "Nomad Music Premium",
@@ -55,8 +117,8 @@ const INITIAL_APPS = [
       "/screenshots/gallery_thumbs/nomad_music_4.webp"
     ],
     description: "Un reproductor de música offline elegante y ligero, ideal para quienes buscan simplicidad. Versión Premium desbloqueada: elimina totalmente la publicidad y accede a todos los temas visuales (Skins) exclusivos. Incluye herramientas útiles como cortador de tonos y un ecualizador de 5 bandas con refuerzo de graves.",
-    modFeatures: ["Premium Desbloqueado", "Sin Anuncios", "Todos los Temas"],
-    isNew: true,
+    modFeatures: ["Premium Desbloqueado", "Sin Anuncios", "Todos los Temas","Rendimiento general mejorado"],
+    isNew: false,
     downloadUrl: "https://cuty.io/NomadMusic"
   },
 
@@ -87,7 +149,7 @@ const INITIAL_APPS = [
     modFeatures: ["VIP Desbloqueado", "Efecto Bokeh DSLR", "Todos los Lentes", "Todos los Filtros VIP"],
     updateDate: "2025-12-30",
     isUpdated: false,
-    isNew: true,
+    isNew: false,
     downloadUrl: "https://cuty.io/RelensVip"
   },
 
@@ -115,10 +177,10 @@ const INITIAL_APPS = [
       "/screenshots/gallery_thumbs/spring_4.webp"
     ],
     description: "Transforma tus ideas en videos virales con la potencia de la Inteligencia Artificial. Versión Pro totalmente desbloqueada: accede a herramientas avanzadas como subtitulado automático, eliminación mágica de fondos y mejora de resolución por IA. Exporta tus clips en calidad cinematográfica 4K a 60FPS sin marcas de agua y disfruta de la biblioteca completa de música y efectos premium.",
-    modFeatures: ["Pro Desbloqueado", "Sin anuncios", "Sin Marca de Agua"],
+    modFeatures: ["Pro Desbloqueado", "Sin anuncios", "Sin Marca de Agua","Rendimiento general mejorado"],
      updateDate: "2025-12-30",
     isUpdated: false,
-    isNew: true,
+    isNew: false,
     downloadUrl: "https://cuty.io/SpringPremiu"
   },
   {
@@ -147,10 +209,10 @@ const INITIAL_APPS = [
       "/screenshots/gallery_thumbs/alpha_launcher_5.webp"
     ],
     description: "Transforma tu teléfono en una interfaz futurista de ciencia ficción. Versión Prime totalmente desbloqueada: acceso a todos los temas 4D Premium, widgets de sistema avanzados, personalización de colores estilo 'hacker' y eliminación completa de publicidad.",
-    modFeatures: ["Prime Desbloqueado", "Temas 4D", "Estilo Hacker"],
+    modFeatures: ["Prime Desbloqueado", "Temas 4D", "Estilo Hacker","Rendimiento general mejorado"],
 
     isUpdated: false,
-    isNew: true,
+    isNew: false,
     downloadUrl: "https://cuty.io/AlphaLaunch"
   },
   {
@@ -177,9 +239,9 @@ const INITIAL_APPS = [
       "/screenshots/gallery_thumbs/grok_4.webp"
     ],
     description: "Escribe sin errores en cualquier idioma. Hemos desbloqueado la versión Premium completa: corrección gramatical profunda basada en IA, sin límite de caracteres, escáner de texto por cámara (OCR) habilitado y experiencia totalmente libre de publicidad.",
-    modFeatures: ["Premium Desbloqueado", "Límite Texto 3000", "Escáner OCR"],
-    isUpdated: true,
-    isNew: true,
+    modFeatures: ["Premium Desbloqueado", "Límite Texto 3000", "Escáner OCR","Rendimiento general mejorado"],
+    isUpdated: false,
+    isNew: false,
     downloadUrl: "https://cuty.io/spellcheck"
   },
   {
@@ -208,9 +270,9 @@ const INITIAL_APPS = [
       "/screenshots/gallery_thumbs/exo_player_5.webp"
     ],
     description: "El reproductor de vídeo minimalista basado en la tecnología Exo de Google. Versión Pro desbloqueada: disfruta de tus películas y series sin interrupciones publicitarias. Soporte nativo para 4K, aceleración por hardware optimizada, subtítulos multi-idioma y compatibilidad total con formatos MKV, MP4 y AVI.",
-    modFeatures: ["Pro Desbloqueado", "Sin Anuncios", "Soporte 4K"],
-    isUpdated: true,
-    isNew: true,
+    modFeatures: ["Pro Desbloqueado", "Sin Anuncios", "Soporte 4K","Rendimiento general mejorado"],
+    isUpdated: false,
+    isNew: false,
     downloadUrl: "https://cuty.io/ExoPlayerPro"
   },
   {
@@ -237,9 +299,9 @@ const INITIAL_APPS = [
       "/screenshots/gallery_thumbs/grok_4.webp"
     ],
     description: "Navegación ultra rápida y segura sin límites. Hemos desbloqueado el acceso VIP total: conéctate a servidores premium de todo el mundo sin ver un solo anuncio. Protege tu privacidad, oculta tu IP y accede a contenido bloqueado en tu región con un solo toque.",
-    modFeatures: ["VIP Desbloqueado", "Sin Anuncios", "Servidores Globales"],
-    isUpdated: true,
-    isNew: true,
+    modFeatures: ["VIP Desbloqueado", "Sin Anuncios", "Servidores Globales","Rendimiento general mejorado"],
+    isUpdated: false,
+    isNew: false,
     downloadUrl: "https://cuty.io/SuperbVPN"
   },
   {
@@ -268,7 +330,7 @@ const INITIAL_APPS = [
       "/screenshots/gallery_thumbs/copilot_5.webp"
     ],
     description: "Desbloqueamos el potencial completo de la IA. Disfruta de acceso ilimitado al modelo GPT-5.1 y al generador de imágenes Ultra-HD sin pagar suscripción. Hemos eliminado todos los límites de uso, la censura en las respuestas y las colas de espera. Tienes la herramienta más potente de Microsoft totalmente liberada y a máxima velocidad en tu bolsillo.",
-    modFeatures: ["GPT-5.1 Desbloqueado", "DALL-E Ilimitado", "Velocidad Máxima"],
+    modFeatures: ["GPT-5.1 Desbloqueado", "DALL-E Ilimitado", "Velocidad Máxima","Rendimiento general mejorado"],
     warning: "Requisito: Inicia sesión con Microsoft para guardar tus chats.",
     isUpdated: false,
     downloadUrl: "https://cuty.io/MCopilotPRO"
@@ -281,7 +343,7 @@ const INITIAL_APPS = [
     rating: 4.8,
     downloads: "100M+",
     size: "36,77 MB",
-    version: "v2025.25",
+    version: "v2026.1",
     image: "/icons/weather_radar.webp",
     thumbnail: "/Thumb/weather_radar_thumb.webp",
     screenshots: [
@@ -299,7 +361,7 @@ const INITIAL_APPS = [
       "/screenshots/gallery_thumbs/weather_radar_5.webp"
     ],
     description: "La aplicación meteorológica líder en precisión. Versión Pro desbloqueada que ofrece radar de lluvia en tiempo real, alertas de clima severo, zoom ilimitado en mapas y pronósticos detallados a 14 días sin publicidad intrusiva.",
-    modFeatures: ["Pro Desbloqueado", "Sin Anuncios", "Radar Premium"],
+    modFeatures: ["Pro Desbloqueado", "Sin Anuncios", "Radar Premium","Rendimiento general mejorado"],
     isUpdated: false,
     downloadUrl: "https://cuty.io/TiempoyRadar"
   },
@@ -310,8 +372,8 @@ const INITIAL_APPS = [
     category: "IA",
     rating: 4.9,
     downloads: "50M+",
-    size: "24,74 MB",
-    version: "v1.0.99-04",
+    size: "24,81 MB",
+    version: "v1.1.01-02",
     image: "/icons/grok_ai.webp",
     thumbnail: "/Thumb/grok_ai_thumb.webp",
     screenshots: [
@@ -330,7 +392,7 @@ const INITIAL_APPS = [
     ],
     description: "Accede a la inteligencia artificial más audaz y sin censura. Respuestas en tiempo real con datos actualizados y modo sarcástico desbloqueado.",
     warning: "Nota: Debes iniciar sesión con tu cuenta de X (antes Twitter).",
-    modFeatures: ["Premium Desbloqueado", "Imagine", "Sin Censura"],
+    modFeatures: ["Premium Desbloqueado", "Imagine", "Sin Censura","Rendimiento general mejorado"],
      updateDate: "2026-1-5",
     isUpdated: true,
     downloadUrl: "https://cuty.io/GrokAIX"
@@ -361,7 +423,7 @@ const INITIAL_APPS = [
       "/screenshots/gallery_thumbs/nova_launcher_5.webp"
     ],
     description: "El launcher más potente y personalizable. Versión Prime totalmente desbloqueada: gestos, grupos en el cajón, ocultar aplicaciones y efectos de desplazamiento exclusivos.",
-    modFeatures: ["Prime Desbloqueado", "Gestos", "Ocultar Apps"],
+    modFeatures: ["Prime Desbloqueado", "Gestos", "Ocultar Apps","Rendimiento general mejorado"],
     isUpdated: false,
     downloadUrl: "https://cuty.io/NovaLauncher"
   },
@@ -391,7 +453,7 @@ const INITIAL_APPS = [
       "/screenshots/gallery_thumbs/niagara_launcher_5.webp"
     ],
     description: "La pantalla de inicio más limpia para Android. Versión Pro desbloqueada con acceso a todos los widgets,temas, iconos adaptativos y personalización avanzada de fuentes y colores.",
-    modFeatures: ["Pro Desbloqueado", "Widgets y temas Premium", "Iconos Adaptativos"],
+    modFeatures: ["Pro Desbloqueado", "Widgets y temas Premium", "Iconos Adaptativos","Rendimiento general mejorado"],
     isUpdated: false,
     downloadUrl: "https://cuty.io/NiagaraLaunc"
   },
@@ -419,7 +481,7 @@ const INITIAL_APPS = [
       "/screenshots/gallery_thumbs/grok_4.webp"
     ],
     description: "Tu asistente de respuestas con IA. Acceso Pro desbloqueado: búsquedas Pro ilimitadas, carga de archivos PDF/Imágenes sin límites y selección de modelos avanzados como GPT-5 y Claude 3.5 Sonnet.",
-    modFeatures: ["Max Desbloqueado", "Búsquedas Max Ilimitadas", "Modelos Premium"],
+    modFeatures: ["Max Desbloqueado", "Búsquedas Max Ilimitadas", "Modelos Premium","Rendimiento general mejorado"],
     isUpdated: false,
     downloadUrl: "https://cuty.io/Perplexity"
   },
@@ -435,10 +497,11 @@ const INITIAL_APPS = [
     image: "/icons/youtube.webp",
     thumbnail: "/Thumb/youtube_thumb.webp",
     screenshots: [
-      "/screenshots/grok_1.webp",
-      "/screenshots/grok_2.webp",
-      "/screenshots/grok_3.webp",
-      "/screenshots/grok_4.webp"
+      "/screenshots/youtube_1.webp",
+      "/screenshots/youtube_2.webp",
+      "/screenshots/youtube_3.webp",
+      "/screenshots/youtube_4.webp",
+      "/screenshots/youtube_5.webp"
     ],
     thumbs: [
       "/screenshots/gallery_thumbs/grok_1.webp",
@@ -448,7 +511,7 @@ const INITIAL_APPS = [
     ],
     description: "La mejor experiencia de YouTube sin anuncios. Incluye reproducción en segundo plano, SponsorBlock para saltar segmentos de relleno y personalización completa de la interfaz.",
     warning: "Requisito: Es necesario instalar MicroG para iniciar sesión con Google.",
-    modFeatures: ["Sin Anuncios", "Segundo Plano", "SponsorBlock"],
+    modFeatures: ["Sin Anuncios", "Segundo Plano", "SponsorBlock","Rendimiento general mejorado"],
     isUpdated: false,
     downloadUrl: "https://cuty.io/YouTubeVIP"
   },
@@ -478,7 +541,7 @@ const INITIAL_APPS = [
       "/screenshots/gallery_thumbs/web_caster_5.webp"
     ],
     description: "Transmite videos web, películas y series a tu TV, Chromecast o Roku sin restricciones. Versión Premium desbloqueada: sin anuncios, marcadores ilimitados y pantalla de inicio personalizada.",
-    modFeatures: ["Premium Desbloqueado", "Sin Anuncios", "Cola de Reproducción"],
+    modFeatures: ["Premium Desbloqueado", "Sin Anuncios", "Cola de Reproducción","Rendimiento general mejorado"],
     isUpdated: false,
     downloadUrl: "https://cuty.io/VideoCaster"
   },
@@ -506,7 +569,7 @@ const INITIAL_APPS = [
       "/screenshots/gallery_thumbs/grok_4.webp"
     ],
     description: "Mensajería instantánea: simple, rápida y segura.\n\nDisfruta de una sincronización perfecta entre todos tus dispositivos con almacenamiento ilimitado en la nube.\n\nUtiliza una infraestructura global distribuida para ofrecer la máxima velocidad de conexión, cifrado avanzado para tu privacidad y herramientas poderosas para gestionar comunidades y compartir archivos de gran tamaño sin restricciones.",
-    modFeatures: ["Premium Desbloqueado", "Gestión avanzada de chats", "Traducir chats enteros", "Copiar y guardar en canales privados", "Velocidad de descarga y subida+","Más"],
+    modFeatures: ["Premium Desbloqueado", "Gestión avanzada de chats", "Traducir chats enteros", "Copiar y guardar en canales privados", "Velocidad de descarga y subida+","Más","Rendimiento general mejorado"],
      updateDate: "2026-1-3",
     isUpdated: true,
     downloadUrl: "https://cuty.io/TelegramVIP"
@@ -537,7 +600,7 @@ const INITIAL_APPS = [
       "/screenshots/gallery_thumbs/powerdirector_5.webp"
     ],
     description: "El editor de video más profesional. Versión Premium desbloqueada: exportación en 4K Ultra HD, sin marca de agua, estabilizador de video y acceso ilimitado a todo el stock de música y efectos.",
-    modFeatures: ["Sin Marca de Agua", "Exportación 4K", "Todo Desbloqueado"],
+    modFeatures: ["Sin Marca de Agua", "Exportación 4K", "Todo Desbloqueado","Rendimiento general mejorado"],
     isUpdated: false,
     downloadUrl: "https://cuty.io/PowerDirecto"
   },
@@ -567,7 +630,7 @@ const INITIAL_APPS = [
       "/screenshots/gallery_thumbs/smart_launcher_5.webp"
     ],
     description: "El launcher más inteligente y eficiente. Versión Pro desbloqueada: búsqueda inteligente, categorías automáticas personalizables, widgets adaptativos y gestos avanzados en pantalla de inicio.",
-    modFeatures: ["Pro Desbloqueado", "Iconos Adaptativos", "Sin Anuncios"],
+    modFeatures: ["Pro Desbloqueado", "Iconos Adaptativos", "Sin Anuncios","Rendimiento general mejorado"],
     isUpdated: false,
     downloadUrl: "https://cuty.io/SmartLaunche"
   },
@@ -597,8 +660,8 @@ const INITIAL_APPS = [
       "/screenshots/gallery_thumbs/lark_player_5.webp"
     ],
     description: "Un reproductor multimedia offline versátil que soporta todos los formatos de audio y video populares (MP3, FLAC, MKV). Versión Premium desbloqueada: disfruta de una experiencia fluida sin publicidad intrusiva. Incluye ecualizadores potentes con preajustes para géneros como Reggaetón y Rock, letras sincronizadas en tiempo real y modo de ventana flotante para multitarea.",
-    modFeatures: ["Sin Anuncios", "Temas Premium", "Ecualizador Pro"],
-    isUpdated: true,
+    modFeatures: ["Sin Anuncios", "Temas Premium", "Ecualizador Pro","Rendimiento general mejorado"],
+    isUpdated: false,
     updateDate: "2026-1-1",
     downloadUrl: "https://cuty.io/LarkPlayerFA"
   },
@@ -628,7 +691,7 @@ const INITIAL_APPS = [
       "/screenshots/gallery_thumbs/samsung_music_5.webp"
     ],
     description: "El reproductor de música oficial de Samsung optimizado para todos los dispositivos. Interfaz One UI elegante, ecualizador avanzado y soporte para todos los formatos de audio con calidad premium.",
-    modFeatures: ["Interfaz One UI", "Ecualizador Pro", "Para todos los dispositivos"],
+    modFeatures: ["Interfaz One UI", "Ecualizador Pro", "Para todos los dispositivos","Rendimiento general mejorado"],
     isUpdated: false,
     downloadUrl: "https://cuty.io/SamsungMusic"
   },
@@ -658,7 +721,7 @@ const INITIAL_APPS = [
       "/screenshots/gallery_thumbs/chat_smith_5.webp"
     ],
     description: "Asistente inteligente avanzado impulsado por GPT-4. Versión Pro desbloqueada: diálogos ilimitados, procesamiento de imágenes, modo experto y sin anuncios de ningún tipo.",
-    modFeatures: ["Pro Desbloqueado", "Chat Ilimitado", "GPT-5 & Gemini 3 pro y mas..."],
+    modFeatures: ["Pro Desbloqueado", "Chat Ilimitado", "GPT-5 & Gemini 3 pro y mas...","Rendimiento general mejorado"],
     isUpdated: false,
     downloadUrl: "https://cuty.io/ChatSmithPro"
   },
@@ -686,7 +749,7 @@ const INITIAL_APPS = [
       "/screenshots/gallery_thumbs/grok_4.webp"
     ],
     description: "El componente esencial para usuarios de mods. Permite iniciar sesión con tu cuenta de Google en aplicaciones modificadas como YouTube ReVanced, garantizando sincronización y notificaciones sin servicios de Google oficiales.",
-    modFeatures: ["Login Google habilitado", "Sin rastreo de datos", "Ahorro de batería"],
+    modFeatures: ["Login Google habilitado", "Sin rastreo de datos", "Ahorro de batería","Rendimiento general mejorado"],
     isUpdated: false,
     downloadUrl: "https://ouo.io/D8wwCp"
   },
@@ -716,7 +779,7 @@ const INITIAL_APPS = [
       "/screenshots/gallery_thumbs/wallcraft_5.webp"
     ],
     description: "La biblioteca más vasta de fondos de pantalla en ultra alta definición. Acceso exclusivo a fondos 4K y 8K adaptados automáticamente al tamaño de tu pantalla, con efectos de paralaje 4D y sin interrupciones publicitarias.",
-    modFeatures: ["Premium Desbloqueado", "Fondos 8K y 4D", "Sin Publicidad"],
+    modFeatures: ["Premium Desbloqueado", "Fondos 8K y 4D", "Sin Publicidad","Rendimiento general mejorado"],
     isUpdated: false,
     downloadUrl: "https://cuty.io/WallcraftPro"
   },
@@ -744,7 +807,7 @@ const INITIAL_APPS = [
       "/screenshots/gallery_thumbs/grok_4.webp"
     ],
     description: "La solución definitiva para navegar sin fronteras. Acceso ilimitado a servidores en más de 80 países con ancho de banda infinito. Ideal para desbloquear streaming y proteger tu privacidad en redes públicas con cifrado de grado militar.",
-    modFeatures: ["Premium Desbloqueado", "Ancho de Banda Ilimitado", "Ubicaciones Pro"],
+    modFeatures: ["Premium Desbloqueado", "Ancho de Banda Ilimitado", "Ubicaciones Pro","Rendimiento general mejorado"],
     isUpdated: false,
     downloadUrl: "https://cuty.io/Urbanvpn"
   }

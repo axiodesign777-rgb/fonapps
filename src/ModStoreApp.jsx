@@ -9,16 +9,16 @@ import {
   Zap, 
   ShieldCheck, 
   TrendingUp,
-  Box,
-  Cpu,
-  ExternalLink,
-  ArrowUpRight,
-  AlertTriangle,
-  ChevronRight,
-  ChevronLeft,
-  Heart,
-  ImageIcon,
-  Maximize2,
+  Box, 
+  Cpu, 
+  ExternalLink, 
+  ArrowUpRight, 
+  AlertTriangle, 
+  ChevronRight, 
+  ChevronLeft, 
+  Heart, 
+  ImageIcon, 
+  Maximize2, 
   Globe 
 } from 'lucide-react';
 
@@ -32,6 +32,7 @@ const getBadge = (app) => {
 // ⚠️ CONFIGURACIÓN DE MONETIZACIÓN (API LOOTLABS)
 const MONETIZATION_API_TOKEN = "2d803576a9614950be0b4a776e603e452dec39fcd12f38df675ce96c2d8a8fdb"; 
 
+// ✅ BASE DE DATOS COMPLETA
 const INITIAL_APPS = [
   {
     id: 27,
@@ -485,8 +486,8 @@ const INITIAL_APPS = [
     category: "Personalización",
     rating: 4.7,
     downloads: "10M+",
-    size: "13,78 MB",
-    version: "v1.15.7",
+    size: "13,79 MB",
+    version: "v1.15.6",
     image: "/icons/niagara_launcher.webp",
     thumbnail: "/Thumb/niagara_launcher_thumb.webp",
     screenshots: [
@@ -509,10 +510,8 @@ const INITIAL_APPS = [
     description_en: "The cleanest home screen for Android. Unlocked Pro version with access to all widgets, themes, adaptive icons, and advanced font and color customization.",
     modFeatures_en: ["Pro Unlocked", "Premium Widgets/Themes", "Adaptive Icons", "Improved Performance"],
 
-    updateDate: "2026-1-9",
-
-    isUpdated: true,
-    downloadUrl: "https://www.mediafire.com/file/r5bnwbaprc9c20y/Niagara_Launcher_v1.15.7_PRO.apk/file"
+    isUpdated: false,
+    downloadUrl: "https://www.mediafire.com/file/c6hlrpxchd70vqn/Niagara_Launcher_v1.15.6_Premium.apk/file"
   },
   {
     id: 12,
@@ -1039,6 +1038,7 @@ const DownloadButton = ({ onClick, loading, text }) => (
     {loading ? (
       <>
         <div className="w-5 h-5 border-2 border-slate-900/30 border-t-slate-900 rounded-full animate-spin" />
+        {/* Aquí podríamos pasar también texto traducido para "Preparando...", pero lo dejo simple por ahora */}
         <span>...</span> 
       </>
     ) : (
@@ -1295,7 +1295,8 @@ export default function ModStoreApp() {
     }
 
     try {
-      const response = await fetch(`https://creators.lootlabs.gg/api/public/content_locker`, {
+      // ✅ CORRECCIÓN CRÍTICA: USAR PROXY PARA EVITAR BLOQUEO DE NAVEGADOR
+      const response = await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent('https://creators.lootlabs.gg/api/public/content_locker')}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

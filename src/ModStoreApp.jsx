@@ -1283,44 +1283,51 @@ export default function ModStoreApp() {
     setTimeout(() => setShowToast(false), 3000);
   };
 
+  // ✅ AQUÍ ESTÁ LA MAGIA DE LA IMPLEMENTACIÓN OFICIAL
   const getMonetizedLink = async (app) => {
-    // Si no hay token, devolver directo
+    // 1. Si no hay token configurado, devolvemos enlace directo (fallback)
     if (!MONETIZATION_API_TOKEN) return app.downloadUrl; 
 
-    // Revisar caché de sesión
+    // 2. Revisamos si ya creamos un enlace para esta app en esta sesión (para no spammear la API)
     const cacheKey = `loot_${app.id}`; 
     const cachedLink = sessionStorage.getItem(cacheKey);
     if (cachedLink) return cachedLink;
 
     try {
-      // 🚀 SOLUCIÓN OFICIAL: USAR "GET" PARA EVITAR BLOQUEOS Y PROXIES
-      // Construimos la URL con los parámetros query
-      const params = new URLSearchParams({
-        api_token: MONETIZATION_API_TOKEN,
-        title: app.name.substring(0, 30), // Max 30 chars
-        url: app.downloadUrl,
-        tier_id: '1',
-        number_of_tasks: '3',
-        theme: '1'
-      });
+      // 3. CONSTRUCCIÓN DE LA URL SEGÚN LA DOCUMENTACIÓN OFICIAL (GET Request)
+      // Usamos URLSearchParams para asegurar que los caracteres especiales se codifiquen bien
+      const params = new URLSearchParams();
+      params.append('api_token', MONETIZATION_API_TOKEN);
+      params.append('title', app.name.substring(0, 30)); // Limitado a 30 caracteres como pide la doc
+      params.append('url', app.downloadUrl); // El destino final (MediaFire)
+      params.append('tier_id', '1');
+      params.append('number_of_tasks', '3');
+      params.append('theme', '1');
 
-      // Añadimos thumbnail si existe
+      // Si tenemos thumbnail, la añadimos (usamos la URL absoluta de tu web)
       if (app.thumbnail) {
+        // Asumiendo que tu dominio es fonapps.vercel.app, ajústalo si es otro
         params.append('thumbnail', `https://fonapps.vercel.app${app.thumbnail}`);
       }
 
-      // Hacemos la petición GET directa (sin headers complejos que bloqueen)
-      const response = await fetch(`https://creators.lootlabs.gg/api/public/content_locker?${params.toString()}`, {
+      // 4. LA LLAMADA FETCH (Simple GET, sin headers complejos que bloqueen CORS)
+      const endpoint = `https://creators.lootlabs.gg/api/public/content_locker?${params.toString()}`;
+      
+      const response = await fetch(endpoint, {
         method: 'GET',
         headers: {
-          'Accept': 'application/json'
+          'Accept': 'application/json' // Solo pedimos JSON, nada raro
         }
       });
 
       const data = await response.json();
       
+      // 5. EXTRACCIÓN DEL ENLACE MONETIZADO
       let finalLink = null;
+      
+      // La API puede devolver "created" o "fetch" según la doc
       if (data?.type === "fetch" || data?.type === "created") {
+          // A veces devuelve un array en message, a veces un objeto. Manejamos ambos.
           if (Array.isArray(data.message) && data.message[0]?.loot_url) {
               finalLink = data.message[0].loot_url;
           } else if (data.message?.loot_url) {
@@ -1329,14 +1336,17 @@ export default function ModStoreApp() {
       }
 
       if (finalLink) {
+        // Guardamos en caché para la próxima vez
         sessionStorage.setItem(cacheKey, finalLink);
         return finalLink;
       }
       
+      // Si la API responde algo raro, logueamos y damos enlace directo
       console.warn("LootLabs API response:", data);
       return app.downloadUrl; 
       
     } catch (error) {
+      // Si todo falla (red, bloqueo), no dejamos al usuario tirado
       console.error("LootLabs Connection Error:", error);
       return app.downloadUrl; 
     }
@@ -1352,6 +1362,7 @@ export default function ModStoreApp() {
     setDownloadingId(id);
     showNotification(t.generating_link);
 
+    // Llamamos a la función corregida
     const finalLink = await getMonetizedLink(appToDownload);
 
     setDownloadingId(null);

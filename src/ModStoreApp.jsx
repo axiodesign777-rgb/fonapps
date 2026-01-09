@@ -1284,37 +1284,43 @@ export default function ModStoreApp() {
   };
 
   const getMonetizedLink = async (app) => {
+    // Si no hay token, devolver directo
     if (!MONETIZATION_API_TOKEN) return app.downloadUrl; 
 
+    // Revisar caché de sesión
     const cacheKey = `loot_${app.id}`; 
     const cachedLink = sessionStorage.getItem(cacheKey);
-
-    if (cachedLink) {
-      console.log("🚀 Usando enlace de memoria (Cache):", cachedLink);
-      return cachedLink;
-    }
+    if (cachedLink) return cachedLink;
 
     try {
-      // ✅ CORRECCIÓN CRÍTICA: USAR PROXY PARA EVITAR BLOQUEO DE NAVEGADOR
-      const response = await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent('https://creators.lootlabs.gg/api/public/content_locker')}`, {
-        method: 'POST',
+      // 🚀 SOLUCIÓN OFICIAL: USAR "GET" PARA EVITAR BLOQUEOS Y PROXIES
+      // Construimos la URL con los parámetros query
+      const params = new URLSearchParams({
+        api_token: MONETIZATION_API_TOKEN,
+        title: app.name.substring(0, 30), // Max 30 chars
+        url: app.downloadUrl,
+        tier_id: '1',
+        number_of_tasks: '3',
+        theme: '1'
+      });
+
+      // Añadimos thumbnail si existe
+      if (app.thumbnail) {
+        params.append('thumbnail', `https://fonapps.vercel.app${app.thumbnail}`);
+      }
+
+      // Hacemos la petición GET directa (sin headers complejos que bloqueen)
+      const response = await fetch(`https://creators.lootlabs.gg/api/public/content_locker?${params.toString()}`, {
+        method: 'GET',
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${MONETIZATION_API_TOKEN}`
-        },
-        body: JSON.stringify({
-          title: app.name.substring(0, 30), 
-          url: app.downloadUrl,             
-          tier_id: 1,                       
-          number_of_tasks: 3,               
-          theme: 1                          
-        })
+          'Accept': 'application/json'
+        }
       });
 
       const data = await response.json();
       
       let finalLink = null;
-      if (data?.type === "created") {
+      if (data?.type === "fetch" || data?.type === "created") {
           if (Array.isArray(data.message) && data.message[0]?.loot_url) {
               finalLink = data.message[0].loot_url;
           } else if (data.message?.loot_url) {
@@ -1327,11 +1333,11 @@ export default function ModStoreApp() {
         return finalLink;
       }
       
-      console.warn("Respuesta API LootLabs no válida:", data);
+      console.warn("LootLabs API response:", data);
       return app.downloadUrl; 
       
     } catch (error) {
-      console.error("Error conectando con LootLabs:", error);
+      console.error("LootLabs Connection Error:", error);
       return app.downloadUrl; 
     }
   };

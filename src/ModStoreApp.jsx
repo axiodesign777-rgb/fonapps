@@ -18,7 +18,8 @@ import {
   ChevronLeft,
   Heart,
   ImageIcon,
-  Maximize2
+  Maximize2,
+  Globe 
 } from 'lucide-react';
 
 // ✅ HELPER SIMPLIFICADO
@@ -29,7 +30,6 @@ const getBadge = (app) => {
 };
 
 // ⚠️ CONFIGURACIÓN DE MONETIZACIÓN (API LOOTLABS)
-// Pega tu token API aquí. Si está vacío "", se usarán los enlaces directos (Modo Seguro).
 const MONETIZATION_API_TOKEN = "2d803576a9614950be0b4a776e603e452dec39fcd12f38df675ce96c2d8a8fdb"; 
 
 const INITIAL_APPS = [
@@ -58,6 +58,10 @@ const INITIAL_APPS = [
     ],
     description: "Lleva la interactividad de la 'Isla Dinámica' a tu Android. Transforma el notch de tu cámara en un centro de control elegante para notificaciones y música.\n\nVersión Pro totalmente desbloqueada: accede a todas las animaciones visuales, personalización de tamaño, colores, interacción multitarea y una experiencia libre de publicidad.",
     modFeatures: ["Pro Desbloqueado", "Sin Anuncios","Personalización completa de la isla", "Animaciones Premium","Rendimiento general mejorado"],
+    
+    description_en: "Bring the 'Dynamic Island' interactivity to your Android. Fully unlocked Pro version: access all visual animations, size customization, multitasking interaction, and an ad-free experience.",
+    modFeatures_en: ["Pro Unlocked", "No Ads", "Full Island Customization", "Premium Animations", "Improved Performance"],
+
     updateDate: "2026-1-7",
     isNew: true,
     downloadUrl: "https://www.mediafire.com/file/9vt3w9ouzbdtmra/DynamicNotch_5.1_PREMIUM.apk/file"
@@ -87,6 +91,10 @@ const INITIAL_APPS = [
     ],
     description: "Una alternativa ligera y potente para el streaming de video. Integra controles de deslizamiento para brillo y volumen, modo oscuro AMOLED real y descargas directas.\n\nDisfruta de reproducción en segundo plano, ventana flotante (PiP) y bloqueo total de anuncios. Ideal si buscas una experiencia más personalizable que la app estándar, no necesita los servicios de MicroG.",
     modFeatures: ["Descargas de video y audio", "Controles de Gesto", "Bloqueo de Anuncios", "Gemini AI integrado", "Ultra ligero","Rendimiento general mejorado"],
+    
+    description_en: "A lightweight and powerful alternative for video streaming. Enjoy background playback, Picture-in-Picture (PiP), total ad blocking, and direct downloads. No MicroG needed.",
+    modFeatures_en: ["Video/Audio Downloads", "Gesture Controls", "Ad Block", "Gemini AI", "Ultra Light"],
+
     updateDate: "2026-1-7",
     isNew: true,
     downloadUrl: "https://www.mediafire.com/file/j9d22zf4f0hnt20/YouTube_pro.apk/file"
@@ -116,6 +124,10 @@ const INITIAL_APPS = [
     ],
     description: "Un reproductor de música offline elegante y ligero, ideal para quienes buscan simplicidad. Versión Premium desbloqueada: elimina totalmente la publicidad y accede a todos los temas visuales (Skins) exclusivos. Incluye herramientas útiles como cortador de tonos y un ecualizador de 5 bandas con refuerzo de graves.",
     modFeatures: ["Premium Desbloqueado", "Sin Anuncios", "Todos los Temas","Rendimiento general mejorado"],
+    
+    description_en: "An elegant and lightweight offline music player, ideal for those seeking simplicity. Fully unlocked Premium version: completely removes ads and grants access to all exclusive visual themes (Skins). Includes useful tools like ringtone cutter and a 5-band equalizer with bass boost.",
+    modFeatures_en: ["Premium Unlocked", "No Ads", "All Themes", "Improved Performance"],
+
     isNew: false,
     downloadUrl: "https://www.mediafire.com/file/wy8gqlqr4adbibj/Nomad_Music_25.3.3_PREMIUM.apk/file"
   },
@@ -144,6 +156,10 @@ const INITIAL_APPS = [
     ],
     description: "Convierte tu dispositivo en una cámara DSLR profesional con grandes aperturas ópticas. Versión VIP totalmente desbloqueada: accede al sistema de fotografía computacional avanzado para lograr un efecto bokeh profundo y realista (f/1.4). Disfruta de todos los lentes clásicos, controles manuales de exposición completos y grabación en 4K UHD sin restricciones.",
     modFeatures: ["VIP Desbloqueado", "Efecto Bokeh DSLR", "Todos los Lentes", "Todos los Filtros VIP"],
+    
+    description_en: "Turn your device into a professional DSLR camera with large optical apertures. Fully unlocked VIP version: access the advanced computational photography system to achieve a deep and realistic bokeh effect (f/1.4). Enjoy all classic lenses, full manual exposure controls, and unrestricted 4K UHD recording.",
+    modFeatures_en: ["VIP Unlocked", "DSLR Bokeh Effect", "All Lenses", "All VIP Filters"],
+
     updateDate: "2025-12-30",
     isUpdated: false,
     isNew: false,
@@ -174,6 +190,10 @@ const INITIAL_APPS = [
     ],
     description: "Transforma tus ideas en videos virales con la potencia de la Inteligencia Artificial. Versión Pro totalmente desbloqueada: accede a herramientas avanzadas como subtitulado automático, eliminación mágica de fondos y mejora de resolución por IA. Exporta tus clips en calidad cinematográfica 4K a 60FPS sin marcas de agua y disfruta de la biblioteca completa de música y efectos premium.",
     modFeatures: ["Pro Desbloqueado", "Sin anuncios", "Sin Marca de Agua","Rendimiento general mejorado"],
+    
+    description_en: "Transform your ideas into viral videos with the power of Artificial Intelligence. Fully unlocked Pro version: access advanced tools like auto-captioning, magic background removal, and AI resolution enhancement. Export your clips in cinematic 4K at 60FPS without watermarks and enjoy the full premium music and effects library.",
+    modFeatures_en: ["Pro Unlocked", "No Ads", "No Watermark", "Improved Performance"],
+
     updateDate: "2025-12-30",
     isUpdated: false,
     isNew: false,
@@ -206,6 +226,10 @@ const INITIAL_APPS = [
     ],
     description: "Transforma tu teléfono en una interfaz futurista de ciencia ficción. Versión Prime totalmente desbloqueada: acceso a todos los temas 4D Premium, widgets de sistema avanzados, personalización de colores estilo 'hacker' y eliminación completa de publicidad.",
     modFeatures: ["Prime Desbloqueado", "Temas 4D", "Estilo Hacker","Rendimiento general mejorado"],
+    
+    description_en: "Transform your phone into a futuristic sci-fi interface. Fully unlocked Prime version: access all Premium 4D themes, advanced system widgets, 'hacker' style color customization, and complete ad removal.",
+    modFeatures_en: ["Prime Unlocked", "4D Themes", "Hacker Style", "Improved Performance"],
+
     isUpdated: false,
     isNew: false,
     downloadUrl: "https://www.mediafire.com/file/zyockx66vqixrco/Alpha_Hybrid_Launcher_15.5_PREMIUM.apk/file"
@@ -235,6 +259,10 @@ const INITIAL_APPS = [
     ],
     description: "Escribe sin errores en cualquier idioma. Hemos desbloqueado la versión Premium completa: corrección gramatical profunda basada en IA, sin límite de caracteres, escáner de texto por cámara (OCR) habilitado y experiencia totalmente libre de publicidad.",
     modFeatures: ["Premium Desbloqueado", "Límite Texto 3000", "Escáner OCR","Rendimiento general mejorado"],
+    
+    description_en: "Write mistake-free in any language. Fully unlocked Premium version: deep AI-based grammar correction, no character limits, camera text scanner (OCR) enabled, and a completely ad-free experience.",
+    modFeatures_en: ["Premium Unlocked", "Text Limit 3000", "OCR Scanner", "Improved Performance"],
+
     isUpdated: false,
     isNew: false,
     downloadUrl: "https://www.mediafire.com/file/6ebxohqa23vk9jr/Spellcheck_1.0.12_PREMIUM.apk/file"
@@ -266,6 +294,10 @@ const INITIAL_APPS = [
     ],
     description: "El reproductor de vídeo minimalista basado en la tecnología Exo de Google. Versión Pro desbloqueada: disfruta de tus películas y series sin interrupciones publicitarias. Soporte nativo para 4K, aceleración por hardware optimizada, subtítulos multi-idioma y compatibilidad total con formatos MKV, MP4 y AVI.",
     modFeatures: ["Pro Desbloqueado", "Sin Anuncios", "Soporte 4K","Rendimiento general mejorado"],
+    
+    description_en: "The minimalist video player based on Google's Exo technology. Unlocked Pro version: enjoy your movies and series without ad interruptions. Native 4K support, optimized hardware acceleration, multi-language subtitles, and full compatibility with MKV, MP4, and AVI formats.",
+    modFeatures_en: ["Pro Unlocked", "No Ads", "4K Support", "Improved Performance"],
+
     isUpdated: false,
     isNew: false,
     downloadUrl: "https://www.mediafire.com/file/aj0chvuams6sxi6/Exo_Player_2.1.3_PRO.apk/file"
@@ -295,6 +327,10 @@ const INITIAL_APPS = [
     ],
     description: "Navegación ultra rápida y segura sin límites. Hemos desbloqueado el acceso VIP total: conéctate a servidores premium de todo el mundo sin ver un solo anuncio. Protege tu privacidad, oculta tu IP y accede a contenido bloqueado en tu región con un solo toque.",
     modFeatures: ["VIP Desbloqueado", "Sin Anuncios", "Servidores Globales","Rendimiento general mejorado"],
+    
+    description_en: "Ultra-fast and secure browsing without limits. Full VIP access unlocked: connect to premium servers worldwide without seeing a single ad. Protect your privacy, hide your IP, and access region-blocked content with a single tap.",
+    modFeatures_en: ["VIP Unlocked", "No Ads", "Global Servers", "Improved Performance"],
+
     isUpdated: false,
     isNew: false,
     downloadUrl: "https://www.mediafire.com/file/4egupw0g6nx3j2i/Super_VPN_3.2.0_Premium.apk/file"
@@ -326,7 +362,13 @@ const INITIAL_APPS = [
     ],
     description: "Desbloqueamos el potencial completo de la IA. Disfruta de acceso ilimitado al modelo GPT-5.1 y al generador de imágenes Ultra-HD sin pagar suscripción. Hemos eliminado todos los límites de uso, la censura en las respuestas y las colas de espera. Tienes la herramienta más potente de Microsoft totalmente liberada y a máxima velocidad en tu bolsillo.",
     modFeatures: ["GPT-5.1 Desbloqueado", "DALL-E Ilimitado", "Velocidad Máxima","Rendimiento general mejorado"],
+    
+    description_en: "Unlock the full potential of AI. Enjoy unlimited access to GPT-5.1 and the Ultra-HD image generator without subscription. We removed all usage limits, response censorship, and wait queues. Microsoft's most powerful tool fully unleashed in your pocket.",
+    modFeatures_en: ["GPT-5.1 Unlocked", "Unlimited DALL-E", "Max Speed", "Improved Performance"],
+
     warning: "Requisito: Inicia sesión con Microsoft para guardar tus chats.",
+    warning_en: "Requirement: Sign in with Microsoft to save your chats.",
+
     isUpdated: false,
     downloadUrl: "https://www.mediafire.com/file/mtc9n6nhjujpt43/Copilot_30.0.431217002_PRO.apk/file"
   },
@@ -357,8 +399,12 @@ const INITIAL_APPS = [
     ],
     description: "La aplicación meteorológica líder en precisión. Versión Pro desbloqueada que ofrece radar de lluvia en tiempo real, alertas de clima severo, zoom ilimitado en mapas y pronósticos detallados a 14 días sin publicidad intrusiva.",
     modFeatures: ["Pro Desbloqueado", "Sin Anuncios", "Radar Premium","Rendimiento general mejorado"],
+    
+    description_en: "The leading weather application in accuracy. Unlocked Pro version offering real-time rain radar, severe weather alerts, unlimited map zoom, and detailed 14-day forecasts without intrusive advertising.",
+    modFeatures_en: ["Pro Unlocked", "No Ads", "Premium Radar", "Improved Performance"],
+
     isUpdated: false,
-    downloadUrl: "https://www.mediafire.com/file/adgmz4v0m5lywqm/Tiempo%2526Radar_2026.1_PRO.apk/file"
+    downloadUrl: "https://www.mediafire.com/file/adgmz4v0m5lywqm/Tiempo%26Radar_2026.1_PRO.apk/file"
   },
   {
     id: 15,
@@ -367,8 +413,8 @@ const INITIAL_APPS = [
     category: "IA",
     rating: 4.9,
     downloads: "50M+",
-    size: "24,81 MB",
-    version: "v1.1.01-02",
+    size: "27,86 MB",
+    version: "v1.1.02-00",
     image: "/icons/grok_ai.webp",
     thumbnail: "/Thumb/grok_ai_thumb.webp",
     screenshots: [
@@ -386,11 +432,17 @@ const INITIAL_APPS = [
       "/screenshots/gallery_thumbs/grok_5.webp"
     ],
     description: "Accede a la inteligencia artificial más audaz y sin censura. Respuestas en tiempo real con datos actualizados y modo sarcástico desbloqueado.",
-    warning: "Nota: Debes iniciar sesión con tu cuenta de X (antes Twitter).",
+    
+    description_en: "Access the boldest and most uncensored artificial intelligence. Real-time responses with updated data and sarcastic mode unlocked.",
     modFeatures: ["Premium Desbloqueado", "Imagine", "Sin Censura","Rendimiento general mejorado"],
-    updateDate: "2026-1-5",
+    modFeatures_en: ["Premium Unlocked", "Imagine", "Uncensored", "Improved Performance"],
+
+    warning: "Nota: Debes iniciar sesión con tu cuenta de X (antes Twitter).",
+    warning_en: "Note: You must log in with your X (formerly Twitter) account.",
+
+    updateDate: "2026-1-9",
     isUpdated: true,
-    downloadUrl: "https://www.mediafire.com/file/1xpn8su7ut50d5j/Grok_1.1.01-release.02_PREMIUM.apk/file"
+    downloadUrl: "https://www.mediafire.com/file/mqyk98wae6l34tj/Grok_1.1.02-release.00_PREMIUM.apk/file"
   },
   {
     id: 14,
@@ -419,6 +471,10 @@ const INITIAL_APPS = [
     ],
     description: "El launcher más potente y personalizable. Versión Prime totalmente desbloqueada: gestos, grupos en el cajón, ocultar aplicaciones y efectos de desplazamiento exclusivos.",
     modFeatures: ["Prime Desbloqueado", "Gestos", "Ocultar Apps","Rendimiento general mejorado"],
+    
+    description_en: "The most powerful and customizable launcher. Fully unlocked Prime version: gestures, drawer groups, hide apps, and exclusive scroll effects.",
+    modFeatures_en: ["Prime Unlocked", "Gestures", "Hide Apps", "Improved Performance"],
+
     isUpdated: false,
     downloadUrl: "https://www.mediafire.com/file/pr18hq9ayo6l7oj/Nova_Launcher_8.1.6_PRIME.apk/file"
   },
@@ -429,8 +485,8 @@ const INITIAL_APPS = [
     category: "Personalización",
     rating: 4.7,
     downloads: "10M+",
-    size: "13,79 MB",
-    version: "v1.15.6",
+    size: "13,78 MB",
+    version: "v1.15.7",
     image: "/icons/niagara_launcher.webp",
     thumbnail: "/Thumb/niagara_launcher_thumb.webp",
     screenshots: [
@@ -449,8 +505,14 @@ const INITIAL_APPS = [
     ],
     description: "La pantalla de inicio más limpia para Android. Versión Pro desbloqueada con acceso a todos los widgets,temas, iconos adaptativos y personalización avanzada de fuentes y colores.",
     modFeatures: ["Pro Desbloqueado", "Widgets y temas Premium", "Iconos Adaptativos","Rendimiento general mejorado"],
-    isUpdated: false,
-    downloadUrl: "https://www.mediafire.com/file/c6hlrpxchd70vqn/Niagara_Launcher_v1.15.6_Premium.apk/file"
+    
+    description_en: "The cleanest home screen for Android. Unlocked Pro version with access to all widgets, themes, adaptive icons, and advanced font and color customization.",
+    modFeatures_en: ["Pro Unlocked", "Premium Widgets/Themes", "Adaptive Icons", "Improved Performance"],
+
+    updateDate: "2026-1-9",
+
+    isUpdated: true,
+    downloadUrl: "https://www.mediafire.com/file/r5bnwbaprc9c20y/Niagara_Launcher_v1.15.7_PRO.apk/file"
   },
   {
     id: 12,
@@ -477,6 +539,10 @@ const INITIAL_APPS = [
     ],
     description: "Tu asistente de respuestas con IA. Acceso Pro desbloqueado: búsquedas Pro ilimitadas, carga de archivos PDF/Imágenes sin límites y selección de modelos avanzados como GPT-5 y Claude 3.5 Sonnet.",
     modFeatures: ["Max Desbloqueado", "Búsquedas Max Ilimitadas", "Modelos Premium","Rendimiento general mejorado"],
+    
+    description_en: "Your AI answer assistant. Pro access unlocked: unlimited Pro searches, PDF/Image file upload without limits, and selection of advanced models like GPT-5 and Claude 3.5 Sonnet.",
+    modFeatures_en: ["Max Unlocked", "Unlimited Max Searches", "Premium Models", "Improved Performance"],
+
     isUpdated: false,
     downloadUrl: "https://www.mediafire.com/file/03m3eolcwqxbu5y/Perplexity_2.65.1_MAX.apk/file"
   },
@@ -506,7 +572,12 @@ const INITIAL_APPS = [
     ],
     description: "La mejor experiencia de YouTube sin anuncios. Incluye reproducción en segundo plano, SponsorBlock para saltar segmentos de relleno y personalización completa de la interfaz.",
     warning: "Requisito: Es necesario instalar MicroG para iniciar sesión con Google.",
+    warning_en: "Requirement: MicroG installation is required to sign in with Google.",
     modFeatures: ["Sin Anuncios", "Segundo Plano", "SponsorBlock","Rendimiento general mejorado"],
+    
+    description_en: "The best YouTube experience without ads. Includes background playback, SponsorBlock to skip filler segments, and full interface customization.",
+    modFeatures_en: ["No Ads", "Background Play", "SponsorBlock", "Improved Performance"],
+
     isUpdated: false,
     downloadUrl: "https://www.mediafire.com/file/7436kvm1w1wzgr3/YouTube_ReVanced_20.14.43_PREMIUM.apk/file"
   },
@@ -537,6 +608,10 @@ const INITIAL_APPS = [
     ],
     description: "Transmite videos web, películas y series a tu TV, Chromecast o Roku sin restricciones. Versión Premium desbloqueada: sin anuncios, marcadores ilimitados y pantalla de inicio personalizada.",
     modFeatures: ["Premium Desbloqueado", "Sin Anuncios", "Cola de Reproducción","Rendimiento general mejorado"],
+    
+    description_en: "Cast web videos, movies, and TV shows to your TV, Chromecast, or Roku without restrictions. Premium version unlocked: no ads, unlimited bookmarks, and custom home screen.",
+    modFeatures_en: ["Premium Unlocked", "No Ads", "Play Queue", "Improved Performance"],
+
     isUpdated: false,
     downloadUrl: "https://www.mediafire.com/file/13ar2t8nivpg4p4/Web_Video_Caster_5.12.8_PREMIUM.apk/file"
   },
@@ -565,6 +640,10 @@ const INITIAL_APPS = [
     ],
     description: "Mensajería instantánea: simple, rápida y segura.\n\nDisfruta de una sincronización perfecta entre todos tus dispositivos con almacenamiento ilimitado en la nube.\n\nUtiliza una infraestructura global distribuida para ofrecer la máxima velocidad de conexión, cifrado avanzado para tu privacidad y herramientas poderosas para gestionar comunidades y compartir archivos de gran tamaño sin restricciones.",
     modFeatures: ["Premium Desbloqueado", "Gestión avanzada de chats", "Traducir chats enteros", "Copiar y guardar en canales privados", "Velocidad de descarga y subida+","Más","Rendimiento general mejorado"],
+    
+    description_en: "Instant messaging: simple, fast, and secure. Enjoy seamless sync across all your devices with unlimited cloud storage. Uses a distributed global infrastructure for max speed, advanced encryption, and powerful tools to share large files without restrictions.",
+    modFeatures_en: ["Premium Unlocked", "Advanced Chat Management", "Translate Chats", "Save Private Channels", "Faster DL/Upload", "More...", "Improved Performance"],
+
     updateDate: "2026-1-3",
     isUpdated: true,
     downloadUrl: "https://www.mediafire.com/file/ph38j27ihwuooa9/Telegram_12.3.0_PREMIUM.apk/file"
@@ -596,6 +675,10 @@ const INITIAL_APPS = [
     ],
     description: "El editor de video más profesional. Versión Premium desbloqueada: exportación en 4K Ultra HD, sin marca de agua, estabilizador de video y acceso ilimitado a todo el stock de música y efectos.",
     modFeatures: ["Sin Marca de Agua", "Exportación 4K", "Todo Desbloqueado","Rendimiento general mejorado"],
+    
+    description_en: "The most professional video editor. Premium version unlocked: 4K Ultra HD export, no watermark, video stabilizer, and unlimited access to the entire stock of music and effects.",
+    modFeatures_en: ["No Watermark", "4K Export", "All Unlocked", "Improved Performance"],
+
     isUpdated: false,
     downloadUrl: "https://www.mediafire.com/file/o9poinbem468mvn/PowerDirector_15.9.2_PRO.apk/file"
   },
@@ -626,6 +709,10 @@ const INITIAL_APPS = [
     ],
     description: "El launcher más inteligente y eficiente. Versión Pro desbloqueada: búsqueda inteligente, categorías automáticas personalizables, widgets adaptativos y gestos avanzados en pantalla de inicio.",
     modFeatures: ["Pro Desbloqueado", "Iconos Adaptativos", "Sin Anuncios","Rendimiento general mejorado"],
+    
+    description_en: "The smartest and most efficient launcher. Unlocked Pro version: smart search, automatic customizable categories, adaptive widgets, and advanced home screen gestures.",
+    modFeatures_en: ["Pro Unlocked", "Adaptive Icons", "No Ads", "Improved Performance"],
+
     isUpdated: false,
     downloadUrl: "https://www.mediafire.com/file/hw5g8bav0krab7q/Smart_Launcher_6.5_build_054_PRO.apk/file"
   },
@@ -656,6 +743,10 @@ const INITIAL_APPS = [
     ],
     description: "Un reproductor multimedia offline versátil que soporta todos los formatos de audio y video populares (MP3, FLAC, MKV). Versión Premium desbloqueada: disfruta de una experiencia fluida sin publicidad intrusiva. Incluye ecualizadores potentes con preajustes para géneros como Reggaetón y Rock, letras sincronizadas en tiempo real y modo de ventana flotante para multitarea.",
     modFeatures: ["Sin Anuncios", "Temas Premium", "Ecualizador Pro","Rendimiento general mejorado"],
+    
+    description_en: "A versatile offline multimedia player supporting all popular formats (MP3, FLAC, MKV). Premium version unlocked: enjoy a smooth experience without ads. Includes powerful equalizers, real-time synced lyrics, and floating window mode.",
+    modFeatures_en: ["No Ads", "Premium Themes", "Pro Equalizer", "Improved Performance"],
+
     isUpdated: false,
     updateDate: "2026-1-1",
     downloadUrl: "https://www.mediafire.com/file/jp4edo25yrk20fp/Lark_Player_6.34.12_PREMIUM.apk/file"
@@ -687,6 +778,10 @@ const INITIAL_APPS = [
     ],
     description: "El reproductor de música oficial de Samsung optimizado para todos los dispositivos. Interfaz One UI elegante, ecualizador avanzado y soporte para todos los formatos de audio con calidad premium.",
     modFeatures: ["Interfaz One UI", "Ecualizador Pro", "Para todos los dispositivos","Rendimiento general mejorado"],
+    
+    description_en: "The official Samsung music player optimized for all devices. Elegant One UI interface, advanced equalizer, and support for all audio formats with premium quality.",
+    modFeatures_en: ["One UI Interface", "Pro Equalizer", "For All Devices", "Improved Performance"],
+
     isUpdated: false,
     downloadUrl: "https://www.mediafire.com/file/eejef07o85k8ydn/SamsungMusic-16.2.41.9-v1.7.2-Spotify.apk/file"
   },
@@ -717,6 +812,10 @@ const INITIAL_APPS = [
     ],
     description: "Asistente inteligente avanzado impulsado por GPT-4. Versión Pro desbloqueada: diálogos ilimitados, procesamiento de imágenes, modo experto y sin anuncios de ningún tipo.",
     modFeatures: ["Pro Desbloqueado", "Chat Ilimitado", "GPT-5 & Gemini 3 pro y mas...","Rendimiento general mejorado"],
+    
+    description_en: "Advanced intelligent assistant powered by GPT-4. Pro version unlocked: unlimited dialogues, image processing, expert mode, and no ads of any kind.",
+    modFeatures_en: ["Pro Unlocked", "Unlimited Chat", "GPT-5 & Gemini 3 pro", "Improved Performance"],
+
     isUpdated: false,
     downloadUrl: "https://www.mediafire.com/file/xd9ujn6schel2el/Chat_Smith_8.251208.1_PREMIUM.apk/file"
   },
@@ -745,6 +844,10 @@ const INITIAL_APPS = [
     ],
     description: "El componente esencial para usuarios de mods. Permite iniciar sesión con tu cuenta de Google en aplicaciones modificadas como YouTube ReVanced, garantizando sincronización y notificaciones sin servicios de Google oficiales.",
     modFeatures: ["Login Google habilitado", "Sin rastreo de datos", "Ahorro de batería","Rendimiento general mejorado"],
+    
+    description_en: "The essential component for mod users. Allows you to sign in with your Google account on modified apps like YouTube ReVanced, ensuring synchronization and notifications without official Google services.",
+    modFeatures_en: ["Google Login Enabled", "No Data Tracking", "Battery Saver", "Improved Performance"],
+
     isUpdated: false,
     downloadUrl: "https://www.mediafire.com/file/qjg0kj7dbfuyp3p/microG_0.3.1.4.240913.apk/file"
   },
@@ -775,6 +878,10 @@ const INITIAL_APPS = [
     ],
     description: "La biblioteca más vasta de fondos de pantalla en ultra alta definición. Acceso exclusivo a fondos 4K y 8K adaptados automáticamente al tamaño de tu pantalla, con efectos de paralaje 4D y sin interrupciones publicitarias.",
     modFeatures: ["Premium Desbloqueado", "Fondos 8K y 4D", "Sin Publicidad","Rendimiento general mejorado"],
+    
+    description_en: "The vastest library of ultra-high definition wallpapers. Exclusive access to 4K and 8K backgrounds automatically adapted to your screen size, with 4D parallax effects and no advertising interruptions.",
+    modFeatures_en: ["Premium Unlocked", "8K & 4D Wallpapers", "No Ads", "Improved Performance"],
+
     isUpdated: false,
     downloadUrl: "https://www.mediafire.com/file/w813y93pk1q0jl9/Wallcraft_3.59.01_PRO.apk/file"
   },
@@ -803,13 +910,103 @@ const INITIAL_APPS = [
     ],
     description: "La solución definitiva para navegar sin fronteras. Acceso ilimitado a servidores en más de 80 países con ancho de banda infinito. Ideal para desbloquear streaming y proteger tu privacidad en redes públicas con cifrado de grado militar.",
     modFeatures: ["Premium Desbloqueado", "Ancho de Banda Ilimitado", "Ubicaciones Pro","Rendimiento general mejorado"],
+    
+    description_en: "The ultimate solution for borderless browsing. Unlimited access to servers in over 80 countries with infinite bandwidth. Ideal for unblocking streaming and protecting your privacy on public networks with military-grade encryption.",
+    modFeatures_en: ["Premium Unlocked", "Unlimited Bandwidth", "Pro Locations", "Improved Performance"],
+
     isUpdated: false,
     downloadUrl: "https://www.mediafire.com/file/kkpmcvmjxwo2soq/Urban_VPN_1.0.97_premium.apk/file"
   }
 ];
 
-// ✅ SECCIÓN FAVORITOS AGREGADA AQUÍ
+// ✅ SECCIÓN FAVORITOS
 const CATEGORIES = ["Todos", "Favoritos", "Personalización", "Herramientas", "IA", "Social", "Entretenimiento"];
+
+// ✅ DICCIONARIO DE IDIOMAS (TEXTOS FIJOS)
+const TEXTS = {
+  es: {
+    nav_home: "Inicio",
+    nav_top: "Top Mods",
+    header_title_1: "Descarga tus",
+    header_title_2: "Apps",
+    header_title_3: "favoritas",
+    header_desc: "Descarga versiones modificadas seguras. Características premium desbloqueadas, sin anuncios y funcionalidades extendidas.",
+    search_placeholder: "Buscar mods (ej. Grok Ai, youtube)...",
+    no_results: "No se encontraron resultados para",
+    view_all: "Ver todas las apps",
+    new_version: "NUEVA VERSIÓN DISPONIBLE",
+    section_news: "Novedades",
+    section_news_2: "y",
+    section_news_3: "Actualizaciones",
+    section_favorites: "Tus Guardados",
+    section_popular: "Mods Populares",
+    section_top: "Ranking Global",
+    section_top_subtitle: "Los favoritos de la comunidad esta semana",
+    download_btn: "Descargar en MediaFire",
+    generating_link: "Generando enlace seguro...",
+    link_ready: "¡Enlace listo! Redirigiendo...",
+    footer_trends: "Tendencias de Búsqueda",
+    footer_community: "Comunidad Oficial",
+    footer_join: "Unirme a Telegram",
+    desc_label: "Descripción",
+    gallery_label: "Galería",
+    features_label: "Características del Mod",
+    rating_label: "Valoración",
+    size_label: "Tamaño",
+    version_label: "Versión",
+    categories: {
+      "Todos": "Todos",
+      "Favoritos": "Favoritos",
+      "Personalización": "Personalización",
+      "Herramientas": "Herramientas",
+      "IA": "IA",
+      "Social": "Social",
+      "Entretenimiento": "Entretenimiento",
+      "Fotografía": "Fotografía"
+    }
+  },
+  en: {
+    nav_home: "Home",
+    nav_top: "Top Mods",
+    header_title_1: "Download your",
+    header_title_2: "Favorite",
+    header_title_3: "Apps",
+    header_desc: "Download safe modded versions. Premium features unlocked, no ads, and extended functionalities.",
+    search_placeholder: "Search mods (e.g. Grok Ai, youtube)...",
+    no_results: "No results found for",
+    view_all: "View all apps",
+    new_version: "NEW VERSION AVAILABLE",
+    section_news: "Latest",
+    section_news_2: "&",
+    section_news_3: "Updates",
+    section_favorites: "Your Saved Apps",
+    section_popular: "Popular Mods",
+    section_top: "Global Ranking",
+    section_top_subtitle: "Community favorites this week",
+    download_btn: "Download (MediaFire)",
+    generating_link: "Generating secure link...",
+    link_ready: "Link ready! Redirecting...",
+    footer_trends: "Search Trends",
+    footer_community: "Official Community",
+    footer_join: "Join Telegram",
+    desc_label: "Description",
+    gallery_label: "Gallery",
+    features_label: "Mod Features",
+    rating_label: "Rating",
+    size_label: "Size",
+    version_label: "Version",
+    categories: {
+      "Todos": "All",
+      "Favoritos": "Favorites",
+      "Personalización": "Personalization",
+      "Herramientas": "Tools",
+      "IA": "AI",
+      "Social": "Social",
+      "Entretenimiento": "Entertainment",
+      "Fotografía": "Photography"
+    }
+  }
+};
 
 // --- COMPONENTES UI AUXILIARES ---
 
@@ -817,7 +1014,7 @@ const Badge = ({ children, color = "purple" }) => {
   const styles = color === "mint" 
     ? "bg-teal-400/10 text-teal-300 border-teal-400/20" 
     : "bg-purple-500/10 text-purple-300 border-purple-500/20";
-  
+   
   return (
     <span className={`px-2 py-1 rounded-md text-xs font-medium border ${styles} backdrop-blur-sm`}>
       {children}
@@ -825,7 +1022,8 @@ const Badge = ({ children, color = "purple" }) => {
   );
 };
 
-const DownloadButton = ({ onClick, loading }) => (
+// Modificado para aceptar texto variable
+const DownloadButton = ({ onClick, loading, text }) => (
   <button 
     onClick={onClick}
     disabled={loading}
@@ -841,12 +1039,12 @@ const DownloadButton = ({ onClick, loading }) => (
     {loading ? (
       <>
         <div className="w-5 h-5 border-2 border-slate-900/30 border-t-slate-900 rounded-full animate-spin" />
-        <span>Preparando enlace...</span>
+        <span>...</span> 
       </>
     ) : (
       <>
         <Download size={20} />
-        <span>Descargar en MediaFire</span>
+        <span>{text}</span>
         <ExternalLink size={16} className="opacity-50" />
       </>
     )}
@@ -881,23 +1079,20 @@ const AppIcon = ({ type, thumbnail, size = "md" }) => {
   );
 };
 
-// --- COMPONENTE CARRUSEL (Física Natural + Ordenado por Fecha) ---
-const UpdatedAppsCarousel = ({ apps, onSelectApp }) => {
+// --- COMPONENTE CARRUSEL ---
+const UpdatedAppsCarousel = ({ apps, onSelectApp, t }) => {
   const scrollRef = useRef(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
-  
-  // ✅ LOGICA DE ORDENACIÓN: Primero filtra, luego ordena por fecha más reciente
+   
   const featuredApps = apps
     .filter(app => app.isUpdated || app.isNew)
     .sort((a, b) => {
-      // Si tiene fecha 'updateDate', la usa. Si no, usa una fecha muy antigua (Date 0)
       const dateA = a.updateDate ? new Date(a.updateDate) : new Date(0);
       const dateB = b.updateDate ? new Date(b.updateDate) : new Date(0);
-      return dateB - dateA; // Orden descendente (lo más nuevo primero)
+      return dateB - dateA; 
     });
 
-  // Lógica para mostrar/ocultar flechas en PC
   const checkScrollability = () => {
     if (scrollRef.current) {
       const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
@@ -914,7 +1109,6 @@ const UpdatedAppsCarousel = ({ apps, onSelectApp }) => {
 
   if (featuredApps.length === 0) return null;
 
-  // Lógica del botón (Solo para PC): Aquí forzamos el movimiento suave
   const scroll = (direction) => {
     if (scrollRef.current) {
       const { current } = scrollRef;
@@ -926,26 +1120,22 @@ const UpdatedAppsCarousel = ({ apps, onSelectApp }) => {
 
   return (
     <section className="mb-6 animate-in fade-in slide-in-from-right-8 duration-700 group relative">
-      
-      {/* --- TÍTULO (Colores Emerald/Fuchsia) --- */}
       <div className="flex items-center gap-2 mb-4 px-1">
         <div className="p-1.5 bg-yellow-500/10 rounded-lg border border-yellow-500/20">
             <Zap className="text-yellow-400" size={18} fill="currentColor" />
         </div>
-        
         <h2 className="text-lg font-bold tracking-tight">
           <span className="bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">
-            Novedades
+            {t.section_news}
           </span>
-          <span className="text-white mx-1.5">y</span>
+          <span className="text-white mx-1.5">{t.section_news_2}</span>
           <span className="bg-gradient-to-r from-fuchsia-400 to-purple-400 bg-clip-text text-transparent">
-            Actualizaciones
+            {t.section_news_3}
           </span>
         </h2>
       </div>
 
       <div className="relative">
-        {/* Flecha Izquierda (Solo PC) */}
         {canScrollLeft && (
           <button
             onClick={() => scroll('left')}
@@ -955,7 +1145,6 @@ const UpdatedAppsCarousel = ({ apps, onSelectApp }) => {
           </button>
         )}
 
-        {/* CONTENEDOR PRINCIPAL - FÍSICA PURA (SIN SNAP) */}
         <div 
           ref={scrollRef}
           onScroll={checkScrollability}
@@ -990,11 +1179,9 @@ const UpdatedAppsCarousel = ({ apps, onSelectApp }) => {
               </div>
             </div>
           ))}
-          {/* Espaciador final para que no se corte la última tarjeta */}
           <div className="w-2 flex-none" />
         </div>
 
-        {/* Flecha Derecha (Solo PC) */}
         {canScrollRight && (
           <button
             onClick={() => scroll('right')}
@@ -1008,31 +1195,8 @@ const UpdatedAppsCarousel = ({ apps, onSelectApp }) => {
   );
 };
 
-// --- COMPONENTE AUXILIAR PARA EFECTO FADE-IN ---
-// Este componente pequeño se encarga de que cada imagen aparezca suavemente.
-const FadeInImage = ({ src, alt, className }) => {
-  // Estado para saber si la imagen ya se terminó de descargar
-  const [isLoaded, setIsLoaded] = React.useState(false);
-
-  return (
-    <img
-      src={src}
-      alt={alt}
-      loading="lazy"
-      // Cuando el navegador termina de cargarla, cambiamos el estado a 'true'
-      onLoad={() => setIsLoaded(true)}
-      className={`
-        ${className} /* Mantenemos las clases que le pasemos desde fuera (tamaño, etc.) */
-        transition-all duration-700 ease-in-out /* Configuramos la animación suave de 0.7 segundos */
-        ${isLoaded ? 'opacity-100 blur-0 scale-100' : 'opacity-0 blur-sm scale-95'} /* Si cargó: visible y nítida. Si no: invisible, borrosa y un poco más chica */
-      `}
-    />
-  );
-};
-// --------------------------------------------------
-
 export default function ModStoreApp() {
-  const [currentView, setCurrentView] = useState('home'); // 'home', 'top'
+  const [currentView, setCurrentView] = useState('home'); 
   const [searchTerm, setSearchTerm] = useState("");
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [activeCategory, setActiveCategory] = useState("Todos");
@@ -1040,12 +1204,14 @@ export default function ModStoreApp() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [downloadingId, setDownloadingId] = useState(null);
   const [showToast, setShowToast] = useState(false);
-  const [toastMessage, setToastMessage] = useState("Descarga iniciada...");
+  const [toastMessage, setToastMessage] = useState("");
   
-  // ✅ ESTADO PARA EL VISOR DE IMÁGENES (LIGHTBOX)
+  // ✅ ESTADO DE IDIOMA
+  const [lang, setLang] = useState('es');
+  const t = TEXTS[lang]; 
+
   const [currentScreenshotIndex, setCurrentScreenshotIndex] = useState(null);
 
-  // ✅ 1. ESTADO DE FAVORITOS (Lee memoria al iniciar)
   const [favorites, setFavorites] = useState(() => {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('myFavorites');
@@ -1054,12 +1220,10 @@ export default function ModStoreApp() {
     return [];
   });
 
-  // ✅ 2. GUARDA FAVORITOS AUTOMÁTICAMENTE
   useEffect(() => {
     localStorage.setItem('myFavorites', JSON.stringify(favorites));
   }, [favorites]);
 
-  // ✅ 3. FUNCIÓN TOGGLE (AGREGAR/QUITAR)
   const toggleFavorite = (e, id) => {
     e.stopPropagation();
     setFavorites(prev => 
@@ -1067,48 +1231,33 @@ export default function ModStoreApp() {
     );
   };
 
-  // ✅ PREVENCION DEL SALTO DE SCROLL (Layout Shift Fix)
   useEffect(() => {
     if (selectedApp || currentScreenshotIndex !== null) {
-      // 1. Calcular el ancho del scrollbar
       const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-      
-      // 2. Compensar el padding
       document.body.style.paddingRight = `${scrollbarWidth}px`;
-      
-      // 3. Bloquear el scroll
       document.body.style.overflow = 'hidden';
     } else {
-      // Restaurar
       document.body.style.paddingRight = '0px';
       document.body.style.overflow = '';
     }
-    
     return () => {
       document.body.style.paddingRight = '0px';
       document.body.style.overflow = '';
     };
   }, [selectedApp, currentScreenshotIndex]);
 
-  // ✅ CONTROL DE TECLADO (Lógica Finita: No da la vuelta)
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (currentScreenshotIndex === null || !selectedApp) return;
-      
-      // Definimos el total de imágenes (Reales o Simuladas)
       const screenshots = selectedApp.screenshots || [1, 2, 3]; 
       const totalImages = screenshots.length;
 
       if (e.key === 'Escape') {
         setCurrentScreenshotIndex(null);
       }
-      
-      // Solo avanza si NO es la última
       if (e.key === 'ArrowRight' && currentScreenshotIndex < totalImages - 1) {
          setCurrentScreenshotIndex((prev) => prev + 1);
       }
-      
-      // Solo retrocede si NO es la primera
       if (e.key === 'ArrowLeft' && currentScreenshotIndex > 0) {
          setCurrentScreenshotIndex((prev) => prev - 1);
       }
@@ -1134,22 +1283,17 @@ export default function ModStoreApp() {
     setTimeout(() => setShowToast(false), 3000);
   };
 
- // ✅ FUNCIÓN CON MEMORIA (CACHÉ)
-  // Guarda el enlace generado para no pedirlo 2 veces al mismo usuario
   const getMonetizedLink = async (app) => {
-    // 1. Si no hay token, enlace directo
     if (!MONETIZATION_API_TOKEN) return app.downloadUrl; 
 
-    // 2. REVISAR MEMORIA: ¿Ya generamos este enlace para este usuario hoy?
-    const cacheKey = `loot_${app.id}`; // Clave única por App
+    const cacheKey = `loot_${app.id}`; 
     const cachedLink = sessionStorage.getItem(cacheKey);
 
     if (cachedLink) {
       console.log("🚀 Usando enlace de memoria (Cache):", cachedLink);
-      return cachedLink; // ¡Devolvemos el guardado y ahorramos la llamada API!
+      return cachedLink;
     }
 
-    // 3. Si no está en memoria, llamamos a la API
     try {
       const response = await fetch(`https://creators.lootlabs.gg/api/public/content_locker`, {
         method: 'POST',
@@ -1168,7 +1312,6 @@ export default function ModStoreApp() {
 
       const data = await response.json();
       
-      // Lectura corregida de la respuesta (Array u Objeto)
       let finalLink = null;
       if (data?.type === "created") {
           if (Array.isArray(data.message) && data.message[0]?.loot_url) {
@@ -1179,7 +1322,6 @@ export default function ModStoreApp() {
       }
 
       if (finalLink) {
-        // ✅ GUARDAR EN MEMORIA antes de devolverlo
         sessionStorage.setItem(cacheKey, finalLink);
         return finalLink;
       }
@@ -1201,23 +1343,19 @@ export default function ModStoreApp() {
     if (!appToDownload) return;
 
     setDownloadingId(id);
-    showNotification("Generando enlace seguro..."); // Feedback inmediato
+    showNotification(t.generating_link);
 
-    // 1. Obtener enlace (API o Directo)
     const finalLink = await getMonetizedLink(appToDownload);
 
-    // 2. Procesar descarga
     setDownloadingId(null);
-    showNotification("¡Enlace listo! Redirigiendo...");
+    showNotification(t.link_ready);
     
-    // Pequeño delay para que el usuario lea el toast
     setTimeout(() => {
         window.open(finalLink, '_blank');
         if(selectedApp) setSelectedApp(null);
     }, 500);
   };
 
- // ✅ FUNCIÓN DE RENDERIZADO ACTUALIZADA (CON ETIQUETA DORADA)
   const renderAppGrid = (title, isTopView = false) => {
     let processedApps = isTopView 
       ? [...INITIAL_APPS].sort((a, b) => b.rating - a.rating) 
@@ -1247,7 +1385,7 @@ export default function ModStoreApp() {
             <TrendingUp className="text-purple-400" size={20} />
          )}
          <h2 className="text-xl font-bold">
-            {activeCategory === "Favoritos" ? "Tus Guardados" : title}
+            {activeCategory === "Favoritos" ? t.section_favorites : title}
          </h2>
       </div>
 
@@ -1259,24 +1397,26 @@ export default function ModStoreApp() {
                <p className="text-sm">Dale al corazón en las apps que te gusten.</p>
              </>
           ) : (
-             <p className="text-lg">No se encontraron resultados para "{searchTerm}"</p>
+             <p className="text-lg">{t.no_results} "{searchTerm}"</p>
           )}
           
           <button onClick={() => {setSearchTerm(""); setActiveCategory("Todos")}} className="mt-4 text-teal-400 hover:underline">
-            Ver todas las apps
+            {t.view_all}
           </button>
         </div>
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
           {visibleApps.map((app) => {
             const isFav = favorites.includes(app.id);
-            const badgeType = getBadge(app); // ✅ Pasamos toda la app, no solo el nombre
+            const badgeType = getBadge(app);
+            
+            // ✅ ELEGIMOS FEATURES SEGÚN IDIOMA
+            const featuresToShow = (lang === 'en' && app.modFeatures_en) ? app.modFeatures_en : app.modFeatures;
 
             return (
             <div 
               key={app.id}
               onClick={() => setSelectedApp(app)}
-              // ✅ AGREGADO: Smart Cache Trigger (Preload)
               onMouseEnter={() => {
                 const img = new Image();
                 img.src = app.image;
@@ -1293,7 +1433,6 @@ export default function ModStoreApp() {
                 animate-in fade-in zoom-in-95 duration-300 fill-mode-both
               `}
             >
-            {/* ✅ ETIQUETA PREMIUM COMPACTA (Tamaño Reducido & Estilo Ghost) */}
               {badgeType && (
                 <div className="absolute top-0 left-0 z-20">
                    <div className="px-2 py-0.5 rounded-br-lg bg-yellow-500/10 border-b border-r border-yellow-500/20 text-yellow-200 text-[8px] font-bold tracking-wider uppercase backdrop-blur-md shadow-sm">
@@ -1302,7 +1441,6 @@ export default function ModStoreApp() {
                 </div>
               )}
 
-              {/* Botón Favorito (Esquina Derecha) */}
               <button
                 onClick={(e) => toggleFavorite(e, app.id)}
                 className="absolute top-2 right-2 z-20 p-2 rounded-full active:scale-75 transition-transform hover:bg-white/5"
@@ -1312,15 +1450,12 @@ export default function ModStoreApp() {
                  </div>
               </button>
 
-              {/* 1. ICONO (Corrección Matemática) */}
               <div className="mb-3 w-full flex justify-center transform transition-transform duration-300 group-hover:scale-105 origin-center will-change-transform backface-hidden">
                  <AppIcon type={app.image} thumbnail={app.thumbnail} size="md" />
               </div>
               
-              {/* 2. TEXTOS */}
               <div className="w-full mb-3">
                 <h3 className="font-bold text-sm text-slate-100 truncate w-full text-center leading-tight">
-                    {/* Limpieza inteligente del título: Si dice 'Premium' en la etiqueta, lo quita del nombre */}
                     {badgeType 
                       ? app.name.replace(badgeType, "").replace("-", "").trim() 
                       : app.name}
@@ -1330,28 +1465,25 @@ export default function ModStoreApp() {
                   {app.developer}
                 </p>
 
-                {/* Rating */}
                 <div className="flex items-center justify-center gap-1 text-amber-400 text-[10px] font-bold mt-1.5">
                     <Star size={10} fill="currentColor" />
                     <span>{app.rating}</span>
                 </div>
               </div>
               
-              {/* 3. TAGS */}
               <div className="flex flex-wrap justify-center gap-1.5 mb-4 w-full px-1">
-                {(app.modFeatures || []).slice(0, 2).map((feature, idx) => (
+                {(featuresToShow || []).slice(0, 2).map((feature, idx) => (
                   <span key={idx} className="text-[8px] uppercase tracking-wider font-semibold px-2 py-0.5 bg-slate-800 text-slate-400 border border-white/5 rounded-md">
                     {feature}
                   </span>
                 ))}
-                {(app.modFeatures || []).length > 2 && (
+                {(featuresToShow || []).length > 2 && (
                    <span className="text-[8px] uppercase tracking-wider font-semibold px-2 py-0.5 bg-slate-800 text-slate-400 border border-white/5 rounded-md">
                       +1
                    </span>
                 )}
               </div>
 
-              {/* 4. FOOTER */}
               <div className="w-full flex items-center justify-between mt-auto pt-3 border-t border-white/5">
                 <div className="text-[10px] text-slate-500 font-mono flex items-center gap-1.5">
                    <span>{app.size}</span>
@@ -1376,7 +1508,6 @@ export default function ModStoreApp() {
 
     return (
       <>
-        {/* HEADER */}
         <header className="mb-12 text-center md:text-left">
           <div className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-purple-900/50 to-slate-900 border border-white/10 p-8 md:p-12 flex flex-col md:flex-row items-center gap-8">
             <div className="flex-1 space-y-4">
@@ -1390,12 +1521,12 @@ export default function ModStoreApp() {
               </div>
               
               <div className={`transition-all duration-300 ease-in-out ${isSearchFocused ? 'hidden md:block opacity-0' : 'block opacity-100'}`}>
-                <Badge color="mint">NUEVA VERSIÓN DISPONIBLE</Badge>
+                <Badge color="mint">{t.new_version}</Badge>
                 <h1 className="text-4xl md:text-6xl font-extrabold text-white leading-[1.1] mb-3">
-                  Descarga tus <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-300 to-teal-500">Apps</span> favoritas
+                  {t.header_title_1} <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-300 to-teal-500">{t.header_title_2}</span> {t.header_title_3}
                 </h1>
                 <p className="text-slate-400 text-sm md:text-lg max-w-xl leading-relaxed">
-                  Descarga versiones modificadas seguras. Características premium desbloqueadas, sin anuncios y funcionalidades extendidas.
+                  {t.header_desc}
                 </p>
               </div>
               
@@ -1424,7 +1555,7 @@ export default function ModStoreApp() {
                   <Search className="text-slate-500 mr-3" size={20} />
                   <input 
                     type="text" 
-                    placeholder="Buscar mods (ej. Grok Ai, youtube)..." 
+                    placeholder={t.search_placeholder} 
                     className="bg-transparent border-none outline-none text-white w-full placeholder-slate-500"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
@@ -1450,13 +1581,12 @@ export default function ModStoreApp() {
         </header>
 
         {!searchTerm && (
-           <UpdatedAppsCarousel apps={INITIAL_APPS} onSelectApp={setSelectedApp} />
+           <UpdatedAppsCarousel apps={INITIAL_APPS} onSelectApp={setSelectedApp} t={t} />
         )}
 
         <div className="flex overflow-x-auto p-4 gap-3 mb-8 no-scrollbar animate-in fade-in slide-in-from-bottom-8 duration-700 delay-100">
           {CATEGORIES.map(cat => {
             const isActive = activeCategory === cat;
-            
             return (
               <button
                 key={cat}
@@ -1474,14 +1604,14 @@ export default function ModStoreApp() {
                    ${isActive ? "opacity-100 shadow-[0_0_20px_rgba(45,212,191,0.5)]" : "opacity-0"}`}
                 />
                 <span className={`relative z-10 transition-colors duration-300 ${isActive ? "text-white" : "text-slate-400 group-hover:text-white"}`}>
-                  {cat}
+                  {t.categories[cat] || cat}
                 </span>
               </button>
             );
           })}
         </div>
 
-        {renderAppGrid("Mods Populares", false)}
+        {renderAppGrid(t.section_popular, false)}
       </>
     );
   };
@@ -1489,8 +1619,8 @@ export default function ModStoreApp() {
   const renderTopMods = () => (
     <div className="animate-in fade-in zoom-in-95 duration-500">
       <div className="mb-8 text-center">
-        <h2 className="text-3xl font-bold text-white mb-2">Top Mods Mejor Valorados</h2>
-        <p className="text-slate-400">Los favoritos de la comunidad esta semana</p>
+        <h2 className="text-3xl font-bold text-white mb-2">{t.section_top}</h2>
+        <p className="text-slate-400">{t.section_top_subtitle}</p>
       </div>
       {renderAppGrid("Ranking Global", true)}
     </div>
@@ -1507,7 +1637,7 @@ export default function ModStoreApp() {
       <div className="relative max-w-4xl mx-auto px-4 z-10">
         <div className="mb-12">
           <h2 className="text-white font-bold mb-6 flex items-center justify-center gap-2">
-            <TrendingUp size={18} className="text-teal-400"/> Tendencias de Búsqueda
+            <TrendingUp size={18} className="text-teal-400"/> {t.footer_trends}
           </h2>
           <div className="flex flex-wrap justify-center gap-2">
             {[
@@ -1524,7 +1654,7 @@ export default function ModStoreApp() {
 
         <div className="mb-16 max-w-sm mx-auto">
           <h2 className="text-white font-bold mb-4 flex items-center justify-center gap-2">
-            <Zap size={18} className="text-purple-400"/> Comunidad Oficial
+            <Zap size={18} className="text-purple-400"/> {t.footer_community}
           </h2>
           <a 
             href="https://t.me/+HU0V3IL0_E44NmY0" 
@@ -1532,7 +1662,7 @@ export default function ModStoreApp() {
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-3 w-full px-6 py-3 bg-gradient-to-r from-teal-500/10 to-purple-500/10 hover:from-teal-500/20 hover:to-purple-500/20 border border-white/10 rounded-2xl transition-all group"
           >
-            <span className="font-bold text-teal-400">Unirme a Telegram</span>
+            <span className="font-bold text-teal-400">{t.footer_join}</span>
             <ExternalLink size={18} className="text-purple-400 group-hover:translate-x-1 transition-transform"/>
           </a>
         </div>
@@ -1624,33 +1754,46 @@ export default function ModStoreApp() {
     className="w-full h-full object-contain p-1" 
   />
 </div>
-           <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-purple-500">
+            <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-purple-500">
   FonApps
 </span>
           </button>
 
-          <div className="hidden md:flex items-center gap-1 bg-white/5 p-1 rounded-full border border-white/5">
-            {[
-              { id: 'home', label: 'Inicio' },
-              { id: 'top', label: 'Top Mods' }
-            ].map((item) => (
-              <button 
-                key={item.id} 
-                onClick={() => navigateTo(item.id)}
-                className={`
-                  px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-300
-                  ${currentView === item.id 
-                    ? "bg-slate-800 text-teal-300 shadow-sm" 
-                    : "text-slate-400 hover:text-white hover:bg-white/5"}
-                `}
-              >
-                {item.label}
-              </button>
-            ))}
+          {/* ✅ BARRA CENTRAL Y SWITCH DE IDIOMA (PC) */}
+          <div className="hidden md:flex items-center gap-4">
+             <div className="flex items-center gap-1 bg-white/5 p-1 rounded-full border border-white/5">
+                {[
+                  { id: 'home', label: t.nav_home },
+                  { id: 'top', label: t.nav_top }
+                ].map((item) => (
+                  <button 
+                    key={item.id} 
+                    onClick={() => navigateTo(item.id)}
+                    className={`
+                      px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-300
+                      ${currentView === item.id 
+                        ? "bg-slate-800 text-teal-300 shadow-sm" 
+                        : "text-slate-400 hover:text-white hover:bg-white/5"}
+                    `}
+                  >
+                    {item.label}
+                  </button>
+                ))}
+             </div>
+
+             {/* 🇺🇸 SWITCH IDIOMA */}
+             <button 
+               onClick={() => setLang(lang === 'es' ? 'en' : 'es')}
+               className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-800 border border-white/10 hover:border-teal-500 transition-colors"
+             >
+               <Globe size={16} className="text-teal-400" />
+               <span className="text-xs font-bold text-white">{lang === 'es' ? 'ES' : 'EN'}</span>
+             </button>
           </div>
 
+          {/* ✅ MENÚ HAMBURGUESA (MÓVIL) */}
           <button 
-          aria-label="Abrir menú de navegación"
+            aria-label="Abrir menú de navegación"
             className="md:hidden p-2 text-slate-300 hover:text-white bg-white/5 rounded-lg border border-white/5"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
@@ -1658,7 +1801,7 @@ export default function ModStoreApp() {
           </button>
         </div>
 
-    {/* MENÚ MÓVIL (Versión Simetría Perfecta) */}
+    {/* MENÚ MÓVIL DESPLEGABLE */}
         <div 
           className={`
             absolute top-16 left-0 w-full z-50 md:hidden
@@ -1670,9 +1813,19 @@ export default function ModStoreApp() {
           `}
         >
           <div className="p-4 flex flex-col gap-2">
+            
+            {/* ✅ BOTÓN DE IDIOMA DENTRO DEL MENÚ */}
+            <button 
+               onClick={() => setLang(lang === 'es' ? 'en' : 'es')}
+               className="w-full text-left px-5 py-3.5 rounded-xl bg-white/5 text-slate-300 border border-transparent font-medium flex items-center gap-3 mb-2"
+             >
+               <Globe size={18} className="text-teal-400" />
+               <span>Cambiar Idioma: <b className="text-white">{lang === 'es' ? 'ESPAÑOL' : 'ENGLISH'}</b></span>
+             </button>
+
             {[
-              { id: 'home', label: 'Inicio' },
-              { id: 'top', label: 'Top Mods' }
+              { id: 'home', label: t.nav_home },
+              { id: 'top', label: t.nav_top }
             ].map((item) => (
               <button 
                 key={item.id} 
@@ -1708,23 +1861,19 @@ export default function ModStoreApp() {
 
       {renderFooter()}
 
-      {/* ✅ MODAL SINCRONIZADO (Estructura Clásica + Animación Suave + Preload de Imágenes) */}
+      {/* ✅ MODAL SINCRONIZADO (Traducido y con Advertencias Corregidas) */}
       {selectedApp && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           
-          {/* Fondo Translúcido (bg-black/80) para que no desaparezca el fondo */}
           <div 
             className="absolute inset-0 bg-black/80 backdrop-blur-md animate-in fade-in duration-300"
             onClick={() => setSelectedApp(null)} 
           />
           
-          {/* Tarjeta del Modal (Animación Suave) */}
           <div className="relative w-full max-w-lg bg-[#161622] rounded-3xl border border-white/10 shadow-2xl overflow-hidden animate-content will-change-transform">
             
-            {/* Fondo Gradiente Superior */}
             <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-purple-900/40 to-transparent pointer-events-none" />
             
-            {/* Botón Cerrar */}
             <button 
               onClick={() => setSelectedApp(null)}
               className="absolute top-4 right-4 p-2 bg-black/20 hover:bg-red-500/80 rounded-full text-white/90 hover:text-white transition-all z-50 border border-white/10 shadow-lg backdrop-blur-sm"
@@ -1732,10 +1881,8 @@ export default function ModStoreApp() {
               <X size={24} />
             </button>
 
-            {/* Contenido con Scroll */}
             <div className="relative p-6 pt-12 text-center max-h-[85vh] overflow-y-auto overscroll-contain no-scrollbar">
               
-              {/* Etiqueta Premium */}
               {getBadge(selectedApp) && (
                 <div className="absolute top-0 left-0 z-10">
                    <div className="px-4 py-1.5 rounded-br-2xl bg-yellow-500/10 border-b border-r border-yellow-500/20 text-yellow-200 text-[10px] font-bold tracking-wider uppercase backdrop-blur-md shadow-sm">
@@ -1744,7 +1891,6 @@ export default function ModStoreApp() {
                 </div>
               )}
 
-              {/* Imagen Central */}
               <div className="mx-auto mb-4 w-28 h-28 sm:w-32 sm:h-32 relative shadow-[0_0_30px_rgba(0,0,0,0.5)] rounded-3xl overflow-hidden bg-slate-800 group">
                 <img 
                   src={selectedApp.thumbnail || selectedApp.image} 
@@ -1760,7 +1906,6 @@ export default function ModStoreApp() {
                 <div className="absolute inset-0 rounded-3xl border border-white/10 z-20 pointer-events-none" />
               </div>
 
-              {/* Textos */}
               <h2 className="text-2xl font-bold text-white mb-1">
                 {getBadge(selectedApp) ? selectedApp.name.replace(getBadge(selectedApp), "").replace("-", "").trim() : selectedApp.name}
               </h2>
@@ -1768,50 +1913,50 @@ export default function ModStoreApp() {
                 {selectedApp.developer}
               </p>
 
-              {/* Stats */}
               <div className="flex justify-center gap-6 text-sm text-slate-400 mb-8 border-y border-white/5 py-4">
                 <div className="flex flex-col items-center">
                   <span className="font-bold text-white text-base">{selectedApp.rating}</span>
-                  <span className="text-xs">Valoración</span>
+                  <span className="text-xs">{t.rating_label}</span>
                 </div>
                 <div className="flex flex-col items-center border-l border-white/10 pl-6">
                   <span className="font-bold text-white text-base">{selectedApp.size}</span>
-                  <span className="text-xs">Tamaño</span>
+                  <span className="text-xs">{t.size_label}</span>
                 </div>
                 <div className="flex flex-col items-center border-l border-white/10 pl-6">
                   <span className="font-bold text-white text-base">{selectedApp.version}</span>
-                  <span className="text-xs">Versión</span>
+                  <span className="text-xs">{t.version_label}</span>
                 </div>
               </div>
 
-             {/* Descripción Mejorada */}
 <div className="text-left mb-6 space-y-4">
   <div>
     <h3 className="text-sm font-bold text-teal-400 uppercase tracking-wider mb-3 flex items-center gap-2">
-      <Star size={14} className="animate-pulse"/> Descripción
+      <Star size={14} className="animate-pulse"/> {t.desc_label}
     </h3>
     
-    {/* CAMBIO AQUÍ: whitespace-pre-line permite párrafos y text-slate-300 da más brillo */}
     <p className="text-slate-300 text-sm leading-7 whitespace-pre-line font-light">
-      {selectedApp.description}
+      {(lang === 'en' && selectedApp.description_en) ? selectedApp.description_en : selectedApp.description}
     </p>
 
+    {/* ✅ ADVERTENCIA (WARNING) CORREGIDA */}
     {selectedApp.warning && (
       <div className="mt-4 p-3 rounded-xl bg-sky-500/10 border border-sky-500/20 shadow-[0_0_15px_rgba(14,165,233,0.1)] flex items-center justify-center gap-3">
         <div className="animate-pulse">
           <AlertTriangle className="text-sky-400" size={20} />
         </div>
         <p className="text-sky-300 text-xs font-bold leading-relaxed text-left">
-          {selectedApp.warning.replace("⚠️", "").replace("Nota:", "").trim()}
+          {(lang === 'en' && selectedApp.warning_en) 
+            ? selectedApp.warning_en 
+            : selectedApp.warning.replace("⚠️", "").replace("Nota:", "").trim()
+          }
         </p>
       </div>
     )}
   </div>
 
-                {/* 📸 Galería (Cascada Suave) */}
                 <div className="mb-6">
                    <h3 className="text-sm font-bold text-slate-300 uppercase tracking-wider mb-3 flex items-center gap-2">
-                     <ImageIcon size={14} /> Galería
+                     <ImageIcon size={14} /> {t.gallery_label}
                    </h3>
                    <div className="flex gap-3 overflow-x-auto pb-4 snap-x snap-mandatory no-scrollbar -mx-4 px-4">
                      {(selectedApp.screenshots || [selectedApp.image, selectedApp.image, selectedApp.image]).map((shot, idx) => (
@@ -1841,10 +1986,10 @@ export default function ModStoreApp() {
                 {/* Features */}
                 <div>
                   <h3 className="text-sm font-bold text-teal-300 uppercase tracking-wider mb-3 flex items-center gap-2">
-                    <Zap size={14} /> Características del Mod
+                    <Zap size={14} /> {t.features_label}
                   </h3>
                   <ul className="space-y-2">
-                    {selectedApp.modFeatures.map((feat, idx) => (
+                    {((lang === 'en' && selectedApp.modFeatures_en) ? selectedApp.modFeatures_en : selectedApp.modFeatures).map((feat, idx) => (
                       <li key={idx} className="flex items-center gap-3 text-sm text-slate-300 bg-white/5 p-2 rounded-lg">
                         <div className="w-1.5 h-1.5 rounded-full bg-teal-400 shadow-[0_0_8px_rgba(45,212,191,0.8)]" />
                         {feat}
@@ -1854,7 +1999,6 @@ export default function ModStoreApp() {
                 </div>
               </div>
 
-              {/* Botones */}
               <div className="flex items-center gap-4 mt-6">
                   <button
                     onClick={(e) => toggleFavorite(e, selectedApp.id)}
@@ -1866,7 +2010,11 @@ export default function ModStoreApp() {
                     />
                   </button>
                   <div className="flex-1">
-                    <DownloadButton onClick={() => handleDownload(null, selectedApp.id)} loading={downloadingId === selectedApp.id} />
+                    <DownloadButton 
+                        onClick={() => handleDownload(null, selectedApp.id)} 
+                        loading={downloadingId === selectedApp.id} 
+                        text={t.download_btn}
+                    />
                   </div>
               </div>
 
@@ -1882,7 +2030,6 @@ export default function ModStoreApp() {
       {selectedApp && currentScreenshotIndex !== null && (
         <div className="fixed inset-0 z-[60] bg-black/95 backdrop-blur-xl flex flex-col items-center justify-center animate-in fade-in duration-300">
            
-           {/* Botón Cerrar */}
            <button 
              onClick={() => setCurrentScreenshotIndex(null)}
              className="absolute top-4 right-4 p-3 bg-white/10 hover:bg-white/20 rounded-full text-white transition-all z-50"
@@ -1890,7 +2037,6 @@ export default function ModStoreApp() {
              <X size={28} />
            </button>
 
-           {/* Imagen Grande */}
            <div className="relative w-full h-full flex items-center justify-center p-4 md:p-10">
              <img 
                src={(selectedApp.screenshots || [selectedApp.image, selectedApp.image, selectedApp.image])[currentScreenshotIndex]}
@@ -1899,16 +2045,12 @@ export default function ModStoreApp() {
              />
            </div>
 
-          {/* Controles de Navegación (Lógica Blindada Anti-Desborde) */}
            <div className="absolute bottom-8 left-0 w-full flex items-center justify-center gap-8 pointer-events-none">
              
-             {/* Botón Izquierdo (Anterior) */}
              <button 
-               // 🔒 BLOQUEO FÍSICO: Si es 0, el botón muere.
                disabled={currentScreenshotIndex === 0}
                onClick={(e) => {
                  e.stopPropagation();
-                 // 🔒 BLOQUEO LÓGICO: Si intentas bajar de 0, te devuelve un 0 a la fuerza.
                  setCurrentScreenshotIndex((prev) => (prev > 0 ? prev - 1 : 0)); 
                }}
                className={`pointer-events-auto p-3 bg-white/10 hover:bg-teal-500 rounded-full text-white transition-all duration-300 backdrop-blur-md active:scale-95 ${
@@ -1920,22 +2062,15 @@ export default function ModStoreApp() {
                <ChevronLeft size={32} />
              </button>
              
-             {/* Contador */}
              <span className="text-white/50 text-sm font-mono backdrop-blur-md px-3 py-1 rounded-full bg-black/20">
-               {/* Calculamos el total real aquí mismo para evitar errores */}
                {currentScreenshotIndex + 1} / {(selectedApp.screenshots || [1, 2, 3]).length}
              </span>
 
-             {/* Botón Derecho (Siguiente) */}
              <button 
-               // 🔒 BLOQUEO FÍSICO: Si llegaste al final, el botón muere.
                disabled={currentScreenshotIndex >= (selectedApp.screenshots || [1, 2, 3]).length - 1}
                onClick={(e) => {
                  e.stopPropagation();
                  const totalImages = (selectedApp.screenshots || [1, 2, 3]).length;
-                 
-                 // 🔒 BLOQUEO LÓGICO: Si prev + 1 se pasa del total, se queda en el índice actual.
-                 // Jamás sumará más allá del límite.
                  setCurrentScreenshotIndex((prev) => (prev < totalImages - 1 ? prev + 1 : prev));
                }}
                className={`pointer-events-auto p-3 bg-white/10 hover:bg-teal-500 rounded-full text-white transition-all duration-300 backdrop-blur-md active:scale-95 ${

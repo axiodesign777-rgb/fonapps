@@ -370,6 +370,8 @@ const INITIAL_APPS = [
     warning: "Requisito: Inicia sesión con Microsoft para guardar tus chats.",
     warning_en: "Requirement: Sign in with Microsoft to save your chats.",
 
+    updateDate: "2026-1-9",
+
     isUpdated: true,
     downloadUrl: "https://www.mediafire.com/file/hu2e1q1by5q265y/Copilot_30.0.440107002_PRO.apk/file"
   },
@@ -403,7 +405,6 @@ const INITIAL_APPS = [
     
     description_en: "The leading weather application in accuracy. Unlocked Pro version offering real-time rain radar, severe weather alerts, unlimited map zoom, and detailed 14-day forecasts without intrusive advertising.",
     modFeatures_en: ["Pro Unlocked", "No Ads", "Premium Radar", "Improved Performance"],
-     updateDate: "2026-1-9",
 
     isUpdated: false,
     downloadUrl: "https://www.mediafire.com/file/adgmz4v0m5lywqm/Tiempo%26Radar_2026.1_PRO.apk/file"

@@ -28,10 +28,11 @@ const getBadge = (app) => {
   return keywords.find(word => app.name.includes(word));
 };
 
+// ⚠️ CONFIGURACIÓN DE MONETIZACIÓN (API LOOTLABS)
+// Pega tu token API aquí. Si está vacío "", se usarán los enlaces directos (Modo Seguro).
+const MONETIZATION_API_TOKEN = "2d803576a9614950be0b4a776e603e452dec39fcd12f38df675ce96c2d8a8fdb"; 
 
 const INITIAL_APPS = [
-
-
   {
     id: 27,
     name: "Dynamic Island Pro",
@@ -59,10 +60,8 @@ const INITIAL_APPS = [
     modFeatures: ["Pro Desbloqueado", "Sin Anuncios","Personalización completa de la isla", "Animaciones Premium","Rendimiento general mejorado"],
     updateDate: "2026-1-7",
     isNew: true,
-    downloadUrl: "https://cuty.io/DynamicNotch"
+    downloadUrl: "https://www.mediafire.com/file/9vt3w9ouzbdtmra/DynamicNotch_5.1_PREMIUM.apk/file"
   },
-
-  
   {
     id: 26,
     name: "YouTube Pro",
@@ -88,11 +87,10 @@ const INITIAL_APPS = [
     ],
     description: "Una alternativa ligera y potente para el streaming de video. Integra controles de deslizamiento para brillo y volumen, modo oscuro AMOLED real y descargas directas.\n\nDisfruta de reproducción en segundo plano, ventana flotante (PiP) y bloqueo total de anuncios. Ideal si buscas una experiencia más personalizable que la app estándar, no necesita los servicios de MicroG.",
     modFeatures: ["Descargas de video y audio", "Controles de Gesto", "Bloqueo de Anuncios", "Gemini AI integrado", "Ultra ligero","Rendimiento general mejorado"],
-     updateDate: "2026-1-7",
+    updateDate: "2026-1-7",
     isNew: true,
-    downloadUrl: "https://cuty.io/YoutubePro"
+    downloadUrl: "https://www.mediafire.com/file/j9d22zf4f0hnt20/YouTube_pro.apk/file"
   },
-
   {
     id: 25,
     name: "Nomad Music Premium",
@@ -119,10 +117,9 @@ const INITIAL_APPS = [
     description: "Un reproductor de música offline elegante y ligero, ideal para quienes buscan simplicidad. Versión Premium desbloqueada: elimina totalmente la publicidad y accede a todos los temas visuales (Skins) exclusivos. Incluye herramientas útiles como cortador de tonos y un ecualizador de 5 bandas con refuerzo de graves.",
     modFeatures: ["Premium Desbloqueado", "Sin Anuncios", "Todos los Temas","Rendimiento general mejorado"],
     isNew: false,
-    downloadUrl: "https://cuty.io/NomadMusic"
+    downloadUrl: "https://www.mediafire.com/file/wy8gqlqr4adbibj/Nomad_Music_25.3.3_PREMIUM.apk/file"
   },
-
-{
+  {
     id: 24,
     name: "ReLens Camera Pro",
     developer: "FonApps",
@@ -150,10 +147,9 @@ const INITIAL_APPS = [
     updateDate: "2025-12-30",
     isUpdated: false,
     isNew: false,
-    downloadUrl: "https://cuty.io/RelensVip"
+    downloadUrl: "https://www.mediafire.com/file/sgvx1dlfriul4hu/ReLens_4.1.3_VIP.apk/file"
   },
-
- {
+  {
     id: 23,
     name: "Spring Editor Pro",
     developer: "FonApps",
@@ -178,10 +174,10 @@ const INITIAL_APPS = [
     ],
     description: "Transforma tus ideas en videos virales con la potencia de la Inteligencia Artificial. Versión Pro totalmente desbloqueada: accede a herramientas avanzadas como subtitulado automático, eliminación mágica de fondos y mejora de resolución por IA. Exporta tus clips en calidad cinematográfica 4K a 60FPS sin marcas de agua y disfruta de la biblioteca completa de música y efectos premium.",
     modFeatures: ["Pro Desbloqueado", "Sin anuncios", "Sin Marca de Agua","Rendimiento general mejorado"],
-     updateDate: "2025-12-30",
+    updateDate: "2025-12-30",
     isUpdated: false,
     isNew: false,
-    downloadUrl: "https://cuty.io/SpringPremiu"
+    downloadUrl: "https://www.mediafire.com/file/1dxkg77nj0t13kc/Spring_2.0.9.35926_PREMIUM.apk/file"
   },
   {
     id: 21,
@@ -210,10 +206,9 @@ const INITIAL_APPS = [
     ],
     description: "Transforma tu teléfono en una interfaz futurista de ciencia ficción. Versión Prime totalmente desbloqueada: acceso a todos los temas 4D Premium, widgets de sistema avanzados, personalización de colores estilo 'hacker' y eliminación completa de publicidad.",
     modFeatures: ["Prime Desbloqueado", "Temas 4D", "Estilo Hacker","Rendimiento general mejorado"],
-
     isUpdated: false,
     isNew: false,
-    downloadUrl: "https://cuty.io/AlphaLaunch"
+    downloadUrl: "https://www.mediafire.com/file/zyockx66vqixrco/Alpha_Hybrid_Launcher_15.5_PREMIUM.apk/file"
   },
   {
     id: 20,
@@ -242,7 +237,7 @@ const INITIAL_APPS = [
     modFeatures: ["Premium Desbloqueado", "Límite Texto 3000", "Escáner OCR","Rendimiento general mejorado"],
     isUpdated: false,
     isNew: false,
-    downloadUrl: "https://cuty.io/spellcheck"
+    downloadUrl: "https://www.mediafire.com/file/6ebxohqa23vk9jr/Spellcheck_1.0.12_PREMIUM.apk/file"
   },
   {
     id: 19,
@@ -273,7 +268,7 @@ const INITIAL_APPS = [
     modFeatures: ["Pro Desbloqueado", "Sin Anuncios", "Soporte 4K","Rendimiento general mejorado"],
     isUpdated: false,
     isNew: false,
-    downloadUrl: "https://cuty.io/ExoPlayerPro"
+    downloadUrl: "https://www.mediafire.com/file/aj0chvuams6sxi6/Exo_Player_2.1.3_PRO.apk/file"
   },
   {
     id: 18,
@@ -302,7 +297,7 @@ const INITIAL_APPS = [
     modFeatures: ["VIP Desbloqueado", "Sin Anuncios", "Servidores Globales","Rendimiento general mejorado"],
     isUpdated: false,
     isNew: false,
-    downloadUrl: "https://cuty.io/SuperbVPN"
+    downloadUrl: "https://www.mediafire.com/file/4egupw0g6nx3j2i/Super_VPN_3.2.0_Premium.apk/file"
   },
   {
     id: 17,
@@ -333,11 +328,11 @@ const INITIAL_APPS = [
     modFeatures: ["GPT-5.1 Desbloqueado", "DALL-E Ilimitado", "Velocidad Máxima","Rendimiento general mejorado"],
     warning: "Requisito: Inicia sesión con Microsoft para guardar tus chats.",
     isUpdated: false,
-    downloadUrl: "https://cuty.io/MCopilotPRO"
+    downloadUrl: "https://www.mediafire.com/file/mtc9n6nhjujpt43/Copilot_30.0.431217002_PRO.apk/file"
   },
   {
     id: 16,
-    name: "Weather & Radar Pro",
+    name: "Tiempo & Radar Pro",
     developer: "FonApps",
     category: "Herramientas",
     rating: 4.8,
@@ -363,7 +358,7 @@ const INITIAL_APPS = [
     description: "La aplicación meteorológica líder en precisión. Versión Pro desbloqueada que ofrece radar de lluvia en tiempo real, alertas de clima severo, zoom ilimitado en mapas y pronósticos detallados a 14 días sin publicidad intrusiva.",
     modFeatures: ["Pro Desbloqueado", "Sin Anuncios", "Radar Premium","Rendimiento general mejorado"],
     isUpdated: false,
-    downloadUrl: "https://cuty.io/TiempoyRadar"
+    downloadUrl: "https://www.mediafire.com/file/adgmz4v0m5lywqm/Tiempo%2526Radar_2026.1_PRO.apk/file"
   },
   {
     id: 15,
@@ -393,9 +388,9 @@ const INITIAL_APPS = [
     description: "Accede a la inteligencia artificial más audaz y sin censura. Respuestas en tiempo real con datos actualizados y modo sarcástico desbloqueado.",
     warning: "Nota: Debes iniciar sesión con tu cuenta de X (antes Twitter).",
     modFeatures: ["Premium Desbloqueado", "Imagine", "Sin Censura","Rendimiento general mejorado"],
-     updateDate: "2026-1-5",
+    updateDate: "2026-1-5",
     isUpdated: true,
-    downloadUrl: "https://cuty.io/GrokAIX"
+    downloadUrl: "https://www.mediafire.com/file/1xpn8su7ut50d5j/Grok_1.1.01-release.02_PREMIUM.apk/file"
   },
   {
     id: 14,
@@ -425,7 +420,7 @@ const INITIAL_APPS = [
     description: "El launcher más potente y personalizable. Versión Prime totalmente desbloqueada: gestos, grupos en el cajón, ocultar aplicaciones y efectos de desplazamiento exclusivos.",
     modFeatures: ["Prime Desbloqueado", "Gestos", "Ocultar Apps","Rendimiento general mejorado"],
     isUpdated: false,
-    downloadUrl: "https://cuty.io/NovaLauncher"
+    downloadUrl: "https://www.mediafire.com/file/pr18hq9ayo6l7oj/Nova_Launcher_8.1.6_PRIME.apk/file"
   },
   {
     id: 13,
@@ -455,7 +450,7 @@ const INITIAL_APPS = [
     description: "La pantalla de inicio más limpia para Android. Versión Pro desbloqueada con acceso a todos los widgets,temas, iconos adaptativos y personalización avanzada de fuentes y colores.",
     modFeatures: ["Pro Desbloqueado", "Widgets y temas Premium", "Iconos Adaptativos","Rendimiento general mejorado"],
     isUpdated: false,
-    downloadUrl: "https://cuty.io/NiagaraLaunc"
+    downloadUrl: "https://www.mediafire.com/file/c6hlrpxchd70vqn/Niagara_Launcher_v1.15.6_Premium.apk/file"
   },
   {
     id: 12,
@@ -483,7 +478,7 @@ const INITIAL_APPS = [
     description: "Tu asistente de respuestas con IA. Acceso Pro desbloqueado: búsquedas Pro ilimitadas, carga de archivos PDF/Imágenes sin límites y selección de modelos avanzados como GPT-5 y Claude 3.5 Sonnet.",
     modFeatures: ["Max Desbloqueado", "Búsquedas Max Ilimitadas", "Modelos Premium","Rendimiento general mejorado"],
     isUpdated: false,
-    downloadUrl: "https://cuty.io/Perplexity"
+    downloadUrl: "https://www.mediafire.com/file/03m3eolcwqxbu5y/Perplexity_2.65.1_MAX.apk/file"
   },
   {
     id: 11,
@@ -513,7 +508,7 @@ const INITIAL_APPS = [
     warning: "Requisito: Es necesario instalar MicroG para iniciar sesión con Google.",
     modFeatures: ["Sin Anuncios", "Segundo Plano", "SponsorBlock","Rendimiento general mejorado"],
     isUpdated: false,
-    downloadUrl: "https://cuty.io/YouTubeVIP"
+    downloadUrl: "https://www.mediafire.com/file/7436kvm1w1wzgr3/YouTube_ReVanced_20.14.43_PREMIUM.apk/file"
   },
   {
     id: 10,
@@ -543,7 +538,7 @@ const INITIAL_APPS = [
     description: "Transmite videos web, películas y series a tu TV, Chromecast o Roku sin restricciones. Versión Premium desbloqueada: sin anuncios, marcadores ilimitados y pantalla de inicio personalizada.",
     modFeatures: ["Premium Desbloqueado", "Sin Anuncios", "Cola de Reproducción","Rendimiento general mejorado"],
     isUpdated: false,
-    downloadUrl: "https://cuty.io/VideoCaster"
+    downloadUrl: "https://www.mediafire.com/file/13ar2t8nivpg4p4/Web_Video_Caster_5.12.8_PREMIUM.apk/file"
   },
   {
     id: 9,
@@ -570,9 +565,9 @@ const INITIAL_APPS = [
     ],
     description: "Mensajería instantánea: simple, rápida y segura.\n\nDisfruta de una sincronización perfecta entre todos tus dispositivos con almacenamiento ilimitado en la nube.\n\nUtiliza una infraestructura global distribuida para ofrecer la máxima velocidad de conexión, cifrado avanzado para tu privacidad y herramientas poderosas para gestionar comunidades y compartir archivos de gran tamaño sin restricciones.",
     modFeatures: ["Premium Desbloqueado", "Gestión avanzada de chats", "Traducir chats enteros", "Copiar y guardar en canales privados", "Velocidad de descarga y subida+","Más","Rendimiento general mejorado"],
-     updateDate: "2026-1-3",
+    updateDate: "2026-1-3",
     isUpdated: true,
-    downloadUrl: "https://cuty.io/TelegramVIP"
+    downloadUrl: "https://www.mediafire.com/file/ph38j27ihwuooa9/Telegram_12.3.0_PREMIUM.apk/file"
   },
   {
     id: 8,
@@ -602,7 +597,7 @@ const INITIAL_APPS = [
     description: "El editor de video más profesional. Versión Premium desbloqueada: exportación en 4K Ultra HD, sin marca de agua, estabilizador de video y acceso ilimitado a todo el stock de música y efectos.",
     modFeatures: ["Sin Marca de Agua", "Exportación 4K", "Todo Desbloqueado","Rendimiento general mejorado"],
     isUpdated: false,
-    downloadUrl: "https://cuty.io/PowerDirecto"
+    downloadUrl: "https://www.mediafire.com/file/o9poinbem468mvn/PowerDirector_15.9.2_PRO.apk/file"
   },
   {
     id: 7,
@@ -632,7 +627,7 @@ const INITIAL_APPS = [
     description: "El launcher más inteligente y eficiente. Versión Pro desbloqueada: búsqueda inteligente, categorías automáticas personalizables, widgets adaptativos y gestos avanzados en pantalla de inicio.",
     modFeatures: ["Pro Desbloqueado", "Iconos Adaptativos", "Sin Anuncios","Rendimiento general mejorado"],
     isUpdated: false,
-    downloadUrl: "https://cuty.io/SmartLaunche"
+    downloadUrl: "https://www.mediafire.com/file/hw5g8bav0krab7q/Smart_Launcher_6.5_build_054_PRO.apk/file"
   },
   {
     id: 6,
@@ -663,7 +658,7 @@ const INITIAL_APPS = [
     modFeatures: ["Sin Anuncios", "Temas Premium", "Ecualizador Pro","Rendimiento general mejorado"],
     isUpdated: false,
     updateDate: "2026-1-1",
-    downloadUrl: "https://cuty.io/LarkPlayerFA"
+    downloadUrl: "https://www.mediafire.com/file/jp4edo25yrk20fp/Lark_Player_6.34.12_PREMIUM.apk/file"
   },
   {
     id: 5,
@@ -693,7 +688,7 @@ const INITIAL_APPS = [
     description: "El reproductor de música oficial de Samsung optimizado para todos los dispositivos. Interfaz One UI elegante, ecualizador avanzado y soporte para todos los formatos de audio con calidad premium.",
     modFeatures: ["Interfaz One UI", "Ecualizador Pro", "Para todos los dispositivos","Rendimiento general mejorado"],
     isUpdated: false,
-    downloadUrl: "https://cuty.io/SamsungMusic"
+    downloadUrl: "https://www.mediafire.com/file/eejef07o85k8ydn/SamsungMusic-16.2.41.9-v1.7.2-Spotify.apk/file"
   },
   {
     id: 4,
@@ -723,7 +718,7 @@ const INITIAL_APPS = [
     description: "Asistente inteligente avanzado impulsado por GPT-4. Versión Pro desbloqueada: diálogos ilimitados, procesamiento de imágenes, modo experto y sin anuncios de ningún tipo.",
     modFeatures: ["Pro Desbloqueado", "Chat Ilimitado", "GPT-5 & Gemini 3 pro y mas...","Rendimiento general mejorado"],
     isUpdated: false,
-    downloadUrl: "https://cuty.io/ChatSmithPro"
+    downloadUrl: "https://www.mediafire.com/file/xd9ujn6schel2el/Chat_Smith_8.251208.1_PREMIUM.apk/file"
   },
   {
     id: 3,
@@ -751,7 +746,7 @@ const INITIAL_APPS = [
     description: "El componente esencial para usuarios de mods. Permite iniciar sesión con tu cuenta de Google en aplicaciones modificadas como YouTube ReVanced, garantizando sincronización y notificaciones sin servicios de Google oficiales.",
     modFeatures: ["Login Google habilitado", "Sin rastreo de datos", "Ahorro de batería","Rendimiento general mejorado"],
     isUpdated: false,
-    downloadUrl: "https://ouo.io/D8wwCp"
+    downloadUrl: "https://www.mediafire.com/file/qjg0kj7dbfuyp3p/microG_0.3.1.4.240913.apk/file"
   },
   {
     id: 2,
@@ -781,7 +776,7 @@ const INITIAL_APPS = [
     description: "La biblioteca más vasta de fondos de pantalla en ultra alta definición. Acceso exclusivo a fondos 4K y 8K adaptados automáticamente al tamaño de tu pantalla, con efectos de paralaje 4D y sin interrupciones publicitarias.",
     modFeatures: ["Premium Desbloqueado", "Fondos 8K y 4D", "Sin Publicidad","Rendimiento general mejorado"],
     isUpdated: false,
-    downloadUrl: "https://cuty.io/WallcraftPro"
+    downloadUrl: "https://www.mediafire.com/file/w813y93pk1q0jl9/Wallcraft_3.59.01_PRO.apk/file"
   },
   {
     id: 1,
@@ -809,7 +804,7 @@ const INITIAL_APPS = [
     description: "La solución definitiva para navegar sin fronteras. Acceso ilimitado a servidores en más de 80 países con ancho de banda infinito. Ideal para desbloquear streaming y proteger tu privacidad en redes públicas con cifrado de grado militar.",
     modFeatures: ["Premium Desbloqueado", "Ancho de Banda Ilimitado", "Ubicaciones Pro","Rendimiento general mejorado"],
     isUpdated: false,
-    downloadUrl: "https://cuty.io/Urbanvpn"
+    downloadUrl: "https://www.mediafire.com/file/kkpmcvmjxwo2soq/Urban_VPN_1.0.97_premium.apk/file"
   }
 ];
 
@@ -867,7 +862,7 @@ const AppIcon = ({ type, thumbnail, size = "md" }) => {
 
   if (imageSource && imageSource.startsWith('/')) {
     return (
-      <div className={`${sizeClass} rounded-2xl shadow-lg transform transition-transform group-hover:scale-110 duration-300 overflow-hidden bg-slate-800 border border-white/10 p-0.5 flex items-center justify-center`}>
+      <div className={`${sizeClass} rounded-2xl shadow-lg transform transition-transform group-hover:scale-110 duration-300 overflow-hidden bg-slate-800 border border-white/10 p-0.5 flex items-center justify-center relative`}>
         <img 
           src={imageSource} 
           alt="App Icon"
@@ -1139,7 +1134,46 @@ export default function ModStoreApp() {
     setTimeout(() => setShowToast(false), 3000);
   };
 
-  const handleDownload = (e, id) => {
+  // ✅ NUEVA LÓGICA: GENERADOR DE ENLACES (API LOOTLABS OFICIAL)
+  // https://creators.lootlabs.gg/api/public/content_locker
+  const getMonetizedLink = async (app) => {
+    if (!MONETIZATION_API_TOKEN) return app.downloadUrl; // Si no hay token, usa el directo
+
+    try {
+      const response = await fetch(`https://creators.lootlabs.gg/api/public/content_locker`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${MONETIZATION_API_TOKEN}`
+        },
+        body: JSON.stringify({
+          title: app.name.substring(0, 30), // MANDATORY: Max 30 chars
+          url: app.downloadUrl,             // MANDATORY: Destination link
+          tier_id: 1,                       // MANDATORY: 1-3 (1=Trending)
+          number_of_tasks: 3,               // MANDATORY: 1-5 tasks
+          theme: 1                          // OPTIONAL: 1=Classic
+          // thumbnail: Optional (needs valid URL, skipping for stability)
+        })
+      });
+
+      const data = await response.json();
+      
+      // Check success response structure based on docs:
+      // { type: "created", message: { loot_url: "..." } }
+      if (data && data.type === "created" && data.message && data.message.loot_url) {
+        return data.message.loot_url;
+      }
+      
+      console.warn("Respuesta API LootLabs no válida:", data);
+      return app.downloadUrl; // Fallback si la API devuelve error
+      
+    } catch (error) {
+      console.error("Error conectando con LootLabs:", error);
+      return app.downloadUrl; // Fallback al enlace original (Anti-Frustración)
+    }
+  };
+
+  const handleDownload = async (e, id) => {
     e?.stopPropagation();
     if (downloadingId) return;
     
@@ -1147,13 +1181,20 @@ export default function ModStoreApp() {
     if (!appToDownload) return;
 
     setDownloadingId(id);
+    showNotification("Generando enlace seguro..."); // Feedback inmediato
+
+    // 1. Obtener enlace (API o Directo)
+    const finalLink = await getMonetizedLink(appToDownload);
+
+    // 2. Procesar descarga
+    setDownloadingId(null);
+    showNotification("¡Enlace listo! Redirigiendo...");
     
+    // Pequeño delay para que el usuario lea el toast
     setTimeout(() => {
-      setDownloadingId(null);
-      showNotification("Redirigiendo a MediaFire...");
-      window.open(appToDownload.downloadUrl, '_blank');
-      if(selectedApp) setSelectedApp(null);
-    }, 1500);
+        window.open(finalLink, '_blank');
+        if(selectedApp) setSelectedApp(null);
+    }, 500);
   };
 
  // ✅ FUNCIÓN DE RENDERIZADO ACTUALIZADA (CON ETIQUETA DORADA)
@@ -1498,8 +1539,9 @@ export default function ModStoreApp() {
   
 
   return (
-   <div className="min-h-screen text-slate-200 selection:bg-teal-500/30 overflow-x-hidden w-full relative" style={{ fontFamily: "'Outfit', sans-serif" }}>
-     <style>{`
+    <div className="min-h-screen text-slate-200 selection:bg-teal-500/30 overflow-x-hidden w-full relative" style={{ fontFamily: "'Outfit', sans-serif" }}>
+      
+      <style>{`
         /* 1. IMPORTAR LA FUENTE OUTFIT */
         @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
 
@@ -1794,18 +1836,18 @@ export default function ModStoreApp() {
 
               {/* Botones */}
               <div className="flex items-center gap-4 mt-6">
-                 <button
-                   onClick={(e) => toggleFavorite(e, selectedApp.id)}
-                   className="p-3 bg-slate-800 rounded-xl border border-white/10 hover:bg-slate-700 transition-colors"
-                 >
-                   <Heart 
-                     size={24} 
-                     className={favorites.includes(selectedApp.id) ? "text-pink-500 fill-pink-500" : "text-slate-400"} 
-                   />
-                 </button>
-                 <div className="flex-1">
-                   <DownloadButton onClick={() => handleDownload(null, selectedApp.id)} loading={downloadingId === selectedApp.id} />
-                 </div>
+                  <button
+                    onClick={(e) => toggleFavorite(e, selectedApp.id)}
+                    className="p-3 bg-slate-800 rounded-xl border border-white/10 hover:bg-slate-700 transition-colors"
+                  >
+                    <Heart 
+                      size={24} 
+                      className={favorites.includes(selectedApp.id) ? "text-pink-500 fill-pink-500" : "text-slate-400"} 
+                    />
+                  </button>
+                  <div className="flex-1">
+                    <DownloadButton onClick={() => handleDownload(null, selectedApp.id)} loading={downloadingId === selectedApp.id} />
+                  </div>
               </div>
 
               <p className="mt-4 text-[10px] text-slate-600 flex items-center justify-center gap-1">
@@ -1845,9 +1887,9 @@ export default function ModStoreApp() {
                // 🔒 BLOQUEO FÍSICO: Si es 0, el botón muere.
                disabled={currentScreenshotIndex === 0}
                onClick={(e) => {
-                  e.stopPropagation();
-                  // 🔒 BLOQUEO LÓGICO: Si intentas bajar de 0, te devuelve un 0 a la fuerza.
-                  setCurrentScreenshotIndex((prev) => (prev > 0 ? prev - 1 : 0)); 
+                 e.stopPropagation();
+                 // 🔒 BLOQUEO LÓGICO: Si intentas bajar de 0, te devuelve un 0 a la fuerza.
+                 setCurrentScreenshotIndex((prev) => (prev > 0 ? prev - 1 : 0)); 
                }}
                className={`pointer-events-auto p-3 bg-white/10 hover:bg-teal-500 rounded-full text-white transition-all duration-300 backdrop-blur-md active:scale-95 ${
                  currentScreenshotIndex > 0 
@@ -1869,12 +1911,12 @@ export default function ModStoreApp() {
                // 🔒 BLOQUEO FÍSICO: Si llegaste al final, el botón muere.
                disabled={currentScreenshotIndex >= (selectedApp.screenshots || [1, 2, 3]).length - 1}
                onClick={(e) => {
-                  e.stopPropagation();
-                  const totalImages = (selectedApp.screenshots || [1, 2, 3]).length;
-                  
-                  // 🔒 BLOQUEO LÓGICO: Si prev + 1 se pasa del total, se queda en el índice actual.
-                  // Jamás sumará más allá del límite.
-                  setCurrentScreenshotIndex((prev) => (prev < totalImages - 1 ? prev + 1 : prev));
+                 e.stopPropagation();
+                 const totalImages = (selectedApp.screenshots || [1, 2, 3]).length;
+                 
+                 // 🔒 BLOQUEO LÓGICO: Si prev + 1 se pasa del total, se queda en el índice actual.
+                 // Jamás sumará más allá del límite.
+                 setCurrentScreenshotIndex((prev) => (prev < totalImages - 1 ? prev + 1 : prev));
                }}
                className={`pointer-events-auto p-3 bg-white/10 hover:bg-teal-500 rounded-full text-white transition-all duration-300 backdrop-blur-md active:scale-95 ${
                  currentScreenshotIndex < (selectedApp.screenshots || [1, 2, 3]).length - 1 

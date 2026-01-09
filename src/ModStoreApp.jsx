@@ -1134,10 +1134,22 @@ export default function ModStoreApp() {
     setTimeout(() => setShowToast(false), 3000);
   };
 
- // ✅ FUNCIÓN CORREGIDA (Lectura de Array)
+ // ✅ FUNCIÓN CON MEMORIA (CACHÉ)
+  // Guarda el enlace generado para no pedirlo 2 veces al mismo usuario
   const getMonetizedLink = async (app) => {
+    // 1. Si no hay token, enlace directo
     if (!MONETIZATION_API_TOKEN) return app.downloadUrl; 
 
+    // 2. REVISAR MEMORIA: ¿Ya generamos este enlace para este usuario hoy?
+    const cacheKey = `loot_${app.id}`; // Clave única por App
+    const cachedLink = sessionStorage.getItem(cacheKey);
+
+    if (cachedLink) {
+      console.log("🚀 Usando enlace de memoria (Cache):", cachedLink);
+      return cachedLink; // ¡Devolvemos el guardado y ahorramos la llamada API!
+    }
+
+    // 3. Si no está en memoria, llamamos a la API
     try {
       const response = await fetch(`https://creators.lootlabs.gg/api/public/content_locker`, {
         method: 'POST',
@@ -1156,19 +1168,21 @@ export default function ModStoreApp() {
 
       const data = await response.json();
       
-      // --- CORRECCIÓN AQUÍ ---
-      // Detectamos si la respuesta viene en una lista (Array) o como objeto
+      // Lectura corregida de la respuesta (Array u Objeto)
       let finalLink = null;
-      
       if (data?.type === "created") {
           if (Array.isArray(data.message) && data.message[0]?.loot_url) {
-              finalLink = data.message[0].loot_url; // Caso actual (Tu captura)
+              finalLink = data.message[0].loot_url;
           } else if (data.message?.loot_url) {
-              finalLink = data.message.loot_url;    // Caso alternativo (Documentación)
+              finalLink = data.message.loot_url;
           }
       }
 
-      if (finalLink) return finalLink;
+      if (finalLink) {
+        // ✅ GUARDAR EN MEMORIA antes de devolverlo
+        sessionStorage.setItem(cacheKey, finalLink);
+        return finalLink;
+      }
       
       console.warn("Respuesta API LootLabs no válida:", data);
       return app.downloadUrl; 

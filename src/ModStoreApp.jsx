@@ -343,8 +343,8 @@ const INITIAL_APPS = [
     category: "IA",
     rating: 4.8,
     downloads: "50M+",
-    size: "55,43 MB",
-    version: "v30.0.43",
+    size: "55,87 MB",
+    version: "v30.0.44",
     image: "/icons/copilot.webp",
     thumbnail: "/Thumb/copilot_thumb.webp",
     screenshots: [
@@ -371,7 +371,7 @@ const INITIAL_APPS = [
     warning_en: "Requirement: Sign in with Microsoft to save your chats.",
 
     isUpdated: false,
-    downloadUrl: "https://www.mediafire.com/file/mtc9n6nhjujpt43/Copilot_30.0.431217002_PRO.apk/file"
+    downloadUrl: "https://www.mediafire.com/file/hu2e1q1by5q265y/Copilot_30.0.440107002_PRO.apk/file"
   },
   {
     id: 16,

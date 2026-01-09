@@ -1283,74 +1283,45 @@ export default function ModStoreApp() {
     setTimeout(() => setShowToast(false), 3000);
   };
 
-  // ✅ AQUÍ ESTÁ LA MAGIA DE LA IMPLEMENTACIÓN OFICIAL
+  // ✅ SOLUCIÓN: API GET SIMPLE + PROXY TRANSPARENTE
   const getMonetizedLink = async (app) => {
-    // 1. Si no hay token configurado, devolvemos enlace directo (fallback)
-    if (!MONETIZATION_API_TOKEN) return app.downloadUrl; 
+    if (!MONETIZATION_API_TOKEN) return app.downloadUrl;
 
-    // 2. Revisamos si ya creamos un enlace para esta app en esta sesión (para no spammear la API)
-    const cacheKey = `loot_${app.id}`; 
-    const cachedLink = sessionStorage.getItem(cacheKey);
-    if (cachedLink) return cachedLink;
+    const cacheKey = `loot_${app.id}`;
+    if (sessionStorage.getItem(cacheKey)) return sessionStorage.getItem(cacheKey);
 
     try {
-      // 3. CONSTRUCCIÓN DE LA URL SEGÚN LA DOCUMENTACIÓN OFICIAL (GET Request)
-      // Usamos URLSearchParams para asegurar que los caracteres especiales se codifiquen bien
+      // 1. Construir URL limpia (GET)
       const targetUrl = new URL('https://creators.lootlabs.gg/api/public/content_locker');
-      targetUrl.searchParams.append('api_token', MONETIZATION_API_TOKEN);
-      targetUrl.searchParams.append('title', app.name.substring(0, 30)); // Limitado a 30 caracteres como pide la doc
-      targetUrl.searchParams.append('url', app.downloadUrl); // El destino final (MediaFire)
-      targetUrl.searchParams.append('tier_id', '1');
-      targetUrl.searchParams.append('number_of_tasks', '3');
-      targetUrl.searchParams.append('theme', '1');
+      targetUrl.searchParams.set('api_token', MONETIZATION_API_TOKEN);
+      targetUrl.searchParams.set('url', app.downloadUrl);
+      targetUrl.searchParams.set('title', app.name.substring(0, 30));
+      targetUrl.searchParams.set('tier_id', '1');
+      targetUrl.searchParams.set('number_of_tasks', '3');
+      targetUrl.searchParams.set('theme', '1');
+      if (app.thumbnail) targetUrl.searchParams.set('thumbnail', `https://fonapps.vercel.app${app.thumbnail}`);
 
-      // Si tenemos thumbnail, la añadimos (usamos la URL absoluta de tu web)
-      if (app.thumbnail) {
-        // Asumiendo que tu dominio es fonapps.vercel.app, ajústalo si es otro
-        targetUrl.searchParams.append('thumbnail', `https://fonapps.vercel.app${app.thumbnail}`);
-      }
-
-      // 4. USAMOS UN PROXY TRANSPARENTE ROBUSTO (corsproxy.io)
-      // Este servicio actúa como "puente" real, enviando la petición tal cual al servidor de LootLabs
+      // 2. Usar Proxy para evitar que el navegador bloquee (CORS)
+      // Codificamos la URL completa de LootLabs y se la damos al proxy
       const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(targetUrl.toString())}`;
-      
-      const response = await fetch(proxyUrl, {
-        method: 'GET',
-        // No necesitamos headers especiales, el proxy se encarga
-      });
 
-      if (!response.ok) throw new Error('Proxy Error');
-
+      // 3. Petición simple (GET) sin headers complicados
+      const response = await fetch(proxyUrl);
       const data = await response.json();
-      
-      // 5. EXTRACCIÓN DEL ENLACE MONETIZADO
+
+      // 4. Validar respuesta
       let finalLink = null;
-      
-      // La API puede devolver "created" o "fetch" según la doc
-      if (data?.type === "fetch" || data?.type === "created") {
-          // A veces devuelve un array en message, a veces un objeto. Manejamos ambos.
-          if (Array.isArray(data.message) && data.message[0]?.loot_url) {
-              finalLink = data.message[0].loot_url;
-          } else if (data.message?.loot_url) {
-              finalLink = data.message.loot_url;
-          }
-      }
+      if (data?.message?.loot_url) finalLink = data.message.loot_url;
+      else if (data?.message && data.message[0]?.loot_url) finalLink = data.message[0].loot_url;
 
       if (finalLink) {
-        // Guardamos en caché para la próxima vez
         sessionStorage.setItem(cacheKey, finalLink);
         return finalLink;
       }
-      
-      // Si la API responde algo raro, logueamos y damos enlace directo
-      console.warn("LootLabs API response:", data);
-      return app.downloadUrl; 
-      
-    } catch (error) {
-      // Si todo falla (red, bloqueo), no dejamos al usuario tirado
-      console.error("LootLabs Connection Error:", error);
-      return app.downloadUrl; 
+    } catch (e) {
+      console.error(e);
     }
+    return app.downloadUrl; // Fallback
   };
 
   const handleDownload = async (e, id) => {
@@ -1363,7 +1334,6 @@ export default function ModStoreApp() {
     setDownloadingId(id);
     showNotification(t.generating_link);
 
-    // Llamamos a la función corregida
     const finalLink = await getMonetizedLink(appToDownload);
 
     setDownloadingId(null);

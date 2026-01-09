@@ -1134,10 +1134,9 @@ export default function ModStoreApp() {
     setTimeout(() => setShowToast(false), 3000);
   };
 
-  // ✅ NUEVA LÓGICA: GENERADOR DE ENLACES (API LOOTLABS OFICIAL)
-  // https://creators.lootlabs.gg/api/public/content_locker
+ // ✅ FUNCIÓN CORREGIDA (Lectura de Array)
   const getMonetizedLink = async (app) => {
-    if (!MONETIZATION_API_TOKEN) return app.downloadUrl; // Si no hay token, usa el directo
+    if (!MONETIZATION_API_TOKEN) return app.downloadUrl; 
 
     try {
       const response = await fetch(`https://creators.lootlabs.gg/api/public/content_locker`, {
@@ -1147,29 +1146,36 @@ export default function ModStoreApp() {
           'Authorization': `Bearer ${MONETIZATION_API_TOKEN}`
         },
         body: JSON.stringify({
-          title: app.name.substring(0, 30), // MANDATORY: Max 30 chars
-          url: app.downloadUrl,             // MANDATORY: Destination link
-          tier_id: 1,                       // MANDATORY: 1-3 (1=Trending)
-          number_of_tasks: 3,               // MANDATORY: 1-5 tasks
-          theme: 1                          // OPTIONAL: 1=Classic
-          // thumbnail: Optional (needs valid URL, skipping for stability)
+          title: app.name.substring(0, 30), 
+          url: app.downloadUrl,             
+          tier_id: 1,                       
+          number_of_tasks: 3,               
+          theme: 1                          
         })
       });
 
       const data = await response.json();
       
-      // Check success response structure based on docs:
-      // { type: "created", message: { loot_url: "..." } }
-      if (data && data.type === "created" && data.message && data.message.loot_url) {
-        return data.message.loot_url;
+      // --- CORRECCIÓN AQUÍ ---
+      // Detectamos si la respuesta viene en una lista (Array) o como objeto
+      let finalLink = null;
+      
+      if (data?.type === "created") {
+          if (Array.isArray(data.message) && data.message[0]?.loot_url) {
+              finalLink = data.message[0].loot_url; // Caso actual (Tu captura)
+          } else if (data.message?.loot_url) {
+              finalLink = data.message.loot_url;    // Caso alternativo (Documentación)
+          }
       }
+
+      if (finalLink) return finalLink;
       
       console.warn("Respuesta API LootLabs no válida:", data);
-      return app.downloadUrl; // Fallback si la API devuelve error
+      return app.downloadUrl; 
       
     } catch (error) {
       console.error("Error conectando con LootLabs:", error);
-      return app.downloadUrl; // Fallback al enlace original (Anti-Frustración)
+      return app.downloadUrl; 
     }
   };
 

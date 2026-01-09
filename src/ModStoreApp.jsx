@@ -1283,73 +1283,67 @@ export default function ModStoreApp() {
     setTimeout(() => setShowToast(false), 3000);
   };
 
-  // ✅ AQUÍ ESTÁ LA MAGIA DE LA IMPLEMENTACIÓN OFICIAL
   const getMonetizedLink = async (app) => {
-    // 1. Si no hay token configurado, devolvemos enlace directo (fallback)
-    if (!MONETIZATION_API_TOKEN) return app.downloadUrl; 
+    if (!MONETIZATION_API_TOKEN) return app.downloadUrl;
 
-    // 2. Revisamos si ya creamos un enlace para esta app en esta sesión (para no spammear la API)
-    const cacheKey = `loot_${app.id}`; 
+    const cacheKey = `loot_${app.id}`;
     const cachedLink = sessionStorage.getItem(cacheKey);
     if (cachedLink) return cachedLink;
 
     try {
-      // 3. CONSTRUCCIÓN DE LA URL SEGÚN LA DOCUMENTACIÓN OFICIAL (GET Request)
-      // Usamos URLSearchParams para asegurar que los caracteres especiales se codifiquen bien
-      const targetUrl = new URL('https://creators.lootlabs.gg/api/public/content_locker');
-      targetUrl.searchParams.append('api_token', MONETIZATION_API_TOKEN);
-      targetUrl.searchParams.append('title', app.name.substring(0, 30)); // Limitado a 30 caracteres como pide la doc
-      targetUrl.searchParams.append('url', app.downloadUrl); // El destino final (MediaFire)
-      targetUrl.searchParams.append('tier_id', '1');
-      targetUrl.searchParams.append('number_of_tasks', '3');
-      targetUrl.searchParams.append('theme', '1');
-
-      // Si tenemos thumbnail, la añadimos (usamos la URL absoluta de tu web)
-      if (app.thumbnail) {
-        // Asumiendo que tu dominio es fonapps.vercel.app, ajústalo si es otro
-        targetUrl.searchParams.append('thumbnail', `https://fonapps.vercel.app${app.thumbnail}`);
-      }
-
-      // 4. USAMOS UN PROXY TRANSPARENTE ROBUSTO (corsproxy.io)
-      // Este servicio actúa como "puente" real, enviando la petición tal cual al servidor de LootLabs
-      const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(targetUrl.toString())}`;
-      
-      const response = await fetch(proxyUrl, {
-        method: 'GET',
-        // No necesitamos headers especiales, el proxy se encarga
+      // Documentation: GET request uses query params, NO Auth header.
+      const baseUrl = 'https://creators.lootlabs.gg/api/public/content_locker';
+      const params = new URLSearchParams({
+        api_token: MONETIZATION_API_TOKEN,
+        title: app.name.substring(0, 30), // Doc says max 30 chars
+        url: app.downloadUrl,
+        tier_id: '1',
+        number_of_tasks: '3',
+        theme: '1',
       });
 
-      if (!response.ok) throw new Error('Proxy Error');
+      if (app.thumbnail) {
+         // Ensure absolute URL if it's a relative path
+         const thumbUrl = app.thumbnail.startsWith('http')
+            ? app.thumbnail
+            : `${window.location.origin}${app.thumbnail}`;
+         params.append('thumbnail', thumbUrl);
+      }
+
+      const response = await fetch(`${baseUrl}?${params.toString()}`, {
+        method: 'GET',
+        // IMPORTANT: No custom headers to avoid triggering strict CORS preflight if possible,
+        // though standard fetch might still trigger it.
+        // We rely on the API allowing GET requests from 'any' origin.
+      });
+
+      if (!response.ok) {
+         throw new Error(`API Error: ${response.status}`);
+      }
 
       const data = await response.json();
-      
-      // 5. EXTRACCIÓN DEL ENLACE MONETIZADO
+
+      // Check structure based on docs:
+      // Success response: { type: "fetch"|"created", message: { loot_url: "..." } }
       let finalLink = null;
-      
-      // La API puede devolver "created" o "fetch" según la doc
-      if (data?.type === "fetch" || data?.type === "created") {
-          // A veces devuelve un array en message, a veces un objeto. Manejamos ambos.
-          if (Array.isArray(data.message) && data.message[0]?.loot_url) {
-              finalLink = data.message[0].loot_url;
-          } else if (data.message?.loot_url) {
-              finalLink = data.message.loot_url;
-          }
+      if (data?.message?.loot_url) {
+        finalLink = data.message.loot_url;
+      } else if (Array.isArray(data?.message) && data.message[0]?.loot_url) {
+         // Just in case it returns an array like in some previous observations
+         finalLink = data.message[0].loot_url;
       }
 
       if (finalLink) {
-        // Guardamos en caché para la próxima vez
         sessionStorage.setItem(cacheKey, finalLink);
         return finalLink;
       }
-      
-      // Si la API responde algo raro, logueamos y damos enlace directo
-      console.warn("LootLabs API response:", data);
-      return app.downloadUrl; 
-      
+
+      console.warn("LootLabs Invalid Response:", data);
+      return app.downloadUrl; // Fallback
+
     } catch (error) {
-      // Si todo falla (red, bloqueo), no dejamos al usuario tirado
       console.error("LootLabs Connection Error:", error);
-      return app.downloadUrl; 
+      return app.downloadUrl; // Fallback
     }
   };
 
@@ -1363,7 +1357,6 @@ export default function ModStoreApp() {
     setDownloadingId(id);
     showNotification(t.generating_link);
 
-    // Llamamos a la función corregida
     const finalLink = await getMonetizedLink(appToDownload);
 
     setDownloadingId(null);
@@ -1518,6 +1511,121 @@ export default function ModStoreApp() {
       )}
     </section>
   );
+  };
+
+  const renderHome = () => {
+    const searchSuggestions = searchTerm.length > 0 
+      ? INITIAL_APPS.filter(app => app.name.toLowerCase().includes(searchTerm.toLowerCase())).slice(0, 3)
+      : [];
+
+    return (
+      <>
+        <header className="mb-12 text-center md:text-left">
+          <div className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-purple-900/50 to-slate-900 border border-white/10 p-8 md:p-12 flex flex-col md:flex-row items-center gap-8">
+            <div className="flex-1 space-y-4">
+              <div className="absolute inset-0 md:hidden overflow-hidden pointer-events-none select-none">
+                <div className="absolute top-5 right-0 text-teal-500/10 animate-bounce duration-[3000ms]">
+                  <ShieldCheck size={80} strokeWidth={1} />
+                </div>
+                <div className="absolute top-5 left-0 text-purple-500/10 animate-bounce duration-[4000ms]">
+                  <Zap size={80} strokeWidth={1} />
+                </div>
+              </div>
+              
+              <div className={`transition-all duration-300 ease-in-out ${isSearchFocused ? 'hidden md:block opacity-0' : 'block opacity-100'}`}>
+                <Badge color="mint">{t.new_version}</Badge>
+                <h1 className="text-4xl md:text-6xl font-extrabold text-white leading-[1.1] mb-3">
+                  {t.header_title_1} <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-300 to-teal-500">{t.header_title_2}</span> {t.header_title_3}
+                </h1>
+                <p className="text-slate-400 text-sm md:text-lg max-w-xl leading-relaxed">
+                  {t.header_desc}
+                </p>
+              </div>
+              
+              <div className="relative max-w-md mt-6 group z-20">
+                {searchSuggestions.length > 0 && (
+                  <div className="absolute bottom-full left-0 mb-3 w-full flex flex-wrap gap-2 px-1 z-30">
+                    {searchSuggestions.map(app => (
+                      <button
+                        key={app.id}
+                        onClick={() => {
+                          setSelectedApp(app);
+                          setSearchTerm("");
+                        }}
+                        className="flex items-center gap-2 bg-slate-800/90 backdrop-blur-xl hover:bg-teal-500 text-white text-xs font-bold px-3 py-1.5 rounded-full border border-white/10 transition-all shadow-lg animate-in slide-in-from-bottom-2 zoom-in-95 group-hover:-translate-y-1"
+                      >
+                        <Search size={10} />
+                        {app.name}
+                        <ArrowUpRight size={10} className="opacity-50" />
+                      </button>
+                    ))}
+                  </div>
+                )}
+
+                <div className="absolute inset-0 bg-gradient-to-r from-teal-500 to-purple-600 rounded-xl blur opacity-25 group-hover:opacity-40 transition-opacity" />
+                <div className="relative bg-slate-900/90 rounded-xl flex items-center px-4 py-3 border border-white/10 focus-within:border-teal-500/50 transition-colors">
+                  <Search className="text-slate-500 mr-3" size={20} />
+                  <input 
+                    type="text" 
+                    placeholder={t.search_placeholder} 
+                    className="bg-transparent border-none outline-none text-white w-full placeholder-slate-500"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    onFocus={() => setIsSearchFocused(true)}
+                    onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
+                    autoComplete="off"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="hidden md:flex relative w-64 h-64 items-center justify-center">
+                <div className="absolute inset-0 bg-teal-500/20 rounded-full blur-3xl animate-pulse" />
+                <Smartphone size={200} className="text-slate-800 drop-shadow-2xl relative z-10" strokeWidth={1} />
+                <div className="absolute top-10 right-10 z-20 bg-slate-900/80 backdrop-blur-md p-3 rounded-2xl border border-white/10 shadow-xl animate-bounce duration-[3000ms]">
+                  <ShieldCheck className="text-teal-400" size={32} />
+                </div>
+                <div className="absolute bottom-10 left-10 z-20 bg-slate-900/80 backdrop-blur-md p-3 rounded-2xl border border-white/10 shadow-xl animate-bounce duration-[4000ms]">
+                  <Zap className="text-purple-400" size={32} />
+                </div>
+            </div>
+          </div>
+        </header>
+
+        {!searchTerm && (
+           <UpdatedAppsCarousel apps={INITIAL_APPS} onSelectApp={setSelectedApp} t={t} />
+        )}
+
+        <div className="flex overflow-x-auto p-4 gap-3 mb-8 no-scrollbar animate-in fade-in slide-in-from-bottom-8 duration-700 delay-100">
+          {CATEGORIES.map(cat => {
+            const isActive = activeCategory === cat;
+            return (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className="relative px-6 py-2 rounded-full font-medium group transition-transform duration-200 active:scale-95 border border-white/5 whitespace-nowrap"
+              >
+                <div className="absolute inset-0 rounded-full bg-slate-800/50 transition-colors duration-300 group-hover:bg-slate-700" />
+                <div 
+                  className={`absolute inset-0 rounded-full bg-gradient-to-r from-teal-400 to-purple-600 transition-opacity duration-300 ease-out
+                    ${isActive ? "opacity-100" : "opacity-0"}
+                  `} 
+                />
+                <div 
+                   className={`absolute inset-0 rounded-full transition-opacity duration-300
+                   ${isActive ? "opacity-100 shadow-[0_0_20px_rgba(45,212,191,0.5)]" : "opacity-0"}`}
+                />
+                <span className={`relative z-10 transition-colors duration-300 ${isActive ? "text-white" : "text-slate-400 group-hover:text-white"}`}>
+                  {t.categories[cat] || cat}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        {renderAppGrid(t.section_popular, false)}
+      </>
+    );
   };
 
   const renderTopMods = () => (

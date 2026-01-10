@@ -29,6 +29,9 @@ const getBadge = (app) => {
   return keywords.find(word => app.name.includes(word));
 };
 
+// ⚠️ CONFIGURACIÓN: YA NO SE NECESITA TOKEN (EL SCRIPT HACE TODO)
+const MONETIZATION_API_TOKEN = null; 
+
 // ✅ BASE DE DATOS COMPLETA
 const INITIAL_APPS = [
   {
@@ -1020,35 +1023,41 @@ const Badge = ({ children, color = "purple" }) => {
   );
 };
 
-// Modificado para aceptar texto variable
-const DownloadButton = ({ onClick, loading, text }) => (
-  <button 
-    onClick={onClick}
-    disabled={loading}
-    className={`
-      w-full py-3 rounded-xl font-bold text-slate-900 transition-all duration-300
-      flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(45,212,191,0.3)]
-      ${loading 
-        ? "bg-slate-700 cursor-not-allowed text-slate-400" 
-        : "bg-gradient-to-r from-teal-400 to-teal-200 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(45,212,191,0.5)]"
-      }
-    `}
-  >
-    {loading ? (
-      <>
+// ✅ HELPER: Convertimos el botón en un enlace <a> real para que el script lo detecte
+const DownloadButton = ({ href, loading, text }) => {
+  const className = `
+    w-full py-3 rounded-xl font-bold text-slate-900 transition-all duration-300
+    flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(45,212,191,0.3)]
+    ${loading 
+      ? "bg-slate-700 cursor-not-allowed text-slate-400 pointer-events-none" 
+      : "bg-gradient-to-r from-teal-400 to-teal-200 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(45,212,191,0.5)]"
+    }
+  `;
+
+  if (loading) {
+    return (
+      <button disabled className={className}>
         <div className="w-5 h-5 border-2 border-slate-900/30 border-t-slate-900 rounded-full animate-spin" />
         {/* Aquí podríamos pasar también texto traducido para "Preparando...", pero lo dejo simple por ahora */}
         <span>...</span> 
-      </>
-    ) : (
-      <>
-        <Download size={20} />
-        <span>{text}</span>
-        <ExternalLink size={16} className="opacity-50" />
-      </>
-    )}
-  </button>
-);
+      </button>
+    );
+  }
+
+  // Usamos una etiqueta <a> real para que el Full Page Script de LootLabs funcione
+  return (
+    <a 
+      href={href} 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      className={className}
+    >
+      <Download size={20} />
+      <span>{text}</span>
+      <ExternalLink size={16} className="opacity-50" />
+    </a>
+  );
+};
 
 const AppIcon = ({ type, thumbnail, size = "md" }) => {
   const sizeClass = size === "lg" 
@@ -1296,21 +1305,6 @@ export default function ModStoreApp() {
     setToastMessage(msg);
     setShowToast(true);
     setTimeout(() => setShowToast(false), 3000);
-  };
-
-  // ✅ FUNCIÓN DE DESCARGA SIMPLIFICADA (El Script interceptará esto automáticamente)
-  const handleDownload = (e, id) => {
-    e?.stopPropagation();
-    
-    const appToDownload = INITIAL_APPS.find(app => app.id === id);
-    if (!appToDownload) return;
-
-    // Solo retroalimentación visual rápida
-    showNotification("Iniciando descarga...");
-    
-    // Abrimos el enlace directo. El script de LootLabs detectará este evento
-    // y se encargará de mostrar la publicidad/bloqueador si corresponde.
-    window.open(appToDownload.downloadUrl, '_blank');
   };
 
   const renderAppGrid = (title, isTopView = false) => {
@@ -1679,6 +1673,12 @@ export default function ModStoreApp() {
           animation: slideUpFade 0.5s ease-out forwards;
           will-change: transform, opacity;
         }
+        
+        .animate-content { animation: contentShow 0.3s ease-out forwards; }
+        @keyframes contentShow {
+          from { opacity: 0; transform: scale(0.96); }
+          to { opacity: 1; transform: scale(1); }
+        }
       `}</style>
       
 {/* FONDO "ZERO-LAG" DEFINITIVO */}
@@ -1821,7 +1821,7 @@ export default function ModStoreApp() {
             onClick={() => setSelectedApp(null)} 
           />
           
-          <div className="relative w-full max-w-lg bg-[#161622] rounded-3xl border border-white/10 shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-300 will-change-transform">
+          <div className="relative w-full max-w-lg bg-[#161622] rounded-3xl border border-white/10 shadow-2xl overflow-hidden animate-content will-change-transform">
             
             <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-purple-900/40 to-transparent pointer-events-none" />
             
@@ -1962,7 +1962,7 @@ export default function ModStoreApp() {
                   </button>
                   <div className="flex-1">
                     <DownloadButton 
-                        onClick={() => handleDownload(null, selectedApp.id)} 
+                        href={selectedApp.downloadUrl} 
                         loading={downloadingId === selectedApp.id} 
                         text={t.download_btn}
                     />

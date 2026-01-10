@@ -1203,6 +1203,7 @@ export default function ModStoreApp() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
+  const [downloadingId, setDownloadingId] = useState(null);
   
   // ✅ ESTADO DE IDIOMA
   const [lang, setLang] = useState('es');
@@ -1222,7 +1223,7 @@ export default function ModStoreApp() {
     localStorage.setItem('myFavorites', JSON.stringify(favorites));
   }, [favorites]);
 
-  // ✅ INYECCIÓN DEL SCRIPT OFICIAL DE LOOTLABS
+  // ✅ INYECCIÓN DEL SCRIPT OFICIAL DE LOOTLABS (ACTIVO)
   useEffect(() => {
     const script = document.createElement('script');
     script.dataset.cfasync = "false";
@@ -1678,12 +1679,6 @@ export default function ModStoreApp() {
           animation: slideUpFade 0.5s ease-out forwards;
           will-change: transform, opacity;
         }
-        
-        .animate-content { animation: contentShow 0.3s ease-out forwards; }
-        @keyframes contentShow {
-          from { opacity: 0; transform: scale(0.96); }
-          to { opacity: 1; transform: scale(1); }
-        }
       `}</style>
       
 {/* FONDO "ZERO-LAG" DEFINITIVO */}
@@ -1826,7 +1821,7 @@ export default function ModStoreApp() {
             onClick={() => setSelectedApp(null)} 
           />
           
-          <div className="relative w-full max-w-lg bg-[#161622] rounded-3xl border border-white/10 shadow-2xl overflow-hidden animate-content will-change-transform">
+          <div className="relative w-full max-w-lg bg-[#161622] rounded-3xl border border-white/10 shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-300 will-change-transform">
             
             <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-purple-900/40 to-transparent pointer-events-none" />
             

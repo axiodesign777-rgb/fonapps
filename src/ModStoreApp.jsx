@@ -29,9 +29,6 @@ const getBadge = (app) => {
   return keywords.find(word => app.name.includes(word));
 };
 
-// ⚠️ CONFIGURACIÓN DE MONETIZACIÓN (API LOOTLABS)
-const MONETIZATION_API_TOKEN = "2d803576a9614950be0b4a776e603e452dec39fcd12f38df675ce96c2d8a8fdb"; 
-
 // ✅ BASE DE DATOS COMPLETA
 const INITIAL_APPS = [
   {
@@ -1204,7 +1201,6 @@ export default function ModStoreApp() {
   const [activeCategory, setActiveCategory] = useState("Todos");
   const [selectedApp, setSelectedApp] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [downloadingId, setDownloadingId] = useState(null);
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   
@@ -1225,6 +1221,22 @@ export default function ModStoreApp() {
   useEffect(() => {
     localStorage.setItem('myFavorites', JSON.stringify(favorites));
   }, [favorites]);
+
+  // ✅ INYECCIÓN DEL SCRIPT OFICIAL DE LOOTLABS
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.dataset.cfasync = "false";
+    script.src = "//dcbbwymp1bhlf.cloudfront.net/?wbbcd=1236389";
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      // Limpieza (opcional, pero buena práctica)
+      if(document.body.contains(script)){
+        document.body.removeChild(script);
+      }
+    }
+  }, []);
 
   const toggleFavorite = (e, id) => {
     e.stopPropagation();
@@ -1285,66 +1297,19 @@ export default function ModStoreApp() {
     setTimeout(() => setShowToast(false), 3000);
   };
 
-  // ✅ SOLUCIÓN: API GET SIMPLE + PROXY TRANSPARENTE
-  const getMonetizedLink = async (app) => {
-    if (!MONETIZATION_API_TOKEN) return app.downloadUrl;
-
-    const cacheKey = `loot_${app.id}`;
-    if (sessionStorage.getItem(cacheKey)) return sessionStorage.getItem(cacheKey);
-
-    try {
-      // 1. Construir URL limpia (GET)
-      const targetUrl = new URL('https://creators.lootlabs.gg/api/public/content_locker');
-      targetUrl.searchParams.set('api_token', MONETIZATION_API_TOKEN);
-      targetUrl.searchParams.set('url', app.downloadUrl);
-      targetUrl.searchParams.set('title', app.name.substring(0, 30));
-      targetUrl.searchParams.set('tier_id', '1');
-      targetUrl.searchParams.set('number_of_tasks', '3');
-      targetUrl.searchParams.set('theme', '1');
-      if (app.thumbnail) targetUrl.searchParams.set('thumbnail', `https://fonapps.vercel.app${app.thumbnail}`);
-
-      // 2. Usar Proxy para evitar que el navegador bloquee (CORS)
-      // Codificamos la URL completa de LootLabs y se la damos al proxy
-      const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(targetUrl.toString())}`;
-
-      // 3. Petición simple (GET) sin headers complicados
-      const response = await fetch(proxyUrl);
-      const data = await response.json();
-
-      // 4. Validar respuesta
-      let finalLink = null;
-      if (data?.message?.loot_url) finalLink = data.message.loot_url;
-      else if (data?.message && data.message[0]?.loot_url) finalLink = data.message[0].loot_url;
-
-      if (finalLink) {
-        sessionStorage.setItem(cacheKey, finalLink);
-        return finalLink;
-      }
-    } catch (e) {
-      console.error(e);
-    }
-    return app.downloadUrl; // Fallback
-  };
-
-  const handleDownload = async (e, id) => {
+  // ✅ FUNCIÓN DE DESCARGA SIMPLIFICADA (El Script interceptará esto automáticamente)
+  const handleDownload = (e, id) => {
     e?.stopPropagation();
-    if (downloadingId) return;
     
     const appToDownload = INITIAL_APPS.find(app => app.id === id);
     if (!appToDownload) return;
 
-    setDownloadingId(id);
-    showNotification(t.generating_link);
-
-    const finalLink = await getMonetizedLink(appToDownload);
-
-    setDownloadingId(null);
-    showNotification(t.link_ready);
+    // Solo retroalimentación visual rápida
+    showNotification("Iniciando descarga...");
     
-    setTimeout(() => {
-        window.open(finalLink, '_blank');
-        if(selectedApp) setSelectedApp(null);
-    }, 500);
+    // Abrimos el enlace directo. El script de LootLabs detectará este evento
+    // y se encargará de mostrar la publicidad/bloqueador si corresponde.
+    window.open(appToDownload.downloadUrl, '_blank');
   };
 
   const renderAppGrid = (title, isTopView = false) => {

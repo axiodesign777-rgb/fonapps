@@ -1015,7 +1015,7 @@ const Badge = ({ children, color = "purple" }) => {
   const styles = color === "mint" 
     ? "bg-teal-400/10 text-teal-300 border-teal-400/20" 
     : "bg-purple-500/10 text-purple-300 border-purple-500/20";
-   
+    
   return (
     <span className={`px-2 py-1 rounded-md text-xs font-medium border ${styles} backdrop-blur-sm`}>
       {children}
@@ -1092,7 +1092,7 @@ const UpdatedAppsCarousel = ({ apps, onSelectApp, t }) => {
   const scrollRef = useRef(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
-   
+    
   const featuredApps = apps
     .filter(app => app.isUpdated || app.isNew)
     .sort((a, b) => {
@@ -1232,22 +1232,6 @@ export default function ModStoreApp() {
     localStorage.setItem('myFavorites', JSON.stringify(favorites));
   }, [favorites]);
 
-  // ✅ INYECCIÓN DEL SCRIPT OFICIAL DE LOOTLABS (ACTIVO)
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.dataset.cfasync = "false";
-    script.src = "//dcbbwymp1bhlf.cloudfront.net/?wbbcd=1236389";
-    script.async = true;
-    document.body.appendChild(script);
-
-    return () => {
-      // Limpieza (opcional, pero buena práctica)
-      if(document.body.contains(script)){
-        document.body.removeChild(script);
-      }
-    }
-  }, []);
-
   const toggleFavorite = (e, id) => {
     e.stopPropagation();
     setFavorites(prev => 
@@ -1386,9 +1370,9 @@ export default function ModStoreApp() {
             >
               {badgeType && (
                 <div className="absolute top-0 left-0 z-20">
-                   <div className="px-2 py-0.5 rounded-br-lg bg-yellow-500/10 border-b border-r border-yellow-500/20 text-yellow-200 text-[8px] font-bold tracking-wider uppercase backdrop-blur-md shadow-sm">
+                    <div className="px-2 py-0.5 rounded-br-lg bg-yellow-500/10 border-b border-r border-yellow-500/20 text-yellow-200 text-[8px] font-bold tracking-wider uppercase backdrop-blur-md shadow-sm">
                       {badgeType}
-                   </div>
+                    </div>
                 </div>
               )}
 
@@ -1712,7 +1696,7 @@ export default function ModStoreApp() {
 
           {/* ✅ BARRA CENTRAL Y SWITCH DE IDIOMA (PC) */}
           <div className="hidden md:flex items-center gap-4">
-             <div className="flex items-center gap-1 bg-white/5 p-1 rounded-full border border-white/5">
+              <div className="flex items-center gap-1 bg-white/5 p-1 rounded-full border border-white/5">
                 {[
                   { id: 'home', label: t.nav_home },
                   { id: 'top', label: t.nav_top }
@@ -1980,7 +1964,7 @@ export default function ModStoreApp() {
       {/* 🖼️ VISOR FULL SCREEN (LIGHTBOX) */}
       {selectedApp && currentScreenshotIndex !== null && (
         <div className="fixed inset-0 z-[60] bg-black/95 backdrop-blur-xl flex flex-col items-center justify-center animate-in fade-in duration-300">
-           
+            
            <button 
              onClick={() => setCurrentScreenshotIndex(null)}
              className="absolute top-4 right-4 p-3 bg-white/10 hover:bg-white/20 rounded-full text-white transition-all z-50"

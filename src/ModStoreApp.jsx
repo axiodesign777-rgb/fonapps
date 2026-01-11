@@ -416,8 +416,8 @@ const INITIAL_APPS = [
     category: "IA",
     rating: 4.9,
     downloads: "50M+",
-    size: "27,86 MB",
-    version: "v1.1.02-00",
+    size: "27,88 MB",
+    version: "v1.1.03-08",
     image: "/icons/grok_ai.webp",
     thumbnail: "/Thumb/grok_ai_thumb.webp",
     screenshots: [
@@ -443,9 +443,9 @@ const INITIAL_APPS = [
     warning: "Nota: Debes iniciar sesión con tu cuenta de X (antes Twitter).",
     warning_en: "Note: You must log in with your X (formerly Twitter) account.",
 
-    updateDate: "2026-1-9",
+    updateDate: "2026-1-11",
     isUpdated: true,
-    downloadUrl: "https://www.mediafire.com/file/mqyk98wae6l34tj/Grok_1.1.02-release.00_PREMIUM.apk/file"
+    downloadUrl: "https://www.mediafire.com/file/izbgwqqp0146xtg/Grok_1.1.03-release.08_PREMIUM.apk/file"
   },
   {
     id: 14,

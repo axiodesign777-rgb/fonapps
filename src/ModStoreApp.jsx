@@ -8,7 +8,7 @@ import {
   Smartphone, 
   Zap, 
   ShieldCheck, 
-  TrendingUp,
+  TrendingUp, 
   Box, 
   Cpu, 
   ExternalLink, 
@@ -28,9 +28,6 @@ const getBadge = (app) => {
   const keywords = ["Premium", "Pro", "Prime", "VIP", "Max", "Plus", "Ultra", "Gold"];
   return keywords.find(word => app.name.includes(word));
 };
-
-// ⚠️ CONFIGURACIÓN: YA NO SE NECESITA TOKEN (EL SCRIPT HACE TODO)
-const MONETIZATION_API_TOKEN = null; 
 
 // ✅ BASE DE DATOS COMPLETA
 const INITIAL_APPS = [
@@ -445,7 +442,7 @@ const INITIAL_APPS = [
 
     updateDate: "2026-1-11",
     isUpdated: true,
-    downloadUrl: "https://www.mediafire.com/file/izbgwqqp0146xtg/Grok_1.1.03-release.08_PREMIUM.apk/file"
+    downloadUrl: "https://lootdest.org/s?fJfXI5QO"
   },
   {
     id: 14,
@@ -1023,7 +1020,7 @@ const Badge = ({ children, color = "purple" }) => {
   );
 };
 
-// ✅ HELPER: Convertimos el botón en un enlace <a> real para que el script lo detecte
+// ✅ HELPER: Componente de botón de descarga limpio
 const DownloadButton = ({ href, loading, text }) => {
   const className = `
     w-full py-3 rounded-xl font-bold text-slate-900 transition-all duration-300
@@ -1038,13 +1035,12 @@ const DownloadButton = ({ href, loading, text }) => {
     return (
       <button disabled className={className}>
         <div className="w-5 h-5 border-2 border-slate-900/30 border-t-slate-900 rounded-full animate-spin" />
-        {/* Aquí podríamos pasar también texto traducido para "Preparando...", pero lo dejo simple por ahora */}
         <span>...</span> 
       </button>
     );
   }
 
-  // Usamos una etiqueta <a> real para que el Full Page Script de LootLabs funcione
+  // Etiqueta <a> estándar para descargas externas
   return (
     <a 
       href={href} 
@@ -1714,16 +1710,16 @@ export default function ModStoreApp() {
                     {item.label}
                   </button>
                 ))}
-             </div>
+              </div>
 
-             {/* 🇺🇸 SWITCH IDIOMA */}
-             <button 
-               onClick={() => setLang(lang === 'es' ? 'en' : 'es')}
-               className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-800 border border-white/10 hover:border-teal-500 transition-colors"
-             >
-               <Globe size={16} className="text-teal-400" />
-               <span className="text-xs font-bold text-white">{lang === 'es' ? 'ES' : 'EN'}</span>
-             </button>
+              {/* 🇺🇸 SWITCH IDIOMA */}
+              <button 
+                onClick={() => setLang(lang === 'es' ? 'en' : 'es')}
+                className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-800 border border-white/10 hover:border-teal-500 transition-colors"
+              >
+                <Globe size={16} className="text-teal-400" />
+                <span className="text-xs font-bold text-white">{lang === 'es' ? 'ES' : 'EN'}</span>
+              </button>
           </div>
 
           {/* ✅ MENÚ HAMBURGUESA (MÓVIL) */}
@@ -1820,9 +1816,9 @@ export default function ModStoreApp() {
               
               {getBadge(selectedApp) && (
                 <div className="absolute top-0 left-0 z-10">
-                   <div className="px-4 py-1.5 rounded-br-2xl bg-yellow-500/10 border-b border-r border-yellow-500/20 text-yellow-200 text-[10px] font-bold tracking-wider uppercase backdrop-blur-md shadow-sm">
+                    <div className="px-4 py-1.5 rounded-br-2xl bg-yellow-500/10 border-b border-r border-yellow-500/20 text-yellow-200 text-[10px] font-bold tracking-wider uppercase backdrop-blur-md shadow-sm">
                       {getBadge(selectedApp)}
-                   </div>
+                    </div>
                 </div>
               )}
 
@@ -1890,32 +1886,32 @@ export default function ModStoreApp() {
   </div>
 
                 <div className="mb-6">
-                   <h3 className="text-sm font-bold text-slate-300 uppercase tracking-wider mb-3 flex items-center gap-2">
-                     <ImageIcon size={14} /> {t.gallery_label}
-                   </h3>
-                   <div className="flex gap-3 overflow-x-auto pb-4 snap-x snap-mandatory no-scrollbar -mx-4 px-4">
-                     {(selectedApp.screenshots || [selectedApp.image, selectedApp.image, selectedApp.image]).map((shot, idx) => (
-                       <div 
-                         key={idx} 
-                         onClick={() => setCurrentScreenshotIndex(idx)}
-                         className="flex-none w-28 h-28 aspect-square relative rounded-xl overflow-hidden border border-white/10 bg-slate-900 snap-center shadow-lg group/shot cursor-zoom-in hover:border-teal-500/50 transition-colors stagger-enter"
-                         style={{ animationDelay: `${50 + (idx * 100)}ms` }}
-                       >
-                         <img
-                           src={shot} 
-                           alt={`Screenshot ${idx + 1}`}
-                           loading="lazy"
-                           className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover/shot:opacity-100 group-hover/shot:scale-110 transition-all duration-500"
-                         />
-                         <div className="absolute inset-0 bg-black/20 group-hover/shot:bg-transparent transition-colors" />
-                         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/shot:opacity-100 transition-opacity duration-300 z-10 pointer-events-none">
-                            <div className="bg-black/60 p-1.5 rounded-full backdrop-blur-md">
-                               <Maximize2 size={14} className="text-white" />
-                            </div>
-                         </div>
-                       </div>
-                     ))}
-                   </div>
+                    <h3 className="text-sm font-bold text-slate-300 uppercase tracking-wider mb-3 flex items-center gap-2">
+                      <ImageIcon size={14} /> {t.gallery_label}
+                    </h3>
+                    <div className="flex gap-3 overflow-x-auto pb-4 snap-x snap-mandatory no-scrollbar -mx-4 px-4">
+                      {(selectedApp.screenshots || [selectedApp.image, selectedApp.image, selectedApp.image]).map((shot, idx) => (
+                        <div 
+                          key={idx} 
+                          onClick={() => setCurrentScreenshotIndex(idx)}
+                          className="flex-none w-28 h-28 aspect-square relative rounded-xl overflow-hidden border border-white/10 bg-slate-900 snap-center shadow-lg group/shot cursor-zoom-in hover:border-teal-500/50 transition-colors stagger-enter"
+                          style={{ animationDelay: `${50 + (idx * 100)}ms` }}
+                        >
+                          <img
+                            src={shot} 
+                            alt={`Screenshot ${idx + 1}`}
+                            loading="lazy"
+                            className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover/shot:opacity-100 group-hover/shot:scale-110 transition-all duration-500"
+                          />
+                          <div className="absolute inset-0 bg-black/20 group-hover/shot:bg-transparent transition-colors" />
+                          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/shot:opacity-100 transition-opacity duration-300 z-10 pointer-events-none">
+                             <div className="bg-black/60 p-1.5 rounded-full backdrop-blur-md">
+                                <Maximize2 size={14} className="text-white" />
+                             </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
                 </div>
 
                 {/* Features */}

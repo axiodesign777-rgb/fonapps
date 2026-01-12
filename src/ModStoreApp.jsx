@@ -688,7 +688,7 @@ const INITIAL_APPS = [
     rating: 4.4,
     downloads: "20M+",
     size: "20,44 MB",
-    version: "v6.5.054",
+    version: "v6.6.0",
     image: "/icons/smart_launcher.webp",
     thumbnail: "/Thumb/smart_launcher_thumb.webp",
     screenshots: [
@@ -709,10 +709,12 @@ const INITIAL_APPS = [
     modFeatures: ["Pro Desbloqueado", "Iconos Adaptativos", "Sin Anuncios","Rendimiento general mejorado"],
     
     description_en: "The smartest and most efficient launcher. Unlocked Pro version: smart search, automatic customizable categories, adaptive widgets, and advanced home screen gestures.",
-    modFeatures_en: ["Pro Unlocked", "Adaptive Icons", "No Ads", "Improved Performance"],
+    modFeatures_en: ["Pro Unlocked", "Adaptive Icons", "Liquid Glass", "No Ads", "Improved Performance"],
 
-    isUpdated: false,
-    downloadUrl: "https://www.mediafire.com/file/hw5g8bav0krab7q/Smart_Launcher_6.5_build_054_PRO.apk/file"
+     updateDate: "2026-1-13",
+
+    isUpdated: true,
+    downloadUrl: "https://loot-link.com/s?vjk5Qbm2"
   },
   {
     id: 6,

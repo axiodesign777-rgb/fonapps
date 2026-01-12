@@ -706,7 +706,7 @@ const INITIAL_APPS = [
       "/screenshots/gallery_thumbs/smart_launcher_5.webp"
     ],
     description: "El launcher más inteligente y eficiente. Versión Pro desbloqueada: búsqueda inteligente, categorías automáticas personalizables, widgets adaptativos y gestos avanzados en pantalla de inicio.",
-    modFeatures: ["Pro Desbloqueado", "Iconos Adaptativos", "Liquid Glass", "Sin Anuncios","Rendimiento general mejorado"],
+    modFeatures: ["Pro Desbloqueado", "Iconos Adaptativos", "Vidrio Líquido", "Sin Anuncios","Rendimiento general mejorado"],
     
     description_en: "The smartest and most efficient launcher. Unlocked Pro version: smart search, automatic customizable categories, adaptive widgets, and advanced home screen gestures.",
     modFeatures_en: ["Pro Unlocked", "Adaptive Icons", "Liquid Glass", "No Ads", "Improved Performance"],

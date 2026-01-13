@@ -688,7 +688,7 @@ const INITIAL_APPS = [
     rating: 4.4,
     downloads: "20M+",
     size: "20,44 MB",
-    version: "v6.6.0",
+    version: "v6.6.001",
     image: "/icons/smart_launcher.webp",
     thumbnail: "/Thumb/smart_launcher_thumb.webp",
     screenshots: [

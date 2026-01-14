@@ -413,8 +413,8 @@ const INITIAL_APPS = [
     category: "IA",
     rating: 4.9,
     downloads: "50M+",
-    size: "27,88 MB",
-    version: "v1.1.03-08",
+    size: "27,42 MB",
+    version: "v1.1.04-09",
     image: "/icons/grok_ai.webp",
     thumbnail: "/Thumb/grok_ai_thumb.webp",
     screenshots: [
@@ -440,9 +440,9 @@ const INITIAL_APPS = [
     warning: "Nota: Debes iniciar sesión con tu cuenta de X (antes Twitter).",
     warning_en: "Note: You must log in with your X (formerly Twitter) account.",
 
-    updateDate: "2026-1-11",
+    updateDate: "2026-1-14",
     isUpdated: true,
-    downloadUrl: "https://lootdest.org/s?fJfXI5QO"
+    downloadUrl: "https://loot-link.com/s?9PjwckJv"
   },
   {
     id: 14,
@@ -485,8 +485,8 @@ const INITIAL_APPS = [
     category: "Personalización",
     rating: 4.7,
     downloads: "10M+",
-    size: "13,79 MB",
-    version: "v1.15.6",
+    size: "13,93 MB",
+    version: "v1.15.8",
     image: "/icons/niagara_launcher.webp",
     thumbnail: "/Thumb/niagara_launcher_thumb.webp",
     screenshots: [
@@ -509,8 +509,10 @@ const INITIAL_APPS = [
     description_en: "The cleanest home screen for Android. Unlocked Pro version with access to all widgets, themes, adaptive icons, and advanced font and color customization.",
     modFeatures_en: ["Pro Unlocked", "Premium Widgets/Themes", "Adaptive Icons", "Improved Performance"],
 
-    isUpdated: false,
-    downloadUrl: "https://www.mediafire.com/file/c6hlrpxchd70vqn/Niagara_Launcher_v1.15.6_Premium.apk/file"
+    updateDate: "2026-1-14",
+
+    isUpdated: true,
+    downloadUrl: "https://lootdest.org/s?vrb7OWq4"
   },
   {
     id: 12,

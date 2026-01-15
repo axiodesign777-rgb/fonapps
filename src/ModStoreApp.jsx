@@ -613,7 +613,7 @@ const INITIAL_APPS = [
     modFeatures_en: ["Premium Unlocked", "No Ads", "Play Queue", "Improved Performance"],
 
     isUpdated: false,
-    downloadUrl: "https://www.mediafire.com/file/13ar2t8nivpg4p4/Web_Video_Caster_5.12.8_PREMIUM.apk/file"
+    downloadUrl: "https://cuty.io/VideoCaster"
   },
   {
     id: 9,

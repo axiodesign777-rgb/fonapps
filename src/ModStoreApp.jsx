@@ -31,6 +31,39 @@ const getBadge = (app) => {
 
 // ✅ BASE DE DATOS COMPLETA
 const INITIAL_APPS = [
+   {
+    id: 28,
+    name: "Master Social Premium",
+    developer: "FonApps",
+    category: "Herramientas",
+    rating: 4.4,
+    downloads: "50k+",
+    size: "21,95 MB",
+    version: "v4.5",
+    image: "/icons/master_social.webp",
+    thumbnail: "/Thumb/master_social_thumb.webp",
+    screenshots: [
+      "/screenshots/master_social_1.webp",
+      "/screenshots/master_social_2.webp",
+      "/screenshots/master_social_3.webp",
+      "/screenshots/master_social_4.webp"
+    ],
+    thumbs: [
+      "/screenshots/gallery_thumbs/master_social_1.webp",
+      "/screenshots/gallery_thumbs/master_social_2.webp",
+      "/screenshots/gallery_thumbs/master_social_3.webp",
+      "/screenshots/gallery_thumbs/master_social_4.webp"
+    ],
+    description: "El descargador de video todo en uno. Descarga videos y audios de YouTube, y guarda contenido de cualquier red social sin marca de agua. Incluye navegador integrado y gestor de archivos seguro.\n\nVersión Premium desbloqueada: Hemos eliminado toda la publicidad intrusiva, activado las descargas multi-hilo (3x más rápido) y desbloqueado la carpeta privada para proteger tus videos con contraseña.",
+    modFeatures: ["Premium Desbloqueado", "Sin Anuncios", "Sin Marca de Agua", "Velocidad x32", "Descargas Ilimitadas 4K"],
+    
+    description_en: "The all-in-one video downloader. Download videos and audio from YouTube, and save content from any social network without watermarks. Includes built-in browser and secure file manager.\n\nUnlocked Premium version: We removed all intrusive ads, enabled multi-thread downloads (3x faster), and unlocked the private folder to password-protect your videos.",
+    modFeatures_en: ["Premium Unlocked", "No Ads", "No Watermark", "32x Speed", "Unlimited Downloads 4k"],
+
+    updateDate: "2026-1-16",
+    isNew: true,
+    downloadUrl: "https://cuty.io/MasterSocial"
+  },
   {
     id: 27,
     name: "Dynamic Island Pro",

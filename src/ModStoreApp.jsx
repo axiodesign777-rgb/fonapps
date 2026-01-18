@@ -447,7 +447,7 @@ const INITIAL_APPS = [
     rating: 4.9,
     downloads: "50M+",
     size: "27,42 MB",
-    version: "v1.1.04-09",
+    version: "v1.1.06-01",
     image: "/icons/grok_ai.webp",
     thumbnail: "/Thumb/grok_ai_thumb.webp",
     screenshots: [
@@ -473,7 +473,7 @@ const INITIAL_APPS = [
     warning: "Nota: Debes iniciar sesión con tu cuenta de X (antes Twitter).",
     warning_en: "Note: You must log in with your X (formerly Twitter) account.",
 
-    updateDate: "2026-1-14",
+    updateDate: "2026-1-18",
     isUpdated: true,
     downloadUrl: "https://cuty.io/GrokAIX"
   },

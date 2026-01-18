@@ -446,7 +446,7 @@ const INITIAL_APPS = [
     category: "IA",
     rating: 4.9,
     downloads: "50M+",
-    size: "27,42 MB",
+    size: "27,59 MB",
     version: "v1.1.06-01",
     image: "/icons/grok_ai.webp",
     thumbnail: "/Thumb/grok_ai_thumb.webp",

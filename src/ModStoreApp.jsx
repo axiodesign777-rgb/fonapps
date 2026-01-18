@@ -475,7 +475,7 @@ const INITIAL_APPS = [
 
     updateDate: "2026-1-14",
     isUpdated: true,
-    downloadUrl: "https://loot-link.com/s?9PjwckJv"
+    downloadUrl: "https://cuty.io/GrokAIX"
   },
   {
     id: 14,

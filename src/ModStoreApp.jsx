@@ -446,8 +446,8 @@ const INITIAL_APPS = [
     category: "IA",
     rating: 4.9,
     downloads: "50M+",
-    size: "27,59 MB",
-    version: "v1.1.06-01",
+    size: "27,58 MB",
+    version: "v1.1.07-12",
     image: "/icons/grok_ai.webp",
     thumbnail: "/Thumb/grok_ai_thumb.webp",
     screenshots: [
@@ -473,7 +473,7 @@ const INITIAL_APPS = [
     warning: "Nota: Debes iniciar sesión con tu cuenta de X (antes Twitter).",
     warning_en: "Note: You must log in with your X (formerly Twitter) account.",
 
-    updateDate: "2026-1-18",
+    updateDate: "2026-1-19",
     isUpdated: true,
     downloadUrl: "https://cuty.io/GrokAIX"
   },
@@ -554,30 +554,31 @@ const INITIAL_APPS = [
     category: "IA",
     rating: 4.7,
     downloads: "50M+",
-    size: "48,64 MB",
-    version: "v2.65.1",
+    size: "90,13 MB",
+    version: "v2.71.1",
     image: "/icons/perplexity.webp",
     thumbnail: "/Thumb/perplexity_thumb.webp",
     screenshots: [
-      "/screenshots/grok_1.webp",
-      "/screenshots/grok_2.webp",
-      "/screenshots/grok_3.webp",
-      "/screenshots/grok_4.webp"
+      "/screenshots/perplexity_1.webp",
+      "/screenshots/perplexity_2.webp",
+      "/screenshots/perplexity_3.webp",
+      "/screenshots/perplexity_4.webp"
     ],
     thumbs: [
-      "/screenshots/gallery_thumbs/grok_1.webp",
-      "/screenshots/gallery_thumbs/grok_2.webp",
-      "/screenshots/gallery_thumbs/grok_3.webp",
-      "/screenshots/gallery_thumbs/grok_4.webp"
+      "/screenshots/gallery_thumbs/perplexity_1.webp",
+      "/screenshots/gallery_thumbs/perplexity_2.webp",
+      "/screenshots/gallery_thumbs/perplexity_3.webp",
+      "/screenshots/gallery_thumbs/perplexity_4.webp"
     ],
-    description: "Tu asistente de respuestas con IA. Acceso Pro desbloqueado: búsquedas Pro ilimitadas, carga de archivos PDF/Imágenes sin límites y selección de modelos avanzados como GPT-5 y Claude 3.5 Sonnet.",
+    description: "Tu asistente de respuestas con IA. Acceso Pro desbloqueado: búsquedas Pro ilimitadas, carga de archivos PDF/Imágenes sin límites y selección de modelos avanzados como GPT-5.2 y Claude 4.5 Sonnet.",
     modFeatures: ["Max Desbloqueado", "Búsquedas Max Ilimitadas", "Modelos Premium","Rendimiento general mejorado"],
     
-    description_en: "Your AI answer assistant. Pro access unlocked: unlimited Pro searches, PDF/Image file upload without limits, and selection of advanced models like GPT-5 and Claude 3.5 Sonnet.",
+    description_en: "Your AI answer assistant. Pro access unlocked: unlimited Pro searches, PDF/Image file upload without limits, and selection of advanced models like GPT-5.2 and Claude 4.5 Sonnet.",
     modFeatures_en: ["Max Unlocked", "Unlimited Max Searches", "Premium Models", "Improved Performance"],
 
-    isUpdated: false,
-    downloadUrl: "https://www.mediafire.com/file/03m3eolcwqxbu5y/Perplexity_2.65.1_MAX.apk/file"
+    updateDate: "2026-1-19",
+    isUpdated: true,
+    downloadUrl: "https://cuty.io/Perplexity"
   },
   {
     id: 11,

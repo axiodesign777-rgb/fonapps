@@ -446,8 +446,8 @@ const INITIAL_APPS = [
     category: "IA",
     rating: 4.9,
     downloads: "50M+",
-    size: "27,58 MB",
-    version: "v1.1.07-12",
+    size: "27,62 MB",
+    version: "v1.1.09-00",
     image: "/icons/grok_ai.webp",
     thumbnail: "/Thumb/grok_ai_thumb.webp",
     screenshots: [
@@ -473,7 +473,7 @@ const INITIAL_APPS = [
     warning: "Nota: Debes iniciar sesión con tu cuenta de X (antes Twitter).",
     warning_en: "Note: You must log in with your X (formerly Twitter) account.",
 
-    updateDate: "2026-1-19",
+    updateDate: "2026-1-22",
     isUpdated: true,
     downloadUrl: "https://cuty.io/GrokAIX"
   },
@@ -484,8 +484,8 @@ const INITIAL_APPS = [
     category: "Personalización",
     rating: 3.9,
     downloads: "100M+",
-    size: "15,71 MB",
-    version: "v8.1.6",
+    size: "13,10 MB",
+    version: "v8.2.4",
     image: "/icons/nova_launcher.webp",
     thumbnail: "/Thumb/nova_launcher_thumb.webp",
     screenshots: [
@@ -508,8 +508,10 @@ const INITIAL_APPS = [
     description_en: "The most powerful and customizable launcher. Fully unlocked Prime version: gestures, drawer groups, hide apps, and exclusive scroll effects.",
     modFeatures_en: ["Prime Unlocked", "Gestures", "Hide Apps", "Improved Performance"],
 
-    isUpdated: false,
-    downloadUrl: "https://www.mediafire.com/file/pr18hq9ayo6l7oj/Nova_Launcher_8.1.6_PRIME.apk/file"
+    updateDate: "2026-1-22",
+
+    isUpdated: true,
+    downloadUrl: "https://cuty.io/NovaLauncher"
   },
   {
     id: 13,

@@ -31,6 +31,74 @@ const getBadge = (app) => {
 
 // ✅ BASE DE DATOS COMPLETA
 const INITIAL_APPS = [
+  {
+    id: 30,
+    name: "VPN Master Premium",
+    developer: "FonApps",
+    category: "Herramientas",
+    rating: 4.4,
+    downloads: "500K+",
+    size: "25,86 MB",
+    version: "v1.1.3",
+    image: "/icons/vpn_master.webp",
+    thumbnail: "/Thumb/vpn_master_thumb.webp",
+    screenshots: [
+      "/screenshots/vpn_master_1.webp",
+      "/screenshots/vpn_master_2.webp",
+      "/screenshots/vpn_master_3.webp",
+      "/screenshots/vpn_master_4.webp",
+      "/screenshots/vpn_master_4.webp"
+    ],
+    thumbs: [
+      "/screenshots/gallery_thumbs/vpn_master_1.webp",
+      "/screenshots/gallery_thumbs/vpn_master_2.webp",
+      "/screenshots/gallery_thumbs/vpn_master_3.webp",
+      "/screenshots/gallery_thumbs/vpn_master_4.webp",
+      "/screenshots/gallery_thumbs/vpn_master_4.webp"
+    ],
+    description: "Navegación segura, privada y ultrarrápida. VPN Master es una de las herramientas más confiables para ocultar tu IP y acceder a contenido bloqueado.\n\nVersión VIP desbloqueada: Accede a la lista completa de servidores VIP (más de 60 países) con velocidad turbo para streaming y juegos, conexión estable ilimitada y una experiencia 100% libre de publicidad.",
+    modFeatures: ["VIP Desbloqueado", "Servidores Turbo", "Sin Anuncios", "Ancho de Banda Ilimitado", "Ping Bajo (Gaming)"],
+    
+    description_en: "Secure, private, and ultra-fast browsing. VPN Master is one of the most reliable tools to hide your IP and access blocked content.\n\nVIP version unlocked: Access the full list of VIP servers (60+ countries) with turbo speed for streaming and gaming, unlimited stable connection, and a 100% ad-free experience.",
+    modFeatures_en: ["VIP Unlocked", "Turbo Servers", "No Ads", "Unlimited Bandwidth", "Low Ping (Gaming)"],
+
+    updateDate: "2026-01-26",
+    isNew: true,
+    downloadUrl: "https://cuty.io/VPNMaster"
+  },
+  {
+    id: 29,
+    name: "WhatsApp Delta GB Plus",
+    developer: "Deltalabs Studio",
+    category: "Social",
+    rating: 4.9,
+    downloads: "10M+",
+    size: "126,43 MB",
+    version: "v3.4.1",
+    image: "/icons/whatsapp_delta.webp",
+    thumbnail: "/Thumb/whatsapp_delta_thumb.webp",
+    screenshots: [
+      "/screenshots/whatsapp_delta_1.webp",
+      "/screenshots/whatsapp_delta_2.webp",
+      "/screenshots/whatsapp_delta_3.webp",
+      "/screenshots/whatsapp_delta_4.webp"
+    ],
+    thumbs: [
+      "/screenshots/gallery_thumbs/whatsapp_delta_1.webp",
+      "/screenshots/gallery_thumbs/whatsapp_delta_2.webp",
+      "/screenshots/gallery_thumbs/whatsapp_delta_3.webp",
+      "/screenshots/gallery_thumbs/whatsapp_delta_4.webp"
+    ],
+    description: "La modificación de WhatsApp más visual y estética que existe. Delta lleva la personalización al extremo: cambia totalmente la interfaz con menús curvos, estados estilo Instagram, temas transparentes y efectos de caída de nieve/lluvia en los chats.\n\nAdemás, incluye todas las funciones de privacidad esenciales: Anti-Eliminar mensajes, ocultar 'Escribiendo...', modo No Molestar (DND) y envío de archivos pesados sin compresión.",
+    modFeatures: ["Interfaz Única Delta", "Estados Instagram", "Privacidad Total", "Temas Transparentes", "Anti-Ban Mejorado"],
+    
+    description_en: "The most visual and aesthetic WhatsApp mod in existence. Delta takes customization to the extreme: completely overhaul the interface with curved menus, Instagram-style stories, transparent themes, and snow/rain effects in chats.\n\nPlus, it includes all essential privacy features: Anti-Delete messages, hide 'Typing...', Do Not Disturb (DND) mode, and heavy file sharing without compression.",
+    modFeatures_en: ["Unique Delta UI", "Instagram Stories", "Total Privacy", "Transparent Themes", "Improved Anti-Ban"],
+
+    updateDate: "2026-01-26",
+    isNew: true,
+    downloadUrl: "https://cuty.io/WhatsappDel"
+  },
    {
     id: 28,
     name: "Master Social Premium",
@@ -446,8 +514,8 @@ const INITIAL_APPS = [
     category: "IA",
     rating: 4.9,
     downloads: "50M+",
-    size: "27,62 MB",
-    version: "v1.1.09-00",
+    size: "27,66 MB",
+    version: "v1.1.11-08",
     image: "/icons/grok_ai.webp",
     thumbnail: "/Thumb/grok_ai_thumb.webp",
     screenshots: [
@@ -473,7 +541,7 @@ const INITIAL_APPS = [
     warning: "Nota: Debes iniciar sesión con tu cuenta de X (antes Twitter).",
     warning_en: "Note: You must log in with your X (formerly Twitter) account.",
 
-    updateDate: "2026-1-22",
+    updateDate: "2026-1-26",
     isUpdated: true,
     downloadUrl: "https://cuty.io/GrokAIX"
   },
@@ -691,8 +759,8 @@ const INITIAL_APPS = [
     category: "Herramientas",
     rating: 4.4,
     downloads: "100M+",
-    size: "202,88 MB",
-    version: "v15.9.2",
+    size: "203,49 MB",
+    version: "v16.1.0",
     image: "/icons/powerdirector.webp",
     thumbnail: "/Thumb/powerdirector_thumb.webp",
     screenshots: [
@@ -715,8 +783,10 @@ const INITIAL_APPS = [
     description_en: "The most professional video editor. Premium version unlocked: 4K Ultra HD export, no watermark, video stabilizer, and unlimited access to the entire stock of music and effects.",
     modFeatures_en: ["No Watermark", "4K Export", "All Unlocked", "Improved Performance"],
 
-    isUpdated: false,
-    downloadUrl: "https://www.mediafire.com/file/o9poinbem468mvn/PowerDirector_15.9.2_PRO.apk/file"
+    updateDate: "2026-1-26",
+
+    isUpdated: true,
+    downloadUrl: "https://cuty.io/PowerDirecto"
   },
   {
     id: 7,

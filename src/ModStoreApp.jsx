@@ -31,6 +31,75 @@ const getBadge = (app) => {
 
 // ✅ BASE DE DATOS COMPLETA
 const INITIAL_APPS = [
+
+  {
+    id: 32,
+    name: "Icon Pack Studio Pro",
+    developer: "FonApps",
+    category: "Personalización",
+    rating: 3.5,
+    downloads: "5M+",
+    size: "58,34 MB",
+    version: "v2.3 build 004",
+    image: "/icons/icon_pack_studio.webp",
+    thumbnail: "/Thumb/icon_pack_studio_thumb.webp",
+    screenshots: [
+      "/screenshots/icon_pack_studio_1.webp",
+      "/screenshots/icon_pack_studio_2.webp",
+      "/screenshots/icon_pack_studio_3.webp",
+      "/screenshots/icon_pack_studio_4.webp"
+    ],
+    thumbs: [
+      "/screenshots/gallery_thumbs/icon_pack_studio_1.webp",
+      "/screenshots/gallery_thumbs/icon_pack_studio_2.webp",
+      "/screenshots/gallery_thumbs/icon_pack_studio_3.webp",
+      "/screenshots/gallery_thumbs/icon_pack_studio_4.webp"
+    ],
+    description: "Diseña tu propio paquete de iconos desde cero. El editor más avanzado que te permite cambiar formas, colores, texturas, bordes y tamaños para que coincidan perfectamente con tu fondo de pantalla.\n\nVersión Pro desbloqueada: Acceso total a texturas premium (metal, neón, vidrio), filtros avanzados, exportación ilimitada a los launchers más populares (Nova, Smart, Niagara, etc.) y eliminación completa de anuncios.",
+    modFeatures: ["Pro Desbloqueado", "Texturas Premium", "Sin Anuncios", "Filtros Avanzados", "Exportación Ilimitada"],
+    
+    description_en: "Design your own icon pack from scratch. The most advanced editor allowing you to change shapes, colors, textures, borders, and sizes to perfectly match your wallpaper.\n\nPro version unlocked: Full access to premium textures (metal, neon, glass), advanced filters, unlimited export to popular launchers (Nova, Smart, Niagara, etc.), and complete ad removal.",
+    modFeatures_en: ["Pro Unlocked", "Premium Textures", "No Ads", "Advanced Filters", "Unlimited Export"],
+
+    updateDate: "2026-01-30",
+    isNew: true,
+    downloadUrl: "https://cuty.io/IconPackPro"
+  },
+
+  {
+    id: 31,
+    name: "Magic Eraser Pro",
+    developer: "FonApps",
+    category: "herramientas",
+    rating: 4.8,
+    downloads: "5M+",
+    size: "12,92 MB",
+    version: "v2.25.13",
+    image: "/icons/borrador_magico.webp",
+    thumbnail: "/Thumb/borrador_magico_thumb.webp",
+    screenshots: [
+      "/screenshots/borrador_magico_1.webp",
+      "/screenshots/borrador_magico_2.webp",
+      "/screenshots/borrador_magico_3.webp",
+      "/screenshots/borrador_magico_4.webp",
+      "/screenshots/borrador_magico_5.webp"
+    ],
+    thumbs: [
+      "/screenshots/gallery_thumbs/magic_eraser_1.webp",
+      "/screenshots/gallery_thumbs/magic_eraser_2.webp",
+      "/screenshots/gallery_thumbs/magic_eraser_3.webp",
+      "/screenshots/gallery_thumbs/magic_eraser_4.webp"
+    ],
+    description: "Limpia tus fotos en segundos con Inteligencia Artificial. Elimina fácilmente personas no deseadas, objetos, cables, marcas de agua o texto que arruinan tu imagen perfecta. La IA rellena el fondo automáticamente de forma natural.\n\nVersión VIP desbloqueada: Acceso ilimitado a todas las herramientas de borrado, exportación en Alta Definición (HD), sin marcas de agua de la app y una experiencia totalmente libre de publicidad.",
+    modFeatures: ["VIP Desbloqueado", "Sin Anuncios", "Exportación HD", "Borrados Ilimitados","Generador de imagen FLUX", "IA Mejorada"],
+    
+    description_en: "Clean up your photos in seconds with Artificial Intelligence. Easily remove unwanted people, objects, wires, watermarks, or text that ruin your perfect shot. The AI automatically fills in the background naturally.\n\nVIP version unlocked: Unlimited access to all erasure tools, High Definition (HD) export, no app watermarks, and a completely ad-free experience.",
+    modFeatures_en: ["VIP Unlocked", "No Ads", "HD Export", "Unlimited Erasures","FLUX image generator", "Improved AI"],
+
+    updateDate: "2026-01-30",
+    isNew: true,
+    downloadUrl: "https://cuty.io/BorradorPro"
+  },
   {
     id: 30,
     name: "VPN Master Premium",
@@ -63,7 +132,7 @@ const INITIAL_APPS = [
     modFeatures_en: ["VIP Unlocked", "Turbo Servers", "No Ads", "Unlimited Bandwidth", "Low Ping (Gaming)"],
 
     updateDate: "2026-01-26",
-    isNew: true,
+    isNew: false,
     downloadUrl: "https://cuty.io/VPNMaster"
   },
   {
@@ -73,8 +142,8 @@ const INITIAL_APPS = [
     category: "Social",
     rating: 4.9,
     downloads: "10M+",
-    size: "126,43 MB",
-    version: "v3.4.1",
+    size: "127,01 MB",
+    version: "v3.4.2",
     image: "/icons/whatsapp_delta.webp",
     thumbnail: "/Thumb/whatsapp_delta_thumb.webp",
     screenshots: [
@@ -95,8 +164,8 @@ const INITIAL_APPS = [
     description_en: "The most visual and aesthetic WhatsApp mod in existence. Delta takes customization to the extreme: completely overhaul the interface with curved menus, Instagram-style stories, transparent themes, and snow/rain effects in chats.\n\nPlus, it includes all essential privacy features: Anti-Delete messages, hide 'Typing...', Do Not Disturb (DND) mode, and heavy file sharing without compression.",
     modFeatures_en: ["Unique Delta UI", "Instagram Stories", "Total Privacy", "Transparent Themes", "Improved Anti-Ban"],
 
-    updateDate: "2026-01-26",
-    isNew: true,
+    updateDate: "2026-01-30",
+    isUpdated: true,
     downloadUrl: "https://cuty.io/WhatsappDel"
   },
    {
@@ -129,7 +198,7 @@ const INITIAL_APPS = [
     modFeatures_en: ["Premium Unlocked", "No Ads", "No Watermark", "32x Speed", "Unlimited Downloads 4k"],
 
     updateDate: "2026-1-16",
-    isNew: true,
+    isNew: false,
     downloadUrl: "https://cuty.io/MasterSocial"
   },
   {
@@ -162,7 +231,7 @@ const INITIAL_APPS = [
     modFeatures_en: ["Pro Unlocked", "No Ads", "Full Island Customization", "Premium Animations", "Improved Performance"],
 
     updateDate: "2026-1-7",
-    isNew: true,
+    isNew: false,
     downloadUrl: "https://www.mediafire.com/file/9vt3w9ouzbdtmra/DynamicNotch_5.1_PREMIUM.apk/file"
   },
   {
@@ -195,7 +264,7 @@ const INITIAL_APPS = [
     modFeatures_en: ["Video/Audio Downloads", "Gesture Controls", "Ad Block", "Gemini AI", "Ultra Light"],
 
     updateDate: "2026-1-7",
-    isNew: true,
+    isNew: false,
     downloadUrl: "https://www.mediafire.com/file/j9d22zf4f0hnt20/YouTube_pro.apk/file"
   },
   {
@@ -470,7 +539,7 @@ const INITIAL_APPS = [
 
     updateDate: "2026-1-9",
 
-    isUpdated: true,
+    isUpdated: false,
     downloadUrl: "https://www.mediafire.com/file/hu2e1q1by5q265y/Copilot_30.0.440107002_PRO.apk/file"
   },
   {
@@ -514,8 +583,8 @@ const INITIAL_APPS = [
     category: "IA",
     rating: 4.9,
     downloads: "50M+",
-    size: "27,66 MB",
-    version: "v1.1.11-08",
+    size: "27,72 MB",
+    version: "v1.1.13-08",
     image: "/icons/grok_ai.webp",
     thumbnail: "/Thumb/grok_ai_thumb.webp",
     screenshots: [
@@ -541,7 +610,7 @@ const INITIAL_APPS = [
     warning: "Nota: Debes iniciar sesión con tu cuenta de X (antes Twitter).",
     warning_en: "Note: You must log in with your X (formerly Twitter) account.",
 
-    updateDate: "2026-1-26",
+    updateDate: "2026-1-30",
     isUpdated: true,
     downloadUrl: "https://cuty.io/GrokAIX"
   },
@@ -578,7 +647,7 @@ const INITIAL_APPS = [
 
     updateDate: "2026-1-22",
 
-    isUpdated: true,
+    isUpdated: false,
     downloadUrl: "https://cuty.io/NovaLauncher"
   },
   {
@@ -614,7 +683,7 @@ const INITIAL_APPS = [
 
     updateDate: "2026-1-14",
 
-    isUpdated: true,
+    isUpdated: false,
     downloadUrl: "https://lootdest.org/s?vrb7OWq4"
   },
   {
@@ -647,7 +716,7 @@ const INITIAL_APPS = [
     modFeatures_en: ["Max Unlocked", "Unlimited Max Searches", "Premium Models", "Improved Performance"],
 
     updateDate: "2026-1-19",
-    isUpdated: true,
+    isUpdated: false,
     downloadUrl: "https://cuty.io/Perplexity"
   },
   {
@@ -693,7 +762,7 @@ const INITIAL_APPS = [
     rating: 4.6,
     downloads: "2M",
     size: "30,49 MB",
-    version: "v5.12.8",
+    version: "v5.12.9",
     image: "/icons/web_video_caster.webp",
     thumbnail: "/Thumb/web_video_caster_thumb.webp",
     screenshots: [
@@ -716,7 +785,9 @@ const INITIAL_APPS = [
     description_en: "Cast web videos, movies, and TV shows to your TV, Chromecast, or Roku without restrictions. Premium version unlocked: no ads, unlimited bookmarks, and custom home screen.",
     modFeatures_en: ["Premium Unlocked", "No Ads", "Play Queue", "Improved Performance"],
 
-    isUpdated: false,
+    updateDate: "2026-1-30",
+
+    isUpdated: true,
     downloadUrl: "https://cuty.io/VideoCaster"
   },
   {
@@ -737,10 +808,10 @@ const INITIAL_APPS = [
       "/screenshots/telegram_4.webp"
     ],
     thumbs: [
-      "/screenshots/gallery_thumbs/grok_1.webp",
-      "/screenshots/gallery_thumbs/grok_2.webp",
-      "/screenshots/gallery_thumbs/grok_3.webp",
-      "/screenshots/gallery_thumbs/grok_4.webp"
+      "/screenshots/gallery_thumbs/telegram_1.webp",
+      "/screenshots/gallery_thumbs/telegram_2.webp",
+      "/screenshots/gallery_thumbs/telegram_3.webp",
+      "/screenshots/gallery_thumbs/telegram_4.webp"
     ],
     description: "Mensajería instantánea: simple, rápida y segura.\n\nDisfruta de una sincronización perfecta entre todos tus dispositivos con almacenamiento ilimitado en la nube.\n\nUtiliza una infraestructura global distribuida para ofrecer la máxima velocidad de conexión, cifrado avanzado para tu privacidad y herramientas poderosas para gestionar comunidades y compartir archivos de gran tamaño sin restricciones.",
     modFeatures: ["Premium Desbloqueado", "Gestión avanzada de chats", "Traducir chats enteros", "Copiar y guardar en canales privados", "Velocidad de descarga y subida+","Más","Rendimiento general mejorado"],
@@ -749,7 +820,7 @@ const INITIAL_APPS = [
     modFeatures_en: ["Premium Unlocked", "Advanced Chat Management", "Translate Chats", "Save Private Channels", "Faster DL/Upload", "More...", "Improved Performance"],
 
     updateDate: "2026-1-3",
-    isUpdated: true,
+    isUpdated: false,
     downloadUrl: "https://www.mediafire.com/file/ph38j27ihwuooa9/Telegram_12.3.0_PREMIUM.apk/file"
   },
   {
@@ -785,7 +856,7 @@ const INITIAL_APPS = [
 
     updateDate: "2026-1-26",
 
-    isUpdated: true,
+    isUpdated: false,
     downloadUrl: "https://cuty.io/PowerDirecto"
   },
   {
@@ -821,7 +892,7 @@ const INITIAL_APPS = [
 
      updateDate: "2026-1-13",
 
-    isUpdated: true,
+    isUpdated: false,
     downloadUrl: "https://loot-link.com/s?vjk5Qbm2"
   },
   {
@@ -966,8 +1037,8 @@ const INITIAL_APPS = [
     category: "Personalización",
     rating: 4.7,
     downloads: "100M+",
-    size: "104,5 MB",
-    version: "v3.59.01",
+    size: "56,95 MB",
+    version: "v3.60.0",
     image: "/icons/wallcraft.webp",
     thumbnail: "/Thumb/wallcraft_thumb.webp",
     screenshots: [
@@ -991,7 +1062,7 @@ const INITIAL_APPS = [
     modFeatures_en: ["Premium Unlocked", "8K & 4D Wallpapers", "No Ads", "Improved Performance"],
 
     isUpdated: false,
-    downloadUrl: "https://www.mediafire.com/file/w813y93pk1q0jl9/Wallcraft_3.59.01_PRO.apk/file"
+    downloadUrl: "https://cuty.io/WallcraftPro"
   },
   {
     id: 1,
